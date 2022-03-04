@@ -195,5 +195,11 @@
     <Image Include="res\boss_map.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\bitmap3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bmp00001.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

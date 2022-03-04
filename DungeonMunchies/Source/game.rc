@@ -110,6 +110,10 @@ IDB_MONSTER             BITMAP                  "C:\\Users\\User\\Desktop\\OOPLA
 
 IDB_MAP2                BITMAP                  "C:\\Users\\User\\Desktop\\OOPLAB\\OOPL_project\\DungeonMunchies\\RES\\boss_map.bmp"
 
+IDB_BLUE                BITMAP                  "..\\res\\bitmap3.bmp"
+
+IDB_WHITE               BITMAP                  "..\\res\\bmp00001.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

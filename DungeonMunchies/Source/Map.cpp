@@ -30,8 +30,8 @@ namespace game_framework {
 	}
 
 	void Map::LoadBitmap() {
-		map1.LoadBitmap(IDB_BOSSMAP);
-		map2.LoadBitmap(IDB_MAP2);
+		map1.LoadBitmap(IDB_WHITE);
+		map2.LoadBitmap(IDB_BLUE);
 	}
 
 	void Map::onShow() {

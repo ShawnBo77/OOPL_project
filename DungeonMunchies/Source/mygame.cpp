@@ -216,6 +216,7 @@ void CGameStateRun::OnBeginState()
 		ball[i].SetIsAlive(true);
 	}
 	eraser.Initialize();
+	character.Initialize();
 	background.SetTopLeft(BACKGROUND_X,0);				// 設定背景的起始座標
 	help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
 	hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
@@ -247,6 +248,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	// 移動擦子
 	//
 	eraser.OnMove();
+	character.OnMove();
 	//
 	// 判斷擦子是否碰到球
 	//
@@ -271,7 +273,6 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 
 	boss_map.SetTopLeft(10, 10);
 	monster.SetTopLeft(100, 50);
-	character.onMove();
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
@@ -288,6 +289,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	for (i = 0; i < NUMBALLS; i++)	
 		ball[i].LoadBitmap();								// 載入第i個球的圖形
 	eraser.LoadBitmap();
+	character.LoadBitmap();
 	background.LoadBitmap(IDB_BACKGROUND);					// 載入背景的圖形
 	//
 	// 完成部分Loading動作，提高進度
@@ -321,14 +323,22 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_UP    = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
+	//if (nChar == KEY_LEFT)
+	//	eraser.SetMovingLeft(true);
+	//if (nChar == KEY_RIGHT)
+	//	eraser.SetMovingRight(true);
+	//if (nChar == KEY_UP)
+	//	eraser.SetMovingUp(true);
+	//if (nChar == KEY_DOWN)
+	//	eraser.SetMovingDown(true);
 	if (nChar == KEY_LEFT)
-		eraser.SetMovingLeft(true);
+		character.SetMovingLeft(true);
 	if (nChar == KEY_RIGHT)
-		eraser.SetMovingRight(true);
+		character.SetMovingRight(true);
 	if (nChar == KEY_UP)
-		eraser.SetMovingUp(true);
+		character.SetMovingUp(true);
 	if (nChar == KEY_DOWN)
-		eraser.SetMovingDown(true);
+		character.SetMovingDown(true);
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -337,24 +347,32 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_UP    = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
+	//if (nChar == KEY_LEFT)
+	//	eraser.SetMovingLeft(false);
+	//if (nChar == KEY_RIGHT)
+	//	eraser.SetMovingRight(false);
+	//if (nChar == KEY_UP)
+	//	eraser.SetMovingUp(false);
+	//if (nChar == KEY_DOWN)
+	//	eraser.SetMovingDown(false);
 	if (nChar == KEY_LEFT)
-		eraser.SetMovingLeft(false);
+		character.SetMovingLeft(false);
 	if (nChar == KEY_RIGHT)
-		eraser.SetMovingRight(false);
+		character.SetMovingRight(false);
 	if (nChar == KEY_UP)
-		eraser.SetMovingUp(false);
+		character.SetMovingUp(false);
 	if (nChar == KEY_DOWN)
-		eraser.SetMovingDown(false);
+		character.SetMovingDown(false);
 }
 
 void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 {
-	eraser.SetMovingLeft(true);
+	//eraser.SetMovingLeft(true);
 }
 
 void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 {
-	eraser.SetMovingLeft(false);
+	//eraser.SetMovingLeft(false);
 }
 
 void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point)	// 處理滑鼠的動作
@@ -364,12 +382,12 @@ void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 
 void CGameStateRun::OnRButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 {
-	eraser.SetMovingRight(true);
+	//eraser.SetMovingRight(true);
 }
 
 void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 {
-	eraser.SetMovingRight(false);
+	//eraser.SetMovingRight(false);
 }
 
 void CGameStateRun::OnShow()
@@ -399,7 +417,7 @@ void CGameStateRun::OnShow()
 
 	boss_map.ShowBitmap();
 	monster.ShowBitmap();
-	character.onShow();
 	gamemap.onShow();
+	character.OnShow();
 }
 }

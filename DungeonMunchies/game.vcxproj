@@ -329,6 +329,8 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="res\bitmap3.bmp" />
+    <Image Include="res\bmp00001.bmp" />
     <Image Include="res\boss_map.bmp" />
     <Image Include="RES\MeviusLevitating.bmp" />
     <Image Include="RES\MiConv.com__unknown.bmp" />
