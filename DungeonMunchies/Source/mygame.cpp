@@ -184,6 +184,77 @@ void CGameStateOver::OnShow()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+// 這個class為遊戲的角色人物物件
+/////////////////////////////////////////////////////////////////////////////
+
+Character::Character() {
+	x = y = 50;
+}
+
+void Character::onMove() {
+	if (y <= SIZE_Y) {
+		x += 3;
+		y += 3;
+	}
+	else {
+		x = y = 50;
+	}
+}
+
+void Character::LoadBitmap() {
+	character.LoadBitmap(IDB_MONSTER);
+}
+
+void Character::onShow() {
+	character.SetTopLeft(x, y);
+	character.ShowBitmap();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// 這個class提供地圖構成
+/////////////////////////////////////////////////////////////////////////////
+
+Map::Map() 
+:X(20), Y(40), mapW(120), mapH(100) //給予地圖左上角座標及每張小圖寬度
+{
+	int map_init[4][5] = { //給予地圖陣列初值
+		{0,0,1,0,0},
+		{0,1,2,1,0},
+		{1,2,1,2,1},
+		{2,1,2,1,2},
+	};
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 5; j++)
+			map[i][j] = map_init[i][j]; //依序填入map
+	}
+}
+
+void Map::LoadBitmap() {
+	map1.LoadBitmap(IDB_BOSSMAP);
+	map2.LoadBitmap(IDB_MAP2);
+}
+
+void Map::onShow() {
+	for (int i = 0; i < 5; i++) { //往右顯示五張圖
+		for (int j = 0; j < 4; j++) { //往下顯示四張圖
+			switch (map[j][i]) {
+				case 0:
+					break;
+				case 1:
+					map1.SetTopLeft(X + (mapW * i), Y + (mapH * j)); //設定每張圖的座標
+					map1.ShowBitmap(); //顯示設定完的座標
+					break;
+				case 2:
+					map2.SetTopLeft(X + (mapW * i), Y + (mapH * j)); //設定每張圖的座標
+					map2.ShowBitmap(); // 顯示設定完的座標
+					break;
+				default:
+					ASSERT(0); //map陣列不該出現0,1,2之外的值
+			}
+		}
+	}
+}
+/////////////////////////////////////////////////////////////////////////////
 // 這個class為遊戲的遊戲執行物件，主要的遊戲程式都在這裡
 /////////////////////////////////////////////////////////////////////////////
 
@@ -270,6 +341,8 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	bball.OnMove();
 
 	boss_map.SetTopLeft(10, 10);
+	monster.SetTopLeft(100, 50);
+	character.onMove();
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
@@ -296,6 +369,10 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	// 繼續載入其他資料
 	//
 	boss_map.LoadBitmap(IDB_BOSSMAP);
+	character.LoadBitmap();
+	monster.LoadBitmap(IDB_MONSTER, RGB(255, 0, 255));
+	gamemap.LoadBitmap();
+
 	help.LoadBitmap(IDB_HELP,RGB(255,255,255));				// 載入說明的圖形
 	corner.LoadBitmap(IDB_CORNER);							// 載入角落圖形
 	corner.ShowBitmap(background);							// 將corner貼到background
@@ -392,5 +469,8 @@ void CGameStateRun::OnShow()
 	corner.ShowBitmap();
 
 	boss_map.ShowBitmap();
+	monster.ShowBitmap();
+	character.onShow();
+	gamemap.onShow();
 }
 }

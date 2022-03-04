@@ -177,5 +177,11 @@
     <Image Include="RES\MiConv.com__unknown.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\MeviusLevitating.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_map.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

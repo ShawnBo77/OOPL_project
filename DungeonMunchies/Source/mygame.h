@@ -72,6 +72,37 @@ namespace game_framework {
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
+	// 這個class為遊戲的角色人物物件
+	/////////////////////////////////////////////////////////////////////////////
+	class Character{
+	public:
+		Character();
+		void LoadBitmap();
+		void onMove();
+		void onShow();
+	//protected:
+	//	void OnShow();									// 顯示這個狀態的遊戲畫面
+	private:
+		CMovingBitmap character;								// csie的logo
+		int x, y;
+	};
+
+	/////////////////////////////////////////////////////////////////////////////
+	// 這個class提供地圖構成
+	/////////////////////////////////////////////////////////////////////////////
+	class Map {
+	public:
+		Map();
+		void LoadBitmap();
+		void onShow();
+	protected:
+		CMovingBitmap map1, map2;
+		int map[4][15];
+		const int X, Y;
+		const int mapW, mapH;
+	};
+
+	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲執行物件，主要的遊戲程式都在這裡
 	// 每個Member function的Implementation都要弄懂
 	/////////////////////////////////////////////////////////////////////////////
@@ -94,6 +125,9 @@ namespace game_framework {
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		CMovingBitmap   boss_map;
+		CMovingBitmap	monster;
+		Character		character;
+		Map				gamemap;
 		const int		NUMBALLS;	// 球的總數
 		CMovingBitmap	background;	// 背景圖
 		CMovingBitmap	help;		// 說明圖
