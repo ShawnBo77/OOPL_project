@@ -284,6 +284,7 @@
     </ClCompile>
     <ClCompile Include="Source\Character.cpp" />
     <ClCompile Include="Source\Map.cpp" />
+    <ClCompile Include="Source\MapForBoss.cpp" />
     <ClCompile Include="Source\StdAfx.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -316,6 +317,7 @@
     <ClInclude Include="Source\gameView.h" />
     <ClInclude Include="Source\MainFrm.h" />
     <ClInclude Include="Source\Map.h" />
+    <ClInclude Include="Source\MapForBoss.h" />
     <ClInclude Include="Source\Resource.h" />
     <ClInclude Include="Source\StdAfx.h" />
     <ClInclude Include="Source\gamelib.h" />
@@ -331,6 +333,12 @@
   <ItemGroup>
     <Image Include="res\bitmap3.bmp" />
     <Image Include="res\bmp00001.bmp" />
+    <Image Include="res\bmp00002.bmp" />
+    <Image Include="res\bmp00003.bmp" />
+    <Image Include="res\bmp00004.bmp" />
+    <Image Include="res\bmp00005.bmp" />
+    <Image Include="res\bmp00006.bmp" />
+    <Image Include="res\bmp00007.bmp" />
     <Image Include="res\boss_map.bmp" />
     <Image Include="RES\MeviusLevitating.bmp" />
     <Image Include="RES\MiConv.com__unknown.bmp" />

@@ -5,6 +5,7 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "Character.h"
+#include "Map.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // 這個class為遊戲的角色人物物件
@@ -12,58 +13,48 @@
 namespace game_framework {
     Character::Character() {
 		Initialize();
-        x = y = 50;
+		//characterX = characterY = 50;
     }
 
-	int Character::GetX1()
+	int Character::GetLeftX()
 	{
-		return x;
+		return characterX;
 	}
 
-	int Character::GetY1()
+	int Character::GetTopY()
 	{
-		return y;
+		return characterY;
 	}
 
-	int Character::GetX2()
+	int Character::GetRightX()
 	{
-		return x + animation.Width();
+		return characterX + characterW; // + animation.Width();
 	}
 
-	int Character::GetY2()
+	int Character::GetButtonY()
 	{
-		return y + animation.Height();
+		return characterY + characterH; // + animation.Height();
 	}
 
 	void Character::Initialize()
 	{
-		const int X_POS = 280;
-		const int Y_POS = 400;
-		x = X_POS;
-		y = Y_POS;
+		characterH = 50;
+		characterW = 50;
+		const int X_POS = 50;
+		const int Y_POS = 50;
+		characterX = X_POS;
+		characterY = Y_POS;
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 	}
 
 	void Character::LoadBitmap()
 	{
-		animation.AddBitmap(IDB_MONSTER, RGB(255, 0, 255));
-		animation.AddBitmap(IDB_ERASER2, RGB(255, 255, 255));
-		animation.AddBitmap(IDB_MONSTER, RGB(255, 0, 255));
-		animation.AddBitmap(IDB_ERASER2, RGB(255, 255, 255));
-	}
-
-	void Character::OnMove()
-	{
-		const int STEP_SIZE = 2;
-		animation.OnMove();
-		if (isMovingLeft)
-			x -= STEP_SIZE;
-		if (isMovingRight)
-			x += STEP_SIZE;
-		if (isMovingUp)
-			y -= STEP_SIZE;
-		if (isMovingDown)
-			y += STEP_SIZE;
+		animation.AddBitmap(IDB_GRAY);
+		/*animation.AddBitmap(IDB_MAINCHARACTERSTAND, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_MAINCHARACTERWALK1, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_MAINCHARACTERWALK2, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_MAINCHARACTERWALK3, RGB(255, 255, 255));
+		animation.AddBitmap(IDB_MAINCHARACTERWALK4, RGB(255, 255, 255));*/
 	}
 
 	void Character::SetMovingDown(bool flag)
@@ -86,14 +77,36 @@ namespace game_framework {
 		isMovingUp = flag;
 	}
 
-	void Character::SetXY(int nx, int ny)
+	void Character::OnMove(Map *m)
 	{
-		x = nx; y = ny;
+		const int STEP_SIZE = 5;
+		animation.OnMove();
+		if (isMovingLeft && m->isEmpty(GetLeftX() - STEP_SIZE, GetTopY()) && m->isEmpty(GetLeftX() - STEP_SIZE, GetButtonY() - 5)) {
+			characterX -= STEP_SIZE;
+			m->addSX(STEP_SIZE);
+		}
+		if (isMovingRight && m->isEmpty(GetRightX() + STEP_SIZE - 5, GetTopY()) && m->isEmpty(GetRightX() - 5 + STEP_SIZE, GetButtonY() - 5)) {
+			characterX += STEP_SIZE;
+			m->addSX(-STEP_SIZE);
+		}
+		if (isMovingUp && m->isEmpty(GetLeftX(), GetTopY() - STEP_SIZE) && m->isEmpty(GetRightX() - 5, GetTopY() - STEP_SIZE)) {
+			characterY -= STEP_SIZE;
+			m->addSY(STEP_SIZE);
+		}
+		if (isMovingDown && m->isEmpty(GetLeftX(), GetButtonY() + STEP_SIZE - 5) && m->isEmpty(GetRightX() - 5, GetButtonY() + STEP_SIZE - 5)) {
+			characterY += STEP_SIZE;
+			m->addSY(-STEP_SIZE);
+		}
+	}
+
+	void Character::SetXY(int x, int y)
+	{
+		characterX = x; characterY = y;
 	}
 
 	void Character::OnShow()
 	{
-		animation.SetTopLeft(x, y);
+		animation.SetTopLeft(characterX, characterY);
 		animation.OnShow();
 	}
 }

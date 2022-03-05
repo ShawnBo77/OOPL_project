@@ -217,6 +217,7 @@ void CGameStateRun::OnBeginState()
 	}
 	eraser.Initialize();
 	character.Initialize();
+	bossMap.Initialize();
 	background.SetTopLeft(BACKGROUND_X,0);				// 設定背景的起始座標
 	help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
 	hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
@@ -248,7 +249,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	// 移動擦子
 	//
 	eraser.OnMove();
-	character.OnMove();
+	character.OnMove(&bossMap);
 	//
 	// 判斷擦子是否碰到球
 	//
@@ -271,8 +272,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	bball.OnMove();
 
-	boss_map.SetTopLeft(10, 10);
-	monster.SetTopLeft(100, 50);
+	//monster.SetTopLeft(100, 50);
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
@@ -289,7 +289,6 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	for (i = 0; i < NUMBALLS; i++)	
 		ball[i].LoadBitmap();								// 載入第i個球的圖形
 	eraser.LoadBitmap();
-	character.LoadBitmap();
 	background.LoadBitmap(IDB_BACKGROUND);					// 載入背景的圖形
 	//
 	// 完成部分Loading動作，提高進度
@@ -299,10 +298,9 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//
 	// 繼續載入其他資料
 	//
-	boss_map.LoadBitmap(IDB_BOSSMAP);
 	character.LoadBitmap();
-	monster.LoadBitmap(IDB_MONSTER, RGB(255, 0, 255));
-	gamemap.LoadBitmap();
+	//monster.LoadBitmap(IDB_MONSTER, RGB(255, 0, 255));
+	bossMap.LoadBitmap();
 
 	help.LoadBitmap(IDB_HELP,RGB(255,255,255));				// 載入說明的圖形
 	corner.LoadBitmap(IDB_CORNER);							// 載入角落圖形
@@ -415,9 +413,8 @@ void CGameStateRun::OnShow()
 	corner.SetTopLeft(SIZE_X-corner.Width(), SIZE_Y-corner.Height());
 	corner.ShowBitmap();
 
-	boss_map.ShowBitmap();
-	monster.ShowBitmap();
-	gamemap.onShow();
+	//monster.ShowBitmap();
+	bossMap.onShow();
 	character.OnShow();
 }
 }
