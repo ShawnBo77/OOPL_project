@@ -106,9 +106,9 @@ IDB_LOADING             BITMAP                  "..\\res\\loading.bmp"
 
 IDB_BOSSMAP             BITMAP                  "..\\res\\boss_map.bmp"
 
-IDB_MONSTER             BITMAP                  "C:\\Users\\User\\Desktop\\OOPLAB\\OOPL_project\\DungeonMunchies\\RES\\MeviusLevitating.bmp"
+IDB_MONSTER             BITMAP                  "..\\res\\MeviusLevitating.bmp"
 
-IDB_MAP2                BITMAP                  "C:\\Users\\User\\Desktop\\OOPLAB\\OOPL_project\\DungeonMunchies\\RES\\boss_map.bmp"
+IDB_MAP2                BITMAP                  "..\\res\\boss_map.bmp"
 
 IDB_BLUE                BITMAP                  "..\\res\\bitmap3.bmp"
 
