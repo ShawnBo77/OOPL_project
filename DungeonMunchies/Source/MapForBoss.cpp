@@ -17,8 +17,8 @@ namespace game_framework {
     {
         X = 0;
         Y = 0;
-        gridW = 50;
-        gridH = 50;
+        gridW = 60;
+        gridH = 60;
        //給予地圖左上角座標及每張小圖寬度
         int mapGrid_init[4][6] = { //給予地圖陣列初值
             {0,0,0,0,0,0},
@@ -44,15 +44,15 @@ namespace game_framework {
 
     void MapForBoss::setPos(int x, int y, int n)
     {
-        int gridX = x / 50;
-        int gridY = y / 50;
+        int gridX = x / 60;
+        int gridY = y / 60;
         mapGrid[gridX][gridY] = n;
     }
 
     bool MapForBoss::isEmpty(int x, int y) const
     {
-        int gridX = x / 50;
-        int gridY = y / 50;
+        int gridX = x / 60;
+        int gridY = y / 60;
         if (mapGrid[gridX][gridY] != 0)
         {
             return true;
