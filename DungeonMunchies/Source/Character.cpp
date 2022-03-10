@@ -50,12 +50,10 @@ namespace game_framework {
 	void Character::LoadBitmap()
 	{
 		//animation.AddBitmap(IDB_GRAY);
-		animation.AddBitmap(IDB_MAINCHARACTERSTAND, RGB(255, 255, 255));
-		animation.AddBitmap(IDB_MAINCHARACTERWALK1, RGB(255, 255, 255));
-		animation.AddBitmap(IDB_MAINCHARACTERWALK2, RGB(255, 255, 255));
-		animation.AddBitmap(IDB_MAINCHARACTERWALK3, RGB(255, 255, 255));
-		animation.AddBitmap(IDB_MAINCHARACTERWALK4, RGB(255, 255, 255));
-		animation.AddBitmap(IDB_MONSTER, RGB(255, 0, 255));
+		animation.AddBitmap(IDB_MAINCHARACTERSTAND, RGB(255, 51, 255));
+		animation.AddBitmap(IDB_MAINCHARACTERWALK1, RGB(255, 51, 255));
+		animation.AddBitmap(IDB_MAINCHARACTERWALK2, RGB(255, 51, 255));
+		animation.AddBitmap(IDB_MAINCHARACTERWALK3, RGB(255, 51, 255));
 	}
 
 	void Character::SetMovingDown(bool flag)

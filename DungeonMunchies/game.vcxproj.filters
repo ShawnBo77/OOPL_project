@@ -225,5 +225,20 @@
     <Image Include="res\bmp00007.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\right_jump.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\stand.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\walk01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\walk02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\walk03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
