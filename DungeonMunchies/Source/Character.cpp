@@ -52,7 +52,7 @@ namespace game_framework {
 		//animation.AddBitmap(IDB_GRAY);
 		//animation.AddBitmap(IDB_BOSSRIGHTSTAND, RGB(0, 0, 0));
 
-		/*animation.AddBitmap(IDB_HERORIGHTSTAND_G, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_HERORIGHTSTAND_G, RGB(0, 0, 0));
 		animation.AddBitmap(IDB_HERORIGHTJUMP_G, RGB(0, 0, 0));
 		animation.AddBitmap(IDB_HERORIGHTWALK1_G, RGB(0, 0, 0));
 		animation.AddBitmap(IDB_HERORIGHTWALK2_G, RGB(0, 0, 0));
@@ -61,7 +61,7 @@ namespace game_framework {
 		animation.AddBitmap(IDB_HEROLEFTJUMP_G, RGB(0, 0, 0));
 		animation.AddBitmap(IDB_HEROLEFTWALK1_G, RGB(0, 0, 0));
 		animation.AddBitmap(IDB_HEROLEFTWALK2_G, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_HEROLEFTWALK3_G, RGB(0, 0, 0));*/
+		animation.AddBitmap(IDB_HEROLEFTWALK3_G, RGB(0, 0, 0));
 
 		//animation.AddBitmap(IDB_HERORIGHTSTAND_S, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_HERORIGHTJUMP_S, RGB(0, 0, 0));
