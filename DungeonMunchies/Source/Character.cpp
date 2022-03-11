@@ -38,10 +38,10 @@ namespace game_framework {
 
 	void Character::Initialize()
 	{
-		characterH = 60;
-		characterW = 60;
-		const int X_POS = 60;
-		const int Y_POS = 60;
+		characterH = 80;
+		characterW = 80;
+		const int X_POS = 100;
+		const int Y_POS = 100;
 		characterX = X_POS;
 		characterY = Y_POS;
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
@@ -51,9 +51,6 @@ namespace game_framework {
 	{
 		//animation.AddBitmap(IDB_GRAY);
 		animation.AddBitmap(IDB_MAINCHARACTERSTAND, RGB(255, 51, 255));
-		animation.AddBitmap(IDB_MAINCHARACTERWALK1, RGB(255, 51, 255));
-		animation.AddBitmap(IDB_MAINCHARACTERWALK2, RGB(255, 51, 255));
-		animation.AddBitmap(IDB_MAINCHARACTERWALK3, RGB(255, 51, 255));
 	}
 
 	void Character::SetMovingDown(bool flag)

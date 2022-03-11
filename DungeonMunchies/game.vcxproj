@@ -343,6 +343,10 @@
     <Image Include="RES\MeviusLevitating.bmp" />
     <Image Include="RES\MiConv.com__unknown.bmp" />
     <Image Include="RES\right_jump.bmp" />
+    <Image Include="res\right_stand.bmp" />
+    <Image Include="res\right_walk01.bmp" />
+    <Image Include="res\right_walk02.bmp" />
+    <Image Include="res\right_walk03.bmp" />
     <Image Include="RES\stand.bmp" />
     <Image Include="RES\walk01.bmp" />
     <Image Include="RES\walk02.bmp" />

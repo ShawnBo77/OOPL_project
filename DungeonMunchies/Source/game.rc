@@ -118,13 +118,13 @@ IDB_GRAY                BITMAP                  "..\\res\\bmp00007.bmp"
 
 IDB_MAINCHARACTERRIGHTJUMP BITMAP                  "..\\res\\right_jump.bmp"
 
-IDB_MAINCHARACTERSTAND  BITMAP                  "..\\res\\stand.bmp"
+IDB_MAINCHARACTERSTAND  BITMAP                  "..\\res\\right_stand.bmp"
 
-IDB_MAINCHARACTERWALK1  BITMAP                  "..\\res\\walk01.bmp"
+IDB_MAINCHARACTERWALK1  BITMAP                  "..\\res\\right_walk01.bmp"
 
-IDB_MAINCHARACTERWALK2  BITMAP                  "..\\res\\walk02.bmp"
+IDB_MAINCHARACTERWALK2  BITMAP                  "..\\res\\right_walk02.bmp"
 
-IDB_MAINCHARACTERWALK3  BITMAP                  "..\\res\\walk03.bmp"
+IDB_MAINCHARACTERWALK3  BITMAP                  "..\\res\\right_walk03.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
