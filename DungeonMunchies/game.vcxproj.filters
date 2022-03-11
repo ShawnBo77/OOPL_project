@@ -252,5 +252,140 @@
     <Image Include="res\right_walk03.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\s_right_jump.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_right_stand.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_right_walk01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_right_walk02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_right_walk03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_right_attack01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_right_attack02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_right_attack03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_right_attack04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_left_jump.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_left_stand.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_left_walk01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_left_walk02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_left_walk03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_left_attack01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_left_attack02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_left_attack03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_left_attack04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\g_right_jump.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\g_right_stand.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\g_right_walk01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\g_right_walk02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\g_right_walk03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\g_left_jump.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\g_left_stand.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\g_left_walk01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\g_left_walk02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\g_left_walk03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\left_roll01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\left_roll02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\left_roll03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\left_roll04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\left_roll05.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\left_roll06.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\left_roll07.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\left_roll08.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\right_roll01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\right_roll02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\right_roll03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\right_roll04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\right_roll05.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\right_roll06.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\right_roll07.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\right_roll08.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_right_stand.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -116,15 +116,95 @@ IDB_WHITE               BITMAP                  "..\\res\\bmp00001.bmp"
 
 IDB_GRAY                BITMAP                  "..\\res\\bmp00007.bmp"
 
-IDB_MAINCHARACTERRIGHTJUMP BITMAP                  "..\\res\\right_jump.bmp"
+IDB_HERORIGHTJUMP_S     BITMAP                  "..\\res\\s_right_jump.bmp"
 
-IDB_MAINCHARACTERSTAND  BITMAP                  "..\\res\\right_stand.bmp"
+IDB_HERORIGHTSTAND_S    BITMAP                  "..\\res\\s_right_stand.bmp"
 
-IDB_MAINCHARACTERWALK1  BITMAP                  "..\\res\\right_walk01.bmp"
+IDB_HERORIGHTWALK1_S    BITMAP                  "..\\res\\s_right_walk01.bmp"
 
-IDB_MAINCHARACTERWALK2  BITMAP                  "..\\res\\right_walk02.bmp"
+IDB_HERORIGHTWALK2_S    BITMAP                  "..\\res\\s_right_walk02.bmp"
 
-IDB_MAINCHARACTERWALK3  BITMAP                  "..\\res\\right_walk03.bmp"
+IDB_HERORIGHTWALK3_S    BITMAP                  "..\\res\\s_right_walk03.bmp"
+
+IDB_HERORIGHTATTACK1_S  BITMAP                  "..\\res\\s_right_attack01.bmp"
+
+IDB_HERORIGHTATTACK2_S  BITMAP                  "..\\res\\s_right_attack02.bmp"
+
+IDB_HERORIGHTATTACK3_S  BITMAP                  "..\\res\\s_right_attack03.bmp"
+
+IDB_HERORIGHTATTACK4_S  BITMAP                  "..\\res\\s_right_attack04.bmp"
+
+IDB_HEROLEFTJUMP_S      BITMAP                  "..\\res\\s_left_jump.bmp"
+
+IDB_HEROLEFTSTAND_S     BITMAP                  "..\\res\\s_left_stand.bmp"
+
+IDB_HEROLEFTWALK1_S     BITMAP                  "..\\res\\s_left_walk01.bmp"
+
+IDB_HEROLEFTWALK2_S     BITMAP                  "..\\res\\s_left_walk02.bmp"
+
+IDB_HEROLEFTWALK3_S     BITMAP                  "..\\res\\s_left_walk03.bmp"
+
+IDB_HEROLEFTATTACK1_S   BITMAP                  "..\\res\\s_left_attack01.bmp"
+
+IDB_HEROLEFTATTACK2_S   BITMAP                  "..\\res\\s_left_attack02.bmp"
+
+IDB_HEROLEFTATTACK3_S   BITMAP                  "..\\res\\s_left_attack03.bmp"
+
+IDB_HEROLEFTATTACK4_S   BITMAP                  "..\\res\\s_left_attack04.bmp"
+
+IDB_HERORIGHTJUMP_G     BITMAP                  "..\\res\\g_right_jump.bmp"
+
+IDB_HERORIGHTSTAND_G    BITMAP                  "..\\res\\g_right_stand.bmp"
+
+IDB_HERORIGHTWALK1_G    BITMAP                  "..\\res\\g_right_walk01.bmp"
+
+IDB_HERORIGHTWALK2_G    BITMAP                  "..\\res\\g_right_walk02.bmp"
+
+IDB_HERORIGHTWALK3_G    BITMAP                  "..\\res\\g_right_walk03.bmp"
+
+IDB_HEROLEFTJUMP_G      BITMAP                  "..\\res\\g_left_jump.bmp"
+
+IDB_HEROLEFTSTAND_G     BITMAP                  "..\\res\\g_left_stand.bmp"
+
+IDB_HEROLEFTWALK1_G     BITMAP                  "..\\res\\g_left_walk01.bmp"
+
+IDB_HEROLEFTWALK2_G     BITMAP                  "..\\res\\g_left_walk02.bmp"
+
+IDB_HEROLEFTWALK3_G     BITMAP                  "..\\res\\g_left_walk03.bmp"
+
+IDB_HEROLEFTROLL1       BITMAP                  "..\\res\\left_roll01.bmp"
+
+IDB_HEROLEFTROLL2       BITMAP                  "..\\res\\left_roll02.bmp"
+
+IDB_HEROLEFTROLL3       BITMAP                  "..\\res\\left_roll03.bmp"
+
+IDB_HEROLEFTROLL4       BITMAP                  "..\\res\\left_roll04.bmp"
+
+IDB_HEROLEFTROLL5       BITMAP                  "..\\res\\left_roll05.bmp"
+
+IDB_HEROLEFTROLL6       BITMAP                  "..\\res\\left_roll06.bmp"
+
+IDB_HEROLEFTROLL7       BITMAP                  "..\\res\\left_roll07.bmp"
+
+IDB_HEROLEFTROLL8       BITMAP                  "..\\res\\left_roll08.bmp"
+
+IDB_HERORIGHTROLL1      BITMAP                  "..\\res\\right_roll01.bmp"
+
+IDB_HERORIGHTROLL2      BITMAP                  "..\\res\\right_roll02.bmp"
+
+IDB_HERORIGHTROLL3      BITMAP                  "..\\res\\right_roll03.bmp"
+
+IDB_HERORIGHTROLL4      BITMAP                  "..\\res\\right_roll04.bmp"
+
+IDB_HERORIGHTROLL5      BITMAP                  "..\\res\\right_roll05.bmp"
+
+IDB_HERORIGHTROLL6      BITMAP                  "..\\res\\right_roll06.bmp"
+
+IDB_HERORIGHTROLL7      BITMAP                  "..\\res\\right_roll07.bmp"
+
+IDB_HERORIGHTROLL8      BITMAP                  "..\\res\\right_roll08.bmp"
+
+IDB_BOSSRIGHTSTAND      BITMAP                  "..\\res\\boss_right_stand.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

@@ -50,7 +50,57 @@ namespace game_framework {
 	void Character::LoadBitmap()
 	{
 		//animation.AddBitmap(IDB_GRAY);
-		animation.AddBitmap(IDB_MAINCHARACTERSTAND, RGB(255, 51, 255));
+		//animation.AddBitmap(IDB_BOSSRIGHTSTAND, RGB(0, 0, 0));
+
+		/*animation.AddBitmap(IDB_HERORIGHTSTAND_G, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_HERORIGHTJUMP_G, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_HERORIGHTWALK1_G, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_HERORIGHTWALK2_G, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_HERORIGHTWALK3_G, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_HEROLEFTSTAND_G, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_HEROLEFTJUMP_G, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_HEROLEFTWALK1_G, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_HEROLEFTWALK2_G, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_HEROLEFTWALK3_G, RGB(0, 0, 0));*/
+
+		//animation.AddBitmap(IDB_HERORIGHTSTAND_S, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HERORIGHTJUMP_S, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HERORIGHTWALK1_S, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HERORIGHTWALK2_S, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HERORIGHTWALK3_S, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HEROLEFTSTAND_S, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HEROLEFTJUMP_S, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HEROLEFTWALK1_S, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HEROLEFTWALK2_S, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HEROLEFTWALK3_S, RGB(0, 0, 0));
+
+		//animation.AddBitmap(IDB_HERORIGHTATTACK1_S, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HERORIGHTATTACK2_S, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HERORIGHTATTACK3_S, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HERORIGHTATTACK4_S, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HEROLEFTATTACK1_S, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HEROLEFTATTACK2_S, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HEROLEFTATTACK3_S, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HEROLEFTATTACK4_S, RGB(0, 0, 0));
+
+		//animation.AddBitmap(IDB_HERORIGHTSTAND_S, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HERORIGHTROLL1, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HERORIGHTROLL2, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HERORIGHTROLL3, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HERORIGHTROLL4, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HERORIGHTROLL5, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HERORIGHTROLL6, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HERORIGHTROLL7, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HERORIGHTROLL8, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HEROLEFTSTAND_S, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HEROLEFTROLL1, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HEROLEFTROLL2, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HEROLEFTROLL3, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HEROLEFTROLL4, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HEROLEFTROLL5, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HEROLEFTROLL6, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HEROLEFTROLL7, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HEROLEFTROLL8, RGB(0, 0, 0));
 	}
 
 	void Character::SetMovingDown(bool flag)
