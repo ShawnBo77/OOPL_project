@@ -94,6 +94,36 @@
 #define IDB_HEROLEFTATTACK2_S           215
 #define IDB_HEROLEFTATTACK1_S           216
 #define IDB_BOSSRIGHTSTAND              217
+#define IDB_THRONRED                    218
+#define IDB_THRONGROW2                  219
+#define IDB_THRONGROW1                  220
+#define IDB_CACTUSDEAD                  221
+#define IDB_CACTUSALIVE                 222
+#define IDB_BOSSRIGHTWALK4              223
+#define IDB_BOSSRIGHTWALK3              224
+#define IDB_BOSSRIGHTWALK2              225
+#define IDB_BOSSRIGHTWALK1              226
+#define IDB_BOSSRIGHTTHORN3             227
+#define IDB_BOSSRIGHTTHORN2             228
+#define IDB_BOSSRIGHTTHORN1             229
+#define IDB_BOSSRIGHTHITEFFECT5         230
+#define IDB_BOSSRIGHTHITEFFECT4         231
+#define IDB_BOSSRIGHTHIT6               232
+#define IDB_BOSSRIGHTHIT5               233
+#define IDB_BOSSRIGHTHIT4               234
+#define IDB_BOSSRIGHTHIT3               235
+#define IDB_BOSSRIGHTHIT2               236
+#define IDB_BOSSRIGHTHIT1               237
+#define IDB_BOSSRIGHTDEAD6              238
+#define IDB_BOSSRIGHTDEAD5              239
+#define IDB_BOSSRIGHTDEAD4              240
+#define IDB_BOSSRIGHTDEAD3              241
+#define IDB_BOSSRIGHTDEAD2              242
+#define IDB_BOSSRIGHTDEAD1              243
+#define IDB_BOSSRIGHTCOLLIDE4           244
+#define IDB_BOSSRIGHTCOLLIDE3           245
+#define IDB_BOSSRIGHTCOLLIDE2           246
+#define IDB_BOSSRIGHTCOLLIDE1           247
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -106,7 +136,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        218
+#define _APS_NEXT_RESOURCE_VALUE        248
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

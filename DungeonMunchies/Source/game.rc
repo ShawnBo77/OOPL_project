@@ -206,6 +206,66 @@ IDB_HERORIGHTROLL8      BITMAP                  "..\\res\\right_roll08.bmp"
 
 IDB_BOSSRIGHTSTAND      BITMAP                  "..\\res\\boss_right_stand.bmp"
 
+IDB_BOSSRIGHTCOLLIDE1   BITMAP                  "..\\res\\boss_right_collide01.bmp"
+
+IDB_BOSSRIGHTCOLLIDE2   BITMAP                  "..\\res\\boss_right_collide02.bmp"
+
+IDB_BOSSRIGHTCOLLIDE3   BITMAP                  "..\\res\\boss_right_collide03.bmp"
+
+IDB_BOSSRIGHTCOLLIDE4   BITMAP                  "..\\res\\boss_right_collide04.bmp"
+
+IDB_BOSSRIGHTDEAD1      BITMAP                  "..\\res\\boss_right_dead01.bmp"
+
+IDB_BOSSRIGHTDEAD2      BITMAP                  "..\\res\\boss_right_dead02.bmp"
+
+IDB_BOSSRIGHTDEAD3      BITMAP                  "..\\res\\boss_right_dead03.bmp"
+
+IDB_BOSSRIGHTDEAD4      BITMAP                  "..\\res\\boss_right_dead04.bmp"
+
+IDB_BOSSRIGHTDEAD5      BITMAP                  "..\\res\\boss_right_dead05.bmp"
+
+IDB_BOSSRIGHTDEAD6      BITMAP                  "..\\res\\boss_right_dead06.bmp"
+
+IDB_BOSSRIGHTHITEFFECT4 BITMAP                  "..\\res\\boss_right_hit_effect04.bmp"
+
+IDB_BOSSRIGHTHITEFFECT5 BITMAP                  "..\\res\\boss_right_hit_effect05.bmp"
+
+IDB_BOSSRIGHTHIT1       BITMAP                  "..\\res\\boss_right_hit01.bmp"
+
+IDB_BOSSRIGHTHIT2       BITMAP                  "..\\res\\boss_right_hit02.bmp"
+
+IDB_BOSSRIGHTHIT3       BITMAP                  "..\\res\\boss_right_hit03.bmp"
+
+IDB_BOSSRIGHTHIT4       BITMAP                  "..\\res\\boss_right_hit04.bmp"
+
+IDB_BOSSRIGHTHIT5       BITMAP                  "..\\res\\boss_right_hit05.bmp"
+
+IDB_BOSSRIGHTHIT6       BITMAP                  "..\\res\\boss_right_hit06.bmp"
+
+IDB_BOSSRIGHTTHORN1     BITMAP                  "..\\res\\boss_right_thorn01.bmp"
+
+IDB_BOSSRIGHTTHORN2     BITMAP                  "..\\res\\boss_right_thorn02.bmp"
+
+IDB_BOSSRIGHTTHORN3     BITMAP                  "..\\res\\boss_right_thorn03.bmp"
+
+IDB_BOSSRIGHTWALK1      BITMAP                  "..\\res\\boss_right_walk01.bmp"
+
+IDB_BOSSRIGHTWALK2      BITMAP                  "..\\res\\boss_right_walk02.bmp"
+
+IDB_BOSSRIGHTWALK3      BITMAP                  "..\\res\\boss_right_walk03.bmp"
+
+IDB_BOSSRIGHTWALK4      BITMAP                  "..\\res\\boss_right_walk04.bmp"
+
+IDB_THRONGROW1          BITMAP                  "..\\res\\thron_grow01.bmp"
+
+IDB_THRONGROW2          BITMAP                  "..\\res\\thron_grow02.bmp"
+
+IDB_THRONRED            BITMAP                  "..\\res\\thron_red.bmp"
+
+IDB_CACTUSALIVE         BITMAP                  "..\\res\\cactus_alive.bmp"
+
+IDB_CACTUSDEAD          BITMAP                  "..\\res\\cactus_dead.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

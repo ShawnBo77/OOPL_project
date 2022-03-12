@@ -51,18 +51,18 @@ namespace game_framework {
 	{
 		//animation.AddBitmap(IDB_GRAY);
 		//animation.AddBitmap(IDB_BOSSRIGHTSTAND, RGB(0, 0, 0));
-
-		animation.AddBitmap(IDB_HERORIGHTSTAND_G, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_HERORIGHTJUMP_G, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_HERORIGHTWALK1_G, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_HERORIGHTWALK2_G, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_HERORIGHTWALK3_G, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_HEROLEFTSTAND_G, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_HEROLEFTJUMP_G, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_HEROLEFTWALK1_G, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_HEROLEFTWALK2_G, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_HEROLEFTWALK3_G, RGB(0, 0, 0));
-
+		//
+		//animation.AddBitmap(IDB_HERORIGHTSTAND_G, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HERORIGHTJUMP_G, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HERORIGHTWALK1_G, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HERORIGHTWALK2_G, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HERORIGHTWALK3_G, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HEROLEFTSTAND_G, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HEROLEFTJUMP_G, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HEROLEFTWALK1_G, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HEROLEFTWALK2_G, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_HEROLEFTWALK3_G, RGB(0, 0, 0));
+		//
 		//animation.AddBitmap(IDB_HERORIGHTSTAND_S, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_HERORIGHTJUMP_S, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_HERORIGHTWALK1_S, RGB(0, 0, 0));
@@ -73,7 +73,7 @@ namespace game_framework {
 		//animation.AddBitmap(IDB_HEROLEFTWALK1_S, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_HEROLEFTWALK2_S, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_HEROLEFTWALK3_S, RGB(0, 0, 0));
-
+		//
 		//animation.AddBitmap(IDB_HERORIGHTATTACK1_S, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_HERORIGHTATTACK2_S, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_HERORIGHTATTACK3_S, RGB(0, 0, 0));
@@ -82,7 +82,7 @@ namespace game_framework {
 		//animation.AddBitmap(IDB_HEROLEFTATTACK2_S, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_HEROLEFTATTACK3_S, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_HEROLEFTATTACK4_S, RGB(0, 0, 0));
-
+		//
 		//animation.AddBitmap(IDB_HERORIGHTSTAND_S, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_HERORIGHTROLL1, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_HERORIGHTROLL2, RGB(0, 0, 0));
@@ -101,6 +101,45 @@ namespace game_framework {
 		//animation.AddBitmap(IDB_HEROLEFTROLL6, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_HEROLEFTROLL7, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_HEROLEFTROLL8, RGB(0, 0, 0));
+		//
+		animation.AddBitmap(IDB_BOSSRIGHTCOLLIDE1, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_BOSSRIGHTCOLLIDE2, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_BOSSRIGHTCOLLIDE3, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_BOSSRIGHTCOLLIDE4, RGB(0, 0, 0));
+		//
+		//animation.AddBitmap(IDB_BOSSRIGHTDEAD1, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSRIGHTDEAD2, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSRIGHTDEAD3, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSRIGHTDEAD4, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSRIGHTDEAD5, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSRIGHTDEAD6, RGB(0, 0, 0));
+		//
+		//animation.AddBitmap(IDB_BOSSRIGHTHIT1, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSRIGHTHIT2, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSRIGHTHIT3, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSRIGHTHIT4, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSRIGHTHIT5, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSRIGHTHIT6, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSRIGHTHITEFFECT4, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSRIGHTHITEFFECT5, RGB(0, 0, 0));
+		//
+		//animation.AddBitmap(IDB_BOSSRIGHTTHORN1, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSRIGHTTHORN2, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSRIGHTTHORN3, RGB(0, 0, 0));
+		//
+		//animation.AddBitmap(IDB_BOSSRIGHTWALK1, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSRIGHTWALK2, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSRIGHTWALK3, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSRIGHTWALK4, RGB(0, 0, 0));
+		//
+		//animation.AddBitmap(IDB_THRONGROW1, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_THRONGROW2, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_THRONRED, RGB(0, 0, 0));
+		//
+		//animation.AddBitmap(IDB_CACTUSALIVE, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_CACTUSDEAD, RGB(0, 0, 0));
+		//
+
 	}
 
 	void Character::SetMovingDown(bool flag)
