@@ -256,6 +256,58 @@ IDB_BOSSRIGHTWALK3      BITMAP                  "..\\res\\boss_right_walk03.bmp"
 
 IDB_BOSSRIGHTWALK4      BITMAP                  "..\\res\\boss_right_walk04.bmp"
 
+IDB_BOSSLEFTSTAND       BITMAP                  "..\\res\\boss_left_stand.bmp"
+
+IDB_BOSSLEFTCOLLIDE1    BITMAP                  "..\\res\\boss_left_collide01.bmp"
+
+IDB_BOSSLEFTCOLLIDE2    BITMAP                  "..\\res\\boss_left_collide02.bmp"
+
+IDB_BOSSLEFTCOLLIDE3    BITMAP                  "..\\res\\boss_left_collide03.bmp"
+
+IDB_BOSSLEFTCOLLIDE4    BITMAP                  "..\\res\\boss_left_collide04.bmp"
+
+IDB_BOSSLEFTDEAD1       BITMAP                  "..\\res\\boss_left_dead01.bmp"
+
+IDB_BOSSLEFTDEAD2       BITMAP                  "..\\res\\boss_left_dead02.bmp"
+
+IDB_BOSSLEFTDEAD3       BITMAP                  "..\\res\\boss_left_dead03.bmp"
+
+IDB_BOSSLEFTDEAD4       BITMAP                  "..\\res\\boss_left_dead04.bmp"
+
+IDB_BOSSLEFTDEAD5       BITMAP                  "..\\res\\boss_left_dead05.bmp"
+
+IDB_BOSSLEFTDEAD6       BITMAP                  "..\\res\\boss_left_dead06.bmp"
+
+IDB_BOSSLEFTHITEFFECT4  BITMAP                  "..\\res\\boss_left_hit_effect04.bmp"
+
+IDB_BOSSLEFTHITEFFECT5  BITMAP                  "..\\res\\boss_left_hit_effect05.bmp"
+
+IDB_BOSSLEFTHIT1        BITMAP                  "..\\res\\boss_left_hit01.bmp"
+
+IDB_BOSSLEFTHIT2        BITMAP                  "..\\res\\boss_left_hit02.bmp"
+
+IDB_BOSSLEFTHIT3        BITMAP                  "..\\res\\boss_left_hit03.bmp"
+
+IDB_BOSSLEFTHIT4        BITMAP                  "..\\res\\boss_left_hit04.bmp"
+
+IDB_BOSSLEFTHIT5        BITMAP                  "..\\res\\boss_left_hit05.bmp"
+
+IDB_BOSSLEFTHIT6        BITMAP                  "..\\res\\boss_left_hit06.bmp"
+
+IDB_BOSSLEFTTHORN1      BITMAP                  "..\\res\\boss_left_thorn01.bmp"
+
+IDB_BOSSLEFTTHORN2      BITMAP                  "..\\res\\boss_left_thorn02.bmp"
+
+IDB_BOSSLEFTTHORN3      BITMAP                  "..\\res\\boss_left_thorn03.bmp"
+
+IDB_BOSSLEFTWALK1       BITMAP                  "..\\res\\boss_left_walk01.bmp"
+
+IDB_BOSSLEFTWALK2       BITMAP                  "..\\res\\boss_left_walk02.bmp"
+
+IDB_BOSSLEFTWALK3       BITMAP                  "..\\res\\boss_left_walk03.bmp"
+
+IDB_BOSSLEFTWALK4       BITMAP                  "..\\res\\boss_left_walk04.bmp"
+
 IDB_THRONGROW1          BITMAP                  "..\\res\\thron_grow01.bmp"
 
 IDB_THRONGROW2          BITMAP                  "..\\res\\thron_grow02.bmp"

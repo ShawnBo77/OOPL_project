@@ -124,6 +124,33 @@
 #define IDB_BOSSRIGHTCOLLIDE3           245
 #define IDB_BOSSRIGHTCOLLIDE2           246
 #define IDB_BOSSRIGHTCOLLIDE1           247
+#define IDB_BOSSLEFTWALK4               248
+#define IDB_BOSSLEFTWALK3               249
+#define IDB_BOSSLEFTWALK1               250
+#define IDB_BOSSLEFTWALK2               251
+#define IDB_BOSSLEFTTHORN3              252
+#define IDB_BOSSLEFTTHORN2              253
+#define IDB_BOSSLEFTTHORN1              254
+#define IDB_BOSSLEFTSTAND               255
+#define IDB_BOSSLEFTHITEFFECT5a         256
+#define IDB_BOSSLEFTHITEFFECT5          256
+#define IDB_BOSSLEFTHITEFFECT4          257
+#define IDB_BOSSLEFTHIT6                258
+#define IDB_BOSSLEFTHIT5                259
+#define IDB_BOSSLEFTHIT4                260
+#define IDB_BOSSLEFTHIT3                261
+#define IDB_BOSSLEFTHIT2                262
+#define IDB_BOSSLEFTHIT1                263
+#define IDB_BOSSLEFTDEAD6               264
+#define IDB_BOSSLEFTDEAD5               265
+#define IDB_BOSSLEFTDEAD3               266
+#define IDB_BOSSLEFTDEAD4               267
+#define IDB_BOSSLEFTDEAD2               268
+#define IDB_BOSSLEFTDEAD1               269
+#define IDB_BOSSLEFTCOLLIDE4            270
+#define IDB_BOSSLEFTCOLLIDE3            271
+#define IDB_BOSSLEFTCOLLIDE2            272
+#define IDB_BOSSLEFTCOLLIDE1            273
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -136,7 +163,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        248
+#define _APS_NEXT_RESOURCE_VALUE        274
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

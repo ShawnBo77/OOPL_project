@@ -102,10 +102,10 @@ namespace game_framework {
 		//animation.AddBitmap(IDB_HEROLEFTROLL7, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_HEROLEFTROLL8, RGB(0, 0, 0));
 		//
-		animation.AddBitmap(IDB_BOSSRIGHTCOLLIDE1, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSRIGHTCOLLIDE2, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSRIGHTCOLLIDE3, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSRIGHTCOLLIDE4, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSRIGHTCOLLIDE1, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSRIGHTCOLLIDE2, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSRIGHTCOLLIDE3, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSRIGHTCOLLIDE4, RGB(0, 0, 0));
 		//
 		//animation.AddBitmap(IDB_BOSSRIGHTDEAD1, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_BOSSRIGHTDEAD2, RGB(0, 0, 0));
@@ -132,6 +132,36 @@ namespace game_framework {
 		//animation.AddBitmap(IDB_BOSSRIGHTWALK3, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_BOSSRIGHTWALK4, RGB(0, 0, 0));
 		//
+		animation.AddBitmap(IDB_BOSSLEFTCOLLIDE1, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_BOSSLEFTCOLLIDE2, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_BOSSLEFTCOLLIDE3, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_BOSSLEFTCOLLIDE4, RGB(0, 0, 0));
+		
+		animation.AddBitmap(IDB_BOSSLEFTDEAD1, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_BOSSLEFTDEAD2, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_BOSSLEFTDEAD3, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_BOSSLEFTDEAD4, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_BOSSLEFTDEAD5, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_BOSSLEFTDEAD6, RGB(0, 0, 0));
+		
+		animation.AddBitmap(IDB_BOSSLEFTHIT1, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_BOSSLEFTHIT2, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_BOSSLEFTHIT3, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_BOSSLEFTHIT4, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_BOSSLEFTHIT5, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_BOSSLEFTHIT6, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_BOSSLEFTHITEFFECT4, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_BOSSLEFTHITEFFECT5, RGB(0, 0, 0));
+		
+		animation.AddBitmap(IDB_BOSSLEFTTHORN1, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_BOSSLEFTTHORN2, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_BOSSLEFTTHORN3, RGB(0, 0, 0));
+		
+		animation.AddBitmap(IDB_BOSSLEFTWALK1, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_BOSSLEFTWALK2, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_BOSSLEFTWALK3, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_BOSSLEFTWALK4, RGB(0, 0, 0));
+		
 		//animation.AddBitmap(IDB_THRONGROW1, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_THRONGROW2, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_THRONRED, RGB(0, 0, 0));
