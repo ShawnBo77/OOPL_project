@@ -252,5 +252,308 @@
     <Image Include="res\right_walk03.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\s_right_jump.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_right_stand.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_right_walk01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_right_walk02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_right_walk03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_right_attack01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_right_attack02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_right_attack03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_right_attack04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_left_jump.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_left_stand.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_left_walk01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_left_walk02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_left_walk03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_left_attack01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_left_attack02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_left_attack03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\s_left_attack04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\g_right_jump.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\g_right_stand.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\g_right_walk01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\g_right_walk02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\g_right_walk03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\g_left_jump.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\g_left_stand.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\g_left_walk01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\g_left_walk02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\g_left_walk03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\left_roll01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\left_roll02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\left_roll03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\left_roll04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\left_roll05.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\left_roll06.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\left_roll07.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\left_roll08.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\right_roll01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\right_roll02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\right_roll03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\right_roll04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\right_roll05.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\right_roll06.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\right_roll07.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\right_roll08.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_right_stand.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_right_collide01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_right_collide02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_right_collide03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_right_collide04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_right_dead01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_right_dead02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_right_dead03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_right_dead04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_right_dead05.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_right_dead06.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_right_hit_effect04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_right_hit_effect05.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_right_hit01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_right_hit02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_right_hit03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_right_hit04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_right_hit05.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_right_hit06.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_right_thorn01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_right_thorn02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_right_thorn03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_right_walk01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_right_walk02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_right_walk03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_right_walk04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\thron_grow01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\thron_grow02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\thron_red.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\cactus_alive.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\cactus_dead.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_left_stand.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_left_collide01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_left_collide02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_left_collide03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_left_collide04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_left_dead01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_left_dead02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_left_dead03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_left_dead04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_left_dead05.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_left_dead06.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_left_hit_effect04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_left_hit_effect05.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_left_hit01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_left_hit02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_left_hit03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_left_hit04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_left_hit05.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_left_hit06.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_left_thorn01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_left_thorn02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_left_thorn03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_left_walk01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_left_walk02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_left_walk03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\boss_left_walk04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
