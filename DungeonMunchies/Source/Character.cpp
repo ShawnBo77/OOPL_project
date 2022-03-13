@@ -40,11 +40,14 @@ namespace game_framework {
 	{
 		characterH = 80;
 		characterW = 80;
-		const int X_POS = 100;
-		const int Y_POS = 100;
+		const int X_POS = 80;													//角色起始X軸
+		const int Y_POS = 100;													//角色起始Y軸
 		characterX = X_POS;
 		characterY = Y_POS;
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
+
+		isRising = false;
+		floor = 320;
 	}
 
 	void Character::LoadBitmap()
@@ -75,24 +78,65 @@ namespace game_framework {
 
 	void Character::OnMove(Map *m)
 	{
-		const int STEP_SIZE = 5;
+
+		const int BORDER = 5;													//角色邊框寬度
+		const int STEP_SIZE = 5;												//腳色移動速度
 		animation.OnMove();
-		if (isMovingLeft && m->isEmpty(GetLeftX() - STEP_SIZE, GetTopY()) && m->isEmpty(GetLeftX() - STEP_SIZE, GetButtonY() - 5)) {
-			characterX -= STEP_SIZE;
-			m->addSX(STEP_SIZE);
+		if (isMovingLeft && m->isEmpty(GetLeftX() - STEP_SIZE, GetTopY()) && m->isEmpty(GetLeftX() - STEP_SIZE, GetButtonY() - BORDER))
+		{
+			if (m->getSX() > -230) 
+			{
+				characterX -= STEP_SIZE;
+			}
+
+			//m->addSX(STEP_SIZE);												//視角移動(王關不用)
 		}
-		if (isMovingRight && m->isEmpty(GetRightX() + STEP_SIZE - 5, GetTopY()) && m->isEmpty(GetRightX() - 5 + STEP_SIZE, GetButtonY() - 5)) {
-			characterX += STEP_SIZE;
-			m->addSX(-STEP_SIZE);
+		if (isMovingRight && m->isEmpty(GetRightX() + STEP_SIZE - 5, GetTopY()) && m->isEmpty(GetRightX() - BORDER + STEP_SIZE, GetButtonY() - BORDER)) 
+		{
+			if (m->getSX() > -230) 
+			{
+				characterX += STEP_SIZE;
+			}
+
+			//m->addSX(-STEP_SIZE);                             	
 		}
-		if (isMovingUp && m->isEmpty(GetLeftX(), GetTopY() - STEP_SIZE) && m->isEmpty(GetRightX() - 5, GetTopY() - STEP_SIZE)) {
-			characterY -= STEP_SIZE;
-			m->addSY(STEP_SIZE);
+		if (isMovingUp && GetButtonY() >= floor && velocity == 0) {
+			isRising = true;
+			velocity = 10;
 		}
-		if (isMovingDown && m->isEmpty(GetLeftX(), GetButtonY() + STEP_SIZE - 5) && m->isEmpty(GetRightX() - 5, GetButtonY() + STEP_SIZE - 5)) {
+		/*if (isMovingDown && !m->isEmpty(GetLeftX(), GetButtonY() + STEP_SIZE - 5) && !m->isEmpty(GetRightX() - 5, GetButtonY() + STEP_SIZE - 5)) {
 			characterY += STEP_SIZE;
 			m->addSY(-STEP_SIZE);
+		}*/
+
+		if (isRising)							// 上升狀態	
+		{						
+			if (velocity > 0)
+			{
+				characterY -= velocity * 2;		// 當速度 > 0時，y軸上升(移動velocity個點，velocity的單位為 點/次)
+				velocity--;						// 受重力影響，下次的上升速度降低
+			}
+			else
+			{
+				isRising = false;				// 當速度 <= 0，上升終止，下次改為下降
+				velocity = 1;					// 下降的初速(velocity)為1
+			}
 		}
+		else									// 下降狀態
+		{		
+			if (characterY < floor)				// 當y座標還沒碰到地板
+			{									
+				characterY += velocity * 2;		// y軸下降(移動velocity個點，velocity的單位為 點/次)
+				if (velocity < 5)
+					velocity++;
+			}
+			else
+			{
+				characterY = floor;				// 當y座標低於地板，更正為地板上
+				velocity = 0;
+			}
+		}
+		
 	}
 
 	void Character::SetXY(int x, int y)

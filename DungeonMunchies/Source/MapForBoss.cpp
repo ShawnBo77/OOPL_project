@@ -17,17 +17,28 @@ namespace game_framework {
     {
         X = 0;
         Y = 0;
-        gridW = 60;
-        gridH = 60;
+        gridW = 50;
+        gridH = 50;
        //給予地圖左上角座標及每張小圖寬度
-        int mapGrid_init[4][6] = { //給予地圖陣列初值
-            {0,0,0,0,0,0},
-            {0,1,1,1,1,0},
-            {0,1,1,1,1,0},
-            {0,0,0,0,0,0},
+        int mapGrid_init[15][9] = { //給予地圖陣列初值
+            {0,0,0,0,0,0,0,0,0},
+            {0,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,0},
+            {0,0,0,0,0,0,0,0,0},
         };
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 6; j++) {
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 9; j++) {
                 mapGrid[i][j] = mapGrid_init[i][j]; //依序填入mapGrid
             }
         }
@@ -44,15 +55,15 @@ namespace game_framework {
 
     void MapForBoss::setPos(int x, int y, int n)
     {
-        int gridX = x / 60;
-        int gridY = y / 60;
+        int gridX = x / 50;
+        int gridY = y / 50;
         mapGrid[gridX][gridY] = n;
     }
 
     bool MapForBoss::isEmpty(int x, int y) const
     {
-        int gridX = x / 60;
-        int gridY = y / 60;
+        int gridX = x / 50;
+        int gridY = y / 50;
         if (mapGrid[gridX][gridY] != 0)
         {
             return true;
@@ -61,7 +72,7 @@ namespace game_framework {
     }
 
     void MapForBoss::LoadBitmap() {
-        white.LoadBitmap(IDB_WHITE);
+        //white.LoadBitmap(IDB_WHITE);
         blue.LoadBitmap(IDB_BLUE);
         map.LoadBitmap(IDB_BOSSMAP);
     }
@@ -69,16 +80,16 @@ namespace game_framework {
     void MapForBoss::onShow() {
         map.SetTopLeft(getSX(), getSY());
         map.ShowBitmap();
-        for (int i = 0; i < 6; i++) { //往右顯示六張圖
-            for (int j = 0; j < 4; j++) { //往下顯示四張圖
+        for (int i = 0; i < 9; i++) { //往右顯示六張圖
+            for (int j = 0; j < 15; j++) { //往下顯示四張圖
                 switch (mapGrid[j][i]) {
                 case 0:
                     blue.SetTopLeft(X + (gridW * j), Y + (gridH * i)); //設定每張圖的座標
                     blue.ShowBitmap(); // 顯示設定完的座標
                     break;
                 case 1:
-                    white.SetTopLeft(X + (gridW * j), Y + (gridH * i)); //設定每張圖的座標
-                    white.ShowBitmap(); //顯示設定完的座標
+                    //white.SetTopLeft(X + (gridW * j), Y + (gridH * i)); //設定每張圖的座標
+                    //white.ShowBitmap(); //顯示設定完的座標
                     break;
                 case 2:
                     //blue.SetTopLeft(X + (gridW * i), Y + (gridH * j)); //設定每張圖的座標
