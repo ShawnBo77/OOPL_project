@@ -16,7 +16,7 @@ const char KEY_SPACE = 0x20;
 const char KEY_SHIFT = 0x10;
 
 // 定義各關卡的編號
-enum STAGE {
+enum Stage {
 	stage_boss,
 	stage_props
 };
