@@ -321,6 +321,13 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_UP    = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
+	const char KEY_W = 0x57;
+	const char KEY_A = 0x41;
+	const char KEY_S = 0x53;
+	const char KEY_D = 0x44;
+	const char KEY_SPACE = 0x20;
+	const char KEY_SHIFT = 0x10;
+
 	//if (nChar == KEY_LEFT)
 	//	eraser.SetMovingLeft(true);
 	//if (nChar == KEY_RIGHT)
@@ -329,13 +336,13 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	//	eraser.SetMovingUp(true);
 	//if (nChar == KEY_DOWN)
 	//	eraser.SetMovingDown(true);
-	if (nChar == KEY_LEFT)
+	if (nChar == KEY_A)
 		character.SetMovingLeft(true);
-	if (nChar == KEY_RIGHT)
+	if (nChar == KEY_D)
 		character.SetMovingRight(true);
-	if (nChar == KEY_UP)
+	if (nChar == KEY_W || nChar == KEY_SPACE)
 		character.SetMovingUp(true);
-	if (nChar == KEY_DOWN)
+	if (nChar == KEY_S)
 		character.SetMovingDown(true);
 }
 
@@ -345,6 +352,12 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_UP    = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
+	const char KEY_W = 0x57;
+	const char KEY_A = 0x41;
+	const char KEY_S = 0x53;
+	const char KEY_D = 0x44;
+	const char KEY_SPACE = 0x20;
+	const char KEY_SHIFT = 0x10;
 	//if (nChar == KEY_LEFT)
 	//	eraser.SetMovingLeft(false);
 	//if (nChar == KEY_RIGHT)
@@ -353,13 +366,13 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	//	eraser.SetMovingUp(false);
 	//if (nChar == KEY_DOWN)
 	//	eraser.SetMovingDown(false);
-	if (nChar == KEY_LEFT)
+	if (nChar == KEY_A)
 		character.SetMovingLeft(false);
-	if (nChar == KEY_RIGHT)
+	if (nChar == KEY_D)
 		character.SetMovingRight(false);
-	if (nChar == KEY_UP)
+	if (nChar == KEY_W || nChar == KEY_SPACE)
 		character.SetMovingUp(false);
-	if (nChar == KEY_DOWN)
+	if (nChar == KEY_S)
 		character.SetMovingDown(false);
 }
 
