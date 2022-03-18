@@ -59,6 +59,13 @@
 #include "gamelib.h"
 #include "mygame.h"
 
+// 定義各關卡的編號
+enum STAGE { 
+	stage_boss,
+	stage_props
+};
+
+
 namespace game_framework {
 /////////////////////////////////////////////////////////////////////////////
 // 這個class為遊戲的遊戲開頭畫面物件
@@ -325,25 +332,27 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_A = 0x41;
 	const char KEY_S = 0x53;
 	const char KEY_D = 0x44;
+	const char KEY_E = 0x69;
 	const char KEY_SPACE = 0x20;
 	const char KEY_SHIFT = 0x10;
 
-	//if (nChar == KEY_LEFT)
-	//	eraser.SetMovingLeft(true);
-	//if (nChar == KEY_RIGHT)
-	//	eraser.SetMovingRight(true);
-	//if (nChar == KEY_UP)
-	//	eraser.SetMovingUp(true);
-	//if (nChar == KEY_DOWN)
-	//	eraser.SetMovingDown(true);
-	if (nChar == KEY_A)
+	switch (nChar) {
+	case KEY_A:
 		character.SetMovingLeft(true);
-	if (nChar == KEY_D)
+		break;
+	case KEY_D:
 		character.SetMovingRight(true);
-	if (nChar == KEY_W || nChar == KEY_SPACE)
+		break;
+	case KEY_W:
+	case KEY_SPACE:
 		character.SetMovingUp(true);
-	if (nChar == KEY_S)
+		break;
+	case KEY_S:
 		character.SetMovingDown(true);
+		break;
+	default:
+		break;
+	}
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -366,14 +375,31 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	//	eraser.SetMovingUp(false);
 	//if (nChar == KEY_DOWN)
 	//	eraser.SetMovingDown(false);
-	if (nChar == KEY_A)
+	switch (nChar) {
+	case KEY_A:
 		character.SetMovingLeft(false);
-	if (nChar == KEY_D)
+		break;
+	case KEY_D:
 		character.SetMovingRight(false);
-	if (nChar == KEY_W || nChar == KEY_SPACE)
+		break;
+	case KEY_W:
+	case KEY_SPACE:
 		character.SetMovingUp(false);
-	if (nChar == KEY_S)
+		break;
+	case KEY_S:
 		character.SetMovingDown(false);
+		break;
+	default:
+		break;
+	}
+	//if (nChar == KEY_A)
+	//	character.SetMovingLeft(false);
+	//if (nChar == KEY_D)
+	//	character.SetMovingRight(false);
+	//if (nChar == KEY_W || nChar == KEY_SPACE)
+	//	character.SetMovingUp(false);
+	//if (nChar == KEY_S)
+	//	character.SetMovingDown(false);
 }
 
 void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
