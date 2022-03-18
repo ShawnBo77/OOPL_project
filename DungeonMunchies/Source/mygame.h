@@ -99,14 +99,14 @@ namespace game_framework {
 		//CMovingBitmap	monster;
 		Character		character;
 		MapForBoss		bossMap;
-		const int		NUMBALLS;	// 球的總數
+		//const int		NUMBALLS;	// 球的總數
 		CMovingBitmap	background;	// 背景圖
-		CMovingBitmap	help;		// 說明圖
-		CBall			*ball;		// 球的陣列
-		CMovingBitmap	corner;		// 角落圖
-		CEraser			eraser;		// 拍子
-		CInteger		hits_left;	// 剩下的撞擊數
-		CBouncingBall   bball;		// 反覆彈跳的球
+		//CMovingBitmap	help;		// 說明圖
+		//CBall			*ball;		// 球的陣列
+		//CMovingBitmap	corner;		// 角落圖
+		//CEraser			eraser;		// 拍子
+		//CInteger		hits_left;	// 剩下的撞擊數
+		//CBouncingBall   bball;		// 反覆彈跳的球
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
