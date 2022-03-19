@@ -192,6 +192,7 @@ CGameStateRun::CGameStateRun(CGame *g)
 : CGameState(g)
 {
 	//ball = new CBall [NUMBALLS];
+	currentStage = stage_props;
 }
 
 CGameStateRun::~CGameStateRun()
@@ -220,8 +221,9 @@ void CGameStateRun::OnBeginState()
 	//eraser.Initialize();
 	character.Initialize();
 	bossMap.Initialize();
+	propsBook.Initialize();
 	//background.SetTopLeft(BACKGROUND_X,0);				// 設定背景的起始座標
-	current_stage = stage_boss;
+	currentStage = stage_props;
 	//help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
 	//hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
 	//hits_left.SetTopLeft(HITS_LEFT_X,HITS_LEFT_Y);		// 指定剩下撞擊數的座標
@@ -252,7 +254,15 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	// 移動擦子
 	//
 	//eraser.OnMove();
-	character.OnMove(&bossMap);
+	switch (currentStage)
+	{
+	case stage_boss:
+		character.OnMove(&bossMap);
+		break;
+	default:
+		break;
+	}
+	
 	//
 	// 判斷擦子是否碰到球
 	//
@@ -304,15 +314,16 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	character.LoadBitmap();
 	//monster.LoadBitmap(IDB_MONSTER, RGB(255, 0, 255));
 	bossMap.LoadBitmap();
+	propsBook.LoadBitmap();
 
 	//help.LoadBitmap(IDB_HELP,RGB(255,255,255));				// 載入說明的圖形
 	//corner.LoadBitmap(IDB_CORNER);							// 載入角落圖形
 	//corner.ShowBitmap(background);							// 將corner貼到background
 	//bball.LoadBitmap();										// 載入圖形
 	//hits_left.LoadBitmap();									
-	CAudio::Instance()->Load(AUDIO_DING,  "sounds\\ding.wav");	// 載入編號0的聲音ding.wav
-	CAudio::Instance()->Load(AUDIO_LAKE,  "sounds\\lake.mp3");	// 載入編號1的聲音lake.mp3
-	CAudio::Instance()->Load(AUDIO_NTUT,  "sounds\\ntut.mid");	// 載入編號2的聲音ntut.mid
+	//CAudio::Instance()->Load(AUDIO_DING,  "sounds\\ding.wav");	// 載入編號0的聲音ding.wav
+	//CAudio::Instance()->Load(AUDIO_LAKE,  "sounds\\lake.mp3");	// 載入編號1的聲音lake.mp3
+	//CAudio::Instance()->Load(AUDIO_NTUT,  "sounds\\ntut.mid");	// 載入編號2的聲音ntut.mid
 	//
 	// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
 	//
@@ -335,10 +346,10 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		character.SetMovingDown(true);
 		break;
 	case KEY_E:
-		if (current_stage == stage_boss) {
-			current_stage = stage_props;
+		if (currentStage == stage_boss) {
+			currentStage = stage_props;
 		} else {
-			current_stage = stage_boss;
+			currentStage = stage_boss;
 		}
 	default:
 		break;
@@ -347,14 +358,6 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	//if (nChar == KEY_LEFT)
-	//	eraser.SetMovingLeft(false);
-	//if (nChar == KEY_RIGHT)
-	//	eraser.SetMovingRight(false);
-	//if (nChar == KEY_UP)
-	//	eraser.SetMovingUp(false);
-	//if (nChar == KEY_DOWN)
-	//	eraser.SetMovingDown(false);
 	switch (nChar) {
 	case KEY_A:
 		character.SetMovingLeft(false);
@@ -372,19 +375,20 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	default:
 		break;
 	}
-	//if (nChar == KEY_A)
-	//	character.SetMovingLeft(false);
-	//if (nChar == KEY_D)
-	//	character.SetMovingRight(false);
-	//if (nChar == KEY_W || nChar == KEY_SPACE)
-	//	character.SetMovingUp(false);
-	//if (nChar == KEY_S)
-	//	character.SetMovingDown(false);
 }
 
 void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 {
 	//eraser.SetMovingLeft(true);
+	switch (currentStage)
+	{
+	case stage_boss:
+		break;
+	case stage_props:
+		propsBook.setXY(point);
+	default:
+		break;
+	}
 }
 
 void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
@@ -433,7 +437,17 @@ void CGameStateRun::OnShow()
 	//corner.ShowBitmap();
 
 	//monster.ShowBitmap();
-	bossMap.onShow();
-	character.OnShow();
+	switch (currentStage)
+	{
+	case stage_boss:
+		bossMap.onShow();
+		character.OnShow();
+		break;
+	case stage_props:
+		propsBook.onShow();
+	default:
+		break;
+	}
+	
 }
 }

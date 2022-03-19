@@ -318,6 +318,8 @@ IDB_CACTUSALIVE         BITMAP                  "..\\res\\cactus_alive.bmp"
 
 IDB_CACTUSDEAD          BITMAP                  "..\\res\\cactus_dead.bmp"
 
+IDB_PROPSBOOK           BITMAP                  "..\\res\\props_book.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
