@@ -1,5 +1,5 @@
-#ifndef UTIL_H
-#define UTIL_H
+#ifndef __UTIL_H__
+#define __UTIL_H__
 
 ///以下為各鍵值
 const char KEY_ESC = 27;
@@ -19,6 +19,15 @@ const char KEY_SHIFT = 0x10;
 enum Stage {
 	stage_boss,
 	stage_props
+};
+
+enum PropCase {
+	mosquito_jump,
+	shrimp_blood,
+	grass_fast,
+	banana_attack,
+	shrimp_attack,
+	guava_juice_blood
 };
 
 #endif

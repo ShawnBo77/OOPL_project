@@ -5,7 +5,6 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "Map.h"
-#include "MapForBoss.h"
 #include <vector>
 
 namespace game_framework {

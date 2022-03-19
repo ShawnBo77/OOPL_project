@@ -285,6 +285,7 @@
     <ClCompile Include="Source\Character.cpp" />
     <ClCompile Include="Source\Map.cpp" />
     <ClCompile Include="Source\MapForBoss.cpp" />
+    <ClCompile Include="Source\Prop.cpp" />
     <ClCompile Include="Source\PropsBook.cpp" />
     <ClCompile Include="Source\StdAfx.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -319,6 +320,7 @@
     <ClInclude Include="Source\MainFrm.h" />
     <ClInclude Include="Source\Map.h" />
     <ClInclude Include="Source\MapForBoss.h" />
+    <ClInclude Include="Source\Prop.h" />
     <ClInclude Include="Source\PropsBook.h" />
     <ClInclude Include="Source\Resource.h" />
     <ClInclude Include="Source\StdAfx.h" />
@@ -418,6 +420,13 @@
     <Image Include="RES\MeviusLevitating.bmp" />
     <Image Include="RES\MiConv.com__unknown.bmp" />
     <Image Include="RES\props_book.bmp" />
+    <Image Include="res\props_grass_fast.bmp" />
+    <Image Include="res\prop_banana_attack.bmp" />
+    <Image Include="res\prop_grass_fast.bmp" />
+    <Image Include="res\prop_guava_juice_blood.bmp" />
+    <Image Include="res\prop_mosquito_jump.bmp" />
+    <Image Include="res\prop_shrimp_attack.bmp" />
+    <Image Include="res\prop_shrimp_blood.bmp" />
     <Image Include="RES\right_jump.bmp" />
     <Image Include="res\right_roll01.bmp" />
     <Image Include="res\right_roll02.bmp" />
@@ -431,6 +440,7 @@
     <Image Include="res\right_walk01.bmp" />
     <Image Include="res\right_walk02.bmp" />
     <Image Include="res\right_walk03.bmp" />
+    <Image Include="res\source_grass_fast.bmp" />
     <Image Include="RES\stand.bmp" />
     <Image Include="res\s_left_attack01.bmp" />
     <Image Include="res\s_left_attack02.bmp" />

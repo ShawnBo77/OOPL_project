@@ -385,7 +385,7 @@ void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 	case stage_boss:
 		break;
 	case stage_props:
-		propsBook.setXY(point);
+		propsBook.setPropCase(point);
 	default:
 		break;
 	}

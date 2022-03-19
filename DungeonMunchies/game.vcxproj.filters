@@ -141,6 +141,9 @@
     <ClCompile Include="Source\PropsBook.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Prop.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -192,6 +195,9 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\PropsBook.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Prop.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -565,6 +571,30 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\props_book.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\source_grass_fast.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\props_grass_fast.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\prop_grass_fast.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\prop_guava_juice_blood.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\prop_mosquito_jump.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\prop_shrimp_attack.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\prop_shrimp_blood.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\prop_banana_attack.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
