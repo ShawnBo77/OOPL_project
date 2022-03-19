@@ -138,10 +138,10 @@
     <ClCompile Include="Source\MapForBoss.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
-    <ClCompile Include="Source\PropsBook.cpp">
+    <ClCompile Include="Source\Prop.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Prop.cpp">
+    <ClCompile Include="Source\PropsBook.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
   </ItemGroup>
@@ -194,10 +194,10 @@
     <ClInclude Include="Source\Util.h">
       <Filter>MyGame</Filter>
     </ClInclude>
-    <ClInclude Include="Source\PropsBook.h">
+    <ClInclude Include="Source\Prop.h">
       <Filter>MyGame</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Prop.h">
+    <ClInclude Include="Source\PropsBook.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>

@@ -101,7 +101,7 @@ namespace game_framework {
 		//CMovingBitmap	monster;
 		Character		character;
 		MapForBoss		bossMap;
-		PropsBook propsBook;
+		PropsBook		propsBook;
 		//const int		NUMBALLS;	// 球的總數
 		//CMovingBitmap	background;	// 背景圖
 		//CMovingBitmap	help;		// 說明圖

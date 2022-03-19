@@ -8,6 +8,8 @@
 #include "Util.h"
 #include "Prop.h"
 #include "PropsBook.h"
+//#include <fstream>
+//#include <sstream>
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -16,17 +18,23 @@ namespace game_framework {
 
 	PropsBook::PropsBook()
 	{
-		//propCase = mosquito_jump;
+		MosquitoJump = new Prop();
+		ShrimpBlood = new Prop();
+		GrassFast = new Prop();
+		BananaAttack = new Prop();
+		ShrimpAttack = new Prop();
+		GuavaJuiceBlood = new Prop();
+		propCase = mosquito_jump;
 	}
 
-	//PropsBook::~PropsBook()
-	//{
-	//	delete &MosquitoJump;
-	//	delete &ShrimpBlood;
-	//	delete &GrassFast;
-	//	delete &BananaAttack;
-	//	delete &GuavaJuiceBlood;
-	//}
+	PropsBook::~PropsBook()
+	{
+		delete MosquitoJump;
+		delete ShrimpBlood;
+		delete GrassFast;
+		delete BananaAttack;
+		delete GuavaJuiceBlood;
+	}
 
 	void PropsBook::Initialize() {
 		propCase = mosquito_jump;

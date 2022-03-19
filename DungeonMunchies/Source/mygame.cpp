@@ -192,7 +192,6 @@ CGameStateRun::CGameStateRun(CGame *g)
 : CGameState(g)
 {
 	//ball = new CBall [NUMBALLS];
-	currentStage = stage_props;
 }
 
 CGameStateRun::~CGameStateRun()
@@ -223,7 +222,7 @@ void CGameStateRun::OnBeginState()
 	bossMap.Initialize();
 	propsBook.Initialize();
 	//background.SetTopLeft(BACKGROUND_X,0);				// 設定背景的起始座標
-	currentStage = stage_props;
+	currentStage = stage_boss;
 	//help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
 	//hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
 	//hits_left.SetTopLeft(HITS_LEFT_X,HITS_LEFT_Y);		// 指定剩下撞擊數的座標

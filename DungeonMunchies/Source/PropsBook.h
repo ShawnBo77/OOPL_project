@@ -9,7 +9,7 @@ namespace game_framework {
 	{
 	public:
 		PropsBook();
-		//~PropsBook();
+		~PropsBook();
 		void Initialize();
 		void setXY(int x, int y);
 		void setXY(CPoint mousePosition);
@@ -23,12 +23,12 @@ namespace game_framework {
 		int mx, my;
 		PropCase propCase;
 		CMovingBitmap propsBook;
-		Prop *MosquitoJump = new Prop();
-		Prop *ShrimpBlood = new Prop();
-		Prop *GrassFast = new Prop();
-		Prop *BananaAttack = new Prop();
-		Prop *ShrimpAttack = new Prop();
-		Prop *GuavaJuiceBlood = new Prop();
+		Prop *MosquitoJump;
+		Prop *ShrimpBlood;
+		Prop *GrassFast;
+		Prop *BananaAttack;
+		Prop *ShrimpAttack;
+		Prop *GuavaJuiceBlood;
 	};
 }
 #endif
