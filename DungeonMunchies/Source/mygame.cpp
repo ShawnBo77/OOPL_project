@@ -54,7 +54,10 @@
 #include "stdafx.h"
 #include "Resource.h"
 #include <mmsystem.h>
+#include <ctime>
 #include <ddraw.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include "audio.h"
 #include "gamelib.h"
 #include "mygame.h"
@@ -326,7 +329,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_S = 0x53;
 	const char KEY_D = 0x44;
 	const char KEY_SPACE = 0x20;
-	const char KEY_SHIFT = 0x10;
+	const char KEY_CTRL = 0x11;
 
 	//if (nChar == KEY_LEFT)
 	//	eraser.SetMovingLeft(true);
@@ -341,23 +344,29 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	if (nChar == KEY_D)
 		character.SetMovingRight(true);
 	if (nChar == KEY_W || nChar == KEY_SPACE)
+	{
 		character.SetMovingUp(true);
+	}
 	if (nChar == KEY_S)
 		character.SetMovingDown(true);
+	if (nChar == KEY_CTRL) 
+	{
+		character.SetRolling(true);
+	}
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	const char KEY_LEFT  = 0x25; // keyboard左箭頭
-	const char KEY_UP    = 0x26; // keyboard上箭頭
-	const char KEY_RIGHT = 0x27; // keyboard右箭頭
-	const char KEY_DOWN  = 0x28; // keyboard下箭頭
+	//const char KEY_LEFT  = 0x25; // keyboard左箭頭
+	//const char KEY_UP    = 0x26; // keyboard上箭頭
+	//const char KEY_RIGHT = 0x27; // keyboard右箭頭
+	//const char KEY_DOWN  = 0x28; // keyboard下箭頭
 	const char KEY_W = 0x57;
 	const char KEY_A = 0x41;
 	const char KEY_S = 0x53;
 	const char KEY_D = 0x44;
 	const char KEY_SPACE = 0x20;
-	const char KEY_SHIFT = 0x10;
+	const char KEY_CTRL = 0x11;
 	//if (nChar == KEY_LEFT)
 	//	eraser.SetMovingLeft(false);
 	//if (nChar == KEY_RIGHT)
@@ -374,6 +383,8 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 		character.SetMovingUp(false);
 	if (nChar == KEY_S)
 		character.SetMovingDown(false);
+	if (nChar == KEY_CTRL)
+		character.SetRolling(false);
 }
 
 void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
