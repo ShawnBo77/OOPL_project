@@ -144,6 +144,7 @@
     <ClCompile Include="Source\PropsBook.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -200,6 +201,7 @@
     <ClInclude Include="Source\PropsBook.h">
       <Filter>MyGame</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Source.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc">

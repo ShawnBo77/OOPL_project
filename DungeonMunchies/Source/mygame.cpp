@@ -223,6 +223,7 @@ void CGameStateRun::OnBeginState()
 	propsBook.Initialize();
 	//background.SetTopLeft(BACKGROUND_X,0);				// 設定背景的起始座標
 	currentStage = stage_boss;
+	lastStage = currentStage;
 	//help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
 	//hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
 	//hits_left.SetTopLeft(HITS_LEFT_X,HITS_LEFT_Y);		// 指定剩下撞擊數的座標
@@ -345,11 +346,19 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		character.SetMovingDown(true);
 		break;
 	case KEY_E:
-		if (currentStage == stage_boss) {
-			currentStage = stage_props;
-		} else {
-			currentStage = stage_boss;
+		if (currentStage == stage_props) {
+			currentStage = lastStage;
 		}
+		else {
+			lastStage = currentStage;
+			currentStage = stage_props;
+		}
+
+		//if (currentStage == stage_boss) {
+		//	currentStage = stage_props;
+		//} else {
+		//	currentStage = stage_boss;
+		//}
 	default:
 		break;
 	}
