@@ -93,6 +93,8 @@ namespace game_framework {
 	void PropsBook::LoadBitmap() {
 		propsBook.LoadBitmap(IDB_PROPSBOOK);
 		propsBookChoice.LoadBitmap(IDB_PROPSBOOKCHOICE, RGB(0, 0, 0));
+		propHave.LoadBitmap(IDB_PROPHAVE);
+		propsPot1.LoadBitmap(IDB_PROPSPOT1);
 		MosquitoJump->LoadBitmap(IDB_PROPMOSQUITOJUMP);
 		ShrimpBlood->LoadBitmap(IDB_PROPSHRIMPBLOOD);
 		GrassFast->LoadBitmap(IDB_PROPGRASSFAST);
@@ -106,24 +108,50 @@ namespace game_framework {
 		propsBook.ShowBitmap();
 		propsBookChoice.SetTopLeft(choicex, choicey);
 		propsBookChoice.ShowBitmap();
+		propHave.SetTopLeft(475, 247);
+		propsPot1.SetTopLeft(568,373);
 		switch (propCase) {
 		case mosquito_jump:
 			MosquitoJump->onShow();
+			if (MosquitoJump->getPropFlag()) {
+				propHave.ShowBitmap();
+				propsPot1.ShowBitmap();
+			}
 			break;
 		case shrimp_blood:
 			ShrimpBlood->onShow();
+			if (ShrimpBlood->getPropFlag()) {
+				propHave.ShowBitmap();
+				propsPot1.ShowBitmap();
+			}
 			break;
 		case grass_fast:
 			GrassFast->onShow();
+			if (GrassFast->getPropFlag()) {
+				propHave.ShowBitmap();
+				propsPot1.ShowBitmap();
+			}
 			break;
 		case banana_attack:
 			BananaAttack->onShow();
+			if (BananaAttack->getPropFlag()) {
+				propHave.ShowBitmap();
+				propsPot1.ShowBitmap();
+			}
 			break;
 		case shrimp_attack:
 			ShrimpAttack->onShow();
+			if (ShrimpAttack->getPropFlag()) {
+				propHave.ShowBitmap();
+				propsPot1.ShowBitmap();
+			}
 			break;
 		case guava_juice_blood:
 			GuavaJuiceBlood->onShow();
+			if (GuavaJuiceBlood->getPropFlag()) {
+				propHave.ShowBitmap();
+				propsPot1.ShowBitmap();
+			}
 			break;
 		default:
 			break;
