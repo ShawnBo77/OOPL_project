@@ -25,6 +25,8 @@ namespace game_framework {
 		PropCase propCase;
 		CMovingBitmap propsBook;
 		CMovingBitmap propsBookChoice;
+		CMovingBitmap propHave;
+		CMovingBitmap propsPot1;
 		Prop *MosquitoJump;
 		Prop *ShrimpBlood;
 		Prop *GrassFast;

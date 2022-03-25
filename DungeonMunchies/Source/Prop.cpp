@@ -12,6 +12,7 @@ namespace game_framework {
 /////////////////////////////////////////////////////////////////////////////
 
     Prop::Prop() {
+        propFlag = false;
     }
 
     void Prop::Initialize() {

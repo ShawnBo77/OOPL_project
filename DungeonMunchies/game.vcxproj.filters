@@ -602,5 +602,11 @@
     <Image Include="res\props_book_choice.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\prop_have.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\props_pot1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

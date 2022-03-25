@@ -424,9 +424,11 @@
     <Image Include="RES\props_book.bmp" />
     <Image Include="res\props_book_choice.bmp" />
     <Image Include="res\props_grass_fast.bmp" />
+    <Image Include="res\props_pot1.bmp" />
     <Image Include="res\prop_banana_attack.bmp" />
     <Image Include="res\prop_grass_fast.bmp" />
     <Image Include="res\prop_guava_juice_blood.bmp" />
+    <Image Include="res\prop_have.bmp" />
     <Image Include="res\prop_mosquito_jump.bmp" />
     <Image Include="res\prop_shrimp_attack.bmp" />
     <Image Include="res\prop_shrimp_blood.bmp" />
