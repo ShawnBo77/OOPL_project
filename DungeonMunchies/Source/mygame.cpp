@@ -347,6 +347,9 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	case KEY_S:
 		character.SetMovingDown(true);
 		break;
+	case KEY_CTRL:
+		character.SetRolling(true);
+		break;
 	case KEY_E:
 		if (currentStage == stage_boss) {
 			currentStage = stage_props;
@@ -400,7 +403,7 @@ void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 
 void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 {
-	// 沒事。如果需要處理滑鼠移動的話，寫code在這裡
+	character.SetFacingDirection(point.x);					// 滑鼠位置改變角色方向
 }
 
 void CGameStateRun::OnRButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作

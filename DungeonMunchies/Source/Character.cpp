@@ -12,7 +12,6 @@
 /////////////////////////////////////////////////////////////////////////////
 namespace game_framework {
 	Character::Character() {
-		Initialize();
 		//characterX = characterY = 50;
 	}
 
@@ -83,6 +82,7 @@ namespace game_framework {
 		characterY = Y_POS;
 		facingLR = 1;
 		isMovingLeft = isMovingRight = isMovingUp = isRising = isRolling = false;
+		rolling_time = 0;
 		floor = 400;
 	}
 
@@ -246,13 +246,11 @@ namespace game_framework {
 	void Character::SetMovingLeft(bool flag)
 	{
 		isMovingLeft = flag;
-		facingLR = 0;
 	}
 
 	void Character::SetMovingRight(bool flag)
 	{
 		isMovingRight = flag;
-		facingLR = 1;
 	}
 
 	void Character::SetMovingUp(bool flag)
@@ -260,10 +258,21 @@ namespace game_framework {
 		isMovingUp = flag;
 	}
 
+	void Character::SetFacingDirection(int mouseX)
+	{
+		if (mouseX > GetRightX())
+			facingLR = 1;
+		else if (mouseX < GetLeftX())
+			facingLR = 0;
+	}
+
 	void Character::SetRolling(bool flag)
 	{
-		if (GetIsOnTheFloor())
+		if (GetIsOnTheFloor() && rolling_time <= 0)
+		{
+			rolling_time = 5;
 			isRolling = flag;
+		}
 		else
 			isRolling = false;
 	}
@@ -272,31 +281,17 @@ namespace game_framework {
 	{
 		const int BORDER = 5;													//角色邊框寬度
 		const int STEP_SIZE = 10;												//角色移動速度
-		const int ROLLING_SIZE = 1;											//角色翻滾距離
 
 		if (GetIsRolling())							//翻滾
 		{
-			if (facingLR == 0 && m->isEmpty(GetLeftX() - ROLLING_SIZE, GetTopY()) && m->isEmpty(GetLeftX() - ROLLING_SIZE, GetButtonY() - BORDER))
-			{
-				for (int i = 0; i < 20; i++)
-				{
-					characterX -= ROLLING_SIZE;
-				}
-
-				//m->addSX(STEP_SIZE);												//視角移動(王關不用)
-			}
-			else if (facingLR == 1 && m->isEmpty(GetRightX() + ROLLING_SIZE - 5, GetTopY()) && m->isEmpty(GetRightX() - BORDER + ROLLING_SIZE, GetButtonY() - BORDER))
-			{
-				if (m->getSX() > -230)
-				{
-					for (int i = 0; i < 20; i++)
-					{
-						characterX += ROLLING_SIZE;
-					}
-				}
-
-				//m->addSX(-STEP_SIZE);
-			}
+			if (isMovingLeft)
+				Rolling(m, 0);
+			else if (isMovingRight)
+				Rolling(m, 1);
+			else if (facingLR)
+				Rolling(m, 1);
+			else if (facingLR == 0)
+				Rolling(m, 0);
 		}
 		else 
 		{
@@ -368,6 +363,56 @@ namespace game_framework {
 
 	}
 
+	void Character::Rolling(Map *m, int rollingDirection)
+	{
+
+		const int ROLLING_SIZE = 3;											//角色翻滾距離
+		const int BORDER = 5;
+		if (rollingDirection)
+		{
+			if (m->isEmpty(GetRightX() + ROLLING_SIZE - 5, GetTopY()) && m->isEmpty(GetRightX() - BORDER + ROLLING_SIZE, GetButtonY() - BORDER) && rolling_time >= 0)
+			{
+				if (m->getSX() > -230)
+				{
+					for (int i = 0; i < 5; i++)
+					{
+						characterX += ROLLING_SIZE;
+					}
+				}
+				rolling_time--;
+
+				//m->addSX(-STEP_SIZE);
+			}
+			else
+			{
+				rolling_time = 0;
+				isRolling = false;
+			}
+		}
+		else
+		{
+			if (m->isEmpty(GetLeftX() - ROLLING_SIZE, GetTopY()) && m->isEmpty(GetLeftX() - ROLLING_SIZE, GetButtonY() - BORDER) && rolling_time >= 0)
+			{
+				if (m->getSX() > -230)
+				{
+					for (int i = 0; i < 5; i++)
+					{
+						characterX -= ROLLING_SIZE;
+					}
+				}
+				rolling_time--;
+				//m->addSX(STEP_SIZE);												//視角移動(王關不用)
+			}
+			else
+			{
+				rolling_time = 0;
+				isRolling = false;
+			}
+		}
+			
+	}
+	
+
 	void Character::SetXY(int x, int y)
 	{
 		characterX = x;
@@ -379,15 +424,19 @@ namespace game_framework {
 		if (facingLR == 0) {
 			if (GetIsRolling()) 
 			{
-				leftRolling.SetTopLeft(characterX, characterY+15);
+				leftRolling.SetTopLeft(characterX + 5, characterY + 5);
 				leftRolling.OnShow();
 				leftRolling.SetDelayCount(1);
+				
+				/*leftRolling.SetTopLeft(characterX, characterY+15);
+				leftRolling.OnShow();
+				leftRolling.SetDelayCount(1);*/
 			}
-			else if (GetIsMovingUp() == true) 
+			else if (GetIsRising() == true) 
 			{
 				leftJump.SetTopLeft(characterX, characterY);
 				leftJump.OnShow();
-				leftJump.SetDelayCount(10);
+				leftJump.SetDelayCount(3);
 			}
 			else if ((GetIsMovingLeft() == true || GetIsMovingRight() == true) && GetIsOnTheFloor() == true)
 			{
@@ -404,10 +453,11 @@ namespace game_framework {
 		{
 			if (GetIsRolling())
 			{
-				rightRolling.SetTopLeft(characterX, characterY);
+				rightRolling.SetTopLeft(characterX + 5, characterY + 5);
 				rightRolling.OnShow();
+				rightRolling.SetDelayCount(1);
 			}
-			else if (GetIsMovingUp() == true)
+			else if (GetIsRising() == true)
 			{
 				rightJump.SetTopLeft(characterX, characterY);
 				rightJump.OnShow();

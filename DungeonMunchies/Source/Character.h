@@ -17,7 +17,8 @@ namespace game_framework {
         int  GetTopY();					// 左上角 y 座標
         int  GetRightX();				// 右下角 x 座標
         int  GetButtonY();				// 右下角 y 座標
-        void GetMovingDown(bool flag);	// 回傳是否正在往下移動
+
+        void GetMovingDown();	        // 回傳是否正在往下移動
         bool GetIsMovingLeft();	        // 回傳是否正在往左移動
         bool GetIsMovingRight();        // 回傳是否正在往右移動
         bool GetIsMovingUp();           // 回傳是否正在往上移動
@@ -28,9 +29,11 @@ namespace game_framework {
         void SetMovingDown(bool flag);	// 設定是否正在往下移動
         void SetMovingLeft(bool flag);	// 設定是否正在往左移動
         void SetMovingRight(bool flag); // 設定是否正在往右移動
+        void SetFacingDirection(int mouseX); // 設定面對方向
         void SetMovingUp(bool flag);	// 設定是否正在往上移動
         void SetRolling(bool flag);	    // 設定是否翻滾
         void SetXY(int x, int y);		// 設定左上角座標
+        void Rolling(Map *m, int rollingDirection);		    // 翻滾動作
 
     protected:
         CMovingBitmap standLeft;	   // 站立面向左
@@ -54,6 +57,7 @@ namespace game_framework {
         bool isRising;              // 是否正在上升
         int  velocity;
         int  floor;
+        int  rolling_time;
     };
 }
 

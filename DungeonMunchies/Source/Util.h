@@ -13,7 +13,7 @@ const char KEY_S = 0x53;
 const char KEY_D = 0x44;
 const char KEY_E = 69;
 const char KEY_SPACE = 0x20;
-const char KEY_SHIFT = 0x10;
+const char KEY_CTRL = 0x11;
 
 // 定義各關卡的編號
 enum Stage {
