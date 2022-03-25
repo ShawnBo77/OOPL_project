@@ -5,8 +5,6 @@
 #include "gamelib.h"
 #include <vector>
 #include "Prop.h"
-//#include <fstream>
-//#include <sstream>
 
 namespace game_framework {
     /////////////////////////////////////////////////////////////////////////////
@@ -17,15 +15,15 @@ namespace game_framework {
     }
 
     void Prop::Initialize() {
-        prop = false;
+        propFlag = false;
     }
 
-    void Prop::getProp() {
-        prop = true;
+    void Prop::setPropFlag(bool flag) {
+        propFlag = flag;
     }
 
-    bool Prop::havingProp() {
-        return prop;
+    bool Prop::getPropFlag() {
+        return propFlag;
     }
 
     void Prop::LoadBitmap(int code) {

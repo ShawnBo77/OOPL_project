@@ -9,12 +9,12 @@ namespace game_framework {
     public:
         Prop();
         void Initialize();
-        void getProp();
-        bool havingProp();
+        void setPropFlag(bool flag);
+        bool getPropFlag();
         void LoadBitmap(int code);
         void onShow();
     private:
-        bool prop;
+        bool propFlag;
         CMovingBitmap propDetails;
     };
 }

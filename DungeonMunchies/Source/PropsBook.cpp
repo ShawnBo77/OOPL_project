@@ -8,8 +8,6 @@
 #include "Util.h"
 #include "Prop.h"
 #include "PropsBook.h"
-//#include <fstream>
-//#include <sstream>
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -38,6 +36,8 @@ namespace game_framework {
 
 	void PropsBook::Initialize() {
 		propCase = mosquito_jump;
+		choicex = 125;
+		choicey = 90;
 	}
 
 	void PropsBook::setXY(CPoint mousePosition) {
@@ -59,25 +59,29 @@ namespace game_framework {
 	}
 
 	void PropsBook::setPropCase() {
-		int row = (my - 91) / 40;
-		int column = (mx - 127) / 43;
-		if (row == 0 && column == 0) {
-			propCase = mosquito_jump;
-		}
-		else if (row == 0 && column == 1) {
-			propCase = shrimp_blood;
-		}
-		else if (row == 0 && column == 2) {
-			propCase = grass_fast;
-		}
-		else if (row == 0 && column == 3) {
-			propCase = banana_attack;
-		}
-		else if (row == 0 && column == 4) {
-			propCase = shrimp_attack;
-		}
-		else if (row == 0 && column == 5) {
-			propCase = guava_juice_blood;
+		if (mx > 125 && my > 90 && mx < 381 && my < 131) {
+			int row = (my - 91) / 40;
+			int column = (mx - 127) / 43;
+			if (row == 0 && column == 0) {
+				propCase = mosquito_jump;
+			}
+			else if (row == 0 && column == 1) {
+				propCase = shrimp_blood;
+			}
+			else if (row == 0 && column == 2) {
+				propCase = grass_fast;
+			}
+			else if (row == 0 && column == 3) {
+				propCase = banana_attack;
+			}
+			else if (row == 0 && column == 4) {
+				propCase = shrimp_attack;
+			}
+			else if (row == 0 && column == 5) {
+				propCase = guava_juice_blood;
+			}
+			choicex = column * 43 + 125;
+			choicey = row * 43 + 90;
 		}
 	}
 
@@ -88,6 +92,7 @@ namespace game_framework {
 	
 	void PropsBook::LoadBitmap() {
 		propsBook.LoadBitmap(IDB_PROPSBOOK);
+		propsBookChoice.LoadBitmap(IDB_PROPSBOOKCHOICE, RGB(0, 0, 0));
 		MosquitoJump->LoadBitmap(IDB_PROPMOSQUITOJUMP);
 		ShrimpBlood->LoadBitmap(IDB_PROPSHRIMPBLOOD);
 		GrassFast->LoadBitmap(IDB_PROPGRASSFAST);
@@ -99,6 +104,8 @@ namespace game_framework {
     void PropsBook::onShow() {
 		propsBook.SetTopLeft(0, 0);
 		propsBook.ShowBitmap();
+		propsBookChoice.SetTopLeft(choicex, choicey);
+		propsBookChoice.ShowBitmap();
 		switch (propCase) {
 		case mosquito_jump:
 			MosquitoJump->onShow();
