@@ -399,7 +399,12 @@ void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 	case stage_boss:
 		break;
 	case stage_props:
-		propsBook.setPropCase(point);
+		if (point.x > 884 && point.y > 39 && point.x < 933 && point.y < 83) {
+			currentStage = lastStage;
+		}
+		else {
+			propsBook.setPropCase(point);
+		}
 	default:
 		break;
 	}
