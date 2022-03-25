@@ -318,6 +318,20 @@ IDB_CACTUSALIVE         BITMAP                  "..\\res\\cactus_alive.bmp"
 
 IDB_CACTUSDEAD          BITMAP                  "..\\res\\cactus_dead.bmp"
 
+IDB_PROPSBOOK           BITMAP                  "..\\res\\props_book.bmp"
+
+IDB_PROPGRASSFAST       BITMAP                  "..\\res\\prop_grass_fast.bmp"
+
+IDB_PROPGUAVAJUICEBLOOD BITMAP                  "..\\res\\prop_guava_juice_blood.bmp"
+
+IDB_PROPMOSQUITOJUMP    BITMAP                  "..\\res\\prop_mosquito_jump.bmp"
+
+IDB_PROPSHRIMPATTACK    BITMAP                  "..\\res\\prop_shrimp_attack.bmp"
+
+IDB_PROPSHRIMPBLOOD     BITMAP                  "..\\res\\prop_shrimp_blood.bmp"
+
+IDB_PROPBANANAATTACK    BITMAP                  "..\\res\\prop_banana_attack.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
