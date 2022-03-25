@@ -55,6 +55,11 @@ namespace game_framework {
 		return isRolling;
 	}
 
+	bool Character::GetIsAttacking()
+	{
+		return isAttacking;
+	}
+
 	bool Character::GetIsOnTheFloor()
 	{
 		if (GetButtonY() == floor) {
@@ -83,6 +88,7 @@ namespace game_framework {
 		facingLR = 1;
 		isMovingLeft = isMovingRight = isMovingUp = isRising = isRolling = false;
 		rolling_time = 0;
+		isAttacking = false;
 		floor = 400;
 	}
 
@@ -137,6 +143,7 @@ namespace game_framework {
 		leftJump.AddBitmap(IDB_HEROLEFTJUMP_S, RGB(0, 0, 0));
 		for (int i = 0; i < 3; i++)
 			leftJump.AddBitmap(IDB_HEROLEFTSTAND_S, RGB(0, 0, 0));
+
 		rightJump.AddBitmap(IDB_HERORIGHTJUMP_S, RGB(0, 0, 0));
 		for (int i = 0; i < 3; i++)
 			rightJump.AddBitmap(IDB_HERORIGHTSTAND_S, RGB(0, 0, 0));
@@ -149,6 +156,13 @@ namespace game_framework {
 		for (int i = 0; i < 8; i++)
 			rightRolling.AddBitmap(rollingRightAnimation[i], RGB(0, 0, 0));
 
+		vector<int> attackingLeftAnimation = { IDB_HEROLEFTATTACK1_S, IDB_HEROLEFTATTACK2_S, IDB_HEROLEFTATTACK3_S, IDB_HEROLEFTATTACK4_S };
+		for (int i = 0; i < 4; i++)
+			leftAttacking.AddBitmap(attackingLeftAnimation[i], RGB(0, 0, 0));
+
+		vector<int> attackingRightAnimation = { IDB_HERORIGHTATTACK1_S, IDB_HERORIGHTATTACK2_S, IDB_HERORIGHTATTACK3_S, IDB_HERORIGHTATTACK4_S};
+		for (int i = 0; i < 4; i++)
+			rightAttacking.AddBitmap(attackingRightAnimation[i], RGB(0, 0, 0));
 
 		/*animation.AddBitmap(IDB_HERORIGHTROLL1, RGB(0, 0, 0));
 		animation.AddBitmap(IDB_HERORIGHTROLL2, RGB(0, 0, 0));
@@ -277,12 +291,17 @@ namespace game_framework {
 			isRolling = false;
 	}
 
+	void Character::SetAttacking(bool flag)
+	{
+		isAttacking = flag;
+	}
+
 	void Character::OnMove(Map* m)
 	{
 		const int BORDER = 5;													//角色邊框寬度
 		const int STEP_SIZE = 10;												//角色移動速度
 
-		if (GetIsRolling())							//翻滾
+		if (GetIsRolling())					
 		{
 			if (isMovingLeft)
 				Rolling(m, 0);
@@ -322,35 +341,44 @@ namespace game_framework {
 				m->addSY(-STEP_SIZE);
 			}*/
 
-			if (isRising)							// 上升狀態	
+			if (GetIsRising())							// 上升狀態	
 			{
 				if (velocity > 0)
 				{
-					characterY -= velocity * 2;		// 當速度 > 0時，y軸上升(移動velocity個點，velocity的單位為 點/次)
-					velocity--;						// 受重力影響，下次的上升速度降低
+					characterY -= velocity * 2;			// 當速度 > 0時，y軸上升(移動velocity個點，velocity的單位為 點/次)
+					velocity--;							// 受重力影響，下次的上升速度降低
 				}
 				else
 				{
-					isRising = false;				// 當速度 <= 0，上升終止，下次改為下降
-					velocity = 1;					// 下降的初速(velocity)為1
+					isRising = false;					// 當速度 <= 0，上升終止，下次改為下降
+					velocity = 1;						// 下降的初速(velocity)為1
 				}
 			}
-			else									// 下降狀態
+			else										// 下降狀態
 			{
 				if (GetButtonY() < floor)				// 當y座標還沒碰到地板
 				{
-					characterY += velocity * 2;		// y軸下降(移動velocity個點，velocity的單位為 點/次)
+					characterY += velocity * 2;			// y軸下降(移動velocity個點，velocity的單位為 點/次)
 					if (velocity < 5)
 						velocity++;
 				}
 				else
 				{
-					characterY = floor - 80;				// 當y座標低於地板，更正為地板上
+					characterY = floor - 80;			// 當y座標低於地板，更正為地板上
 					velocity = 0;
 				}
 			}
+			
+			if (GetIsAttacking()) 
+			{
+				if (facingLR)
+					Attack(1);
+				else
+					Attack(0);
+			}
 		}
-		
+
+
 
 		walkingLeft.OnMove();
 		walkingRight.OnMove();
@@ -361,14 +389,16 @@ namespace game_framework {
 		leftJump.OnMove();
 		rightJump.OnMove();
 
+		leftAttacking.OnMove();
+		rightAttacking.OnMove();
 	}
 
-	void Character::Rolling(Map *m, int rollingDirection)
+	void Character::Rolling(Map *m, bool flag)								//左:0 右:1
 	{
 
 		const int ROLLING_SIZE = 3;											//角色翻滾距離
 		const int BORDER = 5;
-		if (rollingDirection)
+		if (flag)
 		{
 			if (m->isEmpty(GetRightX() + ROLLING_SIZE - 5, GetTopY()) && m->isEmpty(GetRightX() - BORDER + ROLLING_SIZE, GetButtonY() - BORDER) && rolling_time >= 0)
 			{
@@ -411,6 +441,11 @@ namespace game_framework {
 		}
 			
 	}
+
+	void Character::Attack(bool flag)
+	{
+		
+	}
 	
 
 	void Character::SetXY(int x, int y)
@@ -431,6 +466,12 @@ namespace game_framework {
 				/*leftRolling.SetTopLeft(characterX, characterY+15);
 				leftRolling.OnShow();
 				leftRolling.SetDelayCount(1);*/
+			}
+			else if (GetIsAttacking()) 
+			{
+				leftAttacking.SetTopLeft(characterX, characterY);
+				leftAttacking.SetDelayCount(3);
+				leftAttacking.OnShow();
 			}
 			else if (GetIsRising() == true) 
 			{
@@ -456,6 +497,12 @@ namespace game_framework {
 				rightRolling.SetTopLeft(characterX + 5, characterY + 5);
 				rightRolling.OnShow();
 				rightRolling.SetDelayCount(1);
+			}
+			else if (GetIsAttacking())
+			{
+				rightAttacking.SetTopLeft(characterX, characterY);
+				rightAttacking.SetDelayCount(3);
+				rightAttacking.OnShow();
 			}
 			else if (GetIsRising() == true)
 			{
