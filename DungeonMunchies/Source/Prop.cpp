@@ -5,8 +5,6 @@
 #include "gamelib.h"
 #include <vector>
 #include "Prop.h"
-//#include <fstream>
-//#include <sstream>
 
 namespace game_framework {
     /////////////////////////////////////////////////////////////////////////////

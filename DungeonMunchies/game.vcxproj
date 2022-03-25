@@ -420,6 +420,7 @@
     <Image Include="RES\MeviusLevitating.bmp" />
     <Image Include="RES\MiConv.com__unknown.bmp" />
     <Image Include="RES\props_book.bmp" />
+    <Image Include="res\props_book_choice.bmp" />
     <Image Include="res\props_grass_fast.bmp" />
     <Image Include="res\prop_banana_attack.bmp" />
     <Image Include="res\prop_grass_fast.bmp" />

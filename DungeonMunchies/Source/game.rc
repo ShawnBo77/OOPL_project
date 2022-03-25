@@ -320,6 +320,8 @@ IDB_CACTUSDEAD          BITMAP                  "..\\res\\cactus_dead.bmp"
 
 IDB_PROPSBOOK           BITMAP                  "..\\res\\props_book.bmp"
 
+IDB_PROPSBOOKCHOICE     BITMAP                  "..\\res\\props_book_choice.bmp"
+
 IDB_PROPGRASSFAST       BITMAP                  "..\\res\\prop_grass_fast.bmp"
 
 IDB_PROPGUAVAJUICEBLOOD BITMAP                  "..\\res\\prop_guava_juice_blood.bmp"

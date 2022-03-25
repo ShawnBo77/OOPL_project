@@ -21,8 +21,10 @@ namespace game_framework {
 		void onShow();
 	private:
 		int mx, my;
+		int choicex, choicey;
 		PropCase propCase;
 		CMovingBitmap propsBook;
+		CMovingBitmap propsBookChoice;
 		Prop *MosquitoJump;
 		Prop *ShrimpBlood;
 		Prop *GrassFast;
