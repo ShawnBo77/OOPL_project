@@ -15,6 +15,9 @@ namespace game_framework {
 		void setXY(CPoint mousePosition);
 		void setPropCase();
 		void setPropCase(CPoint mousePosition);
+		void setIconList();
+		vector<CMovingBitmap> setIconPosition(vector<Prop*> propList, vector<CMovingBitmap> iconList);
+		void setPropList();
 		int getMX();
 		int getMY();
 		void LoadBitmap();
@@ -27,12 +30,20 @@ namespace game_framework {
 		CMovingBitmap propsBookChoice;
 		CMovingBitmap propHave;
 		CMovingBitmap propsPot1;
+		CMovingBitmap MosquitoJumpIcon;
+		CMovingBitmap ShrimpBloodIcon;
+		CMovingBitmap GrassFastIcon;
+		CMovingBitmap BananaAttackIcon;
+		CMovingBitmap ShrimpAttackIcon;
+		CMovingBitmap GuavaJuiceBloodIcon;
+		vector<CMovingBitmap> iconList;
 		Prop *MosquitoJump;
 		Prop *ShrimpBlood;
 		Prop *GrassFast;
 		Prop *BananaAttack;
 		Prop *ShrimpAttack;
 		Prop *GuavaJuiceBlood;
+		vector<Prop*> propList;
 	};
 }
 #endif

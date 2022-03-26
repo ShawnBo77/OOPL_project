@@ -608,5 +608,23 @@
     <Image Include="res\props_pot1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\prop_grass_fast_icon.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\prop_guava_juice_blood_icon.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\prop_mosquito_jump_icon.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\prop_shrimp_attack_icon.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\prop_shrimp_blood_icon.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\prop_banana_attack_icon.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

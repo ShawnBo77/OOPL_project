@@ -338,6 +338,18 @@ IDB_PROPSHRIMPBLOOD     BITMAP                  "..\\res\\prop_shrimp_blood.bmp"
 
 IDB_PROPBANANAATTACK    BITMAP                  "..\\res\\prop_banana_attack.bmp"
 
+IDB_PROPGRASSFASTICON   BITMAP                  "..\\res\\prop_grass_fast_icon.bmp"
+
+IDB_PROPGUAVAJUICEBLOODICON BITMAP                  "..\\res\\prop_guava_juice_blood_icon.bmp"
+
+IDB_PROPMOSQUITOJUMPICON BITMAP                  "..\\res\\prop_mosquito_jump_icon.bmp"
+
+IDB_PROPSHRIMPATTACKICON BITMAP                  "..\\res\\prop_shrimp_attack_icon.bmp"
+
+IDB_PROPSHRIMPBLOODICON BITMAP                  "..\\res\\prop_shrimp_blood_icon.bmp"
+
+IDB_PROPBANANAATTACKICON BITMAP                  "..\\res\\prop_banana_attack_icon.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

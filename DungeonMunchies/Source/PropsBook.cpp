@@ -38,6 +38,8 @@ namespace game_framework {
 		propCase = mosquito_jump;
 		choicex = 125;
 		choicey = 90;
+		setPropList();
+		setIconList();
 	}
 
 	void PropsBook::setXY(CPoint mousePosition) {
@@ -59,7 +61,7 @@ namespace game_framework {
 	}
 
 	void PropsBook::setPropCase() {
-		if (mx > 125 && my > 90 && mx < 381 && my < 131) {
+		if (mx > 127 && my > 91 && mx < 381 && my < 131) {
 			int row = (my - 91) / 40;
 			int column = (mx - 127) / 43;
 			if (row == 0 && column == 0) {
@@ -89,12 +91,60 @@ namespace game_framework {
 		setXY(mousePosition);
 		setPropCase();
 	}
+
+	void PropsBook::setIconList() {
+		iconList.push_back(MosquitoJumpIcon);
+		iconList.push_back(ShrimpBloodIcon);
+		iconList.push_back(GrassFastIcon);
+		iconList.push_back(BananaAttackIcon);
+		iconList.push_back(ShrimpAttackIcon);
+		iconList.push_back(GuavaJuiceBloodIcon);
+		iconList = setIconPosition(propList, iconList);
+	}
 	
+	vector<CMovingBitmap> PropsBook::setIconPosition(vector<Prop*> propList, vector<CMovingBitmap> iconList) {
+		int iconx, icony;
+		int counter = 0;
+		for (int row = 0; row < 7; row++) {
+			icony = row * 40 + 91;
+			for (int column = 0; column < 7; column++) {
+				iconx = column * 43 + 125;
+				iconList[counter].SetTopLeft(iconx, icony);
+				if (counter == (iconList).size()-1) {
+					return iconList;
+				}
+				counter++;
+			}
+		}
+		return iconList;
+	}
+
+	void PropsBook::setPropList() {
+		propList.push_back(MosquitoJump);
+		propList.push_back(ShrimpBlood);
+		propList.push_back(GrassFast);
+		propList.push_back(BananaAttack);
+		propList.push_back(ShrimpAttack);
+		propList.push_back(GuavaJuiceBlood);
+		//MosquitoJump->setPropFlag(true);
+		//ShrimpBlood->setPropFlag(true);
+		//GrassFast->setPropFlag(true);
+		//BananaAttack->setPropFlag(true);
+		//ShrimpAttack->setPropFlag(true);
+		//GuavaJuiceBlood->setPropFlag(true);
+	}
+
 	void PropsBook::LoadBitmap() {
 		propsBook.LoadBitmap(IDB_PROPSBOOK);
 		propsBookChoice.LoadBitmap(IDB_PROPSBOOKCHOICE, RGB(0, 0, 0));
 		propHave.LoadBitmap(IDB_PROPHAVE);
 		propsPot1.LoadBitmap(IDB_PROPSPOT1);
+		MosquitoJumpIcon.LoadBitmap(IDB_PROPMOSQUITOJUMPICON);
+		ShrimpBloodIcon.LoadBitmap(IDB_PROPSHRIMPBLOODICON);
+		GrassFastIcon.LoadBitmap(IDB_PROPGRASSFASTICON);
+		BananaAttackIcon.LoadBitmap(IDB_PROPBANANAATTACKICON);
+		ShrimpAttackIcon.LoadBitmap(IDB_PROPSHRIMPATTACKICON);
+		GuavaJuiceBloodIcon.LoadBitmap(IDB_PROPGUAVAJUICEBLOODICON);
 		MosquitoJump->LoadBitmap(IDB_PROPMOSQUITOJUMP);
 		ShrimpBlood->LoadBitmap(IDB_PROPSHRIMPBLOOD);
 		GrassFast->LoadBitmap(IDB_PROPGRASSFAST);
@@ -106,10 +156,15 @@ namespace game_framework {
     void PropsBook::onShow() {
 		propsBook.SetTopLeft(0, 0);
 		propsBook.ShowBitmap();
-		propsBookChoice.SetTopLeft(choicex, choicey);
-		propsBookChoice.ShowBitmap();
 		propHave.SetTopLeft(475, 247);
 		propsPot1.SetTopLeft(568,373);
+
+		for (unsigned int i = 0; i < iconList.size(); i++) {
+			if (propList[i]->getPropFlag()) {
+				iconList[i].ShowBitmap();
+			}
+		}
+
 		switch (propCase) {
 		case mosquito_jump:
 			MosquitoJump->onShow();
@@ -156,5 +211,7 @@ namespace game_framework {
 		default:
 			break;
 		}
+		propsBookChoice.SetTopLeft(choicex, choicey);
+		propsBookChoice.ShowBitmap();
     }
 }
