@@ -372,7 +372,8 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	switch (nChar) {
+	switch (nChar) 
+	{
 	case KEY_A:
 		character.SetMovingLeft(false);
 		break;
@@ -394,15 +395,18 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 {
 	//eraser.SetMovingLeft(true);
-	switch (currentStage)
+	switch (currentStage) 
 	{
 	case stage_boss:
+		character.SetAttacking(true);
 		break;
 	case stage_props:
-		if (point.x > 884 && point.y > 39 && point.x < 933 && point.y < 83) {
+		if (point.x > 884 && point.y > 39 && point.x < 933 && point.y < 83) 
+		{
 			currentStage = lastStage;
 		}
-		else {
+		else 
+		{
 			propsBook.setPropCase(point);
 		}
 	default:
@@ -412,6 +416,7 @@ void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 
 void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 {
+	character.SetAttacking(false);
 	//eraser.SetMovingLeft(false);
 }
 
