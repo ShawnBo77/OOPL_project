@@ -1,5 +1,5 @@
-#ifndef __Prop__
-#define __Prop__
+#ifndef __PROP__
+#define __PROP__
 namespace game_framework {
     /////////////////////////////////////////////////////////////////////////////
     // 這個class為道具

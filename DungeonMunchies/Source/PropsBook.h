@@ -7,6 +7,11 @@ namespace game_framework {
 
 	class Prop;
 	class PropMosquitoJump;
+	class PropShrimpBlood;
+	class PropGrassFast;
+	class PropBananaAttack;
+	class PropShrimpAttack;
+	class PropGuavaJuiceBlood;
 
 	class PropsBook
 	{
@@ -42,11 +47,11 @@ namespace game_framework {
 		CMovingBitmap GuavaJuiceBloodIcon;
 		vector<CMovingBitmap> iconList;
 		PropMosquitoJump* MosquitoJumpP;
-		//Prop *ShrimpBloodP;
-		//Prop *GrassFastP;
-		//Prop *BananaAttackP;
-		//Prop *ShrimpAttackP;
-		//Prop *GuavaJuiceBloodP;
+		PropShrimpBlood* ShrimpBloodP;
+		PropGrassFast* GrassFastP;
+		PropBananaAttack* BananaAttackP;
+		PropShrimpAttack* ShrimpAttackP;
+		PropGuavaJuiceBlood* GuavaJuiceBloodP;
 		vector<Prop*> propList;
 	};
 }

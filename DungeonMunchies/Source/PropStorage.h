@@ -9,6 +9,11 @@ namespace game_framework {
     /////////////////////////////////////////////////////////////////////////////
     class Prop;
     class PropMosquitoJump;
+    class PropShrimpBlood;
+    class PropGrassFast;
+    class PropBananaAttack;
+    class PropShrimpAttack;
+    class PropGuavaJuiceBlood;
 
     class PropStorage
     {
@@ -20,11 +25,11 @@ namespace game_framework {
     private:
         PropCase propCase;
         PropMosquitoJump* MosquitoJumpP;
-        Prop* ShrimpBloodP;
-        Prop* GrassFastP;
-        Prop* BananaAttackP;
-        Prop* ShrimpAttackP;
-        Prop* GuavaJuiceBloodP;
+        PropShrimpBlood* ShrimpBloodP;
+        PropGrassFast* GrassFastP;
+        PropBananaAttack* BananaAttackP;
+        PropShrimpAttack* ShrimpAttackP;
+        PropGuavaJuiceBlood* GuavaJuiceBloodP;
     };
 }
 #endif

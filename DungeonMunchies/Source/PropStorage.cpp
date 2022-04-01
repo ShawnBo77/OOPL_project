@@ -6,6 +6,11 @@
 #include <vector>
 #include "Prop.h"
 #include "PropMosquitoJump.h"
+#include "PropShrimpBlood.h"
+#include "PropGrassFast.h"
+#include "PropBananaAttack.h"
+#include "PropShrimpAttack.h"
+#include "PropGuavaJuiceBlood.h"
 #include "PropStorage.h"
 
 namespace game_framework {
@@ -15,11 +20,11 @@ namespace game_framework {
 
     PropStorage::PropStorage() {
         MosquitoJumpP = new PropMosquitoJump();
-        ShrimpBloodP = new Prop();
-        GrassFastP = new Prop();
-        BananaAttackP = new Prop();
-        ShrimpAttackP = new Prop();
-        GuavaJuiceBloodP = new Prop();
+        ShrimpBloodP = new PropShrimpBlood();
+        GrassFastP = new PropGrassFast();
+        BananaAttackP = new PropBananaAttack();
+        ShrimpAttackP = new PropShrimpAttack();
+        GuavaJuiceBloodP = new PropGuavaJuiceBlood();
     }
 
     PropStorage::~PropStorage()

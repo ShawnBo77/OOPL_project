@@ -286,8 +286,13 @@
     <ClCompile Include="Source\Map.cpp" />
     <ClCompile Include="Source\MapForBoss.cpp" />
     <ClCompile Include="Source\Prop.cpp" />
+    <ClCompile Include="Source\PropBananaAttack.cpp" />
+    <ClCompile Include="Source\PropGrassFast.cpp" />
+    <ClCompile Include="Source\PropGuavaJuiceBlood.cpp" />
     <ClCompile Include="Source\PropMosquitoJump.cpp" />
     <ClCompile Include="Source\PropsBook.cpp" />
+    <ClCompile Include="Source\PropShrimpAttack.cpp" />
+    <ClCompile Include="Source\PropShrimpBlood.cpp" />
     <ClCompile Include="Source\PropStorage.cpp" />
     <ClCompile Include="Source\Source.cpp" />
     <ClCompile Include="Source\SourceStorage.cpp" />
@@ -325,8 +330,13 @@
     <ClInclude Include="Source\Map.h" />
     <ClInclude Include="Source\MapForBoss.h" />
     <ClInclude Include="Source\Prop.h" />
+    <ClInclude Include="Source\PropBananaAttack.h" />
+    <ClInclude Include="Source\PropGrassFast.h" />
+    <ClInclude Include="Source\PropGuavaJuiceBlood.h" />
     <ClInclude Include="Source\PropMosquitoJump.h" />
     <ClInclude Include="Source\PropsBook.h" />
+    <ClInclude Include="Source\PropShrimpAttack.h" />
+    <ClInclude Include="Source\PropShrimpBlood.h" />
     <ClInclude Include="Source\PropStorage.h" />
     <ClInclude Include="Source\Resource.h" />
     <ClInclude Include="Source\Source.h" />

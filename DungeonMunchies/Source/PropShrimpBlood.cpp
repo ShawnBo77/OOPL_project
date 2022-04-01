@@ -6,27 +6,27 @@
 #include "gamelib.h"
 #include "Character.h"
 #include "Prop.h"
-#include "PropMosquitoJump.h"
+#include "PropShrimpBlood.h"
 #include <vector>
 
 namespace game_framework {
     /////////////////////////////////////////////////////////////////////////////
-// 這個class為道具MosquitoJump
+// 這個class道具ShrimpBlood
 /////////////////////////////////////////////////////////////////////////////
 
-    PropMosquitoJump::PropMosquitoJump() : Prop() 
+    PropShrimpBlood::PropShrimpBlood() : Prop()
     {
     }
 
-    PropMosquitoJump::~PropMosquitoJump()
+    PropShrimpBlood::~PropShrimpBlood()
     {
     }
 
-    void PropMosquitoJump::Initialize()
+    void PropShrimpBlood::Initialize()
     {
     }
 
-    void PropMosquitoJump::effect(Character* character)
+    void PropShrimpBlood::effect(Character* character)
     {
     }
 }

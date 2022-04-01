@@ -1,19 +1,19 @@
-#ifndef __PROPMOSQUITOJUMP__
-#define __PROPMOSQUITOJUMP__
+#ifndef __PROPBANANAATTACK__
+#define __PROPBANANAATTACK__
 namespace game_framework {
     /////////////////////////////////////////////////////////////////////////////
-    // 這個class為道具MosquitoJump
+    // 這個class為道具BananaAttack
     /////////////////////////////////////////////////////////////////////////////
     class Character;
 
-    class PropMosquitoJump : public Prop {
+    class PropBananaAttack : public Prop {
     public:
-        PropMosquitoJump();
-        ~PropMosquitoJump();
+        PropBananaAttack();
+        ~PropBananaAttack();
         void Initialize();
         void effect(Character* character) override;
     private:
-    
+
     };
 }
 #endif
