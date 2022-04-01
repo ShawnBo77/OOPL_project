@@ -6,6 +6,8 @@
 #include "gamelib.h"
 #include "Character.h"
 #include "Map.h"
+#include "SourceStorage.h"
+#include "PropStorage.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // 這個class為遊戲的角色人物物件
@@ -13,6 +15,14 @@
 namespace game_framework {
 	Character::Character() {
 		//characterX = characterY = 50;
+		sourceStorage = new SourceStorage();
+		propStorage = new PropStorage();
+	}
+
+	Character::~Character() {
+		//characterX = characterY = 50;
+		delete sourceStorage;
+		delete propStorage;
 	}
 
 	int Character::GetLeftX()
@@ -75,6 +85,14 @@ namespace game_framework {
 	bool Character::GetIsRising()
 	{
 		return isRising;
+	}
+
+	SourceStorage* Character::GetSourceStorage() {
+		return sourceStorage;
+	}
+
+	PropStorage* Character::GetPropStorage() {
+		return propStorage;
 	}
 
 	void Character::Initialize()

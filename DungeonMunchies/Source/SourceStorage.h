@@ -1,5 +1,8 @@
 #ifndef __SOURCESTROAGE__
 #define __SOURCESTROAGE__
+
+#include "Util.h"
+
 namespace game_framework {
     /////////////////////////////////////////////////////////////////////////////
     // 這個class為素材儲存空間

@@ -4,7 +4,6 @@
 #include <ddraw.h>
 #include "gamelib.h"
 #include <vector>
-#include "Util.h"
 #include "Source.h"
 #include "SourceStorage.h"
 
@@ -60,7 +59,7 @@ namespace game_framework {
         case guava_juice_blood_s:
             return GuavaJuiceBloodS;
         default:
-            throw "sourceCase didn't exist!";
+            throw "sourceCase does not exist!";
         }
     }
 

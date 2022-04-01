@@ -148,6 +148,9 @@
     <ClCompile Include="Source\SourceStorage.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\PropStorage.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -206,6 +209,9 @@
     </ClInclude>
     <ClInclude Include="Source\Source.h" />
     <ClInclude Include="Source\SourceStorage.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PropStorage.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>

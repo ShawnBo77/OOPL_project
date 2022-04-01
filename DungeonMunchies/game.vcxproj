@@ -287,6 +287,7 @@
     <ClCompile Include="Source\MapForBoss.cpp" />
     <ClCompile Include="Source\Prop.cpp" />
     <ClCompile Include="Source\PropsBook.cpp" />
+    <ClCompile Include="Source\PropStorage.cpp" />
     <ClCompile Include="Source\Source.cpp" />
     <ClCompile Include="Source\SourceStorage.cpp" />
     <ClCompile Include="Source\StdAfx.cpp">
@@ -324,6 +325,7 @@
     <ClInclude Include="Source\MapForBoss.h" />
     <ClInclude Include="Source\Prop.h" />
     <ClInclude Include="Source\PropsBook.h" />
+    <ClInclude Include="Source\PropStorage.h" />
     <ClInclude Include="Source\Resource.h" />
     <ClInclude Include="Source\Source.h" />
     <ClInclude Include="Source\SourceStorage.h" />

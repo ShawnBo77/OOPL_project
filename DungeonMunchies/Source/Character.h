@@ -6,9 +6,13 @@ namespace game_framework {
     /////////////////////////////////////////////////////////////////////////////
     // 這個class為遊戲的角色人物物件
     /////////////////////////////////////////////////////////////////////////////
+    class SourceStorage;
+    class PropStorage;
+    
     class Character {
     public:
         Character();
+        ~Character();
         void Initialize();				// 設定初始值
         void LoadBitmap();				// 載入圖形
         void OnMove(Map *m);		    // 移動
@@ -26,6 +30,8 @@ namespace game_framework {
         bool GetIsOnTheFloor();         // 回傳是否正在地面
         bool GetIsRising();	            // 回傳是否正在上升
         bool GetIsAttacking();	        // 回傳是否正在攻擊
+        SourceStorage* GetSourceStorage();	        // 回傳素材儲存空間
+        PropStorage* GetPropStorage();	        // 回傳道具儲存空間
 
         void SetMovingDown(bool flag);	// 設定是否正在往下移動
         void SetMovingLeft(bool flag);	// 設定是否正在往左移動
@@ -64,6 +70,9 @@ namespace game_framework {
         int  velocity;
         int  floor;
         int  rolling_time;
+
+        SourceStorage* sourceStorage;
+        PropStorage* propStorage;
     };
 }
 
