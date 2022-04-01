@@ -6,7 +6,7 @@
 #include "gamelib.h"
 #include <vector>
 #include "Util.h"
-#include "Source.h"
+#include "SourceStorage.h"
 #include "Prop.h"
 #include "PropsBook.h"
 
@@ -17,20 +17,13 @@ namespace game_framework {
 
 	PropsBook::PropsBook()
 	{
-		MosquitoJumpS = new Source();
-		ShrimpBloodS = new Source();
-		GrassFastS = new Source();
-		BananaAttackS = new Source();
-		ShrimpAttackS = new Source();
-		GuavaJuiceBloodS = new Source();
-
 		MosquitoJumpP = new Prop();
 		ShrimpBloodP = new Prop();
 		GrassFastP = new Prop();
 		BananaAttackP = new Prop();
 		ShrimpAttackP = new Prop();
 		GuavaJuiceBloodP = new Prop();
-		propCase = mosquito_jump;
+		propCase = mosquito_jump_p;
 	}
 
 	PropsBook::~PropsBook()
@@ -43,7 +36,7 @@ namespace game_framework {
 	}
 
 	void PropsBook::Initialize() {
-		propCase = mosquito_jump;
+		propCase = mosquito_jump_p;
 		choicex = 125;
 		choicey = 90;
 		setPropList();
@@ -73,22 +66,22 @@ namespace game_framework {
 			int row = (my - 91) / 40;
 			int column = (mx - 127) / 43;
 			if (row == 0 && column == 0) {
-				propCase = mosquito_jump;
+				propCase = mosquito_jump_p;
 			}
 			else if (row == 0 && column == 1) {
-				propCase = shrimp_blood;
+				propCase = shrimp_blood_p;
 			}
 			else if (row == 0 && column == 2) {
-				propCase = grass_fast;
+				propCase = grass_fast_p;
 			}
 			else if (row == 0 && column == 3) {
-				propCase = banana_attack;
+				propCase = banana_attack_p;
 			}
 			else if (row == 0 && column == 4) {
-				propCase = shrimp_attack;
+				propCase = shrimp_attack_p;
 			}
 			else if (row == 0 && column == 5) {
-				propCase = guava_juice_blood;
+				propCase = guava_juice_blood_p;
 			}
 			choicex = column * 43 + 125;
 			choicey = row * 43 + 90;
@@ -176,42 +169,42 @@ namespace game_framework {
 		}
 
 		switch (propCase) {
-		case mosquito_jump:
+		case mosquito_jump_p:
 			MosquitoJumpP->onShow();
 			if (MosquitoJumpP->getPropFlag()) {
 				propHave.ShowBitmap();
 				propsPot1.ShowBitmap();
 			}
 			break;
-		case shrimp_blood:
+		case shrimp_blood_p:
 			ShrimpBloodP->onShow();
 			if (ShrimpBloodP->getPropFlag()) {
 				propHave.ShowBitmap();
 				propsPot1.ShowBitmap();
 			}
 			break;
-		case grass_fast:
+		case grass_fast_p:
 			GrassFastP->onShow();
 			if (GrassFastP->getPropFlag()) {
 				propHave.ShowBitmap();
 				propsPot1.ShowBitmap();
 			}
 			break;
-		case banana_attack:
+		case banana_attack_p:
 			BananaAttackP->onShow();
 			if (BananaAttackP->getPropFlag()) {
 				propHave.ShowBitmap();
 				propsPot1.ShowBitmap();
 			}
 			break;
-		case shrimp_attack:
+		case shrimp_attack_p:
 			ShrimpAttackP->onShow();
 			if (ShrimpAttackP->getPropFlag()) {
 				propHave.ShowBitmap();
 				propsPot1.ShowBitmap();
 			}
 			break;
-		case guava_juice_blood:
+		case guava_juice_blood_p:
 			GuavaJuiceBloodP->onShow();
 			if (GuavaJuiceBloodP->getPropFlag()) {
 				propHave.ShowBitmap();

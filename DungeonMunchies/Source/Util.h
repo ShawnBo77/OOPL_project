@@ -22,12 +22,21 @@ enum Stage {
 };
 
 enum PropCase {
-	mosquito_jump,
-	shrimp_blood,
-	grass_fast,
-	banana_attack,
-	shrimp_attack,
-	guava_juice_blood
+	mosquito_jump_p,
+	shrimp_blood_p,
+	grass_fast_p,
+	banana_attack_p,
+	shrimp_attack_p,
+	guava_juice_blood_p
+};
+
+enum SourceCase {
+	mosquito_jump_s,
+	shrimp_blood_s,
+	grass_fast_s,
+	banana_attack_s,
+	shrimp_attack_s,
+	guava_juice_blood_s
 };
 
 #endif

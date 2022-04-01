@@ -4,7 +4,7 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為道具書模式
 	/////////////////////////////////////////////////////////////////////////////
-	class Source;
+
 	class Prop;
 	class PropsBook
 	{
@@ -27,12 +27,7 @@ namespace game_framework {
 		int mx, my;
 		int choicex, choicey;
 		PropCase propCase;
-		Source *MosquitoJumpS;
-		Source *ShrimpBloodS;
-		Source *GrassFastS;
-		Source *BananaAttackS;
-		Source *ShrimpAttackS;
-		Source *GuavaJuiceBloodS;
+
 		CMovingBitmap propsBook;
 		CMovingBitmap propsBookChoice;
 		CMovingBitmap propHave;

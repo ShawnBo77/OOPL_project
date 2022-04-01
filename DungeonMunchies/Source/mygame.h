@@ -45,6 +45,7 @@
 #include "Map.h"
 #include "MapForBoss.h"
 #include "Util.h"
+#include "SourceStorage.h"
 #include "PropsBook.h"
 
 namespace game_framework {
@@ -112,6 +113,7 @@ namespace game_framework {
 		//CBouncingBall   bball;		// ¤ÏÂÐ¼u¸õªº²y
 		Stage currentStage;
 		Stage lastStage;
+		SourceStorage sourceStorage;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
