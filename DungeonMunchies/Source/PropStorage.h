@@ -8,6 +8,7 @@ namespace game_framework {
     // 這個class為道具儲存空間
     /////////////////////////////////////////////////////////////////////////////
     class Prop;
+    class PropMosquitoJump;
 
     class PropStorage
     {
@@ -18,7 +19,7 @@ namespace game_framework {
         Prop* getProp(int propCase);
     private:
         PropCase propCase;
-        Prop* MosquitoJumpP;
+        PropMosquitoJump* MosquitoJumpP;
         Prop* ShrimpBloodP;
         Prop* GrassFastP;
         Prop* BananaAttackP;

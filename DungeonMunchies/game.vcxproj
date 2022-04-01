@@ -286,6 +286,7 @@
     <ClCompile Include="Source\Map.cpp" />
     <ClCompile Include="Source\MapForBoss.cpp" />
     <ClCompile Include="Source\Prop.cpp" />
+    <ClCompile Include="Source\PropMosquitoJump.cpp" />
     <ClCompile Include="Source\PropsBook.cpp" />
     <ClCompile Include="Source\PropStorage.cpp" />
     <ClCompile Include="Source\Source.cpp" />
@@ -324,6 +325,7 @@
     <ClInclude Include="Source\Map.h" />
     <ClInclude Include="Source\MapForBoss.h" />
     <ClInclude Include="Source\Prop.h" />
+    <ClInclude Include="Source\PropMosquitoJump.h" />
     <ClInclude Include="Source\PropsBook.h" />
     <ClInclude Include="Source\PropStorage.h" />
     <ClInclude Include="Source\Resource.h" />

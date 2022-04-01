@@ -5,6 +5,7 @@
 #include "gamelib.h"
 #include <vector>
 #include "Prop.h"
+#include "PropMosquitoJump.h"
 #include "PropStorage.h"
 
 namespace game_framework {
@@ -13,7 +14,7 @@ namespace game_framework {
     /////////////////////////////////////////////////////////////////////////////
 
     PropStorage::PropStorage() {
-        MosquitoJumpP = new Prop();
+        MosquitoJumpP = new PropMosquitoJump();
         ShrimpBloodP = new Prop();
         GrassFastP = new Prop();
         BananaAttackP = new Prop();

@@ -4,6 +4,7 @@
 #include <ddraw.h>
 #include "gamelib.h"
 #include <vector>
+#include "Character.h"
 #include "Prop.h"
 
 namespace game_framework {
@@ -13,6 +14,10 @@ namespace game_framework {
 
     Prop::Prop() {
         propFlag = false;
+    }
+
+    void Prop::LoadBitmap(int code) {
+        propDetails.LoadBitmap(code);
     }
 
     void Prop::Initialize() {
@@ -27,8 +32,7 @@ namespace game_framework {
         return propFlag;
     }
 
-    void Prop::LoadBitmap(int code) {
-        propDetails.LoadBitmap(code);
+    void Prop::effect(Character* character) {
     }
 
     void Prop::onShow() {
