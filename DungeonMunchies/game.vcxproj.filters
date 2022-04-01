@@ -626,5 +626,20 @@
     <Image Include="res\prop_banana_attack_icon.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\source_guava_juice_blood.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\source_mosquito_jump.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\source_shrimp_attack.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\source_shrimp_blood.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\source_banana_attack.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

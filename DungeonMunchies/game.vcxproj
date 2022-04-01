@@ -451,7 +451,12 @@
     <Image Include="res\right_walk01.bmp" />
     <Image Include="res\right_walk02.bmp" />
     <Image Include="res\right_walk03.bmp" />
+    <Image Include="res\source_banana_attack.bmp" />
     <Image Include="res\source_grass_fast.bmp" />
+    <Image Include="res\source_guava_juice_blood.bmp" />
+    <Image Include="res\source_mosquito_jump.bmp" />
+    <Image Include="res\source_shrimp_attack.bmp" />
+    <Image Include="res\source_shrimp_blood.bmp" />
     <Image Include="RES\stand.bmp" />
     <Image Include="res\s_left_attack01.bmp" />
     <Image Include="res\s_left_attack02.bmp" />

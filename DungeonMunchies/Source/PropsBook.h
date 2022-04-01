@@ -4,6 +4,7 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為道具書模式
 	/////////////////////////////////////////////////////////////////////////////
+	class Source;
 	class Prop;
 	class PropsBook
 	{
@@ -16,7 +17,7 @@ namespace game_framework {
 		void setPropCase();
 		void setPropCase(CPoint mousePosition);
 		void setIconList();
-		vector<CMovingBitmap> setIconPosition(vector<Prop*> propList, vector<CMovingBitmap> iconList);
+		vector<CMovingBitmap> setIconPosition(vector<CMovingBitmap> iconList);
 		void setPropList();
 		int getMX();
 		int getMY();
@@ -26,6 +27,12 @@ namespace game_framework {
 		int mx, my;
 		int choicex, choicey;
 		PropCase propCase;
+		Source *MosquitoJumpS;
+		Source *ShrimpBloodS;
+		Source *GrassFastS;
+		Source *BananaAttackS;
+		Source *ShrimpAttackS;
+		Source *GuavaJuiceBloodS;
 		CMovingBitmap propsBook;
 		CMovingBitmap propsBookChoice;
 		CMovingBitmap propHave;
@@ -37,12 +44,12 @@ namespace game_framework {
 		CMovingBitmap ShrimpAttackIcon;
 		CMovingBitmap GuavaJuiceBloodIcon;
 		vector<CMovingBitmap> iconList;
-		Prop *MosquitoJump;
-		Prop *ShrimpBlood;
-		Prop *GrassFast;
-		Prop *BananaAttack;
-		Prop *ShrimpAttack;
-		Prop *GuavaJuiceBlood;
+		Prop *MosquitoJumpP;
+		Prop *ShrimpBloodP;
+		Prop *GrassFastP;
+		Prop *BananaAttackP;
+		Prop *ShrimpAttackP;
+		Prop *GuavaJuiceBloodP;
 		vector<Prop*> propList;
 	};
 }
