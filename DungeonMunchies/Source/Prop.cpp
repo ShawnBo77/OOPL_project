@@ -32,9 +32,6 @@ namespace game_framework {
         return propFlag;
     }
 
-    void Prop::effect(Character* character) {
-    }
-
     void Prop::onShow() {
         propDetails.SetTopLeft(474, 27);
         propDetails.ShowBitmap();

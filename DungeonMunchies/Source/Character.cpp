@@ -7,6 +7,7 @@
 #include "Character.h"
 #include "Map.h"
 #include "SourceStorage.h"
+#include "Prop.h"
 #include "PropStorage.h"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -20,7 +21,6 @@ namespace game_framework {
 	}
 
 	Character::~Character() {
-		//characterX = characterY = 50;
 		delete sourceStorage;
 		delete propStorage;
 	}
@@ -92,6 +92,7 @@ namespace game_framework {
 	}
 
 	PropStorage* Character::GetPropStorage() {
+		propStorage->getProp(1)->setPropFlag(true);
 		return propStorage;
 	}
 
@@ -267,7 +268,6 @@ namespace game_framework {
 		//animation.AddBitmap(IDB_CACTUSALIVE, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_CACTUSDEAD, RGB(0, 0, 0));
 		//
-
 	}
 
 	void Character::SetMovingDown(bool flag)

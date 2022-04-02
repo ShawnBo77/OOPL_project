@@ -223,7 +223,7 @@ void CGameStateRun::OnBeginState()
 	//eraser.Initialize();
 	character.Initialize();
 	bossMap.Initialize();
-	propsBook.Initialize();
+	propsBook.Initialize(&character);
 	//background.SetTopLeft(BACKGROUND_X,0);				// 設定背景的起始座標
 	currentStage = stage_boss;
 	lastStage = currentStage;
@@ -468,7 +468,7 @@ void CGameStateRun::OnShow()
 		character.OnShow();
 		break;
 	case stage_props:
-		propsBook.onShow();
+		propsBook.onShow(&character);
 	default:
 		break;
 	}

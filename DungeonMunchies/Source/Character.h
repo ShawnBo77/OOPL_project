@@ -7,6 +7,7 @@ namespace game_framework {
     // 這個class為遊戲的角色人物物件
     /////////////////////////////////////////////////////////////////////////////
     class SourceStorage;
+    class Prop;
     class PropStorage;
     
     class Character {

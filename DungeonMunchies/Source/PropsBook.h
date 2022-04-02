@@ -12,13 +12,15 @@ namespace game_framework {
 	class PropBananaAttack;
 	class PropShrimpAttack;
 	class PropGuavaJuiceBlood;
+	class PropStorage;
+	class Character;
 
 	class PropsBook
 	{
 	public:
 		PropsBook();
 		~PropsBook();
-		void Initialize();
+		void Initialize(Character* character);
 		void setXY(int x, int y);
 		void setXY(CPoint mousePosition);
 		void setPropCase();
@@ -29,7 +31,7 @@ namespace game_framework {
 		int getMX();
 		int getMY();
 		void LoadBitmap();
-		void onShow();
+		void onShow(Character* character);
 	private:
 		int mx, my;
 		int choicex, choicey;
@@ -39,6 +41,7 @@ namespace game_framework {
 		CMovingBitmap propsBookChoice;
 		CMovingBitmap propHave;
 		CMovingBitmap propsPot1;
+
 		CMovingBitmap MosquitoJumpIcon;
 		CMovingBitmap ShrimpBloodIcon;
 		CMovingBitmap GrassFastIcon;
@@ -46,13 +49,22 @@ namespace game_framework {
 		CMovingBitmap ShrimpAttackIcon;
 		CMovingBitmap GuavaJuiceBloodIcon;
 		vector<CMovingBitmap> iconList;
-		PropMosquitoJump* MosquitoJumpP;
-		PropShrimpBlood* ShrimpBloodP;
-		PropGrassFast* GrassFastP;
-		PropBananaAttack* BananaAttackP;
-		PropShrimpAttack* ShrimpAttackP;
-		PropGuavaJuiceBlood* GuavaJuiceBloodP;
-		vector<Prop*> propList;
+
+		CMovingBitmap MosquitoJumpDetails;
+		CMovingBitmap ShrimpBloodDetails;
+		CMovingBitmap GrassFastDetails;
+		CMovingBitmap BananaAttackDetails;
+		CMovingBitmap ShrimpAttackDetails;
+		CMovingBitmap GuavaJuiceBloodDetails;
+
+		PropStorage* propStorage;
+		//PropMosquitoJump* MosquitoJumpP;
+		//PropShrimpBlood* ShrimpBloodP;
+		//PropGrassFast* GrassFastP;
+		//PropBananaAttack* BananaAttackP;
+		//PropShrimpAttack* ShrimpAttackP;
+		//PropGuavaJuiceBlood* GuavaJuiceBloodP;
+		//vector<Prop*> propList;
 	};
 }
 #endif

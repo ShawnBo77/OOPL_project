@@ -11,10 +11,10 @@ namespace game_framework {
     public:
         Prop();
         void LoadBitmap(int code);
-        void Initialize();
+        virtual void Initialize();
         void setPropFlag(bool flag);
         bool getPropFlag();
-        virtual void effect(Character* character);
+        virtual void effect(Character* character) = 0;
         void onShow();
     private:
         bool propFlag;
