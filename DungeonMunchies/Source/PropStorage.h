@@ -21,9 +21,9 @@ namespace game_framework {
         PropStorage();
         ~PropStorage();
         void Initialize();
-        Prop* getProp(int propCase);
+        Prop* getProp(int Case);
     private:
-        PropCase propCase;
+        PropCase Case;
         PropMosquitoJump* MosquitoJumpP;
         PropShrimpBlood* ShrimpBloodP;
         PropGrassFast* GrassFastP;

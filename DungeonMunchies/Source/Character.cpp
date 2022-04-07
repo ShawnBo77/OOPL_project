@@ -95,7 +95,6 @@ namespace game_framework {
 	}
 
 	PropStorage* Character::GetPropStorage() {
-		propStorage->getProp(1)->setPropFlag(true);
 		return propStorage;
 	}
 

@@ -27,7 +27,7 @@ namespace game_framework {
 
 	PropsBook::PropsBook()
 	{
-		propCase = mosquito_jump_p;
+		Case = mosquito_jump_p;
 	}
 
 	PropsBook::~PropsBook()
@@ -56,12 +56,13 @@ namespace game_framework {
 	}
 
 	void PropsBook::Initialize(Character* character) {
-		propCase = mosquito_jump_p;
+		Case = mosquito_jump_p;
 		choicex = 125;
 		choicey = 90;
 		setIconList();
 		propStorage = character->GetPropStorage();
 		sourceStorage = character->GetSourceStorage();
+		character = character;
 	}
 
 	void PropsBook::setXY(CPoint mousePosition) {
@@ -82,36 +83,39 @@ namespace game_framework {
 		return my;
 	}
 
-	void PropsBook::setPropCase() {
-		if (mx > 127 && my > 91 && mx < 381 && my < 131) {
-			int row = (my - 91) / 40;
-			int column = (mx - 127) / 43;
-			if (row == 0 && column == 0) {
-				propCase = mosquito_jump_p;
-			}
-			else if (row == 0 && column == 1) {
-				propCase = shrimp_blood_p;
-			}
-			else if (row == 0 && column == 2) {
-				propCase = grass_fast_p;
-			}
-			else if (row == 0 && column == 3) {
-				propCase = banana_attack_p;
-			}
-			else if (row == 0 && column == 4) {
-				propCase = shrimp_attack_p;
-			}
-			else if (row == 0 && column == 5) {
-				propCase = guava_juice_blood_p;
-			}
-			choicex = column * 43 + 125;
-			choicey = row * 43 + 90;
+	void PropsBook::setCase() {
+		int row = (my - 91) / 40;
+		int column = (mx - 127) / 43;
+		if (row == 0 && column == 0) {
+			Case = mosquito_jump_p;
 		}
+		else if (row == 0 && column == 1) {
+			Case = shrimp_blood_p;
+		}
+		else if (row == 0 && column == 2) {
+			Case = grass_fast_p;
+		}
+		else if (row == 0 && column == 3) {
+			Case = banana_attack_p;
+		}
+		else if (row == 0 && column == 4) {
+			Case = shrimp_attack_p;
+		}
+		else if (row == 0 && column == 5) {
+			Case = guava_juice_blood_p;
+		}
+		choicex = column * 43 + 125;
+		choicey = row * 43 + 90;
 	}
 
-	void PropsBook::setPropCase(CPoint mousePosition) {
+	void PropsBook::setCase(CPoint mousePosition) {
 		setXY(mousePosition);
-		setPropCase();
+		if (mx > 127 && my > 91 && mx < 381 && my < 131) {
+			setCase();
+		}
+		else if (mx > 634 && my > 409 && mx < 720 && my < 438) {
+			cook();
+		}
 	}
 
 	void PropsBook::setIconList() {
@@ -139,6 +143,55 @@ namespace game_framework {
 			}
 		}
 		return iconList;
+	}
+
+	void PropsBook::cook() { //用過不能再用
+		switch (Case) {
+		case mosquito_jump_p:
+			if (!(propStorage->getProp(mosquito_jump_p)->getPropFlag()) && sourceStorage->getSource(mosquito_jump_p)->getNum() >= 5) {
+				sourceStorage->getSource(mosquito_jump_p)->consume(5);
+				propStorage->getProp(mosquito_jump_p)->setPropFlag(true);
+				propStorage->getProp(mosquito_jump_p)->effect(character);
+			}
+			break;
+		case shrimp_blood_p:
+			if (!(propStorage->getProp(shrimp_blood_p)->getPropFlag()) && sourceStorage->getSource(shrimp_blood_p)->getNum() >= 1) {
+				sourceStorage->getSource(shrimp_blood_p)->consume(1);
+				propStorage->getProp(shrimp_blood_p)->setPropFlag(true);
+				propStorage->getProp(shrimp_blood_p)->effect(character);
+			}
+			break;
+		case grass_fast_p:
+			if (!(propStorage->getProp(grass_fast_p)->getPropFlag()) && sourceStorage->getSource(grass_fast_p)->getNum() >= 5) {
+				sourceStorage->getSource(grass_fast_p)->consume(5);
+				propStorage->getProp(grass_fast_p)->setPropFlag(true);
+				propStorage->getProp(grass_fast_p)->effect(character);
+			}
+			break;
+		case banana_attack_p:
+			if (!(propStorage->getProp(banana_attack_p)->getPropFlag()) && sourceStorage->getSource(banana_attack_p)->getNum() >= 1) {
+				sourceStorage->getSource(banana_attack_p)->consume(1);
+				propStorage->getProp(banana_attack_p)->setPropFlag(true);
+				propStorage->getProp(banana_attack_p)->effect(character);
+			}
+			break;
+		case shrimp_attack_p:
+			if (!(propStorage->getProp(shrimp_attack_p)->getPropFlag()) && sourceStorage->getSource(guava_juice_blood_p)->getNum() >= 1) {
+				sourceStorage->getSource(shrimp_attack_p)->consume(1);
+				propStorage->getProp(shrimp_attack_p)->setPropFlag(true);
+				propStorage->getProp(shrimp_attack_p)->effect(character);
+			}
+			break;
+		case guava_juice_blood_p:
+			if (!(propStorage->getProp(guava_juice_blood_p)->getPropFlag()) && sourceStorage->getSource(guava_juice_blood_p)->getNum() >= 1) {
+				sourceStorage->getSource(guava_juice_blood_p)->consume(1);
+				propStorage->getProp(guava_juice_blood_p)->setPropFlag(true);
+				propStorage->getProp(guava_juice_blood_p)->effect(character);
+			}
+			break;
+		default:
+			break;
+		}
 	}
 
 	void PropsBook::sourceNumShow(int sourceCase) {
@@ -173,7 +226,7 @@ namespace game_framework {
 			}
 		}
 
-		switch (propCase) {
+		switch (Case) {
 		case mosquito_jump_p:
 			MosquitoJumpDetails.ShowBitmap();
 			sourceNumShow(mosquito_jump_p);
