@@ -471,7 +471,7 @@ void CGameStateRun::OnShow()
 		character.OnShow();
 		break;
 	case stage_props:
-		propsBook.onShow(&character);
+		propsBook.onShow();
 	default:
 		break;
 	}

@@ -14,6 +14,8 @@ namespace game_framework {
 	class PropGuavaJuiceBlood;
 	class PropStorage;
 	class Character;
+	class Source;
+	class SourceStorage;
 
 	class PropsBook
 	{
@@ -30,7 +32,8 @@ namespace game_framework {
 		int getMX();
 		int getMY();
 		void LoadBitmap();
-		void onShow(Character* character);
+		void sourceNumShow(int sourceCase);
+		void onShow();
 	private:
 		int mx, my;
 		int choicex, choicey;
@@ -57,6 +60,7 @@ namespace game_framework {
 		CMovingBitmap GuavaJuiceBloodDetails;
 
 		PropStorage* propStorage;
+		SourceStorage* sourceStorage;
 	};
 }
 #endif
