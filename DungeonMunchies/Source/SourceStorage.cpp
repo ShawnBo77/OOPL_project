@@ -27,6 +27,7 @@ namespace game_framework {
         delete ShrimpBloodS;
         delete GrassFastS;
         delete BananaAttackS;
+        delete ShrimpAttackS;
         delete GuavaJuiceBloodS;
     }
 
