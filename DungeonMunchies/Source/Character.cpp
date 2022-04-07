@@ -414,7 +414,7 @@ namespace game_framework {
 	void Character::Rolling(Map *m, bool flag)								//¥ª:0 ¥k:1
 	{
 
-		const int ROLLING_SIZE = 3;											//¨¤¦âÂ½ºu¶ZÂ÷
+		const int ROLLING_SIZE = 2;											//¨¤¦âÂ½ºu¶ZÂ÷
 		const int BORDER = 5;
 		if (flag)
 		{
@@ -422,7 +422,7 @@ namespace game_framework {
 			{
 				if (m->getSX() > -230)
 				{
-					for (int i = 0; i < 5; i++)
+					for (int i = 0; i < 10; i++)
 					{
 						characterX += ROLLING_SIZE;
 					}
@@ -443,7 +443,7 @@ namespace game_framework {
 			{
 				if (m->getSX() > -230)
 				{
-					for (int i = 0; i < 5; i++)
+					for (int i = 0; i < 10; i++)
 					{
 						characterX -= ROLLING_SIZE;
 					}
@@ -477,7 +477,7 @@ namespace game_framework {
 		if (facingLR == 0) {
 			if (GetIsRolling()) 
 			{
-				leftRolling.SetTopLeft(characterX + 5, characterY + 5);
+				leftRolling.SetTopLeft(characterX - 5, characterY + 10);
 				leftRolling.OnShow();
 				leftRolling.SetDelayCount(1);
 				
@@ -512,7 +512,7 @@ namespace game_framework {
 		{
 			if (GetIsRolling())
 			{
-				rightRolling.SetTopLeft(characterX + 5, characterY + 5);
+				rightRolling.SetTopLeft(characterX - 5, characterY + 10);
 				rightRolling.OnShow();
 				rightRolling.SetDelayCount(1);
 			}
