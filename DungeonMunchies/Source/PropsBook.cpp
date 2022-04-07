@@ -17,6 +17,8 @@
 #include "PropsBook.h"
 #include "PropStorage.h"
 #include "Character.h"
+#include "Source.h"
+#include "SourceStorage.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -25,19 +27,42 @@ namespace game_framework {
 
 	PropsBook::PropsBook()
 	{
-		propCase = mosquito_jump_p;
+		Case = mosquito_jump_p;
 	}
 
 	PropsBook::~PropsBook()
 	{
 	}
 
+	void PropsBook::LoadBitmap() {
+		propsBook.LoadBitmap(IDB_PROPSBOOK);
+		propsBookChoice.LoadBitmap(IDB_PROPSBOOKCHOICE, RGB(0, 0, 0));
+		propHave.LoadBitmap(IDB_PROPHAVE);
+		propsPot1.LoadBitmap(IDB_PROPSPOT1);
+
+		MosquitoJumpIcon.LoadBitmap(IDB_PROPMOSQUITOJUMPICON);
+		ShrimpBloodIcon.LoadBitmap(IDB_PROPSHRIMPBLOODICON);
+		GrassFastIcon.LoadBitmap(IDB_PROPGRASSFASTICON);
+		BananaAttackIcon.LoadBitmap(IDB_PROPBANANAATTACKICON);
+		ShrimpAttackIcon.LoadBitmap(IDB_PROPSHRIMPATTACKICON);
+		GuavaJuiceBloodIcon.LoadBitmap(IDB_PROPGUAVAJUICEBLOODICON);
+
+		MosquitoJumpDetails.LoadBitmap(IDB_PROPMOSQUITOJUMP);
+		ShrimpBloodDetails.LoadBitmap(IDB_PROPSHRIMPBLOOD);
+		GrassFastDetails.LoadBitmap(IDB_PROPGRASSFAST);
+		BananaAttackDetails.LoadBitmap(IDB_PROPBANANAATTACK);
+		ShrimpAttackDetails.LoadBitmap(IDB_PROPSHRIMPATTACK);
+		GuavaJuiceBloodDetails.LoadBitmap(IDB_PROPGUAVAJUICEBLOOD);
+	}
+
 	void PropsBook::Initialize(Character* character) {
-		propCase = mosquito_jump_p;
+		Case = mosquito_jump_p;
 		choicex = 125;
 		choicey = 90;
 		setIconList();
 		propStorage = character->GetPropStorage();
+		sourceStorage = character->GetSourceStorage();
+		character = character;
 	}
 
 	void PropsBook::setXY(CPoint mousePosition) {
@@ -58,36 +83,39 @@ namespace game_framework {
 		return my;
 	}
 
-	void PropsBook::setPropCase() {
-		if (mx > 127 && my > 91 && mx < 381 && my < 131) {
-			int row = (my - 91) / 40;
-			int column = (mx - 127) / 43;
-			if (row == 0 && column == 0) {
-				propCase = mosquito_jump_p;
-			}
-			else if (row == 0 && column == 1) {
-				propCase = shrimp_blood_p;
-			}
-			else if (row == 0 && column == 2) {
-				propCase = grass_fast_p;
-			}
-			else if (row == 0 && column == 3) {
-				propCase = banana_attack_p;
-			}
-			else if (row == 0 && column == 4) {
-				propCase = shrimp_attack_p;
-			}
-			else if (row == 0 && column == 5) {
-				propCase = guava_juice_blood_p;
-			}
-			choicex = column * 43 + 125;
-			choicey = row * 43 + 90;
+	void PropsBook::setCase() {
+		int row = (my - 91) / 40;
+		int column = (mx - 127) / 43;
+		if (row == 0 && column == 0) {
+			Case = mosquito_jump_p;
 		}
+		else if (row == 0 && column == 1) {
+			Case = shrimp_blood_p;
+		}
+		else if (row == 0 && column == 2) {
+			Case = grass_fast_p;
+		}
+		else if (row == 0 && column == 3) {
+			Case = banana_attack_p;
+		}
+		else if (row == 0 && column == 4) {
+			Case = shrimp_attack_p;
+		}
+		else if (row == 0 && column == 5) {
+			Case = guava_juice_blood_p;
+		}
+		choicex = column * 43 + 125;
+		choicey = row * 43 + 90;
 	}
 
-	void PropsBook::setPropCase(CPoint mousePosition) {
+	void PropsBook::setCase(CPoint mousePosition) {
 		setXY(mousePosition);
-		setPropCase();
+		if (mx > 127 && my > 91 && mx < 381 && my < 131) {
+			setCase();
+		}
+		else if (mx > 634 && my > 409 && mx < 720 && my < 438) {
+			cook();
+		}
 	}
 
 	void PropsBook::setIconList() {
@@ -117,28 +145,70 @@ namespace game_framework {
 		return iconList;
 	}
 
-	void PropsBook::LoadBitmap() {
-		propsBook.LoadBitmap(IDB_PROPSBOOK);
-		propsBookChoice.LoadBitmap(IDB_PROPSBOOKCHOICE, RGB(0, 0, 0));
-		propHave.LoadBitmap(IDB_PROPHAVE);
-		propsPot1.LoadBitmap(IDB_PROPSPOT1);
-
-		MosquitoJumpIcon.LoadBitmap(IDB_PROPMOSQUITOJUMPICON);
-		ShrimpBloodIcon.LoadBitmap(IDB_PROPSHRIMPBLOODICON);
-		GrassFastIcon.LoadBitmap(IDB_PROPGRASSFASTICON);
-		BananaAttackIcon.LoadBitmap(IDB_PROPBANANAATTACKICON);
-		ShrimpAttackIcon.LoadBitmap(IDB_PROPSHRIMPATTACKICON);
-		GuavaJuiceBloodIcon.LoadBitmap(IDB_PROPGUAVAJUICEBLOODICON);
-
-		MosquitoJumpDetails.LoadBitmap(IDB_PROPMOSQUITOJUMP);
-		ShrimpBloodDetails.LoadBitmap(IDB_PROPSHRIMPBLOOD);
-		GrassFastDetails.LoadBitmap(IDB_PROPGRASSFAST);
-		BananaAttackDetails.LoadBitmap(IDB_PROPBANANAATTACK);
-		ShrimpAttackDetails.LoadBitmap(IDB_PROPSHRIMPATTACK);
-		GuavaJuiceBloodDetails.LoadBitmap(IDB_PROPGUAVAJUICEBLOOD);
+	void PropsBook::cook() { //用過不能再用
+		switch (Case) {
+		case mosquito_jump_p:
+			if (!(propStorage->getProp(mosquito_jump_p)->getPropFlag()) && sourceStorage->getSource(mosquito_jump_p)->getNum() >= 5) {
+				sourceStorage->getSource(mosquito_jump_p)->consume(5);
+				propStorage->getProp(mosquito_jump_p)->setPropFlag(true);
+				propStorage->getProp(mosquito_jump_p)->effect(character);
+			}
+			break;
+		case shrimp_blood_p:
+			if (!(propStorage->getProp(shrimp_blood_p)->getPropFlag()) && sourceStorage->getSource(shrimp_blood_p)->getNum() >= 1) {
+				sourceStorage->getSource(shrimp_blood_p)->consume(1);
+				propStorage->getProp(shrimp_blood_p)->setPropFlag(true);
+				propStorage->getProp(shrimp_blood_p)->effect(character);
+			}
+			break;
+		case grass_fast_p:
+			if (!(propStorage->getProp(grass_fast_p)->getPropFlag()) && sourceStorage->getSource(grass_fast_p)->getNum() >= 5) {
+				sourceStorage->getSource(grass_fast_p)->consume(5);
+				propStorage->getProp(grass_fast_p)->setPropFlag(true);
+				propStorage->getProp(grass_fast_p)->effect(character);
+			}
+			break;
+		case banana_attack_p:
+			if (!(propStorage->getProp(banana_attack_p)->getPropFlag()) && sourceStorage->getSource(banana_attack_p)->getNum() >= 1) {
+				sourceStorage->getSource(banana_attack_p)->consume(1);
+				propStorage->getProp(banana_attack_p)->setPropFlag(true);
+				propStorage->getProp(banana_attack_p)->effect(character);
+			}
+			break;
+		case shrimp_attack_p:
+			if (!(propStorage->getProp(shrimp_attack_p)->getPropFlag()) && sourceStorage->getSource(guava_juice_blood_p)->getNum() >= 1) {
+				sourceStorage->getSource(shrimp_attack_p)->consume(1);
+				propStorage->getProp(shrimp_attack_p)->setPropFlag(true);
+				propStorage->getProp(shrimp_attack_p)->effect(character);
+			}
+			break;
+		case guava_juice_blood_p:
+			if (!(propStorage->getProp(guava_juice_blood_p)->getPropFlag()) && sourceStorage->getSource(guava_juice_blood_p)->getNum() >= 1) {
+				sourceStorage->getSource(guava_juice_blood_p)->consume(1);
+				propStorage->getProp(guava_juice_blood_p)->setPropFlag(true);
+				propStorage->getProp(guava_juice_blood_p)->effect(character);
+			}
+			break;
+		default:
+			break;
+		}
 	}
 
-    void PropsBook::onShow(Character* character) {
+	void PropsBook::sourceNumShow(int sourceCase) {
+		int sourceNum = sourceStorage->getSource(sourceCase)->getNum();
+		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+		CFont f, * fp;
+		f.CreatePointFont(70, "Times New Roman");	// 產生 font f; 160表示16 point的字
+		fp = pDC->SelectObject(&f);					// 選用 font f
+		pDC->SetBkColor(RGB(230, 220, 200));
+		pDC->SetTextColor(RGB(0, 0, 0));
+		CString cstr(to_string(sourceNum).c_str());
+		pDC->TextOut(627, 278, cstr);
+		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+	}
+
+    void PropsBook::onShow() {
 		propsBook.SetTopLeft(0, 0);
 		propsBook.ShowBitmap();
 		propHave.SetTopLeft(475, 247);
@@ -156,9 +226,10 @@ namespace game_framework {
 			}
 		}
 
-		switch (propCase) {
+		switch (Case) {
 		case mosquito_jump_p:
 			MosquitoJumpDetails.ShowBitmap();
+			sourceNumShow(mosquito_jump_p);
 			if (propStorage->getProp(mosquito_jump_p)->getPropFlag()) {
 				propHave.ShowBitmap();
 				propsPot1.ShowBitmap();
@@ -166,6 +237,7 @@ namespace game_framework {
 			break;
 		case shrimp_blood_p:
 			ShrimpBloodDetails.ShowBitmap();
+			sourceNumShow(shrimp_blood_p);
 			if (propStorage->getProp(shrimp_blood_p)->getPropFlag()) {
 				propHave.ShowBitmap();
 				propsPot1.ShowBitmap();
@@ -173,6 +245,7 @@ namespace game_framework {
 			break;
 		case grass_fast_p:
 			GrassFastDetails.ShowBitmap();
+			sourceNumShow(grass_fast_p);
 			if (propStorage->getProp(grass_fast_p)->getPropFlag()) {
 				propHave.ShowBitmap();
 				propsPot1.ShowBitmap();
@@ -180,6 +253,7 @@ namespace game_framework {
 			break;
 		case banana_attack_p:
 			BananaAttackDetails.ShowBitmap();
+			sourceNumShow(banana_attack_p);
 			if (propStorage->getProp(banana_attack_p)->getPropFlag()) {
 				propHave.ShowBitmap();
 				propsPot1.ShowBitmap();
@@ -187,6 +261,7 @@ namespace game_framework {
 			break;
 		case shrimp_attack_p:
 			ShrimpAttackDetails.ShowBitmap();
+			sourceNumShow(shrimp_attack_p);
 			if (propStorage->getProp(shrimp_attack_p)->getPropFlag()) {
 				propHave.ShowBitmap();
 				propsPot1.ShowBitmap();
@@ -194,6 +269,7 @@ namespace game_framework {
 			break;
 		case guava_juice_blood_p:
 			GuavaJuiceBloodDetails.ShowBitmap();
+			sourceNumShow(guava_juice_blood_p);
 			if (propStorage->getProp(guava_juice_blood_p)->getPropFlag()) {
 				propHave.ShowBitmap();
 				propsPot1.ShowBitmap();

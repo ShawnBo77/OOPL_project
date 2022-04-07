@@ -14,27 +14,31 @@ namespace game_framework {
 	class PropGuavaJuiceBlood;
 	class PropStorage;
 	class Character;
+	class Source;
+	class SourceStorage;
 
 	class PropsBook
 	{
 	public:
 		PropsBook();
 		~PropsBook();
+		void LoadBitmap();
 		void Initialize(Character* character);
 		void setXY(int x, int y);
 		void setXY(CPoint mousePosition);
-		void setPropCase();
-		void setPropCase(CPoint mousePosition);
-		void setIconList();
-		vector<CMovingBitmap> setIconPosition(vector<CMovingBitmap> iconList);
 		int getMX();
 		int getMY();
-		void LoadBitmap();
-		void onShow(Character* character);
+		void setCase();
+		void setCase(CPoint mousePosition);
+		void setIconList();
+		vector<CMovingBitmap> setIconPosition(vector<CMovingBitmap> iconList);
+		void cook();
+		void sourceNumShow(int sourceCase);
+		void onShow();
 	private:
 		int mx, my;
 		int choicex, choicey;
-		PropCase propCase;
+		PropCase Case;
 
 		CMovingBitmap propsBook;
 		CMovingBitmap propsBookChoice;
@@ -56,7 +60,9 @@ namespace game_framework {
 		CMovingBitmap ShrimpAttackDetails;
 		CMovingBitmap GuavaJuiceBloodDetails;
 
+		Character* character;
 		PropStorage* propStorage;
+		SourceStorage* sourceStorage;
 	};
 }
 #endif

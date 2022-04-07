@@ -410,7 +410,7 @@ void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 		}
 		else 
 		{
-			propsBook.setPropCase(point);
+			propsBook.setCase(point);
 		}
 	default:
 		break;
@@ -471,7 +471,7 @@ void CGameStateRun::OnShow()
 		character.OnShow();
 		break;
 	case stage_props:
-		propsBook.onShow(&character);
+		propsBook.onShow();
 	default:
 		break;
 	}

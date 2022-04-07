@@ -46,8 +46,8 @@ namespace game_framework {
         GuavaJuiceBloodP->Initialize();
     }
 
-    Prop* PropStorage::getProp(int propCase) {
-        switch (propCase)
+    Prop* PropStorage::getProp(int Case) {
+        switch (Case)
         {
         case mosquito_jump_p:
             return MosquitoJumpP;
@@ -62,7 +62,7 @@ namespace game_framework {
         case guava_juice_blood_p:
             return GuavaJuiceBloodP;
         default:
-            throw "propCase does not exist!";
+            throw "Case does not exist!";
         }
     }
 }

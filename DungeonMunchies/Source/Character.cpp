@@ -6,6 +6,7 @@
 #include "gamelib.h"
 #include "Character.h"
 #include "Map.h"
+#include "Source.h"
 #include "SourceStorage.h"
 #include "Prop.h"
 #include "PropStorage.h"
@@ -88,11 +89,12 @@ namespace game_framework {
 	}
 
 	SourceStorage* Character::GetSourceStorage() {
+		sourceStorage->getSource(0)->setNum(5);
+		sourceStorage->getSource(2)->setNum(15);
 		return sourceStorage;
 	}
 
 	PropStorage* Character::GetPropStorage() {
-		propStorage->getProp(1)->setPropFlag(true);
 		return propStorage;
 	}
 
