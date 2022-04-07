@@ -27,7 +27,6 @@ namespace game_framework {
 		void setPropCase(CPoint mousePosition);
 		void setIconList();
 		vector<CMovingBitmap> setIconPosition(vector<CMovingBitmap> iconList);
-		void setPropList();
 		int getMX();
 		int getMY();
 		void LoadBitmap();
@@ -58,13 +57,6 @@ namespace game_framework {
 		CMovingBitmap GuavaJuiceBloodDetails;
 
 		PropStorage* propStorage;
-		//PropMosquitoJump* MosquitoJumpP;
-		//PropShrimpBlood* ShrimpBloodP;
-		//PropGrassFast* GrassFastP;
-		//PropBananaAttack* BananaAttackP;
-		//PropShrimpAttack* ShrimpAttackP;
-		//PropGuavaJuiceBlood* GuavaJuiceBloodP;
-		//vector<Prop*> propList;
 	};
 }
 #endif

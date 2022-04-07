@@ -474,6 +474,7 @@
     <Image Include="res\source_shrimp_attack.bmp" />
     <Image Include="res\source_shrimp_blood.bmp" />
     <Image Include="RES\stand.bmp" />
+    <Image Include="res\start_menu.bmp" />
     <Image Include="res\s_left_attack01.bmp" />
     <Image Include="res\s_left_attack02.bmp" />
     <Image Include="res\s_left_attack03.bmp" />

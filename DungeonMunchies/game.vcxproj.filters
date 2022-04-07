@@ -689,5 +689,8 @@
     <Image Include="res\source_banana_attack.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\start_menu.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

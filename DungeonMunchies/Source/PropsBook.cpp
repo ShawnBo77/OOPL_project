@@ -36,7 +36,6 @@ namespace game_framework {
 		propCase = mosquito_jump_p;
 		choicex = 125;
 		choicey = 90;
-		setPropList();
 		setIconList();
 		propStorage = character->GetPropStorage();
 	}
@@ -116,21 +115,6 @@ namespace game_framework {
 			}
 		}
 		return iconList;
-	}
-
-	void PropsBook::setPropList() {
-		//propList.push_back(MosquitoJumpP);
-		//propList.push_back(ShrimpBloodP);
-		//propList.push_back(GrassFastP);
-		//propList.push_back(BananaAttackP);
-		//propList.push_back(ShrimpAttackP);
-		//propList.push_back(GuavaJuiceBloodP);
-		//MosquitoJumpP->setPropFlag(true);
-		//ShrimpBloodP->setPropFlag(true);
-		//GrassFastP->setPropFlag(true);
-		//BananaAttackP->setPropFlag(true);
-		//ShrimpAttackP->setPropFlag(true);
-		//GuavaJuiceBloodP->setPropFlag(true);
 	}
 
 	void PropsBook::LoadBitmap() {

@@ -106,6 +106,8 @@ IDB_LOADING             BITMAP                  "..\\res\\loading.bmp"
 
 IDB_BOSSMAP             BITMAP                  "..\\res\\boss_map.bmp"
 
+IDB_STARTMENU           BITMAP                  "..\\res\\start_menu.bmp"
+
 IDB_MONSTER             BITMAP                  "..\\res\\MeviusLevitating.bmp"
 
 IDB_MAP2                BITMAP                  "..\\res\\boss_map.bmp"
