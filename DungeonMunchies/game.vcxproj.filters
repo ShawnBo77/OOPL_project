@@ -692,5 +692,35 @@
     <Image Include="res\start_menu.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\blood1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\blood2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\blood3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\blood4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\blood5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\blood6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\blood7.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\blood8.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\blood9.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\blood10.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
