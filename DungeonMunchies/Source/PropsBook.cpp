@@ -57,8 +57,8 @@ namespace game_framework {
 
 	void PropsBook::Initialize(Character* character) {
 		Case = mosquito_jump_p;
-		choicex = 125;
-		choicey = 90;
+		choicex = 177;
+		choicey = 127;
 		setIconList();
 		propStorage = character->GetPropStorage();
 		sourceStorage = character->GetSourceStorage();
@@ -84,8 +84,8 @@ namespace game_framework {
 	}
 
 	void PropsBook::setCase() {
-		int row = (my - 91) / 40;
-		int column = (mx - 127) / 43;
+		int column = (mx - 177) / 62;
+		int row = (my - 127) / 62;
 		if (row == 0 && column == 0) {
 			Case = mosquito_jump_p;
 		}
@@ -104,16 +104,16 @@ namespace game_framework {
 		else if (row == 0 && column == 5) {
 			Case = guava_juice_blood_p;
 		}
-		choicex = column * 43 + 125;
-		choicey = row * 43 + 90;
+		choicex = column * 62 + 177;
+		choicey = row * 62 + 128;
 	}
 
 	void PropsBook::setCase(CPoint mousePosition) {
 		setXY(mousePosition);
-		if (mx > 127 && my > 91 && mx < 381 && my < 131) {
+		if (mx > 177 && my > 127 && mx < 543 && my < 185) {
 			setCase();
 		}
-		else if (mx > 634 && my > 409 && mx < 720 && my < 438) {
+		else if (mx > 900 && my > 580 && mx < 1023 && my < 623) {
 			cook();
 		}
 	}
@@ -132,9 +132,9 @@ namespace game_framework {
 		int iconx, icony;
 		int counter = 0;
 		for (int row = 0; row < 7; row++) {
-			icony = row * 40 + 91;
+			icony = row * 62 + 127;
 			for (int column = 0; column < 7; column++) {
-				iconx = column * 43 + 125;
+				iconx = column * 62 + 177;
 				iconList[counter].SetTopLeft(iconx, icony);
 				if (counter == (iconList).size()-1) {
 					return iconList;
@@ -198,12 +198,12 @@ namespace game_framework {
 		int sourceNum = sourceStorage->getSource(sourceCase)->getNum();
 		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 		CFont f, * fp;
-		f.CreatePointFont(70, "Times New Roman");	// 產生 font f; 160表示16 point的字
+		f.CreatePointFont(100, "Times New Roman");	// 產生 font f; 160表示16 point的字
 		fp = pDC->SelectObject(&f);					// 選用 font f
 		pDC->SetBkColor(RGB(230, 220, 200));
 		pDC->SetTextColor(RGB(0, 0, 0));
 		CString cstr(to_string(sourceNum).c_str());
-		pDC->TextOut(627, 278, cstr);
+		pDC->TextOut(890, 395, cstr);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
@@ -211,14 +211,14 @@ namespace game_framework {
     void PropsBook::onShow() {
 		propsBook.SetTopLeft(0, 0);
 		propsBook.ShowBitmap();
-		propHave.SetTopLeft(475, 247);
-		propsPot1.SetTopLeft(568,373);
-		MosquitoJumpDetails.SetTopLeft(474, 27);
-		ShrimpBloodDetails.SetTopLeft(474, 27);
-		GrassFastDetails.SetTopLeft(474, 27);
-		BananaAttackDetails.SetTopLeft(474, 27);
-		ShrimpAttackDetails.SetTopLeft(474, 27);
-		GuavaJuiceBloodDetails.SetTopLeft(474, 27);
+		propHave.SetTopLeft(675, 350);
+		propsPot1.SetTopLeft(806,530);
+		MosquitoJumpDetails.SetTopLeft(673, 38);
+		ShrimpBloodDetails.SetTopLeft(673, 38);
+		GrassFastDetails.SetTopLeft(673, 38);
+		BananaAttackDetails.SetTopLeft(673, 38);
+		ShrimpAttackDetails.SetTopLeft(673, 38);
+		GuavaJuiceBloodDetails.SetTopLeft(673, 38);
 
 		for (unsigned int i = 0; i < iconList.size(); i++) {
 			if (propStorage->getProp(i)->getPropFlag()) {

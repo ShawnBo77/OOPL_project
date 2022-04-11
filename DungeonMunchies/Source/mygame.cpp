@@ -404,7 +404,7 @@ void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 		character.SetAttacking(true);
 		break;
 	case stage_props:
-		if (point.x > 884 && point.y > 39 && point.x < 933 && point.y < 83) 
+		if (point.x > 1253 && point.y > 57 && point.x < 1327 && point.y < 117)
 		{
 			currentStage = lastStage;
 		}

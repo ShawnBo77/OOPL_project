@@ -364,6 +364,26 @@ IDB_SOURCESHRIMPBLOOD   BITMAP                  "..\\res\\source_shrimp_blood.bm
 
 IDB_SOURCEBANANAATTACK  BITMAP                  "..\\res\\source_banana_attack.bmp"
 
+IDB_BLOOD1              BITMAP                  "..\\res\\blood1.bmp"
+
+IDB_BLOOD2              BITMAP                  "..\\res\\blood2.bmp"
+
+IDB_BLOOD3              BITMAP                  "..\\res\\blood3.bmp"
+
+IDB_BLOOD4              BITMAP                  "..\\res\\blood4.bmp"
+
+IDB_BLOOD5              BITMAP                  "..\\res\\blood5.bmp"
+
+IDB_BLOOD6              BITMAP                  "..\\res\\blood6.bmp"
+
+IDB_BLOOD7              BITMAP                  "..\\res\\blood7.bmp"
+
+IDB_BLOOD8              BITMAP                  "..\\res\\blood8.bmp"
+
+IDB_BLOOD9              BITMAP                  "..\\res\\blood9.bmp"
+
+IDB_BLOOD10             BITMAP                  "..\\res\\blood10.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

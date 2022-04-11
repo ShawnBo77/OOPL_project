@@ -1,5 +1,5 @@
-#ifndef CHARACTER_H
-#define CHARACTER_H
+#ifndef __CHARACTER__
+#define __CHARACTER__
 
 #include "Map.h"
 namespace game_framework {
