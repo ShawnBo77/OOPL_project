@@ -9,18 +9,21 @@ namespace game_framework {
 	public:
 		Map(int x, int y);
 		virtual bool isEmpty(int x, int y) const = 0;
+		int getSX();
+		int getSY();
+		int getFloor();
 		virtual void addSX(int n);
 		virtual void addSY(int n);
 		virtual int screenX(int x) { return 0; };
 		virtual int screenY(int y) { return 0; };
-		virtual void getCharacterX(int x) {};
-		virtual void getCharacterY(int y) {};
+		virtual void setCharacterX(int x) {};
+		virtual void setCharacterY(int y) {};
+		void setFloor(int y);
 		virtual void setPos(int x, int y, int n) = 0;
 		void setXY(int x, int y);
-		int getSX();
-		int getSY();
 	private:
 		int sx, sy; //screen ªº®y¼Ð
+		int floor;
 		bool all_enemy_clear;
 	};
 }

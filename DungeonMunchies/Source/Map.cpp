@@ -17,6 +17,18 @@ namespace game_framework {
 		sx = x;
 		sy = y;
 	}
+	int Map::getSX()
+	{
+		return sx;
+	}
+	int Map::getSY()
+	{
+		return sy;
+	}
+	int Map::getFloor()
+	{
+		return floor;
+	}
 	void Map::addSX(int n)			//sx+=n 表示地圖向左移動n
 	{
 		sx += n;
@@ -30,12 +42,8 @@ namespace game_framework {
 		sx = x;
 		sy = y;
 	}
-	int Map::getSX()
+	void Map::setFloor(int y)
 	{
-		return sx;
-	}
-	int Map::getSY()
-	{
-		return sy;
+		floor = y;
 	}
 }

@@ -26,93 +26,6 @@ namespace game_framework {
 		delete propStorage;
 	}
 
-	int Character::GetLeftX()
-	{
-		return characterX;
-	}
-
-	int Character::GetTopY()
-	{
-		return characterY;
-	}
-
-	int Character::GetRightX()
-	{
-		return characterX + characterW; // + animation.Width();
-	}
-
-	int Character::GetButtonY()
-	{
-		return characterY + characterH; // + animation.Height();
-	}
-
-	bool Character::GetIsMovingLeft()
-	{
-		return isMovingLeft;
-	}
-
-	bool Character::GetIsMovingRight()
-	{
-		return isMovingRight;
-	}
-
-	bool Character::GetIsMovingUp()
-	{
-		return isMovingUp;
-	}
-
-	bool Character::GetIsRolling()
-	{
-		return isRolling;
-	}
-
-	bool Character::GetIsAttacking()
-	{
-		return isAttacking;
-	}
-
-	bool Character::GetIsOnTheFloor()
-	{
-		if (GetButtonY() == floor) {
-			isOnTheFloor = true;
-		}
-		else {
-			isOnTheFloor = false;
-		}
-
-		return isOnTheFloor;
-	}
-
-	bool Character::GetIsRising()
-	{
-		return isRising;
-	}
-
-	SourceStorage* Character::GetSourceStorage() {
-		sourceStorage->getSource(0)->setNum(5);
-		sourceStorage->getSource(2)->setNum(15);
-		return sourceStorage;
-	}
-
-	PropStorage* Character::GetPropStorage() {
-		return propStorage;
-	}
-
-	void Character::Initialize()
-	{
-		characterH = 80;
-		characterW = 80;
-		const int X_POS = 80;													//角色起始X軸
-		const int Y_POS = 100;													//角色起始Y軸
-		characterX = X_POS;
-		characterY = Y_POS;
-		facingLR = 1;
-		isMovingLeft = isMovingRight = isMovingUp = isRising = isRolling = false;
-		rolling_time = 0;
-		isAttacking = false;
-		floor = 400;
-	}
-
 	void Character::LoadBitmap()
 	{
 		//animation.AddBitmap(IDB_GRAY);
@@ -152,12 +65,12 @@ namespace game_framework {
 		standRight.LoadBitmap(IDB_HERORIGHTSTAND_S, RGB(0, 0, 0));		//向右站
 
 		//向左走動畫
-		vector<int> walkingLeftAnimation = {IDB_HEROLEFTWALK1_S, IDB_HEROLEFTWALK2_S, IDB_HEROLEFTWALK3_S};
+		vector<int> walkingLeftAnimation = { IDB_HEROLEFTWALK1_S, IDB_HEROLEFTWALK2_S, IDB_HEROLEFTWALK3_S };
 		for (int i = 0; i < 3; i++)	// 載入動畫
 			walkingLeft.AddBitmap(walkingLeftAnimation[i], RGB(0, 0, 0));
 
 		//向右走動畫
-		vector<int> walkingRightAnimation = {IDB_HERORIGHTWALK1_S, IDB_HERORIGHTWALK2_S, IDB_HERORIGHTWALK3_S};
+		vector<int> walkingRightAnimation = { IDB_HERORIGHTWALK1_S, IDB_HERORIGHTWALK2_S, IDB_HERORIGHTWALK3_S };
 		for (int i = 0; i < 3; i++)	// 載入動畫
 			walkingRight.AddBitmap(walkingRightAnimation[i], RGB(0, 0, 0));
 
@@ -181,7 +94,7 @@ namespace game_framework {
 		for (int i = 0; i < 4; i++)
 			leftAttacking.AddBitmap(attackingLeftAnimation[i], RGB(0, 0, 0));
 
-		vector<int> attackingRightAnimation = { IDB_HERORIGHTATTACK1_S, IDB_HERORIGHTATTACK2_S, IDB_HERORIGHTATTACK3_S, IDB_HERORIGHTATTACK4_S};
+		vector<int> attackingRightAnimation = { IDB_HERORIGHTATTACK1_S, IDB_HERORIGHTATTACK2_S, IDB_HERORIGHTATTACK3_S, IDB_HERORIGHTATTACK4_S };
 		for (int i = 0; i < 4; i++)
 			rightAttacking.AddBitmap(attackingRightAnimation[i], RGB(0, 0, 0));
 
@@ -272,6 +185,104 @@ namespace game_framework {
 		//
 	}
 
+	void Character::Initialize()
+	{
+		characterH = 80;
+		characterW = 80;
+		const int X_POS = 80;													//角色起始X軸
+		const int Y_POS = 100;													//角色起始Y軸
+		characterX = X_POS;
+		characterY = Y_POS;
+		facingLR = 1;
+		isMovingLeft = isMovingRight = isMovingUp = isRising = isRolling = false;
+		rolling_time = 0;
+		isAttacking = false;
+		doubleJump = true;
+		DJtemp = doubleJump;
+	}
+
+	int Character::GetLeftX()
+	{
+		return characterX;
+	}
+
+	int Character::GetTopY()
+	{
+		return characterY;
+	}
+
+	int Character::GetRightX()
+	{
+		return characterX + characterW; // + animation.Width();
+	}
+
+	int Character::GetButtonY()
+	{
+		return characterY + characterH; // + animation.Height();
+	}
+
+	Map* Character::GetMap()
+	{
+		return currentMap; 
+	}
+
+	bool Character::GetIsMovingLeft()
+	{
+		return isMovingLeft;
+	}
+
+	bool Character::GetIsMovingRight()
+	{
+		return isMovingRight;
+	}
+
+	bool Character::GetIsMovingUp()
+	{
+		return isMovingUp;
+	}
+
+	bool Character::GetIsRolling()
+	{
+		return isRolling;
+	}
+
+	bool Character::GetIsAttacking()
+	{
+		return isAttacking;
+	}
+
+	bool Character::GetIsOnTheFloor()
+	{
+		if (GetButtonY() == GetMap()->getFloor()) {
+			isOnTheFloor = true;
+		}
+		else {
+			isOnTheFloor = false;
+		}
+
+		return isOnTheFloor;
+	}
+
+	bool Character::GetIsRising()
+	{
+		return isRising;
+	}
+
+	SourceStorage* Character::GetSourceStorage() {
+		sourceStorage->getSource(0)->setNum(5);
+		sourceStorage->getSource(2)->setNum(15);
+		return sourceStorage;
+	}
+
+	PropStorage* Character::GetPropStorage() {
+		return propStorage;
+	}
+
+	void Character::SetMap(Map *m)
+	{
+		currentMap = m;
+	}
+
 	void Character::SetMovingDown(bool flag)
 	{
 		isMovingDown = flag;
@@ -316,10 +327,22 @@ namespace game_framework {
 		isAttacking = flag;
 	}
 
+	/*餐點能力*/
+	bool Character::CanDoubleJump()
+	{
+		return doubleJump;
+	}
+
+	void Character::SetDoubleJump(bool flag)
+	{
+		doubleJump = flag;
+	}
+
 	void Character::OnMove(Map* m)
 	{
 		const int BORDER = 5;													//角色邊框寬度
 		const int STEP_SIZE = 10;												//角色移動速度
+		SetMap(m);
 
 		if (GetIsRolling())					
 		{
@@ -352,9 +375,17 @@ namespace game_framework {
 
 				//m->addSX(-STEP_SIZE);                             	
 			}
-			if (GetIsMovingUp() && GetButtonY() >= floor && velocity == 0) {
+			if (GetIsMovingUp() && GetButtonY() >= m->getFloor() && velocity == 0) 
+			{
 				isRising = true;
 				velocity = 10;
+			}
+
+			if (GetIsMovingUp() && velocity < 9 && velocity > 0 && CanDoubleJump())
+			{
+				velocity = 8;
+				isRising = true;
+				SetDoubleJump(false);
 			}
 			/*if (isMovingDown && !m->isEmpty(GetLeftX(), GetButtonY() + STEP_SIZE - 5) && !m->isEmpty(GetRightX() - 5, GetButtonY() + STEP_SIZE - 5)) {
 				characterY += STEP_SIZE;
@@ -376,7 +407,7 @@ namespace game_framework {
 			}
 			else										// 下降狀態
 			{
-				if (GetButtonY() < floor)				// 當y座標還沒碰到地板
+				if (GetButtonY() < m->getFloor())				// 當y座標還沒碰到地板
 				{
 					characterY += velocity * 2;			// y軸下降(移動velocity個點，velocity的單位為 點/次)
 					if (velocity < 5)
@@ -384,8 +415,9 @@ namespace game_framework {
 				}
 				else
 				{
-					characterY = floor - 80;			// 當y座標低於地板，更正為地板上
+					characterY = m->getFloor() - 80;			// 當y座標低於地板，更正為地板上
 					velocity = 0;
+					SetDoubleJump(DJtemp);
 				}
 			}
 			
@@ -397,8 +429,6 @@ namespace game_framework {
 					Attack(0);
 			}
 		}
-
-
 
 		walkingLeft.OnMove();
 		walkingRight.OnMove();
@@ -466,7 +496,6 @@ namespace game_framework {
 	{
 		
 	}
-	
 
 	void Character::SetXY(int x, int y)
 	{

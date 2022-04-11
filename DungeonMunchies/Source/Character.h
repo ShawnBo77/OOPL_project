@@ -15,10 +15,11 @@ namespace game_framework {
     public:
         Character();
         ~Character();
+        Map* GetMap();				    // 地圖
         void Initialize();				// 設定初始值
         void LoadBitmap();				// 載入圖形
         void OnMove(Map *m);		    // 移動
-        void OnShow();					// 將圖形貼到畫面
+        void OnShow();			// 將圖形貼到畫面
         int  GetLeftX();				// 左上角 x 座標
         int  GetTopY();					// 左上角 y 座標
         int  GetRightX();				// 右下角 x 座標
@@ -34,7 +35,9 @@ namespace game_framework {
         bool GetIsAttacking();	        // 回傳是否正在攻擊
         SourceStorage* GetSourceStorage();	        // 回傳素材儲存空間
         PropStorage* GetPropStorage();	        // 回傳道具儲存空間
+        
 
+        void SetMap(Map *m);
         void SetMovingDown(bool flag);	// 設定是否正在往下移動
         void SetMovingLeft(bool flag);	// 設定是否正在往左移動
         void SetMovingRight(bool flag); // 設定是否正在往右移動
@@ -44,7 +47,12 @@ namespace game_framework {
         void SetXY(int x, int y);		// 設定左上角座標
         void SetAttacking(bool flag);		// 設定是否攻擊
         void Rolling(Map *m, bool flag);    // 翻滾動作
+        void addATK(int ATK);
         void Attack(bool flag);
+
+        /*餐點能力*/
+        bool CanDoubleJump();               // 回傳是否可以二段跳
+        void SetDoubleJump(bool flag);      // 設定是否可以二段跳
 
     protected:
         CMovingBitmap standLeft;	    // 站立面向左
@@ -57,6 +65,7 @@ namespace game_framework {
         CAnimation rightRolling;        // 右滾動畫
         CAnimation leftAttacking;        // 向左攻擊動畫
         CAnimation rightAttacking;       // 向右攻擊動畫
+        Map* currentMap;
 
         int characterX, characterY;
         int characterW, characterH;
@@ -70,8 +79,10 @@ namespace game_framework {
         bool isRising;              // 是否正在上升
         bool isAttacking;           // 是否正在攻擊
         int  velocity;
-        int  floor;
         int  rolling_time;
+
+        bool doubleJump;
+        bool DJtemp;
 
         SourceStorage* sourceStorage;
         PropStorage* propStorage;

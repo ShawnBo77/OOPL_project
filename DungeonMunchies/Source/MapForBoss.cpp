@@ -19,9 +19,15 @@ namespace game_framework {
         Y = 0;
         gridW = 50;
         gridH = 50;
+        setFloor(400);
        //給予地圖左上角座標及每張小圖寬度
-        int mapGrid_init[15][9] = { //給予地圖陣列初值
+        int mapGrid_init[20][9] = { //給予地圖陣列初值
             {0,0,0,0,0,0,0,0,0},
+            {0,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,0},
             {0,1,1,1,1,1,1,1,0},
             {0,1,1,1,1,1,1,1,0},
             {0,1,1,1,1,1,1,1,0},
@@ -37,7 +43,7 @@ namespace game_framework {
             {0,1,1,1,1,1,1,1,0},
             {0,0,0,0,0,0,0,0,0},
         };
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 9; j++) {
                 mapGrid[i][j] = mapGrid_init[i][j]; //依序填入mapGrid
             }
@@ -73,7 +79,7 @@ namespace game_framework {
 
     void MapForBoss::LoadBitmap() {
         //white.LoadBitmap(IDB_WHITE);
-        blue.LoadBitmap(IDB_BLUE);
+        //blue.LoadBitmap(IDB_BLUE);
         map.LoadBitmap(IDB_BOSSMAP);
     }
 
@@ -81,11 +87,11 @@ namespace game_framework {
         map.SetTopLeft(getSX(), getSY());
         map.ShowBitmap();
         for (int i = 0; i < 9; i++) { //往右顯示六張圖
-            for (int j = 0; j < 15; j++) { //往下顯示四張圖
+            for (int j = 0; j < 20; j++) { //往下顯示四張圖
                 switch (mapGrid[j][i]) {
                 case 0:
-                    blue.SetTopLeft(X + (gridW * j), Y + (gridH * i)); //設定每張圖的座標
-                    blue.ShowBitmap(); // 顯示設定完的座標
+                    //blue.SetTopLeft(X + (gridW * j), Y + (gridH * i)); //設定每張圖的座標
+                    //blue.ShowBitmap(); // 顯示設定完的座標
                     break;
                 case 1:
                     //white.SetTopLeft(X + (gridW * j), Y + (gridH * i)); //設定每張圖的座標
@@ -102,11 +108,11 @@ namespace game_framework {
         }
     }
 
-    void MapForBoss::getCharacterX(int x)
+    void MapForBoss::setCharacterX(int x)
     {
         characterX = x;
     }
-    void MapForBoss::getCharacterY(int y)
+    void MapForBoss::setCharacterY(int y)
     {
         characterY = y;
     }
