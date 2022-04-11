@@ -251,6 +251,21 @@ namespace game_framework {
 		return isAttacking;
 	}
 
+	bool Character::GetIsAttackFromRight()
+	{
+		return isAttackFromRight;
+	}
+
+	bool Character::GetIsAttackFromLeft()
+	{
+		return isAttackFromLeft;
+	}
+
+	bool Character::GetIsAttackFromButton()
+	{
+		return isAttackFromButton;
+	}
+
 	bool Character::GetIsOnTheFloor()
 	{
 		if (GetButtonY() == GetMap()->getFloor()) {
@@ -325,6 +340,21 @@ namespace game_framework {
 	void Character::SetAttacking(bool flag)
 	{
 		isAttacking = flag;
+	}
+
+	void Character::SetIsAttackFromRight(bool flag)
+	{
+		isAttackFromRight = flag;
+	}
+
+	void Character::SetIsAttackFromLeft(bool flag)
+	{
+		isAttackFromLeft = flag;
+	}
+
+	void Character::SetIsAttackFromButton(bool flag)
+	{
+		isAttackFromButton = flag;
 	}
 
 	/*À\ÂI¯à¤O*/

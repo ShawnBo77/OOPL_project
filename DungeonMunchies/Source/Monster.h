@@ -1,5 +1,5 @@
-#ifndef __ENEMY__
-#define __ENEMY__
+#ifndef __MONSTER__
+#define __MONSTER__
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -7,12 +7,12 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	class Character;
 	class Map;
-	class Enemy
-	{
+	class BloodBar;
+	class Monster {
 	public:
-		Enemy();
-		Enemy::Enemy(int x, int y, int enemyHp, string name, Character* c);
-		virtual ~Enemy();
+		Monster();
+		Monster::Monster(int x, int y, int enemyHp, int attackDamage, Character* c);
+		virtual ~Monster();
 		virtual void LoadBitmap() = 0;				//加載敵人Bitmap
 		virtual void OnShow(Map* m) = 0;			//顯示敵人於畫面上
 		virtual void OnMove(Map* m) = 0;			//敵人移動
@@ -22,7 +22,7 @@ namespace game_framework {
 		virtual int  GetButtonY() = 0;				// 右下角 y 座標
 		virtual void Initialize() = 0;				//初始化
 		//英雄是否和此敵人所在同一位置，前身是cannotPass
-		virtual bool intersect(int x1, int x2, int y1, int y2) = 0;
+		virtual bool isIntersect() = 0;
 		int distanceToHero();
 		double hpProportion();
 		/////////////////////////////////////////////////////////////////////////////
@@ -41,8 +41,9 @@ namespace game_framework {
 		int _x, _y;
 		int init_x, init_y;
 		int hp;
-		int full_hp;
-		int attack;
+		int fullHp;
+		BloodBar bloodBar;
+		int attackDamage;
 		bool isMovingRight;
 		bool isMovingLeft;
 		bool isMovingUp;

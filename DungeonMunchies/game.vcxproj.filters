@@ -172,7 +172,10 @@
     <ClCompile Include="Source\BloodBar.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Enemy.cpp">
+    <ClCompile Include="Source\Monster.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MonsterCactus.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
   </ItemGroup>
@@ -259,7 +262,10 @@
     <ClInclude Include="Source\BloodBar.h">
       <Filter>MyGame</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Enemy.h">
+    <ClInclude Include="Source\Monster.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MonsterCactus.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,6 +5,7 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供血條													   //
 	/////////////////////////////////////////////////////////////////////////////
+	class Map;
 	class BloodBar
 	{
 	public:
@@ -15,8 +16,8 @@ namespace game_framework {
 		void setXY(int x, int y);				//設定血條的x y 座標
 		int getFullHP();						//回傳滿血的血量
 	private:
-		CMovingBitmap blood_bar[10];			//不同長度的血條
-		double full_hp;
+		CMovingBitmap bloodBar[10];			//不同長度的血條
+		double fullHp;
 		int _x, _y;
 	};
 }

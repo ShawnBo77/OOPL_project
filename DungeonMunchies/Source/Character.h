@@ -33,9 +33,11 @@ namespace game_framework {
         bool GetIsOnTheFloor();         // 回傳是否正在地面
         bool GetIsRising();	            // 回傳是否正在上升
         bool GetIsAttacking();	        // 回傳是否正在攻擊
+        bool GetIsAttackFromRight();	        // 回傳攻擊是否來自右方
+        bool GetIsAttackFromLeft();	        // 回傳攻擊是否來自左方
+        bool GetIsAttackFromButton();	        // 回傳攻擊是否來自下方
         SourceStorage* GetSourceStorage();	        // 回傳素材儲存空間
         PropStorage* GetPropStorage();	        // 回傳道具儲存空間
-        
 
         void SetMap(Map *m);
         void SetMovingDown(bool flag);	// 設定是否正在往下移動
@@ -46,6 +48,10 @@ namespace game_framework {
         void SetRolling(bool flag);	    // 設定是否翻滾
         void SetXY(int x, int y);		// 設定左上角座標
         void SetAttacking(bool flag);		// 設定是否攻擊
+        void SetIsAttackFromRight(bool flag);	        // 回傳攻擊是否來自右方
+        void SetIsAttackFromLeft(bool flag);	        // 回傳攻擊是否來自左方
+        void SetIsAttackFromButton(bool flag);	        // 回傳攻擊是否來自下方
+
         void Rolling(Map *m, bool flag);    // 翻滾動作
         void addATK(int ATK);
         void Attack(bool flag);
@@ -78,6 +84,9 @@ namespace game_framework {
         bool isOnTheFloor;          // 是否位於地面
         bool isRising;              // 是否正在上升
         bool isAttacking;           // 是否正在攻擊
+        bool isAttackFromRight;
+        bool isAttackFromLeft;
+        bool isAttackFromButton;
         int  velocity;
         int  rolling_time;
 

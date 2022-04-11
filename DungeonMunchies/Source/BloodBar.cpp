@@ -14,12 +14,12 @@ namespace game_framework
 	{
 		_x = 0;
 		_y = 0;
-		full_hp = 0;
+		fullHp = 0;
 	}
 
 	void BloodBar::setFullHP(int n)
 	{
-		full_hp = n;
+		fullHp = n;
 	}
 
 	void BloodBar::setXY(int x, int y)
@@ -30,79 +30,79 @@ namespace game_framework
 
 	int BloodBar::getFullHP()
 	{
-		return (int)full_hp;
+		return (int)fullHp;
 	}
 
 	void BloodBar::loadBloodBar()
 	{
-		blood_bar[0].LoadBitmap(IDB_BLOOD1, RGB(0, 0, 0));
-		blood_bar[1].LoadBitmap(IDB_BLOOD2, RGB(0, 0, 0));
-		blood_bar[2].LoadBitmap(IDB_BLOOD3, RGB(0, 0, 0));
-		blood_bar[3].LoadBitmap(IDB_BLOOD4, RGB(0, 0, 0));
-		blood_bar[4].LoadBitmap(IDB_BLOOD5, RGB(0, 0, 0));
-		blood_bar[5].LoadBitmap(IDB_BLOOD6, RGB(0, 0, 0));
-		blood_bar[6].LoadBitmap(IDB_BLOOD7, RGB(0, 0, 0));
-		blood_bar[7].LoadBitmap(IDB_BLOOD8, RGB(0, 0, 0));
-		blood_bar[8].LoadBitmap(IDB_BLOOD9, RGB(0, 0, 0));
-		blood_bar[9].LoadBitmap(IDB_BLOOD10, RGB(0, 0, 0));
+		bloodBar[0].LoadBitmap(IDB_BLOOD1, RGB(0, 0, 0));
+		bloodBar[1].LoadBitmap(IDB_BLOOD2, RGB(0, 0, 0));
+		bloodBar[2].LoadBitmap(IDB_BLOOD3, RGB(0, 0, 0));
+		bloodBar[3].LoadBitmap(IDB_BLOOD4, RGB(0, 0, 0));
+		bloodBar[4].LoadBitmap(IDB_BLOOD5, RGB(0, 0, 0));
+		bloodBar[5].LoadBitmap(IDB_BLOOD6, RGB(0, 0, 0));
+		bloodBar[6].LoadBitmap(IDB_BLOOD7, RGB(0, 0, 0));
+		bloodBar[7].LoadBitmap(IDB_BLOOD8, RGB(0, 0, 0));
+		bloodBar[8].LoadBitmap(IDB_BLOOD9, RGB(0, 0, 0));
+		bloodBar[9].LoadBitmap(IDB_BLOOD10, RGB(0, 0, 0));
 	}
 
 	void BloodBar::showBloodBar(Map* m, int hp)
 	{ //  現在血量/滿血血量  的比例 決定血條多長 顯示哪個血條bitmap
-		if (hp >= full_hp)
+		if (hp >= fullHp)
 		{
 			setFullHP(hp);
 		}
-		double proportion = hp / full_hp;
+		double proportion = hp / fullHp;
 		if (proportion < 1.0 / 10)
 		{
-			blood_bar[0].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
-			blood_bar[0].ShowBitmap();
+			bloodBar[0].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
+			bloodBar[0].ShowBitmap();
 		}
 		else if (proportion < 2.0 / 10)
 		{
-			blood_bar[1].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
-			blood_bar[1].ShowBitmap();
+			bloodBar[1].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
+			bloodBar[1].ShowBitmap();
 		}
 		else if (proportion < 3.0 / 10)
 		{
-			blood_bar[2].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
-			blood_bar[2].ShowBitmap();
+			bloodBar[2].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
+			bloodBar[2].ShowBitmap();
 		}
 		else if (proportion < 4.0 / 10)
 		{
-			blood_bar[3].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
-			blood_bar[3].ShowBitmap();
+			bloodBar[3].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
+			bloodBar[3].ShowBitmap();
 		}
 		else if (proportion < 5.0 / 10)
 		{
-			blood_bar[4].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
-			blood_bar[4].ShowBitmap();
+			bloodBar[4].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
+			bloodBar[4].ShowBitmap();
 		}
 		else if (proportion < 6.0 / 10)
 		{
-			blood_bar[5].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
-			blood_bar[5].ShowBitmap();
+			bloodBar[5].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
+			bloodBar[5].ShowBitmap();
 		}
 		else if (proportion < 7.0 / 10)
 		{
-			blood_bar[6].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
-			blood_bar[6].ShowBitmap();
+			bloodBar[6].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
+			bloodBar[6].ShowBitmap();
 		}
 		else if (proportion < 8.0 / 10)
 		{
-			blood_bar[7].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
-			blood_bar[7].ShowBitmap();
+			bloodBar[7].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
+			bloodBar[7].ShowBitmap();
 		}
 		else if (proportion < 9.0 / 10)
 		{
-			blood_bar[8].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
-			blood_bar[8].ShowBitmap();
+			bloodBar[8].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
+			bloodBar[8].ShowBitmap();
 		}
 		else
 		{
-			blood_bar[9].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
-			blood_bar[9].ShowBitmap();
+			bloodBar[9].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
+			bloodBar[9].ShowBitmap();
 		}
 	}
 }
