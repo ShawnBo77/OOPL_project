@@ -33,6 +33,9 @@ namespace game_framework {
         bool GetIsOnTheFloor();         // 回傳是否正在地面
         bool GetIsRising();	            // 回傳是否正在上升
         bool GetIsAttacking();	        // 回傳是否正在攻擊
+        bool GetIsAttackFromRight();	        // 回傳攻擊是否來自右方
+        bool GetIsAttackFromLeft();	        // 回傳攻擊是否來自左方
+        bool GetIsAttackFromButton();	        // 回傳攻擊是否來自下方
         bool CanDoubleJump();           // 回傳是否可以二段跳
 
         void SetMap(Map *m);
@@ -45,6 +48,10 @@ namespace game_framework {
         void SetXY(int x, int y);		// 設定左上角座標
         void SetDoubleJump(bool flag);      // 設定是否可以二段跳
         void SetAttacking(bool flag);		// 設定是否攻擊
+        void SetIsAttackFromRight(bool flag);	        // 回傳攻擊是否來自右方
+        void SetIsAttackFromLeft(bool flag);	        // 回傳攻擊是否來自左方
+        void SetIsAttackFromButton(bool flag);	        // 回傳攻擊是否來自下方
+        void SetDoubleJump(bool flag);      // 設定是否可以二段跳
 
         void Rolling(Map *m, bool flag);    // 翻滾動作
         void addATK(int ATK);
@@ -54,6 +61,7 @@ namespace game_framework {
         SourceStorage* GetSourceStorage();	        // 回傳素材儲存空間
         PropStorage* GetPropStorage();	            // 回傳道具儲存空間
         void EatMosquitoJump(bool flag);  
+        
         
 
     protected:
@@ -70,26 +78,29 @@ namespace game_framework {
         CAnimation rightAttacking;       // 向右攻擊動畫
         Map* currentMap;
 
-        int characterX, characterY;
-        int characterW, characterH;
-        bool isMovingDown;		    // 是否正在往下移動
-        bool isMovingLeft;			// 是否正在往左移動
-        bool isMovingRight;			// 是否正在往右移動
-        bool isMovingUp;			// 是否正在往上移動
-        bool isRolling;             // 是否正在翻滾
-        bool facingLR;              // 面向 左:0, 右:1
-        bool isOnTheFloor;          // 是否位於地面
-        bool isRising;              // 是否正在上升
-        bool isAttacking;           // 是否正在攻擊
-        int  velocity;
-        int  rolling_time;
+		int characterX, characterY;
+		int characterW, characterH;
+		bool isMovingDown;		    // 是否正在往下移動
+		bool isMovingLeft;			// 是否正在往左移動
+		bool isMovingRight;			// 是否正在往右移動
+		bool isMovingUp;			// 是否正在往上移動
+		bool isRolling;             // 是否正在翻滾
+		bool facingLR;              // 面向 左:0, 右:1
+		bool isOnTheFloor;          // 是否位於地面
+		bool isRising;              // 是否正在上升
+		bool isAttacking;           // 是否正在攻擊
+		bool isAttackFromRight;
+		bool isAttackFromLeft;
+		bool isAttackFromButton;
+		int  velocity;
+		int  rolling_time;
 
-        bool doubleJump;
-        bool DJtemp;
+		bool doubleJump;
+		bool DJtemp;
 
-        SourceStorage* sourceStorage;
-        PropStorage* propStorage;
-    };
+		SourceStorage* sourceStorage;
+		PropStorage* propStorage;
+	};
 }
 
 #endif

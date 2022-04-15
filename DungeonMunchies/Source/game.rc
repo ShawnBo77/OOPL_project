@@ -108,8 +108,6 @@ IDB_BOSSMAP             BITMAP                  "..\\res\\boss_map.bmp"
 
 IDB_STARTMENU           BITMAP                  "..\\res\\start_menu.bmp"
 
-IDB_MONSTER             BITMAP                  "..\\res\\MeviusLevitating.bmp"
-
 IDB_MAP2                BITMAP                  "..\\res\\boss_map.bmp"
 
 IDB_BLUE                BITMAP                  "..\\res\\bitmap3.bmp"
@@ -316,9 +314,9 @@ IDB_THRONGROW2          BITMAP                  "..\\res\\thron_grow02.bmp"
 
 IDB_THRONRED            BITMAP                  "..\\res\\thron_red.bmp"
 
-IDB_CACTUSALIVE         BITMAP                  "..\\res\\cactus_alive.bmp"
+IDB_MONSTERCACTUSALIVE  BITMAP                  "..\\res\\cactus_alive.bmp"
 
-IDB_CACTUSDEAD          BITMAP                  "..\\res\\cactus_dead.bmp"
+IDB_MONSTERCACTUSDEAD   BITMAP                  "..\\res\\cactus_dead.bmp"
 
 IDB_PROPSBOOK           BITMAP                  "..\\res\\props_book.bmp"
 

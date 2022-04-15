@@ -37,7 +37,6 @@
 #define IDB_LOADING                     156
 #define IDB_BOSSM                       157
 #define IDB_BOSSMAP                     157
-#define IDB_MONSTER                     158
 #define IDB_MAP2                        159
 #define IDB_BLUE                        160
 #define IDB_WHITE                       161
@@ -185,8 +184,8 @@
 #define IDB_BLOOD2                      304
 #define IDB_BLOOD10                     305
 #define IDB_BLOOD1                      306
-#define IDB_BITMAP6                     307
-#define IDB_BITMAP7                     309
+#define IDB_MONSTERCACTUSALIVE          307
+#define IDB_MONSTERCACTUSDEAD           308
 #define IDB_CHARACTERBLOODFRAME         309
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
@@ -199,8 +198,8 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        310
+#define _APS_NEXT_RESOURCE_VALUE        307
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

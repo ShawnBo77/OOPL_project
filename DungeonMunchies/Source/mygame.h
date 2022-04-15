@@ -46,13 +46,17 @@
 #include "MapForBoss.h"
 #include "Util.h"
 #include "PropsBook.h"
+#include "Monster.h"
+#include "MonsterCactus.h"
 
-namespace game_framework {
+namespace game_framework
+{
 	/////////////////////////////////////////////////////////////////////////////
 	// Constants
 	/////////////////////////////////////////////////////////////////////////////
 
-	enum AUDIO_ID {				// 定義各種音效的編號
+	enum AUDIO_ID
+	{				// 定義各種音效的編號
 		AUDIO_DING,				// 0
 		AUDIO_LAKE,				// 1
 		AUDIO_NTUT				// 2
@@ -63,9 +67,10 @@ namespace game_framework {
 	// 每個Member function的Implementation都要弄懂
 	/////////////////////////////////////////////////////////////////////////////
 
-	class CGameStateInit : public CGameState {
+	class CGameStateInit : public CGameState
+	{
 	public:
-		CGameStateInit(CGame *g);
+		CGameStateInit(CGame* g);
 		void OnInit();  								// 遊戲的初值及圖形設定
 		void OnBeginState();							// 設定每次重玩所需的變數
 		void OnKeyUp(UINT, UINT, UINT); 				// 處理鍵盤Up的動作
@@ -74,7 +79,7 @@ namespace game_framework {
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		//CMovingBitmap logo;								// csie的logo
-		CMovingBitmap startMenu;								
+		CMovingBitmap startMenu;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -82,9 +87,10 @@ namespace game_framework {
 	// 每個Member function的Implementation都要弄懂
 	/////////////////////////////////////////////////////////////////////////////
 
-	class CGameStateRun : public CGameState {
+	class CGameStateRun : public CGameState
+	{
 	public:
-		CGameStateRun(CGame *g);
+		CGameStateRun(CGame* g);
 		~CGameStateRun();
 		void OnBeginState();							// 設定每次重玩所需的變數
 		void OnInit();  								// 遊戲的初值及圖形設定
@@ -113,6 +119,7 @@ namespace game_framework {
 		//CBouncingBall   bball;		// 反覆彈跳的球
 		Stage currentStage;
 		Stage lastStage;
+		vector<Monster*> monsterCactus;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -120,9 +127,10 @@ namespace game_framework {
 	// 每個Member function的Implementation都要弄懂
 	/////////////////////////////////////////////////////////////////////////////
 
-	class CGameStateOver : public CGameState {
+	class CGameStateOver : public CGameState
+	{
 	public:
-		CGameStateOver(CGame *g);
+		CGameStateOver(CGame* g);
 		void OnBeginState();							// 設定每次重玩所需的變數
 		void OnInit();
 	protected:
