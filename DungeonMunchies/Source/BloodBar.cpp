@@ -33,7 +33,7 @@ namespace game_framework
 		return (int)fullHp;
 	}
 
-	void BloodBar::loadBloodBar()
+	void BloodBar::LoadBitmap()
 	{
 		bloodBar[0].LoadBitmap(IDB_BLOOD1, RGB(0, 0, 0));
 		bloodBar[1].LoadBitmap(IDB_BLOOD2, RGB(0, 0, 0));

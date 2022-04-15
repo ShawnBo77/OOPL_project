@@ -14,14 +14,17 @@
 /////////////////////////////////////////////////////////////////////////////
 // 這個class為遊戲的角色人物物件
 /////////////////////////////////////////////////////////////////////////////
-namespace game_framework {
-	Character::Character() {
+namespace game_framework
+{
+	Character::Character()
+	{
 		//characterX = characterY = 50;
 		sourceStorage = new SourceStorage();
 		propStorage = new PropStorage();
 	}
 
-	Character::~Character() {
+	Character::~Character()
+	{
 		delete sourceStorage;
 		delete propStorage;
 	}
@@ -223,7 +226,7 @@ namespace game_framework {
 
 	Map* Character::GetMap()
 	{
-		return currentMap; 
+		return currentMap;
 	}
 
 	bool Character::GetIsMovingLeft()
@@ -268,10 +271,12 @@ namespace game_framework {
 
 	bool Character::GetIsOnTheFloor()
 	{
-		if (GetButtonY() == GetMap()->getFloor()) {
+		if (GetButtonY() == GetMap()->getFloor())
+		{
 			isOnTheFloor = true;
 		}
-		else {
+		else
+		{
 			isOnTheFloor = false;
 		}
 
@@ -283,17 +288,19 @@ namespace game_framework {
 		return isRising;
 	}
 
-	SourceStorage* Character::GetSourceStorage() {
+	SourceStorage* Character::GetSourceStorage()
+	{
 		sourceStorage->getSource(0)->setNum(5);
 		sourceStorage->getSource(2)->setNum(15);
 		return sourceStorage;
 	}
 
-	PropStorage* Character::GetPropStorage() {
+	PropStorage* Character::GetPropStorage()
+	{
 		return propStorage;
 	}
 
-	void Character::SetMap(Map *m)
+	void Character::SetMap(Map* m)
 	{
 		currentMap = m;
 	}
@@ -374,7 +381,7 @@ namespace game_framework {
 		const int STEP_SIZE = 10;												//角色移動速度
 		SetMap(m);
 
-		if (GetIsRolling())					
+		if (GetIsRolling())
 		{
 			if (isMovingLeft)
 				Rolling(m, 0);
@@ -385,7 +392,7 @@ namespace game_framework {
 			else if (facingLR == 0)
 				Rolling(m, 0);
 		}
-		else 
+		else
 		{
 			if (GetIsMovingLeft() && m->isEmpty(GetLeftX() - STEP_SIZE, GetTopY()) && m->isEmpty(GetLeftX() - STEP_SIZE, GetButtonY() - BORDER))
 			{
@@ -405,7 +412,7 @@ namespace game_framework {
 
 				//m->addSX(-STEP_SIZE);                             	
 			}
-			if (GetIsMovingUp() && GetButtonY() >= m->getFloor() && velocity == 0) 
+			if (GetIsMovingUp() && GetButtonY() >= m->getFloor() && velocity == 0)
 			{
 				isRising = true;
 				velocity = 10;
@@ -450,8 +457,8 @@ namespace game_framework {
 					SetDoubleJump(DJtemp);
 				}
 			}
-			
-			if (GetIsAttacking()) 
+
+			if (GetIsAttacking())
 			{
 				if (facingLR)
 					Attack(1);
@@ -473,7 +480,7 @@ namespace game_framework {
 		rightAttacking.OnMove();
 	}
 
-	void Character::Rolling(Map *m, bool flag)								//左:0 右:1
+	void Character::Rolling(Map* m, bool flag)								//左:0 右:1
 	{
 
 		const int ROLLING_SIZE = 2;											//角色翻滾距離
@@ -519,12 +526,12 @@ namespace game_framework {
 				isRolling = false;
 			}
 		}
-			
+
 	}
 
 	void Character::Attack(bool flag)
 	{
-		
+
 	}
 
 	void Character::SetXY(int x, int y)
@@ -535,24 +542,25 @@ namespace game_framework {
 
 	void Character::OnShow()
 	{
-		if (facingLR == 0) {
-			if (GetIsRolling()) 
+		if (facingLR == 0)
+		{
+			if (GetIsRolling())
 			{
 				leftRolling.SetTopLeft(characterX - 5, characterY + 10);
 				leftRolling.OnShow();
 				leftRolling.SetDelayCount(1);
-				
+
 				/*leftRolling.SetTopLeft(characterX, characterY+15);
 				leftRolling.OnShow();
 				leftRolling.SetDelayCount(1);*/
 			}
-			else if (GetIsAttacking()) 
+			else if (GetIsAttacking())
 			{
 				leftAttacking.SetTopLeft(characterX, characterY);
 				leftAttacking.SetDelayCount(3);
 				leftAttacking.OnShow();
 			}
-			else if (GetIsRising() == true) 
+			else if (GetIsRising() == true)
 			{
 				leftJump.SetTopLeft(characterX, characterY);
 				leftJump.OnShow();
@@ -563,12 +571,12 @@ namespace game_framework {
 				walkingLeft.SetTopLeft(characterX, characterY);
 				walkingLeft.OnShow();
 			}
-			else 
+			else
 			{
 				standLeft.SetTopLeft(characterX, characterY);
 				standLeft.ShowBitmap();
 			}
-		} 
+		}
 		else
 		{
 			if (GetIsRolling())
@@ -593,7 +601,7 @@ namespace game_framework {
 			{
 				walkingRight.SetTopLeft(characterX, characterY);
 				walkingRight.OnShow();
-			} 
+			}
 			else
 			{
 				standRight.SetTopLeft(characterX, characterY);

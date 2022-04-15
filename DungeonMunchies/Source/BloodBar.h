@@ -1,7 +1,8 @@
 #ifndef __BLOODBAR__
 #define __BLOODBAR__
 
-namespace game_framework {
+namespace game_framework
+{
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供血條													   //
 	/////////////////////////////////////////////////////////////////////////////
@@ -10,7 +11,7 @@ namespace game_framework {
 	{
 	public:
 		BloodBar();
-		void loadBloodBar();
+		void LoadBitmap();
 		void showBloodBar(Map* m, int hp);
 		void setFullHP(int n);					//設定滿血的血量
 		void setXY(int x, int y);				//設定血條的x y 座標
@@ -21,4 +22,4 @@ namespace game_framework {
 		int _x, _y;
 	};
 }
-#endif#pragma once
+#endif
