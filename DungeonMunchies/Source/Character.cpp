@@ -124,14 +124,14 @@ namespace game_framework
 		//animation.AddBitmap(IDB_BOSSRIGHTCOLLIDE2, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_BOSSRIGHTCOLLIDE3, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_BOSSRIGHTCOLLIDE4, RGB(0, 0, 0));
-		//
+		
 		//animation.AddBitmap(IDB_BOSSRIGHTDEAD1, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_BOSSRIGHTDEAD2, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_BOSSRIGHTDEAD3, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_BOSSRIGHTDEAD4, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_BOSSRIGHTDEAD5, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_BOSSRIGHTDEAD6, RGB(0, 0, 0));
-		//
+		
 		//animation.AddBitmap(IDB_BOSSRIGHTHIT1, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_BOSSRIGHTHIT2, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_BOSSRIGHTHIT3, RGB(0, 0, 0));
@@ -150,17 +150,17 @@ namespace game_framework
 		//animation.AddBitmap(IDB_BOSSRIGHTWALK3, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_BOSSRIGHTWALK4, RGB(0, 0, 0));
 		//
-		/*animation.AddBitmap(IDB_BOSSLEFTCOLLIDE1, RGB(0, 0, 0));
+		animation.AddBitmap(IDB_BOSSLEFTCOLLIDE1, RGB(0, 0, 0));
 		animation.AddBitmap(IDB_BOSSLEFTCOLLIDE2, RGB(0, 0, 0));
 		animation.AddBitmap(IDB_BOSSLEFTCOLLIDE3, RGB(0, 0, 0));
 		animation.AddBitmap(IDB_BOSSLEFTCOLLIDE4, RGB(0, 0, 0));
 
-		animation.AddBitmap(IDB_BOSSLEFTDEAD1, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTDEAD2, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTDEAD3, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTDEAD4, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTDEAD5, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTDEAD6, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTDEAD1, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTDEAD2, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTDEAD3, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTDEAD4, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTDEAD5, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTDEAD6, RGB(0, 0, 0));
 
 		animation.AddBitmap(IDB_BOSSLEFTHIT1, RGB(0, 0, 0));
 		animation.AddBitmap(IDB_BOSSLEFTHIT2, RGB(0, 0, 0));
@@ -175,10 +175,11 @@ namespace game_framework
 		animation.AddBitmap(IDB_BOSSLEFTTHORN2, RGB(0, 0, 0));
 		animation.AddBitmap(IDB_BOSSLEFTTHORN3, RGB(0, 0, 0));
 
+		animation.AddBitmap(IDB_BOSSLEFTSTAND, RGB(0, 0, 0));
 		animation.AddBitmap(IDB_BOSSLEFTWALK1, RGB(0, 0, 0));
 		animation.AddBitmap(IDB_BOSSLEFTWALK2, RGB(0, 0, 0));
 		animation.AddBitmap(IDB_BOSSLEFTWALK3, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTWALK4, RGB(0, 0, 0));*/
+		animation.AddBitmap(IDB_BOSSLEFTWALK4, RGB(0, 0, 0));
 
 		//animation.AddBitmap(IDB_THRONGROW1, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_THRONGROW2, RGB(0, 0, 0));
@@ -389,6 +390,7 @@ namespace game_framework
 
 	void Character::OnMove(Map* m)
 	{
+		animation.OnMove();
 		const int BORDER = 5;													//角色邊框寬度
 		const int STEP_SIZE = 15;												//角色移動速度
 		SetMap(m);
@@ -554,6 +556,8 @@ namespace game_framework
 
 	void Character::OnShow()
 	{
+		animation.SetTopLeft(500, 350);
+		animation.OnShow();
 		bloodFrame.SetTopLeft(0, 0);
 		bloodFrame.ShowBitmap();
 		if (facingLR == 0) {
