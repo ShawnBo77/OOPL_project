@@ -46,7 +46,6 @@ namespace game_framework {
         void SetMovingUp(bool flag);	// 設定是否正在往上移動
         void SetRolling(bool flag);	    // 設定是否翻滾
         void SetXY(int x, int y);		// 設定左上角座標
-        void SetDoubleJump(bool flag);      // 設定是否可以二段跳
         void SetAttacking(bool flag);		// 設定是否攻擊
         void SetIsAttackFromRight(bool flag);	        // 回傳攻擊是否來自右方
         void SetIsAttackFromLeft(bool flag);	        // 回傳攻擊是否來自左方
