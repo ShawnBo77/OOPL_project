@@ -28,5 +28,6 @@ namespace game_framework {
 
     void PropMosquitoJump::effect(Character* character)
     {
+        character->EatMosquitoJump(true);
     }
 }

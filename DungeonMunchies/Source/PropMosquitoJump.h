@@ -13,7 +13,6 @@ namespace game_framework {
         void Initialize();
         void effect(Character* character) override;
     private:
-    
     };
 }
 #endif

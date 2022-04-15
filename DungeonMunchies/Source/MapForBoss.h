@@ -18,7 +18,7 @@ namespace game_framework {
     protected:
         CMovingBitmap map;
         int X, Y;
-        int mapGrid[20][9];
+        int mapGrid[40][18];
         CMovingBitmap white, blue;
         int gridW, gridH;
         int characterX, characterY; 

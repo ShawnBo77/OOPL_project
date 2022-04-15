@@ -357,6 +357,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\bitmap3.bmp" />
+    <Image Include="res\bitmap6.bmp" />
     <Image Include="res\blood1.bmp" />
     <Image Include="res\blood10.bmp" />
     <Image Include="res\blood2.bmp" />
@@ -429,6 +430,8 @@
     <Image Include="res\boss_right_walk04.bmp" />
     <Image Include="res\cactus_alive.bmp" />
     <Image Include="res\cactus_dead.bmp" />
+    <Image Include="RES\characterBlood.bmp" />
+    <Image Include="res\characterBloodFrame.bmp" />
     <Image Include="res\g_left_jump.bmp" />
     <Image Include="res\g_left_stand.bmp" />
     <Image Include="res\g_left_walk01.bmp" />

@@ -28,6 +28,7 @@ namespace game_framework {
 
 	void Character::LoadBitmap()
 	{
+		bloodFrame.LoadBitmap(IDB_CHARACTERBLOODFRAME, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_GRAY);
 		//animation.AddBitmap(IDB_BOSSRIGHTSTAND, RGB(0, 0, 0));
 		//
@@ -197,10 +198,12 @@ namespace game_framework {
 		isMovingLeft = isMovingRight = isMovingUp = isRising = isRolling = false;
 		rolling_time = 0;
 		isAttacking = false;
-		doubleJump = true;
+		doubleJump = false;
 		DJtemp = doubleJump;
 	}
 
+
+	/*Getter*/
 	int Character::GetLeftX()
 	{
 		return characterX;
@@ -268,16 +271,13 @@ namespace game_framework {
 		return isRising;
 	}
 
-	SourceStorage* Character::GetSourceStorage() {
-		sourceStorage->getSource(0)->setNum(5);
-		sourceStorage->getSource(2)->setNum(15);
-		return sourceStorage;
+	bool Character::CanDoubleJump()
+	{
+		return doubleJump;
 	}
 
-	PropStorage* Character::GetPropStorage() {
-		return propStorage;
-	}
-
+	
+	/*Setter*/
 	void Character::SetMap(Map *m)
 	{
 		currentMap = m;
@@ -322,26 +322,40 @@ namespace game_framework {
 			isRolling = false;
 	}
 
-	void Character::SetAttacking(bool flag)
-	{
-		isAttacking = flag;
-	}
-
-	/*餐點能力*/
-	bool Character::CanDoubleJump()
-	{
-		return doubleJump;
-	}
-
 	void Character::SetDoubleJump(bool flag)
 	{
 		doubleJump = flag;
 	}
 
+	void Character::SetAttacking(bool flag)
+	{
+		isAttacking = flag;
+	}
+
+
+	/*餐點能力*/
+	SourceStorage* Character::GetSourceStorage() {
+		sourceStorage->getSource(0)->setNum(5);
+		sourceStorage->getSource(2)->setNum(15);
+		return sourceStorage;
+	}
+
+	PropStorage* Character::GetPropStorage() {
+		return propStorage;
+	}
+
+	void Character::EatMosquitoJump(bool flag)
+	{
+		SetDoubleJump(flag);
+		DJtemp = flag;
+	}
+
+	
+
 	void Character::OnMove(Map* m)
 	{
 		const int BORDER = 5;													//角色邊框寬度
-		const int STEP_SIZE = 10;												//角色移動速度
+		const int STEP_SIZE = 15;												//角色移動速度
 		SetMap(m);
 
 		if (GetIsRolling())					
@@ -378,12 +392,12 @@ namespace game_framework {
 			if (GetIsMovingUp() && GetButtonY() >= m->getFloor() && velocity == 0) 
 			{
 				isRising = true;
-				velocity = 10;
+				velocity = 12;
 			}
 
-			if (GetIsMovingUp() && velocity < 9 && velocity > 0 && CanDoubleJump())
+			if (GetIsMovingUp() && (velocity < 8 || !GetIsRising()) && velocity > 0 && CanDoubleJump())
 			{
-				velocity = 8;
+				velocity = 10;
 				isRising = true;
 				SetDoubleJump(false);
 			}
@@ -410,7 +424,7 @@ namespace game_framework {
 				if (GetButtonY() < m->getFloor())				// 當y座標還沒碰到地板
 				{
 					characterY += velocity * 2;			// y軸下降(移動velocity個點，velocity的單位為 點/次)
-					if (velocity < 5)
+					if (velocity < 6)
 						velocity++;
 				}
 				else
@@ -446,7 +460,7 @@ namespace game_framework {
 	void Character::Rolling(Map *m, bool flag)								//左:0 右:1
 	{
 
-		const int ROLLING_SIZE = 2;											//角色翻滾距離
+		const int ROLLING_SIZE = 3;											//角色翻滾距離
 		const int BORDER = 5;
 		if (flag)
 		{
@@ -505,6 +519,8 @@ namespace game_framework {
 
 	void Character::OnShow()
 	{
+		bloodFrame.SetTopLeft(0, 0);
+		bloodFrame.ShowBitmap();
 		if (facingLR == 0) {
 			if (GetIsRolling()) 
 			{

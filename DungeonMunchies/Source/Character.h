@@ -20,11 +20,11 @@ namespace game_framework {
         void LoadBitmap();				// 載入圖形
         void OnMove(Map *m);		    // 移動
         void OnShow();			// 將圖形貼到畫面
+
         int  GetLeftX();				// 左上角 x 座標
         int  GetTopY();					// 左上角 y 座標
         int  GetRightX();				// 右下角 x 座標
         int  GetButtonY();				// 右下角 y 座標
-
         void GetMovingDown();	        // 回傳是否正在往下移動
         bool GetIsMovingLeft();	        // 回傳是否正在往左移動
         bool GetIsMovingRight();        // 回傳是否正在往右移動
@@ -33,9 +33,7 @@ namespace game_framework {
         bool GetIsOnTheFloor();         // 回傳是否正在地面
         bool GetIsRising();	            // 回傳是否正在上升
         bool GetIsAttacking();	        // 回傳是否正在攻擊
-        SourceStorage* GetSourceStorage();	        // 回傳素材儲存空間
-        PropStorage* GetPropStorage();	        // 回傳道具儲存空間
-        
+        bool CanDoubleJump();           // 回傳是否可以二段跳
 
         void SetMap(Map *m);
         void SetMovingDown(bool flag);	// 設定是否正在往下移動
@@ -45,18 +43,23 @@ namespace game_framework {
         void SetMovingUp(bool flag);	// 設定是否正在往上移動
         void SetRolling(bool flag);	    // 設定是否翻滾
         void SetXY(int x, int y);		// 設定左上角座標
+        void SetDoubleJump(bool flag);      // 設定是否可以二段跳
         void SetAttacking(bool flag);		// 設定是否攻擊
+
         void Rolling(Map *m, bool flag);    // 翻滾動作
         void addATK(int ATK);
         void Attack(bool flag);
 
         /*餐點能力*/
-        bool CanDoubleJump();               // 回傳是否可以二段跳
-        void SetDoubleJump(bool flag);      // 設定是否可以二段跳
+        SourceStorage* GetSourceStorage();	        // 回傳素材儲存空間
+        PropStorage* GetPropStorage();	            // 回傳道具儲存空間
+        void EatMosquitoJump(bool flag);  
+        
 
     protected:
         CMovingBitmap standLeft;	    // 站立面向左
         CMovingBitmap standRight;	    // 站立面向右
+        CMovingBitmap bloodFrame;	    // 角色血量框
         CAnimation walkingLeft;         // 向左行走動畫
         CAnimation walkingRight;        // 向右行走動畫
         CAnimation leftJump;            // 左跳動畫

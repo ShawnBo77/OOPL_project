@@ -728,5 +728,14 @@
     <Image Include="res\blood10.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\bitmap6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\characterBlood.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\characterBloodFrame.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

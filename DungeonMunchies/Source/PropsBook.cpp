@@ -62,7 +62,7 @@ namespace game_framework {
 		setIconList();
 		propStorage = character->GetPropStorage();
 		sourceStorage = character->GetSourceStorage();
-		character = character;
+		_character = character;
 	}
 
 	void PropsBook::setXY(CPoint mousePosition) {
@@ -151,42 +151,42 @@ namespace game_framework {
 			if (!(propStorage->getProp(mosquito_jump_p)->getPropFlag()) && sourceStorage->getSource(mosquito_jump_p)->getNum() >= 5) {
 				sourceStorage->getSource(mosquito_jump_p)->consume(5);
 				propStorage->getProp(mosquito_jump_p)->setPropFlag(true);
-				propStorage->getProp(mosquito_jump_p)->effect(character);
+				propStorage->getProp(mosquito_jump_p)->effect(_character);
 			}
 			break;
 		case shrimp_blood_p:
 			if (!(propStorage->getProp(shrimp_blood_p)->getPropFlag()) && sourceStorage->getSource(shrimp_blood_p)->getNum() >= 1) {
 				sourceStorage->getSource(shrimp_blood_p)->consume(1);
 				propStorage->getProp(shrimp_blood_p)->setPropFlag(true);
-				propStorage->getProp(shrimp_blood_p)->effect(character);
+				propStorage->getProp(shrimp_blood_p)->effect(_character);
 			}
 			break;
 		case grass_fast_p:
 			if (!(propStorage->getProp(grass_fast_p)->getPropFlag()) && sourceStorage->getSource(grass_fast_p)->getNum() >= 5) {
 				sourceStorage->getSource(grass_fast_p)->consume(5);
 				propStorage->getProp(grass_fast_p)->setPropFlag(true);
-				propStorage->getProp(grass_fast_p)->effect(character);
+				propStorage->getProp(grass_fast_p)->effect(_character);
 			}
 			break;
 		case banana_attack_p:
 			if (!(propStorage->getProp(banana_attack_p)->getPropFlag()) && sourceStorage->getSource(banana_attack_p)->getNum() >= 1) {
 				sourceStorage->getSource(banana_attack_p)->consume(1);
 				propStorage->getProp(banana_attack_p)->setPropFlag(true);
-				propStorage->getProp(banana_attack_p)->effect(character);
+				propStorage->getProp(banana_attack_p)->effect(_character);
 			}
 			break;
 		case shrimp_attack_p:
 			if (!(propStorage->getProp(shrimp_attack_p)->getPropFlag()) && sourceStorage->getSource(guava_juice_blood_p)->getNum() >= 1) {
 				sourceStorage->getSource(shrimp_attack_p)->consume(1);
 				propStorage->getProp(shrimp_attack_p)->setPropFlag(true);
-				propStorage->getProp(shrimp_attack_p)->effect(character);
+				propStorage->getProp(shrimp_attack_p)->effect(_character);
 			}
 			break;
 		case guava_juice_blood_p:
 			if (!(propStorage->getProp(guava_juice_blood_p)->getPropFlag()) && sourceStorage->getSource(guava_juice_blood_p)->getNum() >= 1) {
 				sourceStorage->getSource(guava_juice_blood_p)->consume(1);
 				propStorage->getProp(guava_juice_blood_p)->setPropFlag(true);
-				propStorage->getProp(guava_juice_blood_p)->effect(character);
+				propStorage->getProp(guava_juice_blood_p)->effect(_character);
 			}
 			break;
 		default:

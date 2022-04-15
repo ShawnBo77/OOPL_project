@@ -384,6 +384,10 @@ IDB_BLOOD9              BITMAP                  "..\\res\\blood9.bmp"
 
 IDB_BLOOD10             BITMAP                  "..\\res\\blood10.bmp"
 
+IDB_BITMAP6             BITMAP                  "..\\res\\bitmap6.bmp"
+
+IDB_CHARACTERBLOODFRAME BITMAP                  "..\\res\\characterBloodFrame.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

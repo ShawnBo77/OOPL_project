@@ -60,7 +60,7 @@ namespace game_framework {
 		CMovingBitmap ShrimpAttackDetails;
 		CMovingBitmap GuavaJuiceBloodDetails;
 
-		Character* character;
+		Character* _character;
 		PropStorage* propStorage;
 		SourceStorage* sourceStorage;
 	};

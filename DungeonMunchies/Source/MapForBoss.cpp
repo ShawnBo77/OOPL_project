@@ -17,34 +17,28 @@ namespace game_framework {
     {
         X = 0;
         Y = 0;
-        gridW = 50;
-        gridH = 50;
-        setFloor(400);
+        gridW = 40;
+        gridH = 40;
+        setFloor(560);
+        int mapGrid_init[40][18];
+        for (int i = 0; i < 40; i++)
+        {
+            for (int j = 0; j < 18; j++)
+            {
+                mapGrid_init[i][j] = 0;
+            }
+        }
        //給予地圖左上角座標及每張小圖寬度
-        int mapGrid_init[20][9] = { //給予地圖陣列初值
-            {0,0,0,0,0,0,0,0,0},
-            {0,1,1,1,1,1,1,1,0},
-            {0,1,1,1,1,1,1,1,0},
-            {0,1,1,1,1,1,1,1,0},
-            {0,1,1,1,1,1,1,1,0},
-            {0,1,1,1,1,1,1,1,0},
-            {0,1,1,1,1,1,1,1,0},
-            {0,1,1,1,1,1,1,1,0},
-            {0,1,1,1,1,1,1,1,0},
-            {0,1,1,1,1,1,1,1,0},
-            {0,1,1,1,1,1,1,1,0},
-            {0,1,1,1,1,1,1,1,0},
-            {0,1,1,1,1,1,1,1,0},
-            {0,1,1,1,1,1,1,1,0},
-            {0,1,1,1,1,1,1,1,0},
-            {0,1,1,1,1,1,1,1,0},
-            {0,1,1,1,1,1,1,1,0},
-            {0,1,1,1,1,1,1,1,0},
-            {0,1,1,1,1,1,1,1,0},
-            {0,0,0,0,0,0,0,0,0},
-        };
-        for (int i = 0; i < 20; i++) {
-            for (int j = 0; j < 9; j++) {
+        for (int i = 2; i < 30; i++)
+        {
+            for (int j = 5; j < 15; j++)
+            {
+                mapGrid_init[i][j] = 1;
+            }
+        }
+        
+        for (int i = 0; i < 40; i++) {
+            for (int j = 0; j < 18; j++) {
                 mapGrid[i][j] = mapGrid_init[i][j]; //依序填入mapGrid
             }
         }
@@ -61,15 +55,15 @@ namespace game_framework {
 
     void MapForBoss::setPos(int x, int y, int n)
     {
-        int gridX = x / 50;
-        int gridY = y / 50;
+        int gridX = x / 40;
+        int gridY = y / 40;
         mapGrid[gridX][gridY] = n;
     }
 
     bool MapForBoss::isEmpty(int x, int y) const
     {
-        int gridX = x / 50;
-        int gridY = y / 50;
+        int gridX = x / 40;
+        int gridY = y / 40;
         if (mapGrid[gridX][gridY] != 0)
         {
             return true;
@@ -84,10 +78,10 @@ namespace game_framework {
     }
 
     void MapForBoss::onShow() {
-        map.SetTopLeft(getSX(), getSY());
+        map.SetTopLeft(getSX(), getSY()+20);
         map.ShowBitmap();
-        for (int i = 0; i < 9; i++) { //往右顯示六張圖
-            for (int j = 0; j < 20; j++) { //往下顯示四張圖
+        for (int i = 0; i < 18; i++) { //往右顯示六張圖
+            for (int j = 0; j < 40; j++) { //往下顯示四張圖
                 switch (mapGrid[j][i]) {
                 case 0:
                     //blue.SetTopLeft(X + (gridW * j), Y + (gridH * i)); //設定每張圖的座標
