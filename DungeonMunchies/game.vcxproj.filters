@@ -749,5 +749,35 @@
     <Image Include="res\characterBloodFrame.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\characterBlood01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\characterBlood02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\characterBlood03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\characterBlood04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\characterBlood05.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\characterBlood06.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\characterBlood07.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\characterBlood08.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\characterBlood09.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\characterBlood10.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
