@@ -200,6 +200,8 @@ namespace game_framework
 		characterY = Y_POS;
 		facingLR = 1;
 		isMovingLeft = isMovingRight = isMovingUp = isRising = isRolling = false;
+		maxHp = 60;
+		currentHp = 60;
 		rolling_time = 0;
 		isAttacking = false;
 		doubleJump = false;
@@ -246,6 +248,16 @@ namespace game_framework
 	bool Character::GetIsMovingUp()
 	{
 		return isMovingUp;
+	}
+
+	int Character::GetCurrentHp()
+	{
+		return currentHp;
+	}
+
+	int Character::GetMaxHp()
+	{
+		return maxHp;
 	}
 
 	bool Character::GetIsRolling()
@@ -460,7 +472,7 @@ namespace game_framework
 			{
 				if (GetButtonY() < m->getFloor())				// 當y座標還沒碰到地板
 				{
-					characterY += velocity * 2;			// y軸下降(移動velocity個點，velocity的單位為 點/次)
+					characterY += velocity * 3;			// y軸下降(移動velocity個點，velocity的單位為 點/次)
 					if (velocity < 6)
 						velocity++;
 				}
@@ -558,8 +570,7 @@ namespace game_framework
 	{
 		animation.SetTopLeft(500, 350);
 		animation.OnShow();
-		bloodFrame.SetTopLeft(0, 0);
-		bloodFrame.ShowBitmap();
+		BloodShow();
 		if (facingLR == 0) {
 			if (GetIsRolling()) 
 			{
@@ -625,5 +636,21 @@ namespace game_framework
 				standRight.ShowBitmap();
 			}
 		}
+	}
+
+	void Character::BloodShow()
+	{
+		int frameNum = GetMaxHp()/20;
+		for (int i = 0; i < frameNum; i++)
+		{
+			bloodFrame.SetTopLeft(i*70, 0);
+			bloodFrame.ShowBitmap();
+		}
+
+		/*switch (GetCurrentHp()) 
+		{
+			case 0:
+
+		}*/
 	}
 }
