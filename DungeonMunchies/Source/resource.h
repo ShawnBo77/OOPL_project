@@ -187,7 +187,17 @@
 #define IDB_MONSTERCACTUSALIVE          307
 #define IDB_MONSTERCACTUSDEAD           308
 #define IDB_CHARACTERBLOODFRAME         309
-#define IDB_BITMAP6                     310
+#define IDB_CHARACTERBLOOD01            311
+#define IDB_CHARACTERBLOOD02            312
+#define IDB_CHARACTERBLOOD03            313
+#define IDB_BITMAP10                    314
+#define IDB_CHARACTERBLOOD04            314
+#define IDB_CHARACTERBLOOD05            315
+#define IDB_CHARACTERBLOOD06            316
+#define IDB_CHARACTERBLOOD07            317
+#define IDB_CHARACTERBLOOD08            318
+#define IDB_CHARACTERBLOOD09            319
+#define IDB_CHARACTERBLOOD10            320
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -199,7 +209,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        311
+#define _APS_NEXT_RESOURCE_VALUE        321
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

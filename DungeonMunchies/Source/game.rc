@@ -382,9 +382,27 @@ IDB_BLOOD9              BITMAP                  "..\\res\\blood9.bmp"
 
 IDB_BLOOD10             BITMAP                  "..\\res\\blood10.bmp"
 
-IDB_BITMAP6             BITMAP                  "..\\res\\bitmap6.bmp"
-
 IDB_CHARACTERBLOODFRAME BITMAP                  "..\\res\\characterBloodFrame.bmp"
+
+IDB_CHARACTERBLOOD01    BITMAP                  "..\\res\\characterBlood01.bmp"
+
+IDB_CHARACTERBLOOD02    BITMAP                  "..\\res\\characterBlood02.bmp"
+
+IDB_CHARACTERBLOOD03    BITMAP                  "..\\res\\characterBlood03.bmp"
+
+IDB_CHARACTERBLOOD04    BITMAP                  "..\\res\\characterBlood04.bmp"
+
+IDB_CHARACTERBLOOD05    BITMAP                  "..\\res\\characterBlood05.bmp"
+
+IDB_CHARACTERBLOOD06    BITMAP                  "..\\res\\characterBlood06.bmp"
+
+IDB_CHARACTERBLOOD07    BITMAP                  "..\\res\\characterBlood07.bmp"
+
+IDB_CHARACTERBLOOD08    BITMAP                  "..\\res\\characterBlood08.bmp"
+
+IDB_CHARACTERBLOOD09    BITMAP                  "..\\res\\characterBlood09.bmp"
+
+IDB_CHARACTERBLOOD10    BITMAP                  "..\\res\\characterBlood10.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

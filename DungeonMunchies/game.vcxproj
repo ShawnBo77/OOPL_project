@@ -435,6 +435,16 @@
     <Image Include="res\cactus_alive.bmp" />
     <Image Include="res\cactus_dead.bmp" />
     <Image Include="RES\characterBlood.bmp" />
+    <Image Include="RES\characterBlood01.bmp" />
+    <Image Include="RES\characterBlood02.bmp" />
+    <Image Include="RES\characterBlood03.bmp" />
+    <Image Include="RES\characterBlood04.bmp" />
+    <Image Include="RES\characterBlood05.bmp" />
+    <Image Include="RES\characterBlood06.bmp" />
+    <Image Include="RES\characterBlood07.bmp" />
+    <Image Include="RES\characterBlood08.bmp" />
+    <Image Include="RES\characterBlood09.bmp" />
+    <Image Include="RES\characterBlood10.bmp" />
     <Image Include="res\characterBloodFrame.bmp" />
     <Image Include="res\g_left_jump.bmp" />
     <Image Include="res\g_left_stand.bmp" />

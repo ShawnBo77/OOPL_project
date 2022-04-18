@@ -75,6 +75,7 @@ namespace game_framework {
         CMovingBitmap standLeft;	    // 站立面向左
         CMovingBitmap standRight;	    // 站立面向右
         CMovingBitmap bloodFrame;	    // 角色血量框
+        CMovingBitmap characterBlood[10];   // 角色血量
         CAnimation walkingLeft;         // 向左行走動畫
         CAnimation walkingRight;        // 向右行走動畫
         CAnimation leftJump;            // 左跳動畫

@@ -32,6 +32,16 @@ namespace game_framework
 	void Character::LoadBitmap()
 	{
 		bloodFrame.LoadBitmap(IDB_CHARACTERBLOODFRAME, RGB(0, 0, 0));
+		characterBlood[0].LoadBitmap(IDB_CHARACTERBLOOD01, RGB(255, 255, 255));
+		characterBlood[1].LoadBitmap(IDB_CHARACTERBLOOD02, RGB(255, 255, 255));
+		characterBlood[2].LoadBitmap(IDB_CHARACTERBLOOD03, RGB(255, 255, 255));
+		characterBlood[3].LoadBitmap(IDB_CHARACTERBLOOD04, RGB(255, 255, 255));
+		characterBlood[4].LoadBitmap(IDB_CHARACTERBLOOD05, RGB(255, 255, 255));
+		characterBlood[5].LoadBitmap(IDB_CHARACTERBLOOD06, RGB(255, 255, 255));
+		characterBlood[6].LoadBitmap(IDB_CHARACTERBLOOD07, RGB(255, 255, 255));
+		characterBlood[7].LoadBitmap(IDB_CHARACTERBLOOD08, RGB(255, 255, 255));
+		characterBlood[8].LoadBitmap(IDB_CHARACTERBLOOD09, RGB(255, 255, 255));
+		characterBlood[9].LoadBitmap(IDB_CHARACTERBLOOD10, RGB(255, 255, 255));
 		//animation.AddBitmap(IDB_GRAY);
 		//animation.AddBitmap(IDB_BOSSRIGHTSTAND, RGB(0, 0, 0));
 		//
@@ -201,7 +211,7 @@ namespace game_framework
 		facingLR = 1;
 		isMovingLeft = isMovingRight = isMovingUp = isRising = isRolling = false;
 		maxHp = 60;
-		currentHp = 60;
+		currentHp = 30;
 		rolling_time = 0;
 		isAttacking = false;
 		doubleJump = false;
@@ -641,16 +651,74 @@ namespace game_framework
 	void Character::BloodShow()
 	{
 		int frameNum = GetMaxHp()/20;
+		int fullHeartNum = GetCurrentHp()/20;
+		int chagingHeart = GetCurrentHp() - fullHeartNum * 20;
+
 		for (int i = 0; i < frameNum; i++)
 		{
 			bloodFrame.SetTopLeft(i*70, 0);
 			bloodFrame.ShowBitmap();
 		}
 
-		/*switch (GetCurrentHp()) 
+		for (int i = 0; i < fullHeartNum; i++)
 		{
-			case 0:
+			characterBlood[0].SetTopLeft(i * 70, 0);
+			characterBlood[0].ShowBitmap();
+		}
 
-		}*/
+		if (GetCurrentHp() <= 0)
+		{
+			//show Game Over
+		}
+		else if (chagingHeart <= 2)
+		{
+			characterBlood[10].SetTopLeft(fullHeartNum * 70, 0);
+			characterBlood[10].ShowBitmap();
+		}
+		else if (chagingHeart <= 4)
+		{
+			characterBlood[9].SetTopLeft(fullHeartNum * 70, 0);
+			characterBlood[9].ShowBitmap();
+		}
+		else if (chagingHeart <= 6)
+		{
+			characterBlood[8].SetTopLeft(fullHeartNum * 70, 0);
+			characterBlood[8].ShowBitmap();
+		}
+		else if (chagingHeart <= 8)
+		{
+			characterBlood[7].SetTopLeft(fullHeartNum * 70, 0);
+			characterBlood[7].ShowBitmap();
+		}
+		else if (chagingHeart <= 10)
+		{
+			characterBlood[6].SetTopLeft(fullHeartNum * 70, 0);
+			characterBlood[6].ShowBitmap();
+		}
+		else if (chagingHeart <= 12)
+		{
+			characterBlood[5].SetTopLeft(fullHeartNum * 70, 0);
+			characterBlood[5].ShowBitmap();
+		}
+		else if (chagingHeart <= 14)
+		{
+			characterBlood[4].SetTopLeft(fullHeartNum * 70, 0);
+			characterBlood[4].ShowBitmap();
+		}
+		else if (chagingHeart <= 16)
+		{
+			characterBlood[3].SetTopLeft(fullHeartNum * 70, 0);
+			characterBlood[3].ShowBitmap();
+		}
+		else if (chagingHeart <= 18)
+		{
+			characterBlood[2].SetTopLeft(fullHeartNum * 70, 0);
+			characterBlood[2].ShowBitmap();
+		}
+		else if (chagingHeart <= 20)
+		{
+			characterBlood[1].SetTopLeft(fullHeartNum * 70, 0);
+			characterBlood[1].ShowBitmap();
+		}
 	}
 }
