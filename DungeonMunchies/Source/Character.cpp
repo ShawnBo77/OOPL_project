@@ -209,15 +209,18 @@ namespace game_framework
 		characterX = X_POS;
 		characterY = Y_POS;
 		facingLR = 1;
+		STEP_SIZE = 15;
 		isMovingLeft = isMovingRight = isMovingUp = isRising = isRolling = false;
-		maxHp = 60;
-		currentHp = 30;
+		maxHp = 80;
+		currentHp = 37;
 		rolling_time = 0;
 		isAttacking = false;
 		doubleJump = false;
 		DJtemp = doubleJump;
+		EatGuavaJuiceBlood(true);
+		EatGrassFast(true); 
+		EatShrimpBlood(true);
 	}
-
 
 	/*Getter*/
 	int Character::GetLeftX()
@@ -314,11 +317,6 @@ namespace game_framework
 		return isRising;
 	}
 
-	bool Character::CanDoubleJump()
-	{
-		return doubleJump;
-	}
-
 	
 	/*Setter*/
 	void Character::SetMap(Map *m)
@@ -365,11 +363,6 @@ namespace game_framework
 			isRolling = false;
 	}
 
-	void Character::SetDoubleJump(bool flag)
-	{
-		doubleJump = flag;
-	}
-
 	void Character::SetAttacking(bool flag)
 	{
 		isAttacking = flag;
@@ -408,13 +401,70 @@ namespace game_framework
 		DJtemp = flag;
 	}
 
+	bool Character::CanDoubleJump()
+	{
+		return doubleJump;
+	}
+
+	void Character::SetDoubleJump(bool flag)
+	{
+		doubleJump = flag;
+	}
+
+	void Character::EatGrassFast(bool flag)
+	{
+		if (flag)
+		{
+			IncreaseSpeed(1.4);
+		}
+	}
+
+	void Character::IncreaseSpeed(double m)
+	{
+		STEP_SIZE = int(STEP_SIZE * m);
+	}
+
+	void Character::EatShrimpBlood(bool flag)
+	{
+		if (flag)
+		{
+			addMaxHp(20);
+		}
+	}
+
+	void Character::addMaxHp(int blood)
+	{
+		maxHp += 20;
+	}
+
+	void Character::EatGuavaJuiceBlood(bool flag)
+	{
+		healBlood = flag;
+	}
+
+	void Character::healBloodEveryTenSeconds()
+	{
+		if (healBloodTime.GetTime() == 0) 
+		{
+			healBloodTime.Start();
+		}
+		else
+		{
+			healBloodTime.Finish();
+			if (healBloodTime.GetTime()/CLOCKS_PER_SEC > 10)
+			{
+				((currentHp + 3) > maxHp ? currentHp = maxHp : currentHp += 3);
+				healBloodTime.Start();
+			}
+		}
+	}
+
 	
 
 	void Character::OnMove(Map* m)
 	{
 		animation.OnMove();
 		const int BORDER = 5;													//角色邊框寬度
-		const int STEP_SIZE = 15;												//角色移動速度
 		SetMap(m);
 
 		if (GetIsRolling())
@@ -650,9 +700,18 @@ namespace game_framework
 
 	void Character::BloodShow()
 	{
-		int frameNum = GetMaxHp()/20;
-		int fullHeartNum = GetCurrentHp()/20;
-		int chagingHeart = GetCurrentHp() - fullHeartNum * 20;
+		int frameNum;
+		int fullHeartNum;
+		int chagingHeart;
+
+		if (healBlood)
+		{
+			healBloodEveryTenSeconds();
+		}
+
+		frameNum = GetMaxHp()/20;
+		fullHeartNum = GetCurrentHp()/20;
+		chagingHeart = GetCurrentHp() - fullHeartNum * 20;
 
 		for (int i = 0; i < frameNum; i++)
 		{
@@ -670,55 +729,58 @@ namespace game_framework
 		{
 			//show Game Over
 		}
-		else if (chagingHeart <= 2)
+		else if (chagingHeart == 0)
 		{
-			characterBlood[10].SetTopLeft(fullHeartNum * 70, 0);
-			characterBlood[10].ShowBitmap();
 		}
-		else if (chagingHeart <= 4)
+		else if (chagingHeart <= 2)
 		{
 			characterBlood[9].SetTopLeft(fullHeartNum * 70, 0);
 			characterBlood[9].ShowBitmap();
 		}
-		else if (chagingHeart <= 6)
+		else if (chagingHeart <= 4)
 		{
 			characterBlood[8].SetTopLeft(fullHeartNum * 70, 0);
 			characterBlood[8].ShowBitmap();
 		}
-		else if (chagingHeart <= 8)
+		else if (chagingHeart <= 6)
 		{
 			characterBlood[7].SetTopLeft(fullHeartNum * 70, 0);
 			characterBlood[7].ShowBitmap();
 		}
-		else if (chagingHeart <= 10)
+		else if (chagingHeart <= 8)
 		{
 			characterBlood[6].SetTopLeft(fullHeartNum * 70, 0);
 			characterBlood[6].ShowBitmap();
 		}
-		else if (chagingHeart <= 12)
+		else if (chagingHeart <= 10)
 		{
 			characterBlood[5].SetTopLeft(fullHeartNum * 70, 0);
 			characterBlood[5].ShowBitmap();
 		}
-		else if (chagingHeart <= 14)
+		else if (chagingHeart <= 12)
 		{
 			characterBlood[4].SetTopLeft(fullHeartNum * 70, 0);
 			characterBlood[4].ShowBitmap();
 		}
-		else if (chagingHeart <= 16)
+		else if (chagingHeart <= 14)
 		{
 			characterBlood[3].SetTopLeft(fullHeartNum * 70, 0);
 			characterBlood[3].ShowBitmap();
 		}
-		else if (chagingHeart <= 18)
+		else if (chagingHeart <= 16)
 		{
 			characterBlood[2].SetTopLeft(fullHeartNum * 70, 0);
 			characterBlood[2].ShowBitmap();
 		}
-		else if (chagingHeart <= 20)
+		else if (chagingHeart <= 18)
 		{
 			characterBlood[1].SetTopLeft(fullHeartNum * 70, 0);
 			characterBlood[1].ShowBitmap();
+		}
+		else if (chagingHeart <= 20)
+		{
+			characterBlood[0].SetTopLeft(fullHeartNum * 70, 0);
+			characterBlood[0].ShowBitmap();
 		}
 	}
 }

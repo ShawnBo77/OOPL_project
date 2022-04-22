@@ -258,6 +258,7 @@
     <None Include="res\Toolbar.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Counter.cpp" />
     <ClCompile Include="Source\audio.cpp" />
     <ClCompile Include="Source\BloodBar.cpp" />
     <ClCompile Include="Source\CBall.cpp" />
@@ -321,6 +322,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Counter.h" />
     <ClInclude Include="Source\audio.h" />
     <ClInclude Include="Source\BloodBar.h" />
     <ClInclude Include="Source\CBall.h" />

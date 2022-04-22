@@ -2,6 +2,7 @@
 #define __CHARACTER__
 
 #include "Map.h"
+#include "Counter.h"
 namespace game_framework {
     /////////////////////////////////////////////////////////////////////////////
     // 這個class為遊戲的角色人物物件
@@ -37,7 +38,6 @@ namespace game_framework {
         bool GetIsAttackFromRight();    // 回傳攻擊是否來自右方
         bool GetIsAttackFromLeft();	    // 回傳攻擊是否來自左方
         bool GetIsAttackFromButton();	// 回傳攻擊是否來自下方
-        bool CanDoubleJump();           // 回傳是否可以二段跳
         int GetMaxHp();                // 取得最大血量
         int GetCurrentHp();            // 取得目前血量
         int GetAtk();                  // 取得攻擊力
@@ -56,18 +56,24 @@ namespace game_framework {
         void SetIsAttackFromButton(bool flag);	// 設定攻擊是否來自下方
         void SetCurrentHp(int x);               // 設定目前血量
         void SetAtk(int x);                     // 設定攻擊力
-        void SetDoubleJump(bool flag);          // 設定是否可以二段跳
 
         void Rolling(Map *m, bool flag);        // 翻滾動作
         void addAtk(int ATK);                   // 提升攻擊力
         void restoreCurrentHp();                // 恢復目前血量
-        void addMaxHp();                        // 提升血量上限
         void Attack(bool flag);
 
         /*餐點能力*/
         SourceStorage* GetSourceStorage();	        // 回傳素材儲存空間
         PropStorage* GetPropStorage();	            // 回傳道具儲存空間
-        void EatMosquitoJump(bool flag);  
+        void EatMosquitoJump(bool flag);        // 吃下二段跳能力
+        bool CanDoubleJump();                   // 回傳是否可以二段跳
+        void SetDoubleJump(bool flag);          // 設定是否可以二段跳
+        void EatGrassFast(bool flag);           // 吃下移動速度提升能力
+        void IncreaseSpeed(double m);           // 提升移動速度(倍率)
+        void EatShrimpBlood(bool flag);         // 吃下血量提升能力
+        void addMaxHp(int blood);               // 提升血量上限
+        void EatGuavaJuiceBlood(bool flag);     // 吃下每十秒回三滴血能力
+        void healBloodEveryTenSeconds();        // 每十秒回三滴血
         
         
 
@@ -89,6 +95,7 @@ namespace game_framework {
 
 		int characterX, characterY;
 		int characterW, characterH;
+        int STEP_SIZE;              // 移動速度
 		bool isMovingDown;		    // 是否正在往下移動
 		bool isMovingLeft;			// 是否正在往左移動
 		bool isMovingRight;			// 是否正在往右移動
@@ -104,11 +111,14 @@ namespace game_framework {
 		int  velocity;
 		int  rolling_time;
 
+        Counter healBloodTime;
+
         int currentHp;
         int maxHp;
         int atk;
 		bool doubleJump;
 		bool DJtemp;
+		bool healBlood;
 
 		SourceStorage* sourceStorage;
 		PropStorage* propStorage;
