@@ -84,7 +84,7 @@ namespace game_framework {
         CAnimation rightRolling;        // 右滾動畫
         CAnimation leftAttacking;       // 向左攻擊動畫
         CAnimation rightAttacking;      // 向右攻擊動畫
-        CAnimation animation;           // 向右攻擊動畫
+        //CAnimation animation;           // for test
         Map* currentMap;
 
 		int characterX, characterY;

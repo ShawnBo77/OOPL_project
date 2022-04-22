@@ -160,10 +160,10 @@ namespace game_framework
 		//animation.AddBitmap(IDB_BOSSRIGHTWALK3, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_BOSSRIGHTWALK4, RGB(0, 0, 0));
 		//
-		animation.AddBitmap(IDB_BOSSLEFTCOLLIDE1, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTCOLLIDE2, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTCOLLIDE3, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTCOLLIDE4, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTCOLLIDE1, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTCOLLIDE2, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTCOLLIDE3, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTCOLLIDE4, RGB(0, 0, 0));
 
 		//animation.AddBitmap(IDB_BOSSLEFTDEAD1, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_BOSSLEFTDEAD2, RGB(0, 0, 0));
@@ -172,24 +172,24 @@ namespace game_framework
 		//animation.AddBitmap(IDB_BOSSLEFTDEAD5, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_BOSSLEFTDEAD6, RGB(0, 0, 0));
 
-		animation.AddBitmap(IDB_BOSSLEFTHIT1, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTHIT2, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTHIT3, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTHIT4, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTHIT5, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTHIT6, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTHITEFFECT4, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTHITEFFECT5, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTHIT1, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTHIT2, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTHIT3, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTHIT4, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTHIT5, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTHIT6, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTHITEFFECT4, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTHITEFFECT5, RGB(0, 0, 0));
 
-		animation.AddBitmap(IDB_BOSSLEFTTHORN1, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTTHORN2, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTTHORN3, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTTHORN1, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTTHORN2, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTTHORN3, RGB(0, 0, 0));
 
-		animation.AddBitmap(IDB_BOSSLEFTSTAND, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTWALK1, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTWALK2, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTWALK3, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTWALK4, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTSTAND, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTWALK1, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTWALK2, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTWALK3, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTWALK4, RGB(0, 0, 0));
 
 		//animation.AddBitmap(IDB_THRONGROW1, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_THRONGROW2, RGB(0, 0, 0));
@@ -408,11 +408,9 @@ namespace game_framework
 		DJtemp = flag;
 	}
 
-	
-
 	void Character::OnMove(Map* m)
 	{
-		animation.OnMove();
+		//animation.OnMove();
 		const int BORDER = 5;													//角色邊框寬度
 		const int STEP_SIZE = 15;												//角色移動速度
 		SetMap(m);
@@ -578,8 +576,8 @@ namespace game_framework
 
 	void Character::OnShow()
 	{
-		animation.SetTopLeft(500, 350);
-		animation.OnShow();
+		//animation.SetTopLeft(500, 350);
+		//animation.OnShow();
 		BloodShow();
 		if (facingLR == 0) {
 			if (GetIsRolling()) 
