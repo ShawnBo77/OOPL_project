@@ -134,14 +134,14 @@ namespace game_framework
 		//animation.AddBitmap(IDB_BOSSRIGHTCOLLIDE2, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_BOSSRIGHTCOLLIDE3, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_BOSSRIGHTCOLLIDE4, RGB(0, 0, 0));
-		
+
 		//animation.AddBitmap(IDB_BOSSRIGHTDEAD1, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_BOSSRIGHTDEAD2, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_BOSSRIGHTDEAD3, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_BOSSRIGHTDEAD4, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_BOSSRIGHTDEAD5, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_BOSSRIGHTDEAD6, RGB(0, 0, 0));
-		
+
 		//animation.AddBitmap(IDB_BOSSRIGHTHIT1, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_BOSSRIGHTHIT2, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_BOSSRIGHTHIT3, RGB(0, 0, 0));
@@ -160,10 +160,10 @@ namespace game_framework
 		//animation.AddBitmap(IDB_BOSSRIGHTWALK3, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_BOSSRIGHTWALK4, RGB(0, 0, 0));
 		//
-		animation.AddBitmap(IDB_BOSSLEFTCOLLIDE1, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTCOLLIDE2, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTCOLLIDE3, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTCOLLIDE4, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTCOLLIDE1, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTCOLLIDE2, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTCOLLIDE3, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTCOLLIDE4, RGB(0, 0, 0));
 
 		//animation.AddBitmap(IDB_BOSSLEFTDEAD1, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_BOSSLEFTDEAD2, RGB(0, 0, 0));
@@ -172,24 +172,24 @@ namespace game_framework
 		//animation.AddBitmap(IDB_BOSSLEFTDEAD5, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_BOSSLEFTDEAD6, RGB(0, 0, 0));
 
-		animation.AddBitmap(IDB_BOSSLEFTHIT1, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTHIT2, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTHIT3, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTHIT4, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTHIT5, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTHIT6, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTHITEFFECT4, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTHITEFFECT5, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTHIT1, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTHIT2, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTHIT3, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTHIT4, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTHIT5, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTHIT6, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTHITEFFECT4, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTHITEFFECT5, RGB(0, 0, 0));
 
-		animation.AddBitmap(IDB_BOSSLEFTTHORN1, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTTHORN2, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTTHORN3, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTTHORN1, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTTHORN2, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTTHORN3, RGB(0, 0, 0));
 
-		animation.AddBitmap(IDB_BOSSLEFTSTAND, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTWALK1, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTWALK2, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTWALK3, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_BOSSLEFTWALK4, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTSTAND, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTWALK1, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTWALK2, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTWALK3, RGB(0, 0, 0));
+		//animation.AddBitmap(IDB_BOSSLEFTWALK4, RGB(0, 0, 0));
 
 		//animation.AddBitmap(IDB_THRONGROW1, RGB(0, 0, 0));
 		//animation.AddBitmap(IDB_THRONGROW2, RGB(0, 0, 0));
@@ -215,6 +215,9 @@ namespace game_framework
 		currentHp = 37;
 		rolling_time = 0;
 		isAttacking = false;
+		isAttackedFromRight = false;
+		isAttackedFromLeft = false;
+		isAttackedFromButton = false;
 		doubleJump = false;
 		DJtemp = doubleJump;
 		EatGuavaJuiceBlood(true);
@@ -283,19 +286,19 @@ namespace game_framework
 		return isAttacking;
 	}
 
-	bool Character::GetIsAttackFromRight()
+	bool Character::GetIsAttackedFromRight()
 	{
-		return isAttackFromRight;
+		return isAttackedFromRight;
 	}
 
-	bool Character::GetIsAttackFromLeft()
+	bool Character::GetIsAttackedFromLeft()
 	{
-		return isAttackFromLeft;
+		return isAttackedFromLeft;
 	}
 
-	bool Character::GetIsAttackFromButton()
+	bool Character::GetIsAttackedFromButton()
 	{
-		return isAttackFromButton;
+		return isAttackedFromButton;
 	}
 
 	bool Character::GetIsOnTheFloor()
@@ -319,7 +322,7 @@ namespace game_framework
 
 	
 	/*Setter*/
-	void Character::SetMap(Map *m)
+	void Character::SetMap(Map* m)
 	{
 		currentMap = m;
 	}
@@ -369,29 +372,36 @@ namespace game_framework
 	}
 
 
-	void Character::SetIsAttackFromRight(bool flag)
+	void Character::SetIsAttackedFromRight(bool flag)
 	{
-		isAttackFromRight = flag;
+		isAttackedFromRight = flag;
 	}
 
-	void Character::SetIsAttackFromLeft(bool flag)
+	void Character::SetIsAttackedFromLeft(bool flag)
 	{
-		isAttackFromLeft = flag;
+		isAttackedFromLeft = flag;
 	}
 
-	void Character::SetIsAttackFromButton(bool flag)
+	void Character::SetIsAttackedFromButton(bool flag)
 	{
-		isAttackFromButton = flag;
+		isAttackedFromButton = flag;
+	}
+
+	void Character::SetCurrentHp(int x)
+	{
+		currentHp = x;
 	}
 
 	/*餐點能力*/
-	SourceStorage* Character::GetSourceStorage() {
+	SourceStorage* Character::GetSourceStorage()
+	{
 		sourceStorage->getSource(0)->setNum(5);
 		sourceStorage->getSource(2)->setNum(15);
 		return sourceStorage;
 	}
 
-	PropStorage* Character::GetPropStorage() {
+	PropStorage* Character::GetPropStorage()
+	{
 		return propStorage;
 	}
 
@@ -463,7 +473,7 @@ namespace game_framework
 
 	void Character::OnMove(Map* m)
 	{
-		animation.OnMove();
+		//animation.OnMove();
 		const int BORDER = 5;													//角色邊框寬度
 		SetMap(m);
 
@@ -551,6 +561,24 @@ namespace game_framework
 				else
 					Attack(0);
 			}
+
+			if (isAttackedFromRight) //還要判定是否能移動
+			{ 
+				characterX -= STEP_SIZE * 3;
+				isAttackedFromRight = false;
+			}
+
+			if (isAttackedFromLeft)
+			{
+				characterX += STEP_SIZE * 3;
+				isAttackedFromLeft = false;
+			}
+
+			if (isAttackedFromButton)
+			{
+				characterY -= STEP_SIZE * 3;
+				isAttackedFromButton = false;
+			}
 		}
 
 		walkingLeft.OnMove();
@@ -612,7 +640,11 @@ namespace game_framework
 				isRolling = false;
 			}
 		}
+	}
 
+	void Character::lossCurrentHp(int n)
+	{
+		currentHp -= n;
 	}
 
 	void Character::Attack(bool flag)
@@ -628,11 +660,12 @@ namespace game_framework
 
 	void Character::OnShow()
 	{
-		animation.SetTopLeft(500, 350);
-		animation.OnShow();
+		//animation.SetTopLeft(500, 350);
+		//animation.OnShow();
 		BloodShow();
-		if (facingLR == 0) {
-			if (GetIsRolling()) 
+		if (facingLR == 0)
+		{
+			if (GetIsRolling())
 			{
 				leftRolling.SetTopLeft(characterX - 5, characterY + 10);
 				leftRolling.OnShow();
@@ -715,7 +748,7 @@ namespace game_framework
 
 		for (int i = 0; i < frameNum; i++)
 		{
-			bloodFrame.SetTopLeft(i*70, 0);
+			bloodFrame.SetTopLeft(i * 70, 0);
 			bloodFrame.ShowBitmap();
 		}
 

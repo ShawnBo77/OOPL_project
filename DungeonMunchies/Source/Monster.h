@@ -20,13 +20,15 @@ namespace game_framework
 		virtual void LoadBitmap() = 0;				//加載敵人Bitmap
 		virtual void Initialize() = 0;				//初始化
 		virtual void OnShow(Map* m) = 0;			//顯示敵人於畫面上
-		virtual void OnMove(Map* m) = 0;			//敵人移動
+		virtual void OnMove() = 0;			//敵人移動
 		virtual int  GetLeftX() = 0;				// 左上角 x 座標
 		virtual int  GetTopY() = 0;					// 左上角 y 座標
 		virtual int  GetRightX() = 0;				// 右下角 x 座標
 		virtual int  GetButtonY() = 0;				// 右下角 y 座標
 		//英雄是否和此敵人所在同一位置，前身是cannotPass
-		virtual bool isIntersect() = 0;
+		virtual void intersect() = 0;
+		void SetIsIntersect(bool flag);
+		bool GetIsIntersect();
 		int distanceToHero();
 		double hpProportion();
 		/////////////////////////////////////////////////////////////////////////////
@@ -53,6 +55,7 @@ namespace game_framework
 		bool isMovingUp;
 		bool isMovingDown;
 		bool isAttacking;
+		bool isIntersect;
 		int _direction;
 	};
 }

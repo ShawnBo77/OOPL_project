@@ -12,16 +12,19 @@ const char KEY_A = 0x41;
 const char KEY_S = 0x53;
 const char KEY_D = 0x44;
 const char KEY_E = 69;
+const char KEY_R = 82;
 const char KEY_SPACE = 0x20;
 const char KEY_CTRL = 0x11;
 
 // 定義各關卡的編號
-enum Stage {
+enum Stage
+{
 	stage_boss,
 	stage_props
 };
 
-enum PropCase {
+enum PropCase
+{
 	mosquito_jump_p,
 	shrimp_blood_p,
 	grass_fast_p,
@@ -30,7 +33,8 @@ enum PropCase {
 	guava_juice_blood_p
 };
 
-enum SourceCase {
+enum SourceCase
+{
 	mosquito_jump_s,
 	shrimp_blood_s,
 	grass_fast_s,

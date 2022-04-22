@@ -23,10 +23,10 @@ namespace game_framework
 		_x = 400;
 		_y = 400;
 		hp = 10;
-		attackDamage = 20;
+		attackDamage = 5;
 	}
 
-	MonsterCactus::MonsterCactus(int x, int y, Character* c) : Monster(x, y, 12, 20, c)
+	MonsterCactus::MonsterCactus(int x, int y, Character* c) : Monster(x, y, 12, 5, c)
 	{
 	}
 
@@ -61,9 +61,28 @@ namespace game_framework
 		}
 		if (!isAlive())
 		{
-			cactusDead.SetTopLeft(_x, _y+(cactusAlive.Height()-cactusDead.Height()));
+			cactusDead.SetTopLeft(_x, _y + (cactusAlive.Height() - cactusDead.Height()));
 			cactusDead.ShowBitmap();
 		}
+		int CharacterLeftX = character->GetLeftX();
+		int CharacterRightX = character->GetRightX();
+		int CharacterTopY = character->GetTopY();
+		int CharacterButtonY = character->GetButtonY();
+		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+		CFont f, * fp;
+		f.CreatePointFont(120, "Times New Roman");	// 產生 font f; 160表示16 point的字
+		fp = pDC->SelectObject(&f);					// 選用 font f
+		pDC->SetBkColor(RGB(230, 220, 200));
+		pDC->SetTextColor(RGB(0, 0, 0));
+		char str[500];								// Demo 數字對字串的轉換
+		sprintf(str, "CharacterLeftX:%d CharacterRightX:%d CharacterTopY:%d CharacterButtonY:%d \r\n\
+			CactusLeftX:%d CactusRightX:%d CactusTopY:%d CactusButtonY:%d"
+			, CharacterLeftX, CharacterRightX, CharacterTopY, CharacterButtonY,
+			GetLeftX(), GetRightX(), GetTopY(), GetButtonY());
+		//sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
+		pDC->TextOut(200, 100, str);
+		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
 
 	int MonsterCactus::GetLeftX()
@@ -86,38 +105,42 @@ namespace game_framework
 		return _y + cactusAlive.Height();
 	}
 
-	bool MonsterCactus::isIntersect()
+	void MonsterCactus::intersect()
 	{
 		if (isAlive())
 		{
 			if (character->GetRightX() >= GetLeftX() && character->GetRightX() <= GetRightX()
-				&& character->GetButtonY() <= GetTopY() && character->GetButtonY() >= GetButtonY())
+				&& character->GetButtonY() >= GetTopY() && character->GetButtonY() <= GetButtonY())
 			{ //角色右方碰到怪物
-				character->SetIsAttackFromRight(true);
-				return true;
+				character->SetIsAttackedFromRight(true);
+				isIntersect = true;
 			}
 			if (character->GetLeftX() <= GetRightX() && character->GetLeftX() >= GetLeftX()
-				&& character->GetButtonY() <= GetTopY() && character->GetButtonY() >= GetButtonY())
+				&& character->GetButtonY() >= GetTopY() && character->GetButtonY() <= GetButtonY())
 			{ //角色左方碰到怪物
-				character->SetIsAttackFromLeft(true);
-				return true;
+				character->SetIsAttackedFromLeft(true);
+				isIntersect = true;
 			}
 			if ((character->GetRightX() >= GetLeftX() && character->GetRightX() <= GetRightX() ||
 				character->GetLeftX() <= GetRightX() && character->GetLeftX() >= GetLeftX())
-				&& character->GetButtonY() <= GetTopY() && character->GetButtonY() >= GetButtonY())
+				&& character->GetButtonY() >= GetTopY() && character->GetButtonY() <= GetButtonY())
 			{ //角色下方碰到怪物
-				character->SetIsAttackFromButton(true);
-				return true;
+				character->SetIsAttackedFromButton(true);
+				isIntersect = true;
 			}
-			else
+			if (isIntersect)
 			{
-				return false;
+				character->lossCurrentHp(attackDamage);
+				isIntersect = false;
 			}
 		}
-		return false;
+		isIntersect = false;
 	}
 
-	void MonsterCactus::OnMove(Map* m)
+	void MonsterCactus::OnMove()
 	{
+		if (isAlive()) {
+			intersect();
+		}
 	}
 }

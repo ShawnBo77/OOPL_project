@@ -35,9 +35,9 @@ namespace game_framework {
         bool GetIsOnTheFloor();         // 回傳是否正在地面
         bool GetIsRising();	            // 回傳是否正在上升
         bool GetIsAttacking();	        // 回傳是否正在攻擊
-        bool GetIsAttackFromRight();    // 回傳攻擊是否來自右方
-        bool GetIsAttackFromLeft();	    // 回傳攻擊是否來自左方
-        bool GetIsAttackFromButton();	// 回傳攻擊是否來自下方
+        bool GetIsAttackedFromRight();    // 回傳攻擊是否來自右方
+        bool GetIsAttackedFromLeft();	    // 回傳攻擊是否來自左方
+        bool GetIsAttackedFromButton();	// 回傳攻擊是否來自下方
         int GetMaxHp();                // 取得最大血量
         int GetCurrentHp();            // 取得目前血量
         int GetAtk();                  // 取得攻擊力
@@ -51,15 +51,16 @@ namespace game_framework {
         void SetRolling(bool flag);	            // 設定是否翻滾
         void SetXY(int x, int y);		        // 設定左上角座標
         void SetAttacking(bool flag);		    // 設定是否攻擊
-        void SetIsAttackFromRight(bool flag);	// 設定攻擊是否來自右方
-        void SetIsAttackFromLeft(bool flag);	// 設定攻擊是否來自左方
-        void SetIsAttackFromButton(bool flag);	// 設定攻擊是否來自下方
+        void SetIsAttackedFromRight(bool flag);	// 設定攻擊是否來自右方
+        void SetIsAttackedFromLeft(bool flag);	// 設定攻擊是否來自左方
+        void SetIsAttackedFromButton(bool flag);	// 設定攻擊是否來自下方
         void SetCurrentHp(int x);               // 設定目前血量
         void SetAtk(int x);                     // 設定攻擊力
 
         void Rolling(Map *m, bool flag);        // 翻滾動作
         void addAtk(int ATK);                   // 提升攻擊力
         void restoreCurrentHp();                // 恢復目前血量
+        void lossCurrentHp(int n);              // 損血
         void Attack(bool flag);
 
         /*餐點能力*/
@@ -90,7 +91,7 @@ namespace game_framework {
         CAnimation rightRolling;        // 右滾動畫
         CAnimation leftAttacking;       // 向左攻擊動畫
         CAnimation rightAttacking;      // 向右攻擊動畫
-        CAnimation animation;           // 向右攻擊動畫
+        //CAnimation animation;           // for test
         Map* currentMap;
 
 		int characterX, characterY;
@@ -105,9 +106,9 @@ namespace game_framework {
 		bool isOnTheFloor;          // 是否位於地面
 		bool isRising;              // 是否正在上升
 		bool isAttacking;           // 是否正在攻擊
-		bool isAttackFromRight;
-		bool isAttackFromLeft;
-		bool isAttackFromButton;
+		bool isAttackedFromRight;
+		bool isAttackedFromLeft;
+		bool isAttackedFromButton;
 		int  velocity;
 		int  rolling_time;
 
