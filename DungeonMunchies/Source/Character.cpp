@@ -444,7 +444,7 @@ namespace game_framework
 
 	void Character::addMaxHp(int blood)
 	{
-		maxHp += 20;
+		maxHp += blood;
 	}
 
 	void Character::EatGuavaJuiceBlood(bool flag)
@@ -463,7 +463,7 @@ namespace game_framework
 			healBloodTime.Finish();
 			if (healBloodTime.GetTime()/CLOCKS_PER_SEC > 10)
 			{
-				((currentHp + 3) > maxHp ? currentHp = maxHp : currentHp += 3);
+				restoreCurrentHp(3);
 				healBloodTime.Start();
 			}
 		}
@@ -640,6 +640,11 @@ namespace game_framework
 				isRolling = false;
 			}
 		}
+	}
+
+	void Character::restoreCurrentHp(int n)
+	{
+		(currentHp + n) > GetMaxHp() ? SetCurrentHp(GetMaxHp()) : currentHp += n;
 	}
 
 	void Character::lossCurrentHp(int n)

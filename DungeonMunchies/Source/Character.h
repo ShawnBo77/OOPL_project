@@ -59,7 +59,7 @@ namespace game_framework {
 
         void Rolling(Map *m, bool flag);        // 翻滾動作
         void addAtk(int ATK);                   // 提升攻擊力
-        void restoreCurrentHp();                // 恢復目前血量
+        void restoreCurrentHp(int n);           // 恢復目前血量
         void lossCurrentHp(int n);              // 損血
         void Attack(bool flag);
 
