@@ -17,6 +17,8 @@ namespace game_framework
 		_y = 400;
 		hp = 1200;
 		attackDamage = 0;
+		isAttacking = false;
+		isIntersect = false;
 	}
 
 	Monster::Monster(int x, int y, int enemyHp, int ATK, Character* c)
@@ -29,11 +31,22 @@ namespace game_framework
 		fullHp = enemyHp;
 		attackDamage = ATK;
 		isAttacking = false;
+		isIntersect = false;
 		character = c;
 	}
 
 	Monster::~Monster()
 	{
+	}
+
+	void Monster::SetIsIntersect(bool flag)
+	{
+		isIntersect = flag;
+	}
+
+	bool Monster::GetIsIntersect()
+	{
+		return isIntersect;
 	}
 
 	int Monster::distanceToHero() //與角色的距離 若太遠則不用動作

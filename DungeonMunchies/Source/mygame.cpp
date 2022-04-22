@@ -199,7 +199,7 @@ namespace game_framework
 		: CGameState(g)
 	{
 		//ball = new CBall [NUMBALLS];
-		monsterCactus.push_back(new MonsterCactus(400, 300, &character));
+		monsterCactus.push_back(new MonsterCactus(400, 500, &character));
 	}
 
 	CGameStateRun::~CGameStateRun()
@@ -279,6 +279,10 @@ namespace game_framework
 			break;
 		}
 
+		for (unsigned i = 0; i < monsterCactus.size(); i++)
+		{
+			monsterCactus[i]->OnMove();
+		}
 		//
 		// 判斷擦子是否碰到球
 		//
@@ -379,12 +383,10 @@ namespace game_framework
 				lastStage = currentStage;
 				currentStage = stage_props;
 			}
-
-			//if (currentStage == stage_boss) {
-			//	currentStage = stage_props;
-			//} else {
-			//	currentStage = stage_boss;
-			//}
+			break;
+		case KEY_R:
+			character.SetCurrentHp(50);
+			break;
 		default:
 			break;
 		}
