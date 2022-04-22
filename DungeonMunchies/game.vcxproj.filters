@@ -178,9 +178,7 @@
     <ClCompile Include="Source\MonsterCactus.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Counter.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
+    <ClCompile Include="Source\Counter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -271,9 +269,7 @@
     <ClInclude Include="Source\MonsterCactus.h">
       <Filter>MyGame</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Counter.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
+    <ClInclude Include="Source\Counter.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc">

@@ -28,5 +28,6 @@ namespace game_framework {
 
     void PropGrassFast::effect(Character* character)
     {
+        character->EatGrassFast(true);
     }
 }

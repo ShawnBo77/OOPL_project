@@ -258,12 +258,12 @@
     <None Include="res\Toolbar.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Counter.cpp" />
     <ClCompile Include="Source\audio.cpp" />
     <ClCompile Include="Source\BloodBar.cpp" />
     <ClCompile Include="Source\CBall.cpp" />
     <ClCompile Include="Source\CBouncingBall.cpp" />
     <ClCompile Include="Source\CEraser.cpp" />
+    <ClCompile Include="Source\Counter.cpp" />
     <ClCompile Include="Source\Monster.cpp" />
     <ClCompile Include="Source\game.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -322,13 +322,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Counter.h" />
     <ClInclude Include="Source\audio.h" />
     <ClInclude Include="Source\BloodBar.h" />
     <ClInclude Include="Source\CBall.h" />
     <ClInclude Include="Source\CBouncingBall.h" />
     <ClInclude Include="Source\CEraser.h" />
     <ClInclude Include="Source\Character.h" />
+    <ClInclude Include="Source\Counter.h" />
     <ClInclude Include="Source\Monster.h" />
     <ClInclude Include="Source\game.h" />
     <ClInclude Include="Source\gameDoc.h" />

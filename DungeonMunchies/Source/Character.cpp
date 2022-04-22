@@ -220,9 +220,7 @@ namespace game_framework
 		isAttackedFromButton = false;
 		doubleJump = false;
 		DJtemp = doubleJump;
-		EatGuavaJuiceBlood(true);
-		EatGrassFast(true); 
-		EatShrimpBlood(true);
+		healBlood = false;
 	}
 
 	/*Getter*/
@@ -396,7 +394,11 @@ namespace game_framework
 	SourceStorage* Character::GetSourceStorage()
 	{
 		sourceStorage->getSource(0)->setNum(5);
-		sourceStorage->getSource(2)->setNum(15);
+		sourceStorage->getSource(1)->setNum(5);
+		sourceStorage->getSource(2)->setNum(5);
+		sourceStorage->getSource(3)->setNum(5);
+		sourceStorage->getSource(4)->setNum(15);
+		sourceStorage->getSource(5)->setNum(15);
 		return sourceStorage;
 	}
 
@@ -644,7 +646,7 @@ namespace game_framework
 
 	void Character::restoreCurrentHp(int n)
 	{
-		(currentHp + n) > GetMaxHp() ? SetCurrentHp(GetMaxHp()) : currentHp += n;
+		(GetCurrentHp() + n) >= GetMaxHp() ? SetCurrentHp(GetMaxHp()) : currentHp += n;
 	}
 
 	void Character::lossCurrentHp(int n)

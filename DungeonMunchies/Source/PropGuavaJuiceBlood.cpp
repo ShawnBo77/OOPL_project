@@ -28,5 +28,6 @@ namespace game_framework {
 
     void PropGuavaJuiceBlood::effect(Character* character)
     {
+        character->EatGuavaJuiceBlood(true);
     }
 }
