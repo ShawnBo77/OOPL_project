@@ -139,6 +139,8 @@ namespace game_framework
 
 	void MonsterCactus::OnMove()
 	{
-		intersect();
+		if (isAlive()) {
+			intersect();
+		}
 	}
 }
