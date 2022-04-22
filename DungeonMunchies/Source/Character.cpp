@@ -218,6 +218,7 @@ namespace game_framework
 		isAttackedFromRight = false;
 		isAttackedFromLeft = false;
 		isAttackedFromButton = false;
+		isInvincible = false;
 		doubleJump = false;
 		DJtemp = doubleJump;
 		healBlood = false;
@@ -269,6 +270,11 @@ namespace game_framework
 		return currentHp;
 	}
 
+	bool Character::GetIsInvincible()
+	{
+		return isInvincible;
+	}
+
 	int Character::GetMaxHp()
 	{
 		return maxHp;
@@ -318,7 +324,7 @@ namespace game_framework
 		return isRising;
 	}
 
-	
+
 	/*Setter*/
 	void Character::SetMap(Map* m)
 	{
@@ -390,6 +396,11 @@ namespace game_framework
 		currentHp = x;
 	}
 
+	void Character::SetIsInvincible(bool flag)
+	{
+		isInvincible = flag;
+	}
+
 	/*餐點能力*/
 	SourceStorage* Character::GetSourceStorage()
 	{
@@ -456,22 +467,20 @@ namespace game_framework
 
 	void Character::healBloodEveryTenSeconds()
 	{
-		if (healBloodTime.GetTime() == 0) 
+		if (healBloodTime.GetTime() == 0)
 		{
 			healBloodTime.Start();
 		}
 		else
 		{
 			healBloodTime.Finish();
-			if (healBloodTime.GetTime()/CLOCKS_PER_SEC > 10)
+			if (healBloodTime.GetTime() / CLOCKS_PER_SEC > 10)
 			{
 				restoreCurrentHp(3);
 				healBloodTime.Start();
 			}
 		}
 	}
-
-	
 
 	void Character::OnMove(Map* m)
 	{
@@ -565,7 +574,7 @@ namespace game_framework
 			}
 
 			if (isAttackedFromRight) //還要判定是否能移動
-			{ 
+			{
 				characterX -= STEP_SIZE * 3;
 				isAttackedFromRight = false;
 			}
@@ -580,6 +589,11 @@ namespace game_framework
 			{
 				characterY -= STEP_SIZE * 3;
 				isAttackedFromButton = false;
+			}
+
+			if (isInvincible)
+			{
+				invincible(1);
 			}
 		}
 
@@ -652,6 +666,17 @@ namespace game_framework
 	void Character::lossCurrentHp(int n)
 	{
 		currentHp -= n;
+		isInvincible = true;
+		invincibleTime.Start();
+	}
+
+	void Character::invincible(int time)
+	{
+		invincibleTime.Finish();
+		if (invincibleTime.GetTime() / CLOCKS_PER_SEC > time)
+		{
+			isInvincible = false;
+		}
 	}
 
 	void Character::Attack(bool flag)
@@ -736,6 +761,22 @@ namespace game_framework
 				standRight.ShowBitmap();
 			}
 		}
+		showData();
+	}
+
+	void Character::showData()
+	{
+		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+		CFont f, * fp;
+		f.CreatePointFont(120, "Times New Roman");	// 產生 font f; 160表示16 point的字
+		fp = pDC->SelectObject(&f);					// 選用 font f
+		pDC->SetBkColor(RGB(230, 220, 200));
+		pDC->SetTextColor(RGB(0, 0, 0));
+		char str[100];								// Demo 數字對字串的轉換
+		sprintf(str, "CharacterBlood:%d invincibleTime(start:%d, finish:%d)", currentHp, (int)invincibleTime.GetStartTime(), (int)invincibleTime.GetFinishTime());
+		pDC->TextOut(200, 120, str);
+		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
 
 	void Character::BloodShow()
@@ -749,8 +790,8 @@ namespace game_framework
 			healBloodEveryTenSeconds();
 		}
 
-		frameNum = GetMaxHp()/20;
-		fullHeartNum = GetCurrentHp()/20;
+		frameNum = GetMaxHp() / 20;
+		fullHeartNum = GetCurrentHp() / 20;
 		chagingHeart = GetCurrentHp() - fullHeartNum * 20;
 
 		for (int i = 0; i < frameNum; i++)

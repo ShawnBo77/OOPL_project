@@ -46,7 +46,7 @@ namespace game_framework
 		_x = init_x;
 		_y = init_y;
 		hp = 10;
-		attackDamage = 20;
+		attackDamage = 5;
 		bloodBar.setFullHP(hp);
 	}
 
@@ -64,6 +64,11 @@ namespace game_framework
 			cactusDead.SetTopLeft(_x, _y + (cactusAlive.Height() - cactusDead.Height()));
 			cactusDead.ShowBitmap();
 		}
+		testPosition();
+	}
+
+	void MonsterCactus::testPosition()
+	{
 		int CharacterLeftX = character->GetLeftX();
 		int CharacterRightX = character->GetRightX();
 		int CharacterTopY = character->GetTopY();
@@ -74,13 +79,13 @@ namespace game_framework
 		fp = pDC->SelectObject(&f);					// 選用 font f
 		pDC->SetBkColor(RGB(230, 220, 200));
 		pDC->SetTextColor(RGB(0, 0, 0));
-		char str[500];								// Demo 數字對字串的轉換
-		sprintf(str, "CharacterLeftX:%d CharacterRightX:%d CharacterTopY:%d CharacterButtonY:%d \r\n\
+		char position[500];								// Demo 數字對字串的轉換
+		sprintf(position, "CharacterLeftX:%d CharacterRightX:%d CharacterTopY:%d CharacterButtonY:%d \r\n\
 			CactusLeftX:%d CactusRightX:%d CactusTopY:%d CactusButtonY:%d"
 			, CharacterLeftX, CharacterRightX, CharacterTopY, CharacterButtonY,
 			GetLeftX(), GetRightX(), GetTopY(), GetButtonY());
 		//sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
-		pDC->TextOut(200, 100, str);
+		pDC->TextOut(200, 100, position);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
@@ -128,10 +133,9 @@ namespace game_framework
 				character->SetIsAttackedFromButton(true);
 				isIntersect = true;
 			}
-			if (isIntersect)
+			if (isIntersect && !character->GetIsInvincible())
 			{
 				character->lossCurrentHp(attackDamage);
-				isIntersect = false;
 			}
 		}
 		isIntersect = false;
@@ -139,7 +143,8 @@ namespace game_framework
 
 	void MonsterCactus::OnMove()
 	{
-		if (isAlive()) {
+		if (isAlive())
+		{
 			intersect();
 		}
 	}

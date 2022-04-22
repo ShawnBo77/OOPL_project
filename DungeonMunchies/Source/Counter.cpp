@@ -19,6 +19,26 @@ namespace game_framework
 	{
 	}
 
+	void Counter::SetStartTime(clock_t time)
+	{
+		startTime = time;
+	}
+
+	void Counter::SetFinishTime(clock_t time)
+	{
+		finishTime = time;
+	}
+
+	clock_t Counter::GetStartTime()
+	{
+		return startTime;
+	}
+
+	clock_t Counter::GetFinishTime()
+	{
+		return finishTime;
+	}
+
 	void Counter::Start()
 	{
 		startTime = clock();
