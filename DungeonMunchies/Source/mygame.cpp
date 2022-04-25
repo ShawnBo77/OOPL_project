@@ -199,12 +199,17 @@ namespace game_framework
 		: CGameState(g)
 	{
 		//ball = new CBall [NUMBALLS];
-		monsterCactus.push_back(new MonsterCactus(400, 500, &character));
+		monsterCactus.push_back(new MonsterCactus(300, 500, &character));
+		monsterShrimp.push_back(new MonsterShrimp(700, 320, &character));
 	}
 
 	CGameStateRun::~CGameStateRun()
 	{
 		for (vector<Monster*>::iterator it_i = monsterCactus.begin(); it_i != monsterCactus.end(); ++it_i)
+		{
+			delete* it_i;
+		}
+		for (vector<Monster*>::iterator it_i = monsterShrimp.begin(); it_i != monsterShrimp.end(); ++it_i)
 		{
 			delete* it_i;
 		}
@@ -240,6 +245,10 @@ namespace game_framework
 		for (unsigned i = 0; i < monsterCactus.size(); i++)
 		{
 			monsterCactus[i]->Initialize();
+		}
+		for (unsigned i = 0; i < monsterShrimp.size(); i++)
+		{
+			monsterShrimp[i]->Initialize();
 		}
 		//help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
 		//hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
@@ -286,6 +295,10 @@ namespace game_framework
 		for (unsigned i = 0; i < monsterCactus.size(); i++)
 		{
 			monsterCactus[i]->OnMove();
+		}
+		for (unsigned i = 0; i < monsterShrimp.size(); i++)
+		{
+			monsterShrimp[i]->OnMove();
 		}
 		//
 		// 判斷擦子是否碰到球
@@ -343,6 +356,10 @@ namespace game_framework
 		for (unsigned i = 0; i < monsterCactus.size(); i++)
 		{
 			monsterCactus[i]->LoadBitmap();
+		}
+		for (unsigned i = 0; i < monsterShrimp.size(); i++)
+		{
+			monsterShrimp[i]->LoadBitmap();
 		}
 
 		//help.LoadBitmap(IDB_HELP,RGB(255,255,255));				// 載入說明的圖形
@@ -506,6 +523,10 @@ namespace game_framework
 				//{							//如果show到剛剛比較到的位置，show hero
 				//	player1.OnShow(&map_stg1_1);
 				//}
+			}
+			for (unsigned i = 0; i < monsterShrimp.size(); i++)
+			{
+				monsterShrimp[i]->OnShow(&bossMap);
 			}
 			break;
 		case stage_props:

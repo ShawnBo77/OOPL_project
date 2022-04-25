@@ -64,10 +64,10 @@ namespace game_framework
 			cactusDead.SetTopLeft(_x, _y + (cactusAlive.Height() - cactusDead.Height()));
 			cactusDead.ShowBitmap();
 		}
-		testPosition();
+		showData();
 	}
 
-	void MonsterCactus::testPosition()
+	void MonsterCactus::showData()
 	{
 		int CharacterLeftX = character->GetLeftX();
 		int CharacterRightX = character->GetRightX();
@@ -115,20 +115,20 @@ namespace game_framework
 		if (isAlive())
 		{
 			if (character->GetRightX() >= GetLeftX() && character->GetRightX() <= GetRightX()
-				&& character->GetButtonY() >= GetTopY() && character->GetButtonY() <= GetButtonY())
+				&& character->GetButtonY() >= GetTopY() - 20 && character->GetButtonY() <= GetButtonY())
 			{ //角色右方碰到怪物
 				character->SetIsAttackedFromRight(true);
 				isIntersect = true;
 			}
 			if (character->GetLeftX() <= GetRightX() && character->GetLeftX() >= GetLeftX()
-				&& character->GetButtonY() >= GetTopY() && character->GetButtonY() <= GetButtonY())
+				&& character->GetButtonY() >= GetTopY() - 20 && character->GetButtonY() <= GetButtonY())
 			{ //角色左方碰到怪物
 				character->SetIsAttackedFromLeft(true);
 				isIntersect = true;
 			}
 			if ((character->GetRightX() >= GetLeftX() && character->GetRightX() <= GetRightX() ||
 				character->GetLeftX() <= GetRightX() && character->GetLeftX() >= GetLeftX())
-				&& character->GetButtonY() >= GetTopY() && character->GetButtonY() <= GetButtonY())
+				&& character->GetButtonY() >= GetTopY() - 20 && character->GetButtonY() <= GetButtonY())
 			{ //角色下方碰到怪物
 				character->SetIsAttackedFromButton(true);
 				isIntersect = true;
