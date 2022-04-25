@@ -7,6 +7,13 @@ const char KEY_LEFT = 0x25; // keyboard左箭頭
 const char KEY_UP = 0x26; // keyboard上箭頭
 const char KEY_RIGHT = 0x27; // keyboard右箭頭
 const char KEY_DOWN = 0x28; // keyboard下箭頭
+const char KEY_1 = 49;
+const char KEY_2 = 50;
+const char KEY_3 = 51;
+const char KEY_4 = 52;
+const char KEY_5 = 53;
+const char KEY_6 = 54;
+const char KEY_7 = 55;
 const char KEY_W = 0x57;
 const char KEY_A = 0x41;
 const char KEY_S = 0x53;
@@ -19,6 +26,7 @@ const char KEY_CTRL = 0x11;
 // 定義各關卡的編號
 enum Stage
 {
+	stage_1,
 	stage_boss,
 	stage_props
 };

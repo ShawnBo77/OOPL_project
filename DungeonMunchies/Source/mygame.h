@@ -44,6 +44,7 @@
 #include "Character.h"
 #include "Map.h"
 #include "MapForBoss.h"
+#include "MapS1.h"
 #include "Util.h"
 #include "PropsBook.h"
 #include "Monster.h"
@@ -108,6 +109,7 @@ namespace game_framework
 		//CMovingBitmap	monster;
 		Character		character;
 		MapForBoss		bossMap;
+		MapS1 mapS1;
 		PropsBook		propsBook;
 		//const int		NUMBALLS;	// 球的總數
 		//CMovingBitmap	background;	// 背景圖

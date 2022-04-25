@@ -231,6 +231,7 @@ namespace game_framework
 
 		//eraser.Initialize();
 		character.Initialize();
+		mapS1.Initialize();
 		bossMap.Initialize();
 		propsBook.Initialize(&character);
 		//background.SetTopLeft(BACKGROUND_X,0);				// 設定背景的起始座標
@@ -272,6 +273,9 @@ namespace game_framework
 		//eraser.OnMove();
 		switch (currentStage)
 		{
+		case stage_1:
+			character.OnMove(&mapS1);
+			break;
 		case stage_boss:
 			character.OnMove(&bossMap);
 			break;
@@ -333,6 +337,7 @@ namespace game_framework
 		//
 		character.LoadBitmap();
 		//monster.LoadBitmap(IDB_MONSTER, RGB(255, 0, 255));
+		mapS1.LoadBitmap();
 		bossMap.LoadBitmap();
 		propsBook.LoadBitmap();
 		for (unsigned i = 0; i < monsterCactus.size(); i++)
@@ -387,6 +392,8 @@ namespace game_framework
 		case KEY_R:
 			character.SetCurrentHp(50);
 			break;
+		case KEY_1:
+			currentStage = stage_1;
 		default:
 			break;
 		}
@@ -485,6 +492,10 @@ namespace game_framework
 		//monster.ShowBitmap();
 		switch (currentStage)
 		{
+		case stage_1:
+			mapS1.onShow();
+			character.OnShow();
+			break;
 		case stage_boss:
 			bossMap.onShow();
 			character.OnShow();

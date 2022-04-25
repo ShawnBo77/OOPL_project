@@ -16,8 +16,8 @@ namespace game_framework
 
     MapS1::MapS1() : Map(0, 0) //地圖設置：0為不能走、1為可以走、2為傳送門(transGate)
     {
-        X = 0;
-        Y = 0;
+        X = 40;
+        Y = 40;
         gridW = 40;
         gridH = 40;
         setFloor(560);
@@ -51,9 +51,16 @@ namespace game_framework
     {
     }
 
+    void MapS1::LoadBitmap()
+    {
+        //white.LoadBitmap(IDB_WHITE);
+        //blue.LoadBitmap(IDB_BLUE);
+        map.LoadBitmap(".\\res\\map01.bmp");
+    }
+
     void MapS1::Initialize()
     {
-        setXY(0, 0);
+        setXY(-400, -750);
     }
 
     void MapS1::setPos(int x, int y, int n)
@@ -72,13 +79,6 @@ namespace game_framework
             return true;
         }
         return false;
-    }
-
-    void MapS1::LoadBitmap()
-    {
-        //white.LoadBitmap(IDB_WHITE);
-        //blue.LoadBitmap(IDB_BLUE);
-        map.LoadBitmap(".\\res\\map01.bmp");
     }
 
     void MapS1::onShow()
