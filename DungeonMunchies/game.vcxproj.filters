@@ -179,6 +179,10 @@
       <Filter>MyGame</Filter>
     </ClCompile>
     <ClCompile Include="Source\Counter.cpp" />
+    <ClCompile Include="Source\MonsterBoss.cpp" />
+    <ClCompile Include="Source\MapS1.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -270,6 +274,10 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\Counter.h" />
+    <ClInclude Include="Source\MonsterBoss.h" />
+    <ClInclude Include="Source\MapS1.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc">

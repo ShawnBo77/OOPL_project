@@ -48,6 +48,12 @@ namespace game_framework {
     {
     }
 
+    void MapForBoss::LoadBitmap() {
+        //white.LoadBitmap(IDB_WHITE);
+        //blue.LoadBitmap(IDB_BLUE);
+        map.LoadBitmap(".\\res\\boss_map.bmp");
+    }
+
     void MapForBoss::Initialize()
     {
         setXY(0, 0);
@@ -69,12 +75,6 @@ namespace game_framework {
             return true;
         }
         return false;
-    }
-
-    void MapForBoss::LoadBitmap() {
-        //white.LoadBitmap(IDB_WHITE);
-        //blue.LoadBitmap(IDB_BLUE);
-        map.LoadBitmap(IDB_BOSSMAP);
     }
 
     void MapForBoss::onShow() {

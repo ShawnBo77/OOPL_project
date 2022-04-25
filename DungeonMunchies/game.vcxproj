@@ -264,6 +264,7 @@
     <ClCompile Include="Source\CBouncingBall.cpp" />
     <ClCompile Include="Source\CEraser.cpp" />
     <ClCompile Include="Source\Counter.cpp" />
+    <ClCompile Include="Source\MapS1.cpp" />
     <ClCompile Include="Source\Monster.cpp" />
     <ClCompile Include="Source\game.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -280,6 +281,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="Source\MonsterBoss.cpp" />
     <ClCompile Include="Source\MonsterCactus.cpp" />
     <ClCompile Include="Source\MainFrm.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -329,10 +331,12 @@
     <ClInclude Include="Source\CEraser.h" />
     <ClInclude Include="Source\Character.h" />
     <ClInclude Include="Source\Counter.h" />
+    <ClInclude Include="Source\MapS1.h" />
     <ClInclude Include="Source\Monster.h" />
     <ClInclude Include="Source\game.h" />
     <ClInclude Include="Source\gameDoc.h" />
     <ClInclude Include="Source\gameView.h" />
+    <ClInclude Include="Source\MonsterBoss.h" />
     <ClInclude Include="Source\MonsterCactus.h" />
     <ClInclude Include="Source\MainFrm.h" />
     <ClInclude Include="Source\Map.h" />
