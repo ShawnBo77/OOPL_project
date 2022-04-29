@@ -508,7 +508,7 @@ namespace game_framework
 					characterX -= STEP_SIZE;
 				}
 
-				//m->addSX(STEP_SIZE);												//視角移動(王關不用)
+				m->addSX(STEP_SIZE);												//視角移動(王關不用)
 			}
 			if (GetIsMovingRight() && m->isEmpty(GetRightX() + STEP_SIZE - 5, GetTopY()) && m->isEmpty(GetRightX() - BORDER + STEP_SIZE, GetButtonY() - BORDER))
 			{
@@ -517,7 +517,7 @@ namespace game_framework
 					characterX += STEP_SIZE;
 				}
 
-				//m->addSX(-STEP_SIZE);                             	
+				m->addSX(-STEP_SIZE);                             	
 			}
 			if (GetIsMovingUp() && GetButtonY() >= m->getFloor() && velocity == 0)
 			{
@@ -776,6 +776,20 @@ namespace game_framework
 		sprintf(str, "CharacterBlood:%d invincibleTime(start:%d, finish:%d)", currentHp, (int)invincibleTime.GetStartTime(), (int)invincibleTime.GetFinishTime());
 		pDC->TextOut(200, 120, str);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+
+		CDC* pDC2 = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+		CFont f2, * f2p;
+		f2.CreatePointFont(120, "Times New Roman");	// 產生 font f; 160表示16 point的字
+		f2p = pDC2->SelectObject(&f2);					// 選用 font f
+		pDC2->SetBkColor(RGB(230, 220, 200));
+		pDC2->SetTextColor(RGB(0, 0, 0));
+		char position[500];								// Demo 數字對字串的轉換
+		sprintf(position, "CharacterLeftX:%d CharacterRightX:%d CharacterTopY:%d CharacterButtonY:%d"
+			,GetLeftX(), GetRightX(), GetTopY(), GetButtonY());
+		//sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
+		pDC2->TextOut(200, 100, position);
+		pDC2->SelectObject(f2p);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
 
