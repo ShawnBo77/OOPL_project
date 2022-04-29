@@ -507,8 +507,7 @@ namespace game_framework
 				{
 					characterX -= STEP_SIZE;
 				}
-
-				//m->addSX(STEP_SIZE);												//視角移動(王關不用)
+				m->addSX(STEP_SIZE);												//視角移動(王關不用)
 			}
 			if (GetIsMovingRight() && m->isEmpty(GetRightX() + STEP_SIZE - 5, GetTopY()) && m->isEmpty(GetRightX() - BORDER + STEP_SIZE, GetButtonY() - BORDER))
 			{
@@ -516,8 +515,7 @@ namespace game_framework
 				{
 					characterX += STEP_SIZE;
 				}
-
-				//m->addSX(-STEP_SIZE);                             	
+				m->addSX(-STEP_SIZE);                             	
 			}
 			if (GetIsMovingUp() && GetButtonY() >= m->getFloor() && velocity == 0)
 			{

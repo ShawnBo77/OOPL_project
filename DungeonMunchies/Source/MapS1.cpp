@@ -20,7 +20,7 @@ namespace game_framework
         Y = 40;
         gridW = 40;
         gridH = 40;
-        setFloor(560);
+        setFloor(640);
         int mapGrid_init[40][18];
         for (int i = 0; i < 40; i++)
         {
@@ -32,7 +32,7 @@ namespace game_framework
         //給予地圖左上角座標及每張小圖寬度
         for (int i = 2; i < 30; i++)
         {
-            for (int j = 5; j < 15; j++)
+            for (int j = 5; j < 16; j++)
             {
                 mapGrid_init[i][j] = 1;
             }
@@ -40,7 +40,7 @@ namespace game_framework
 
         for (int i = 0; i < 40; i++)
         {
-            for (int j = 0; j < 18; j++)
+            for (int j = 0; j < 20; j++)
             {
                 mapGrid[i][j] = mapGrid_init[i][j]; //依序填入mapGrid
             }
@@ -60,7 +60,7 @@ namespace game_framework
 
     void MapS1::Initialize()
     {
-        setXY(-400, -750);
+        setXY(-400, -320);
     }
 
     void MapS1::setPos(int x, int y, int n)
@@ -83,7 +83,7 @@ namespace game_framework
 
     void MapS1::onShow()
     {
-        map.SetTopLeft(getSX(), getSY() + 20);
+        map.SetTopLeft(getSX(), getSY());
         map.ShowBitmap();
         for (int i = 0; i < 18; i++)
         { //往右顯示六張圖
