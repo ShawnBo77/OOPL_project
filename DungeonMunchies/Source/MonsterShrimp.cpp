@@ -24,6 +24,9 @@ namespace game_framework
 		_y = 400;
 		hp = 10;
 		attackDamage = 5;
+		facingLR = 0;
+		actionNum = 0;
+		STEP_SIZE = 5;
 	}
 
 	MonsterShrimp::MonsterShrimp(int x, int y, Character* c) : Monster(x, y, 12, 5, c)
@@ -43,12 +46,12 @@ namespace game_framework
 		walkRight.AddBitmap(".\\res\\monster_shrimp_walk01_right.bmp", RGB(0, 0, 0));
 		walkRight.AddBitmap(".\\res\\monster_shrimp_walk02_right.bmp", RGB(0, 0, 0));
 
+		attackLeft.AddBitmap(".\\res\\monster_shrimp_attack01_left.bmp", RGB(0, 0, 0));
 		attackLeft.AddBitmap(".\\res\\monster_shrimp_attack02_left.bmp", RGB(0, 0, 0));
-		attackLeft.AddBitmap(".\\res\\monster_shrimp_attack02_left.bmp", RGB(0, 0, 0));
-		attackLeft.AddBitmap(".\\res\\monster_shrimp_attack02_left.bmp", RGB(0, 0, 0));
+		attackLeft.AddBitmap(".\\res\\monster_shrimp_attack03_left.bmp", RGB(0, 0, 0));
+		attackRight.AddBitmap(".\\res\\monster_shrimp_attack01_right.bmp", RGB(0, 0, 0));
 		attackRight.AddBitmap(".\\res\\monster_shrimp_attack02_right.bmp", RGB(0, 0, 0));
-		attackRight.AddBitmap(".\\res\\monster_shrimp_attack02_right.bmp", RGB(0, 0, 0));
-		attackRight.AddBitmap(".\\res\\monster_shrimp_attack02_right.bmp", RGB(0, 0, 0));
+		attackRight.AddBitmap(".\\res\\monster_shrimp_attack03_right.bmp", RGB(0, 0, 0));
 
 		deadLeft.LoadBitmap(".\\res\\monster_shrimp_dead_left.bmp", RGB(0, 0, 0));
 		deadRight.LoadBitmap(".\\res\\monster_shrimp_dead_right.bmp", RGB(0, 0, 0));
@@ -60,9 +63,10 @@ namespace game_framework
 		_y = init_y;
 		hp = 10;
 		attackDamage = 5;
-		facingLR = 1;
+		facingLR = 0;
 		actionNum = 0;
 		bloodBar.setFullHP(hp);
+		STEP_SIZE = 5;
 	}
 
 	void MonsterShrimp::OnShow(Map* m)
@@ -71,15 +75,30 @@ namespace game_framework
 		{
 			if (facingLR == 0)
 			{
-				walkLeft.SetTopLeft(_x - 200, _y);
-				//walkLeft.SetDelayCount(3);
-				walkLeft.OnShow();
+				if (actionNum == 0)
+				{
+					walkLeft.SetTopLeft(_x - 140, _y); //讓圖片中怪物顯示靠向左
+					//walkLeft.SetDelayCount(3);
+					walkLeft.OnShow();
+				}
+				else
+				{
+					attackLeft.SetTopLeft(_x - 110, _y);
+					attackLeft.OnShow();
+				}
 			}
 			else
 			{
-				walkRight.SetTopLeft(_x, _y);
-				//walkLeft.SetDelayCount(3);
-				walkRight.OnShow();
+				if (actionNum == 0)
+				{
+					walkRight.SetTopLeft(_x, _y);
+					walkRight.OnShow();
+				}
+				else
+				{
+					attackRight.SetTopLeft(_x, _y);
+					attackRight.OnShow();
+				}
 			}
 			bloodBar.setXY(GetLeftX(), GetTopY() - 16);
 			bloodBar.showBloodBar(m, hp);
@@ -96,33 +115,31 @@ namespace game_framework
 				deadRight.SetTopLeft(_x, _y);
 				deadRight.ShowBitmap();
 			}
-			//cactusDead.SetTopLeft(_x, _y + (cactusAlive.Height() - cactusDead.Height()));
-			//cactusDead.ShowBitmap();
 		}
 		showData();
 	}
 
 	void MonsterShrimp::showData()
 	{
-		//int CharacterLeftX = character->GetLeftX();
-		//int CharacterRightX = character->GetRightX();
-		//int CharacterTopY = character->GetTopY();
-		//int CharacterButtonY = character->GetButtonY();
-		//CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
-		//CFont f, * fp;
-		//f.CreatePointFont(120, "Times New Roman");	// 產生 font f; 160表示16 point的字
-		//fp = pDC->SelectObject(&f);					// 選用 font f
-		//pDC->SetBkColor(RGB(230, 220, 200));
-		//pDC->SetTextColor(RGB(0, 0, 0));
-		//char position[500];								// Demo 數字對字串的轉換
-		//sprintf(position, "CharacterLeftX:%d CharacterRightX:%d CharacterTopY:%d CharacterButtonY:%d \r\n\
-		//	ShrimpLeftX:%d ShrimpRightX:%d ShrimpTopY:%d ShrimpButtonY:%d"
-		//	, CharacterLeftX, CharacterRightX, CharacterTopY, CharacterButtonY,
-		//	GetLeftX(), GetRightX(), GetTopY(), GetButtonY());
-		////sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
-		//pDC->TextOut(200, 100, position);
-		//pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
-		//CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+		int CharacterLeftX = character->GetLeftX();
+		int CharacterRightX = character->GetRightX();
+		int CharacterTopY = character->GetTopY();
+		int CharacterButtonY = character->GetButtonY();
+		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+		CFont f, * fp;
+		f.CreatePointFont(120, "Times New Roman");	// 產生 font f; 160表示16 point的字
+		fp = pDC->SelectObject(&f);					// 選用 font f
+		pDC->SetBkColor(RGB(230, 220, 200));
+		pDC->SetTextColor(RGB(0, 0, 0));
+		char position[500];								// Demo 數字對字串的轉換
+		sprintf(position, "CharacterLeftX:%d CharacterRightX:%d CharacterTopY:%d CharacterButtonY:%d \r\n\
+			ShrimpLeftX:%d ShrimpRightX:%d ShrimpTopY:%d ShrimpButtonY:%d"
+			, CharacterLeftX, CharacterRightX, CharacterTopY, CharacterButtonY,
+			GetLeftX(), GetRightX(), GetTopY(), GetButtonY());
+		//sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
+		pDC->TextOut(200, 100, position);
+		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
 
 	void MonsterShrimp::SetFacingLR(bool flag)
@@ -145,33 +162,32 @@ namespace game_framework
 		return actionNum;
 	}
 
-	int MonsterShrimp::GetLeftX() //顯示的圖會自動往左邊靠，不必調整
+	int MonsterShrimp::GetLeftX() //顯示的圖會往左邊靠(onShow調整的)
 	{
 		return _x;
 	}
 
 	int MonsterShrimp::GetTopY() //需調整以對應顯示的圖(_y + (圖片高度-物體高度))
 	{
-		//return _y;
 		if (actionNum == 0) //walk
 		{
-			return _y + 130; //380-150
+			return _y + 68;
 		}
 		else// if (actionNum == 1) //attack
 		{
-			return _y + 95;
+			return _y + 75;
 		}
 	}
 
-	int MonsterShrimp::GetRightX()
+	int MonsterShrimp::GetRightX() //加上物體本身的長度
 	{
 		if (actionNum == 0) //walk 
 		{
-			return _x + 185; //加上物體本身的長度
+			return _x + 125;
 		}
 		else // if (actionNum == 1) //attack 
 		{
-			return _x + 230;
+			return _x + 140;
 		}
 	}
 
@@ -215,6 +231,18 @@ namespace game_framework
 	{
 		if (isAlive())
 		{
+			if (distanceToCharacter() < 300)
+			{
+				SetCharacterDirection();
+				if (characterDirectionLR == 0)
+				{
+					_x -= STEP_SIZE;
+				}
+				else
+				{
+					_x += STEP_SIZE;
+				}
+			}
 			walkLeft.OnMove();
 			walkRight.OnMove();
 

@@ -18,7 +18,7 @@ namespace game_framework
 		int getFullHP();						//回傳滿血的血量
 	private:
 		CMovingBitmap bloodBar[10];			//不同長度的血條
-		double fullHp;
+		double maxHp;
 		int _x, _y;
 	};
 }

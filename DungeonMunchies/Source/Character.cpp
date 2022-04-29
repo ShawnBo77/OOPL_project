@@ -508,7 +508,7 @@ namespace game_framework
 					characterX -= STEP_SIZE;
 				}
 
-				m->addSX(STEP_SIZE);												//視角移動(王關不用)
+				//m->addSX(STEP_SIZE);												//視角移動(王關不用)
 			}
 			if (GetIsMovingRight() && m->isEmpty(GetRightX() + STEP_SIZE - 5, GetTopY()) && m->isEmpty(GetRightX() - BORDER + STEP_SIZE, GetButtonY() - BORDER))
 			{
@@ -517,7 +517,7 @@ namespace game_framework
 					characterX += STEP_SIZE;
 				}
 
-				m->addSX(-STEP_SIZE);                             	
+				//m->addSX(-STEP_SIZE);                             	
 			}
 			if (GetIsMovingUp() && GetButtonY() >= m->getFloor() && velocity == 0)
 			{
@@ -786,7 +786,7 @@ namespace game_framework
 		pDC2->SetTextColor(RGB(0, 0, 0));
 		char position[500];								// Demo 數字對字串的轉換
 		sprintf(position, "CharacterLeftX:%d CharacterRightX:%d CharacterTopY:%d CharacterButtonY:%d"
-			,GetLeftX(), GetRightX(), GetTopY(), GetButtonY());
+			, GetLeftX(), GetRightX(), GetTopY(), GetButtonY());
 		//sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
 		pDC2->TextOut(200, 100, position);
 		pDC2->SelectObject(f2p);						// 放掉 font f (千萬不要漏了放掉)

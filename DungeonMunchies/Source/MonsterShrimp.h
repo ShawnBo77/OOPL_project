@@ -29,7 +29,6 @@ namespace game_framework
 		void SetXY(int x, int y);
 		void OnMove();
 	private:
-		bool facingLR; // 0為面向左，1為面向右
 		int actionNum; // 0表示在走路，1為攻擊
 		CAnimation walkLeft;
 		CAnimation walkRight;

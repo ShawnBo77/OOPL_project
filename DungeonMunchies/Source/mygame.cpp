@@ -199,8 +199,8 @@ namespace game_framework
 		: CGameState(g)
 	{
 		//ball = new CBall [NUMBALLS];
-		monsterCactus.push_back(new MonsterCactus(300, 500, &character));
-		monsterShrimp.push_back(new MonsterShrimp(700, 320, &character));
+		monsterCactus.push_back(new MonsterCactus(700, 500, &character));
+		monsterShrimp.push_back(new MonsterShrimp(300, 400, &character));
 	}
 
 	CGameStateRun::~CGameStateRun()
