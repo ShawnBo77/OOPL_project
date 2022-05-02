@@ -41,6 +41,45 @@ namespace game_framework
 	{
 	}
 
+	void Monster::intersect()
+	{
+		if (isAlive())
+		{
+			if (character->GetRightX() >= GetLeftX() && character->GetRightX() <= GetRightX()
+				&& character->GetButtonY() >= GetTopY() - 20 && character->GetButtonY() <= GetButtonY())
+			{ //角色右方碰到怪物
+				isIntersect = true;
+				if (!character->GetIsInvincible())
+				{
+					character->SetIsAttackedFromRight(true);
+					character->lossCurrentHp(attackDamage);
+				}
+			}
+			if (character->GetLeftX() <= GetRightX() && character->GetLeftX() >= GetLeftX()
+				&& character->GetButtonY() >= GetTopY() - 20 && character->GetButtonY() <= GetButtonY())
+			{ //角色左方碰到怪物
+				isIntersect = true;
+				if (!character->GetIsInvincible())
+				{
+					character->SetIsAttackedFromLeft(true);
+					character->lossCurrentHp(attackDamage);
+				}
+			}
+			if ((character->GetRightX() >= GetLeftX() && character->GetRightX() <= GetRightX() ||
+				character->GetLeftX() <= GetRightX() && character->GetLeftX() >= GetLeftX())
+				&& character->GetButtonY() >= GetTopY() - 20 && character->GetButtonY() <= GetButtonY())
+			{ //角色下方碰到怪物
+				isIntersect = true;
+				if (!character->GetIsInvincible())
+				{
+					character->SetIsAttackedFromButton(true);
+					character->lossCurrentHp(attackDamage);
+				}
+			}
+		}
+		isIntersect = false;
+	}
+
 	void Monster::SetIsIntersect(bool flag)
 	{
 		isIntersect = flag;

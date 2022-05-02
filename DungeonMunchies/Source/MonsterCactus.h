@@ -21,7 +21,6 @@ namespace game_framework
 		int  GetTopY();					// 左上角 y 座標
 		int  GetRightX();				// 右下角 x 座標
 		int  GetButtonY();				// 右下角 y 座標
-		void intersect() override;
 		void SetXY(int x, int y);
 		void OnMove();
 	private:

@@ -573,6 +573,11 @@ namespace game_framework
 					Attack(0);
 			}
 
+			if (isInvincible)
+			{
+				invincible(1);
+			}
+
 			if (isAttackedFromRight) //還要判定是否能移動
 			{
 				characterX -= STEP_SIZE * 3;
@@ -589,11 +594,6 @@ namespace game_framework
 			{
 				characterY -= STEP_SIZE * 3;
 				isAttackedFromButton = false;
-			}
-
-			if (isInvincible)
-			{
-				invincible(1);
 			}
 		}
 

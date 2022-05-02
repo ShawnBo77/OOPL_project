@@ -26,7 +26,7 @@ namespace game_framework
 		virtual int  GetRightX() = 0;				// 右下角 x 座標
 		virtual int  GetButtonY() = 0;				// 右下角 y 座標
 		//英雄是否和此敵人碰觸
-		virtual void intersect() = 0;
+		virtual void intersect();
 		void SetIsIntersect(bool flag);
 		bool GetIsIntersect();
 		double hpProportion();

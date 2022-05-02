@@ -26,7 +26,7 @@ namespace game_framework
 		attackDamage = 5;
 		facingLR = 0;
 		actionNum = 0;
-		STEP_SIZE = 5;
+		STEP_SIZE = 1;
 	}
 
 	MonsterShrimp::MonsterShrimp(int x, int y, Character* c) : Monster(x, y, 12, 5, c)
@@ -196,42 +196,11 @@ namespace game_framework
 		return _y + walkLeft.Height();
 	}
 
-	void MonsterShrimp::intersect()
-	{
-		if (isAlive())
-		{
-			if (character->GetRightX() >= GetLeftX() && character->GetRightX() <= GetRightX()
-				&& character->GetButtonY() >= GetTopY() - 20 && character->GetButtonY() <= GetButtonY())
-			{ //角色右方碰到怪物
-				character->SetIsAttackedFromRight(true);
-				isIntersect = true;
-			}
-			if (character->GetLeftX() <= GetRightX() && character->GetLeftX() >= GetLeftX()
-				&& character->GetButtonY() >= GetTopY() - 20 && character->GetButtonY() <= GetButtonY())
-			{ //角色左方碰到怪物
-				character->SetIsAttackedFromLeft(true);
-				isIntersect = true;
-			}
-			if ((character->GetRightX() >= GetLeftX() && character->GetRightX() <= GetRightX() ||
-				character->GetLeftX() <= GetRightX() && character->GetLeftX() >= GetLeftX())
-				&& character->GetButtonY() >= GetTopY() - 20 && character->GetButtonY() <= GetButtonY())
-			{ //角色下方碰到怪物
-				character->SetIsAttackedFromButton(true);
-				isIntersect = true;
-			}
-			if (isIntersect && !character->GetIsInvincible())
-			{
-				character->lossCurrentHp(attackDamage);
-			}
-		}
-		isIntersect = false;
-	}
-
 	void MonsterShrimp::OnMove()
 	{
 		if (isAlive())
 		{
-			if (distanceToCharacter() < 300)
+			if (distanceToCharacter() < 200)
 			{
 				SetCharacterDirection();
 				if (characterDirectionLR == 0)

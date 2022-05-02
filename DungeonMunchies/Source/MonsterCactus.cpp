@@ -110,37 +110,6 @@ namespace game_framework
 		return _y + cactusAlive.Height();
 	}
 
-	void MonsterCactus::intersect()
-	{
-		if (isAlive())
-		{
-			if (character->GetRightX() >= GetLeftX() && character->GetRightX() <= GetRightX()
-				&& character->GetButtonY() >= GetTopY() - 20 && character->GetButtonY() <= GetButtonY())
-			{ //角色右方碰到怪物
-				character->SetIsAttackedFromRight(true);
-				isIntersect = true;
-			}
-			if (character->GetLeftX() <= GetRightX() && character->GetLeftX() >= GetLeftX()
-				&& character->GetButtonY() >= GetTopY() - 20 && character->GetButtonY() <= GetButtonY())
-			{ //角色左方碰到怪物
-				character->SetIsAttackedFromLeft(true);
-				isIntersect = true;
-			}
-			if ((character->GetRightX() >= GetLeftX() && character->GetRightX() <= GetRightX() ||
-				character->GetLeftX() <= GetRightX() && character->GetLeftX() >= GetLeftX())
-				&& character->GetButtonY() >= GetTopY() - 20 && character->GetButtonY() <= GetButtonY())
-			{ //角色下方碰到怪物
-				character->SetIsAttackedFromButton(true);
-				isIntersect = true;
-			}
-			if (isIntersect && !character->GetIsInvincible())
-			{
-				character->lossCurrentHp(attackDamage);
-			}
-		}
-		isIntersect = false;
-	}
-
 	void MonsterCactus::OnMove()
 	{
 		if (isAlive())
