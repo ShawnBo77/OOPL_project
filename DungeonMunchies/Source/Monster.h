@@ -71,6 +71,8 @@ namespace game_framework
 		int GetAttackDamage();
 
 	protected:
+		bool isAttackSuccessfullyL(int range);
+		bool isAttackSuccessfullyR(int range);
 		Character* character;
 		int _x, _y;
 		int init_x, init_y;

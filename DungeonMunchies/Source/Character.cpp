@@ -575,24 +575,33 @@ namespace game_framework
 
 			if (isInvincible)
 			{
-				invincible(1);
+				invincibleTime.CaculateTime(&isInvincible, 1);
 			}
 
 			if (isAttackedFromRight) //還要判定是否能移動
 			{
-				characterX -= STEP_SIZE * 3;
+				for (int i = 0; i < 50; i++)
+				{
+					characterX -= 1;
+				}
 				isAttackedFromRight = false;
 			}
 
 			if (isAttackedFromLeft)
 			{
-				characterX += STEP_SIZE * 3;
+				for (int i = 0; i < 50; i++)
+				{
+					characterX += 1;
+				}
 				isAttackedFromLeft = false;
 			}
 
 			if (isAttackedFromButton)
 			{
-				characterY -= STEP_SIZE * 3;
+				for (int i = 0; i < 50; i++)
+				{
+					characterY -= 1;
+				}
 				isAttackedFromButton = false;
 			}
 		}
@@ -670,14 +679,14 @@ namespace game_framework
 		invincibleTime.Start();
 	}
 
-	void Character::invincible(int time)
-	{
-		invincibleTime.Finish();
-		if (invincibleTime.GetTime() / CLOCKS_PER_SEC > time)
-		{
-			isInvincible = false;
-		}
-	}
+	//void Character::invincible(int time)
+	//{
+	//	invincibleTime.Finish();
+	//	if (invincibleTime.GetTime() / CLOCKS_PER_SEC > time)
+	//	{
+	//		isInvincible = false;
+	//	}
+	//}
 
 	void Character::Attack(bool flag)
 	{

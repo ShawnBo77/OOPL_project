@@ -267,4 +267,32 @@ namespace game_framework
 	{
 		return attackDamage;
 	}
+
+	bool Monster::isAttackSuccessfullyL(int range)
+	{
+		if (character->GetRightX() > GetLeftX() - range && character->GetRightX() < GetLeftX()
+			&& (character->GetButtonY() >= GetTopY() && character->GetButtonY() <= GetButtonY() ||
+				character->GetTopY() >= GetTopY() && character->GetTopY() <= GetButtonY()))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	bool Monster::isAttackSuccessfullyR(int range)
+	{
+		if (character->GetLeftX() < GetRightX() + range && character->GetLeftX() > GetRightX()
+			&& (character->GetButtonY() >= GetTopY() && character->GetButtonY() <= GetButtonY() ||
+				character->GetTopY() >= GetTopY() && character->GetTopY() <= GetButtonY()))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }

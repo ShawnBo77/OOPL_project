@@ -66,7 +66,7 @@ namespace game_framework
 		void addAtk(int ATK);                   // 提升攻擊力
 		void restoreCurrentHp(int n);           // 恢復目前血量
 		void lossCurrentHp(int n);              // 損血
-		void invincible(int time);              // 損血
+		//void invincible(int time);              // 無敵
 		void Attack(bool flag);
 
 		/*餐點能力*/

@@ -1,6 +1,7 @@
 #ifndef __MONSTERSHRIMP__
 #define __MONSTERSHRIMP__
 
+#include "Counter.h"
 namespace game_framework
 {
 	/////////////////////////////////////////////////////////////////////////////
@@ -16,6 +17,7 @@ namespace game_framework
 		void LoadBitmap();
 		void Initialize() override;
 		void OnShow(Map* m) override;
+		void OnMove();
 		void showData();
 		void SetFacingLR(bool flag);
 		bool GetFacingLR();
@@ -26,7 +28,7 @@ namespace game_framework
 		int  GetRightX();				// 右下角 x 座標
 		int  GetButtonY();				// 右下角 y 座標
 		void SetXY(int x, int y);
-		void OnMove();
+		void attack();
 	private:
 		int actionNum; // 0表示在走路，1為攻擊
 		CAnimation walkLeft;
@@ -35,6 +37,8 @@ namespace game_framework
 		CAnimation attackRight;
 		CMovingBitmap deadLeft;
 		CMovingBitmap deadRight;
+		Counter attackCDTime;
+		bool attackCD;
 	};
 }
 #endif 

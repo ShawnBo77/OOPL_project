@@ -27,10 +27,17 @@ namespace game_framework
 		facingLR = 0;
 		actionNum = 0;
 		STEP_SIZE = 1;
+		attackCD = false;
 	}
 
 	MonsterShrimp::MonsterShrimp(int x, int y, Character* c) : Monster(x, y, 12, 5, c)
 	{
+		hp = 10;
+		attackDamage = 5;
+		facingLR = 0;
+		actionNum = 0;
+		STEP_SIZE = 1;
+		attackCD = false;
 	}
 
 	MonsterShrimp::~MonsterShrimp()
@@ -84,7 +91,12 @@ namespace game_framework
 				else
 				{
 					attackLeft.SetTopLeft(_x - 110, _y);
+					attackLeft.SetDelayCount(4);
 					attackLeft.OnShow();
+					if (attackLeft.IsFinalBitmap())
+					{
+						actionNum = 0;
+					}
 				}
 			}
 			else
@@ -97,7 +109,12 @@ namespace game_framework
 				else
 				{
 					attackRight.SetTopLeft(_x, _y);
+					attackRight.SetDelayCount(4);
 					attackRight.OnShow();
+					if (attackRight.IsFinalBitmap())
+					{
+						actionNum = 0;
+					}
 				}
 			}
 			bloodBar.setXY(GetLeftX(), GetTopY() - 16);
@@ -116,7 +133,42 @@ namespace game_framework
 				deadRight.ShowBitmap();
 			}
 		}
-		//showData();
+		showData();
+	}
+
+	void MonsterShrimp::OnMove()
+	{
+		if (isAlive())
+		{
+			SetCharacterDirection();
+			if (actionNum == 0)
+			{
+				facingLR = characterDirectionLR;
+			}
+			if (distanceToCharacter() < 190 && attackCD == false)
+			{
+				attack();
+			}
+			else if (distanceToCharacter() < 280 && actionNum == 0)
+			{
+				if (characterDirectionLR == 0)
+				{
+					_x -= STEP_SIZE;
+				}
+				else
+				{
+					_x += STEP_SIZE;
+				}
+			}
+			attackCDTime.CaculateTime(&attackCD, 2);
+			walkLeft.OnMove();
+			walkRight.OnMove();
+
+			attackLeft.OnMove();
+			attackRight.OnMove();
+
+			//intersect();
+		}
 	}
 
 	void MonsterShrimp::showData()
@@ -133,9 +185,9 @@ namespace game_framework
 		pDC->SetTextColor(RGB(0, 0, 0));
 		char position[500];								// Demo 數字對字串的轉換
 		sprintf(position, "CharacterLeftX:%d CharacterRightX:%d CharacterTopY:%d CharacterButtonY:%d \r\n\
-			ShrimpLeftX:%d ShrimpRightX:%d ShrimpTopY:%d ShrimpButtonY:%d"
+			ShrimpLeftX:%d ShrimpRightX:%d ShrimpTopY:%d ShrimpButtonY:%d attackCD:%d"
 			, CharacterLeftX, CharacterRightX, CharacterTopY, CharacterButtonY,
-			GetLeftX(), GetRightX(), GetTopY(), GetButtonY());
+			GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), attackCD);
 		//sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
 		pDC->TextOut(200, 100, position);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
@@ -196,29 +248,32 @@ namespace game_framework
 		return _y + walkLeft.Height();
 	}
 
-	void MonsterShrimp::OnMove()
+	void MonsterShrimp::attack()
 	{
-		if (isAlive())
-		{
-			if (distanceToCharacter() < 200)
+		if (attackCD == false)
+		{ //保險起見多加的
+			actionNum = 1;
+			attackCDTime.Start();
+			attackCD = true;
+			if (!character->GetIsInvincible())
 			{
-				SetCharacterDirection();
-				if (characterDirectionLR == 0)
+				if (facingLR == 0)
 				{
-					_x -= STEP_SIZE;
+					if (isAttackSuccessfullyL(100))
+					{
+						character->SetIsAttackedFromRight(true);
+						character->lossCurrentHp(attackDamage);
+					}
 				}
 				else
 				{
-					_x += STEP_SIZE;
+					if (isAttackSuccessfullyR(100))
+					{
+						character->SetIsAttackedFromLeft(true);
+						character->lossCurrentHp(attackDamage);
+					}
 				}
 			}
-			walkLeft.OnMove();
-			walkRight.OnMove();
-
-			attackLeft.OnMove();
-			attackRight.OnMove();
-
-			intersect();
 		}
 	}
 }
