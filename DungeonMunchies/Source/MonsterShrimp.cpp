@@ -116,7 +116,7 @@ namespace game_framework
 				deadRight.ShowBitmap();
 			}
 		}
-		showData();
+		//showData();
 	}
 
 	void MonsterShrimp::showData()

@@ -66,7 +66,8 @@ namespace game_framework
 				}
 			}
 			if ((character->GetRightX() >= GetLeftX() && character->GetRightX() <= GetRightX() ||
-				character->GetLeftX() <= GetRightX() && character->GetLeftX() >= GetLeftX())
+				character->GetLeftX() <= GetRightX() && character->GetLeftX() >= GetLeftX() ||
+				character->GetLeftX() <= GetLeftX() && character->GetRightX() >= GetRightX())
 				&& character->GetButtonY() >= GetTopY() - 20 && character->GetButtonY() <= GetButtonY())
 			{ //角色下方碰到怪物
 				isIntersect = true;
