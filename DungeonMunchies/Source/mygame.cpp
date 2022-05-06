@@ -238,7 +238,8 @@ namespace game_framework
 		// 當圖很多時，OnInit載入所有的圖要花很多時間。為避免玩遊戲的人
 		//     等的不耐煩，遊戲會出現「Loading ...」，顯示Loading的進度。
 		//
-		ShowInitProgress(66);	// 接個前一個狀態的進度，此處進度視為66%
+		//ShowInitProgress(66);	// 接個前一個狀態的進度，此處進度視為66%
+		gameOver.LoadBitmap(".\\res\\game_over.bmp");
 		//
 		// 開始載入資料
 		//
@@ -249,17 +250,31 @@ namespace game_framework
 		ShowInitProgress(100);
 	}
 
+	void CGameStateOver::OnLButtonDown(UINT nFlags, CPoint point)
+	{
+		if (point.x > 340 && point.x < 1085 && point.y > 275 && point.y < 410)
+		{
+			PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);
+		}
+		if (point.x > 440 && point.x < 975 && point.y > 410 && point.y < 500)
+		{
+			GotoGameState(GAME_STATE_INIT);
+		}
+	}
+
 	void CGameStateOver::OnShow()
 	{
+		gameOver.SetTopLeft(0, 0);
+		gameOver.ShowBitmap();
 		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 		CFont f, * fp;
 		f.CreatePointFont(160, "Times New Roman");	// 產生 font f; 160表示16 point的字
 		fp = pDC->SelectObject(&f);					// 選用 font f
 		pDC->SetBkColor(RGB(0, 0, 0));
-		pDC->SetTextColor(RGB(255, 255, 0));
+		pDC->SetTextColor(RGB(255, 255, 255));
 		char str[80];								// Demo 數字對字串的轉換
-		sprintf(str, "Game Over ! (%d)", counter / 30);
-		pDC->TextOut(240, 210, str);
+		sprintf(str, "Please click \"GAME OVER\" to close the game, or \"PLAY AGAIN\" to restart! (%d)", counter / 30);
+		pDC->TextOut(680, 730, str);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
@@ -362,6 +377,10 @@ namespace game_framework
 		// 移動擦子
 		//
 		//eraser.OnMove();
+		if (character.GetCurrentHp() <= 0)
+		{
+			GotoGameState(GAME_STATE_OVER);
+		}
 		switch (currentStage)
 		{
 		case stage_1:

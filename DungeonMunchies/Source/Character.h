@@ -83,8 +83,6 @@ namespace game_framework
 		void EatGuavaJuiceBlood(bool flag);     // 吃下每十秒回三滴血能力
 		void healBloodEveryTenSeconds();        // 每十秒回三滴血
 
-
-
 	protected:
 		CMovingBitmap standLeft;	    // 站立面向左
 		CMovingBitmap standRight;	    // 站立面向右
