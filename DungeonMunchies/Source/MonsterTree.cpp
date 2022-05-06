@@ -10,15 +10,15 @@
 #include "Character.h"
 #include "BloodBar.h"
 #include "Monster.h"
-#include "MonsterShrimp.h"
+#include "MonsterTree.h"
 #include "Util.h"
 
 namespace game_framework
 {
 	/////////////////////////////////////////////////////////////////////////////
-	//這個class是怪物Shrimp的物件											   //
+	//這個class是怪物tree的物件											   //
 	/////////////////////////////////////////////////////////////////////////////
-	MonsterShrimp::MonsterShrimp()
+	MonsterTree::MonsterTree()
 	{
 		_x = 400;
 		_y = 400;
@@ -30,7 +30,7 @@ namespace game_framework
 		attackCD = false;
 	}
 
-	MonsterShrimp::MonsterShrimp(int x, int y, Character* c) : Monster(x, y, 12, 5, c)
+	MonsterTree::MonsterTree(int x, int y, Character* c) : Monster(x, y, 12, 5, c)
 	{
 		hp = 10;
 		attackDamage = 5;
@@ -40,31 +40,45 @@ namespace game_framework
 		attackCD = false;
 	}
 
-	MonsterShrimp::~MonsterShrimp()
+	MonsterTree::~MonsterTree()
 	{
 	}
 
-	void MonsterShrimp::LoadBitmap()
+	void MonsterTree::LoadBitmap()
 	{
 		bloodBar.LoadBitmap();
+		sleepLeft.LoadBitmap(".\\res\\monster_tree_sleep_left.bmp", RGB(0, 0, 0));
+		sleepRight.LoadBitmap(".\\res\\monster_tree_sleep_right.bmp", RGB(0, 0, 0));
 
-		walkLeft.AddBitmap(".\\res\\monster_shrimp_walk01_left.bmp", RGB(0, 0, 0));
-		walkLeft.AddBitmap(".\\res\\monster_shrimp_walk02_left.bmp", RGB(0, 0, 0));
-		walkRight.AddBitmap(".\\res\\monster_shrimp_walk01_right.bmp", RGB(0, 0, 0));
-		walkRight.AddBitmap(".\\res\\monster_shrimp_walk02_right.bmp", RGB(0, 0, 0));
+		walkLeft.AddBitmap(".\\res\\monster_tree_walk01_left.bmp", RGB(0, 0, 0));
+		walkLeft.AddBitmap(".\\res\\monster_tree_walk02_left.bmp", RGB(0, 0, 0));
+		walkLeft.AddBitmap(".\\res\\monster_tree_walk03_left.bmp", RGB(0, 0, 0));
+		walkLeft.AddBitmap(".\\res\\monster_tree_walk04_left.bmp", RGB(0, 0, 0));
+		walkRight.AddBitmap(".\\res\\monster_tree_walk01_right.bmp", RGB(0, 0, 0));
+		walkRight.AddBitmap(".\\res\\monster_tree_walk02_right.bmp", RGB(0, 0, 0));
+		walkRight.AddBitmap(".\\res\\monster_tree_walk03_right.bmp", RGB(0, 0, 0));
+		walkRight.AddBitmap(".\\res\\monster_tree_walk04_right.bmp", RGB(0, 0, 0));
 
-		attackLeft.AddBitmap(".\\res\\monster_shrimp_attack01_left.bmp", RGB(0, 0, 0));
-		attackLeft.AddBitmap(".\\res\\monster_shrimp_attack02_left.bmp", RGB(0, 0, 0));
-		attackLeft.AddBitmap(".\\res\\monster_shrimp_attack03_left.bmp", RGB(0, 0, 0));
-		attackRight.AddBitmap(".\\res\\monster_shrimp_attack01_right.bmp", RGB(0, 0, 0));
-		attackRight.AddBitmap(".\\res\\monster_shrimp_attack02_right.bmp", RGB(0, 0, 0));
-		attackRight.AddBitmap(".\\res\\monster_shrimp_attack03_right.bmp", RGB(0, 0, 0));
+		attackLeft.AddBitmap(".\\res\\monster_tree_attack01_left.bmp", RGB(0, 0, 0));
+		attackLeft.AddBitmap(".\\res\\monster_tree_attack02_left.bmp", RGB(0, 0, 0));
+		attackLeft.AddBitmap(".\\res\\monster_tree_attack03_left.bmp", RGB(0, 0, 0));
+		attackLeft.AddBitmap(".\\res\\monster_tree_attack04_left.bmp", RGB(0, 0, 0));
+		attackLeft.AddBitmap(".\\res\\monster_tree_attack05_left.bmp", RGB(0, 0, 0));
+		attackLeft.AddBitmap(".\\res\\monster_tree_attack06_left.bmp", RGB(0, 0, 0));
+		attackLeft.AddBitmap(".\\res\\monster_tree_attack07_left.bmp", RGB(0, 0, 0));
+		attackRight.AddBitmap(".\\res\\monster_tree_attack01_right.bmp", RGB(0, 0, 0));
+		attackRight.AddBitmap(".\\res\\monster_tree_attack02_right.bmp", RGB(0, 0, 0));
+		attackRight.AddBitmap(".\\res\\monster_tree_attack03_right.bmp", RGB(0, 0, 0));
+		attackRight.AddBitmap(".\\res\\monster_tree_attack04_right.bmp", RGB(0, 0, 0));
+		attackRight.AddBitmap(".\\res\\monster_tree_attack05_right.bmp", RGB(0, 0, 0));
+		attackRight.AddBitmap(".\\res\\monster_tree_attack06_right.bmp", RGB(0, 0, 0));
+		attackRight.AddBitmap(".\\res\\monster_tree_attack07_right.bmp", RGB(0, 0, 0));
 
-		deadLeft.LoadBitmap(".\\res\\monster_shrimp_dead_left.bmp", RGB(0, 0, 0));
-		deadRight.LoadBitmap(".\\res\\monster_shrimp_dead_right.bmp", RGB(0, 0, 0));
+		deadLeft.LoadBitmap(".\\res\\monster_tree_dead_left.bmp", RGB(0, 0, 0));
+		deadRight.LoadBitmap(".\\res\\monster_tree_dead_right.bmp", RGB(0, 0, 0));
 	}
 
-	void MonsterShrimp::Initialize()
+	void MonsterTree::Initialize()
 	{
 		_x = init_x;
 		_y = init_y;
@@ -76,7 +90,7 @@ namespace game_framework
 		STEP_SIZE = 5;
 	}
 
-	void MonsterShrimp::OnShow(Map* m)
+	void MonsterTree::OnShow(Map* m)
 	{
 		if (isAlive())
 		{
@@ -84,13 +98,13 @@ namespace game_framework
 			{
 				if (actionNum == 0)
 				{
-					walkLeft.SetTopLeft(_x - 140, _y); //讓圖片中怪物顯示靠向左
+					walkLeft.SetTopLeft(_x, _y); //讓圖片中怪物顯示靠向左
 					//walkLeft.SetDelayCount(3);
 					walkLeft.OnShow();
 				}
 				else
 				{
-					attackLeft.SetTopLeft(_x - 110, _y);
+					attackLeft.SetTopLeft(_x, _y);
 					attackLeft.SetDelayCount(4);
 					attackLeft.OnShow();
 					if (attackLeft.IsFinalBitmap())
@@ -133,10 +147,10 @@ namespace game_framework
 				deadRight.ShowBitmap();
 			}
 		}
-		//showData();
+		showData();
 	}
 
-	void MonsterShrimp::OnMove()
+	void MonsterTree::OnMove()
 	{
 		if (isAlive())
 		{
@@ -145,9 +159,10 @@ namespace game_framework
 			{
 				facingLR = characterDirectionLR;
 			}
-			if (distanceToCharacter() < 190 && attackCD == false)
+			if (distanceToCharacter() < 130 && attackCD == false)
 			{
 				attack();
+				intersect();
 			}
 			else if (distanceToCharacter() < 280 && actionNum == 0)
 			{
@@ -171,7 +186,7 @@ namespace game_framework
 		}
 	}
 
-	void MonsterShrimp::showData()
+	void MonsterTree::showData()
 	{
 		int CharacterLeftX = character->GetLeftX();
 		int CharacterRightX = character->GetRightX();
@@ -185,7 +200,7 @@ namespace game_framework
 		pDC->SetTextColor(RGB(0, 0, 0));
 		char position[500];								// Demo 數字對字串的轉換
 		sprintf(position, "CharacterLeftX:%d CharacterRightX:%d CharacterTopY:%d CharacterButtonY:%d \r\n\
-			ShrimpLeftX:%d ShrimpRightX:%d ShrimpTopY:%d ShrimpButtonY:%d attackCD:%d"
+			treeLeftX:%d treeRightX:%d treeTopY:%d treeButtonY:%d attackCD:%d"
 			, CharacterLeftX, CharacterRightX, CharacterTopY, CharacterButtonY,
 			GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), attackCD);
 		//sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
@@ -194,61 +209,68 @@ namespace game_framework
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
 
-	void MonsterShrimp::SetFacingLR(bool flag)
+	void MonsterTree::SetFacingLR(bool flag)
 	{
 		facingLR = flag;
 	}
 
-	bool MonsterShrimp::GetFacingLR()
+	bool MonsterTree::GetFacingLR()
 	{
 		return facingLR;
 	}
 
-	void MonsterShrimp::SetActionNum(int num)
+	void MonsterTree::SetActionNum(int num)
 	{
 		actionNum = num;
 	}
 
-	bool MonsterShrimp::GetActionNum()
+	bool MonsterTree::GetActionNum()
 	{
 		return actionNum;
 	}
 
-	int MonsterShrimp::GetLeftX() //顯示的圖會往左邊靠(onShow調整的)
+	int MonsterTree::GetLeftX() //以物件本體為主(攻擊範圍不要算在裡面)
 	{
-		return _x;
-	}
-
-	int MonsterShrimp::GetTopY() //需調整以對應顯示的圖(_y + (圖片高度-物體高度))
-	{
-		if (actionNum == 0) //walk
+		if (facingLR == 0) //left
 		{
-			return _y + 68;
+			return _x + 87;
 		}
-		else// if (actionNum == 1) //attack ?????????????????
+		else
 		{
-			return _y + 75;
+			return _x + 60;
 		}
 	}
 
-	int MonsterShrimp::GetRightX() //加上物體本身的長度
+	int MonsterTree::GetTopY() //需調整以對應顯示的圖(_y + (圖片高度-物體高度))
 	{
-		if (actionNum == 0) //walk 
+		if (actionNum == 0) //left
 		{
-			return _x + 125;
+			return _y + 72;
 		}
-		else // if (actionNum == 1) //attack 
+		else
 		{
-			return _x + 140;
+			return _y;
 		}
 	}
 
-	int MonsterShrimp::GetButtonY()
+	int MonsterTree::GetRightX() //加上物體本身的長度
+	{
+		if (facingLR == 0) //left
+		{
+			return _x + 175;
+		}
+		else
+		{
+			return _x + 145;
+		}
+	}
+
+	int MonsterTree::GetButtonY()
 	{
 		return _y + walkLeft.Height();
 	}
 
-	void MonsterShrimp::attack()
+	void MonsterTree::attack()
 	{
 		if (attackCD == false) //保險起見多加的
 		{
@@ -259,7 +281,7 @@ namespace game_framework
 			{
 				if (facingLR == 0)
 				{
-					if (isAttackSuccessfullyL(100))
+					if (isAttackSuccessfullyL(90))
 					{
 						character->SetIsAttackedFromRight(true);
 						character->lossCurrentHp(attackDamage);
@@ -267,7 +289,7 @@ namespace game_framework
 				}
 				else
 				{
-					if (isAttackSuccessfullyR(100))
+					if (isAttackSuccessfullyR(90))
 					{
 						character->SetIsAttackedFromLeft(true);
 						character->lossCurrentHp(attackDamage);

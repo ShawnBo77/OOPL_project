@@ -69,6 +69,7 @@ namespace game_framework
 		bool GetIsAttacked();    // 回傳是否受到攻擊
 		void SetAttackDamage(int x);
 		int GetAttackDamage();
+		//virtual void attack(int attackRange, int attackCD);
 
 	protected:
 		bool isAttackSuccessfullyL(int range);

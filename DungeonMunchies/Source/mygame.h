@@ -50,6 +50,7 @@
 #include "Monster.h"
 #include "MonsterCactus.h"
 #include "MonsterShrimp.h"
+#include "MonsterTree.h"
 
 namespace game_framework
 {
@@ -124,6 +125,7 @@ namespace game_framework
 		Stage lastStage;
 		vector<Monster*> monsterCactus;
 		vector<Monster*> monsterShrimp;
+		vector<Monster*> monsterTree;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
