@@ -291,6 +291,7 @@
     <ClCompile Include="Source\Character.cpp" />
     <ClCompile Include="Source\Map.cpp" />
     <ClCompile Include="Source\MapForBoss.cpp" />
+    <ClCompile Include="Source\MonsterShrimp.cpp" />
     <ClCompile Include="Source\Prop.cpp" />
     <ClCompile Include="Source\PropBananaAttack.cpp" />
     <ClCompile Include="Source\PropGrassFast.cpp" />
@@ -341,6 +342,7 @@
     <ClInclude Include="Source\MainFrm.h" />
     <ClInclude Include="Source\Map.h" />
     <ClInclude Include="Source\MapForBoss.h" />
+    <ClInclude Include="Source\MonsterShrimp.h" />
     <ClInclude Include="Source\Prop.h" />
     <ClInclude Include="Source\PropBananaAttack.h" />
     <ClInclude Include="Source\PropGrassFast.h" />

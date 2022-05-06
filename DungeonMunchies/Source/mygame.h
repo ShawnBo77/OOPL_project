@@ -49,6 +49,7 @@
 #include "PropsBook.h"
 #include "Monster.h"
 #include "MonsterCactus.h"
+#include "MonsterShrimp.h"
 
 namespace game_framework
 {
@@ -122,6 +123,7 @@ namespace game_framework
 		Stage currentStage;
 		Stage lastStage;
 		vector<Monster*> monsterCactus;
+		vector<Monster*> monsterShrimp;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

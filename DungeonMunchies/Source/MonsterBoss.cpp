@@ -121,10 +121,10 @@ namespace game_framework
 		{
 			
 		}
-		testPosition();
+		showData();
 	}
 
-	void MonsterBoss::testPosition()
+	void MonsterBoss::showData()
 	{
 		//int CharacterLeftX = character->GetLeftX();
 		//int CharacterRightX = character->GetRightX();

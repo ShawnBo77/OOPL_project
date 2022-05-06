@@ -21,6 +21,7 @@ namespace game_framework
 		Map* GetMap();				    // 地圖
 		void Initialize();				// 設定初始值
 		void LoadBitmap();				// 載入圖形
+		void ResetPosition(Map *m);			// 地圖切換時，重置位置
 		void OnMove(Map* m);		    // 移動
 		void OnShow();			        // 將圖形貼到畫面
 		void showData();
@@ -102,6 +103,7 @@ namespace game_framework
 
 		int characterX, characterY;
 		int characterW, characterH;
+		bool mapScreenCanMoving;
 		int STEP_SIZE;              // 移動速度
 		bool isMovingDown;		    // 是否正在往下移動
 		bool isMovingLeft;			// 是否正在往左移動
