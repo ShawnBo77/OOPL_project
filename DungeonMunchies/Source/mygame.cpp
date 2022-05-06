@@ -286,19 +286,18 @@ namespace game_framework
 			character.OnMove(&mapS1);
 			break;
 		case stage_boss:
+			for (unsigned i = 0; i < monsterCactus.size(); i++)
+			{
+				monsterCactus[i]->OnMove();
+			}
+			for (unsigned i = 0; i < monsterShrimp.size(); i++)
+			{
+				monsterShrimp[i]->OnMove();
+			}
 			character.OnMove(&bossMap);
 			break;
 		default:
 			break;
-		}
-
-		for (unsigned i = 0; i < monsterCactus.size(); i++)
-		{
-			monsterCactus[i]->OnMove();
-		}
-		for (unsigned i = 0; i < monsterShrimp.size(); i++)
-		{
-			monsterShrimp[i]->OnMove();
 		}
 		//
 		// 判斷擦子是否碰到球

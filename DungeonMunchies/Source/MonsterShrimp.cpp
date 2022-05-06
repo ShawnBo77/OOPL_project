@@ -250,8 +250,8 @@ namespace game_framework
 
 	void MonsterShrimp::attack()
 	{
-		if (attackCD == false)
-		{ //保險起見多加的
+		if (attackCD == false) //保險起見多加的
+		{
 			actionNum = 1;
 			attackCDTime.Start();
 			attackCD = true;
