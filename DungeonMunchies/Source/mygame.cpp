@@ -85,6 +85,7 @@ namespace game_framework
 		// 開始載入資料
 		//
 		startMenu.LoadBitmap(IDB_STARTMENU);
+		startMenuChoice.LoadBitmap(".\\res\\start_menu_choice.bmp", RGB(0, 0, 0));
 		//logo.LoadBitmap(IDB_BACKGROUND);
 		//Sleep(300);				// 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
 		//
@@ -94,6 +95,9 @@ namespace game_framework
 
 	void CGameStateInit::OnBeginState()
 	{
+		onChoice = false;
+		yChoice = 380;
+		choice = 0;
 	}
 
 	void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -108,7 +112,50 @@ namespace game_framework
 
 	void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 	{
-		GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
+		if (choice == 1)
+		{
+			GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
+		}
+		else if (choice == 2)
+		{
+			GotoGameState(GAME_STATE_OVER);
+		}
+		else if (choice == 3)
+		{
+		}
+	}
+
+	void CGameStateInit::OnMouseMove(UINT nFlags, CPoint point)
+	{
+		if (point.x > 603 && point.x < 770)
+		{
+			if (point.y > 380 && point.y < 446)
+			{
+				yChoice = 380;
+				choice = 1;
+				onChoice = true;
+			}
+			else if (point.y > 465 && point.y < 531)
+			{
+				yChoice = 465;
+				choice = 2;
+				onChoice = true;
+			}
+			else if (point.y > 550 && point.y < 616)
+			{
+				yChoice = 550;
+				choice = 3;
+				onChoice = true;
+			}
+			else
+			{
+				choice = 0;
+			}
+		}
+		else
+		{
+			choice = 0;
+		}
 	}
 
 	void CGameStateInit::OnShow()
@@ -136,6 +183,11 @@ namespace game_framework
 		//CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 		startMenu.SetTopLeft(0, 0);
 		startMenu.ShowBitmap();
+		if (onChoice)
+		{
+			startMenuChoice.SetTopLeft(603, yChoice);
+			startMenuChoice.ShowBitmap();
+		}
 	}
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -199,8 +251,9 @@ namespace game_framework
 		: CGameState(g)
 	{
 		//ball = new CBall [NUMBALLS];
-		monsterCactus.push_back(new MonsterCactus(300, 500, &character));
-		monsterShrimp.push_back(new MonsterShrimp(700, 320, &character));
+		monsterCactus.push_back(new MonsterCactus(700, 500, &character));
+		monsterShrimp.push_back(new MonsterShrimp(300, 400, &character));
+		monsterTree.push_back(new MonsterTree(400, 400, &character));
 	}
 
 	CGameStateRun::~CGameStateRun()
@@ -210,6 +263,10 @@ namespace game_framework
 			delete* it_i;
 		}
 		for (vector<Monster*>::iterator it_i = monsterShrimp.begin(); it_i != monsterShrimp.end(); ++it_i)
+		{
+			delete* it_i;
+		}
+		for (vector<Monster*>::iterator it_i = monsterTree.begin(); it_i != monsterTree.end(); ++it_i)
 		{
 			delete* it_i;
 		}
@@ -250,6 +307,10 @@ namespace game_framework
 		{
 			monsterShrimp[i]->Initialize();
 		}
+		for (unsigned i = 0; i < monsterTree.size(); i++)
+		{
+			monsterTree[i]->Initialize();
+		}
 		//help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
 		//hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
 		//hits_left.SetTopLeft(HITS_LEFT_X,HITS_LEFT_Y);		// 指定剩下撞擊數的座標
@@ -286,19 +347,22 @@ namespace game_framework
 			character.OnMove(&mapS1);
 			break;
 		case stage_boss:
+			for (unsigned i = 0; i < monsterCactus.size(); i++)
+			{
+				monsterCactus[i]->OnMove();
+			}
+			//for (unsigned i = 0; i < monsterShrimp.size(); i++)
+			//{
+			//	monsterShrimp[i]->OnMove();
+			//}
+			for (unsigned i = 0; i < monsterTree.size(); i++)
+			{
+				monsterTree[i]->OnMove();
+			}
 			character.OnMove(&bossMap);
 			break;
 		default:
 			break;
-		}
-
-		for (unsigned i = 0; i < monsterCactus.size(); i++)
-		{
-			monsterCactus[i]->OnMove();
-		}
-		for (unsigned i = 0; i < monsterShrimp.size(); i++)
-		{
-			monsterShrimp[i]->OnMove();
 		}
 		//
 		// 判斷擦子是否碰到球
@@ -361,6 +425,10 @@ namespace game_framework
 		{
 			monsterShrimp[i]->LoadBitmap();
 		}
+		for (unsigned i = 0; i < monsterTree.size(); i++)
+		{
+			monsterTree[i]->LoadBitmap();
+		}
 
 		//help.LoadBitmap(IDB_HELP,RGB(255,255,255));				// 載入說明的圖形
 		//corner.LoadBitmap(IDB_CORNER);							// 載入角落圖形
@@ -410,7 +478,35 @@ namespace game_framework
 			character.SetCurrentHp(50);
 			break;
 		case KEY_1:
-			currentStage = stage_1;
+			if (currentStage == stage_1)
+			{
+				currentStage = lastStage;
+			}
+			else
+			{
+				if (currentStage != stage_props) {
+					lastStage = currentStage;
+				}
+				currentStage = stage_1;
+			}
+			break;
+		case KEY_7:
+			if (currentStage == stage_boss)
+			{
+				currentStage = lastStage;
+			}
+			else
+			{
+				if (currentStage != stage_props)
+				{
+					lastStage = currentStage;
+				}
+				currentStage = stage_boss;
+			}
+			break;
+		case KEY_ESC:
+			PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);
+			break;
 		default:
 			break;
 		}
@@ -519,14 +615,14 @@ namespace game_framework
 			for (unsigned i = 0; i < monsterCactus.size(); i++)
 			{
 				monsterCactus[i]->OnShow(&bossMap);
-				//if (i == hero_position)
-				//{							//如果show到剛剛比較到的位置，show hero
-				//	player1.OnShow(&map_stg1_1);
-				//}
 			}
-			for (unsigned i = 0; i < monsterShrimp.size(); i++)
+			//for (unsigned i = 0; i < monsterShrimp.size(); i++)
+			//{
+			//	monsterShrimp[i]->OnShow(&bossMap);
+			//}
+			for (unsigned i = 0; i < monsterTree.size(); i++)
 			{
-				monsterShrimp[i]->OnShow(&bossMap);
+				monsterTree[i]->OnShow(&bossMap);
 			}
 			break;
 		case stage_props:

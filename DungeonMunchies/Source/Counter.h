@@ -18,6 +18,7 @@ namespace game_framework
 		void Start();
 		void Finish();
 		clock_t GetTime();
+		void CaculateTime(bool* b, int time);
 	private:
 		clock_t startTime;
 		clock_t finishTime;

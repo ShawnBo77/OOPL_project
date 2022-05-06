@@ -1,5 +1,5 @@
-#ifndef __MONSTERSHRIMP__
-#define __MONSTERSHRIMP__
+#ifndef __MONSTERTREE__
+#define __MONSTERTREE__
 
 #include "Counter.h"
 namespace game_framework
@@ -8,12 +8,12 @@ namespace game_framework
 	//這個class是怪物Shrimp的物件											   //
 	/////////////////////////////////////////////////////////////////////////////
 	//class Monster;
-	class MonsterShrimp :public Monster
+	class MonsterTree :public Monster
 	{
 	public:
-		MonsterShrimp();
-		MonsterShrimp(int x, int y, Character* c);
-		~MonsterShrimp();
+		MonsterTree();
+		MonsterTree(int x, int y, Character* c);
+		~MonsterTree();
 		void LoadBitmap();
 		void Initialize() override;
 		void OnShow(Map* m) override;
@@ -30,6 +30,8 @@ namespace game_framework
 		void attack();
 	private:
 		int actionNum; // 0表示在走路，1為攻擊
+		CMovingBitmap sleepLeft;
+		CMovingBitmap sleepRight;
 		CAnimation walkLeft;
 		CAnimation walkRight;
 		CAnimation attackLeft;

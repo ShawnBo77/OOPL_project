@@ -14,12 +14,12 @@ namespace game_framework
 	{
 		_x = 0;
 		_y = 0;
-		fullHp = 0;
+		maxHp = 0;
 	}
 
 	void BloodBar::setFullHP(int n)
 	{
-		fullHp = n;
+		maxHp = n;
 	}
 
 	void BloodBar::setXY(int x, int y)
@@ -30,7 +30,7 @@ namespace game_framework
 
 	int BloodBar::getFullHP()
 	{
-		return (int)fullHp;
+		return (int)maxHp;
 	}
 
 	void BloodBar::LoadBitmap()
@@ -49,11 +49,11 @@ namespace game_framework
 
 	void BloodBar::showBloodBar(Map* m, int hp)
 	{ //  現在血量/滿血血量  的比例 決定血條多長 顯示哪個血條bitmap
-		if (hp >= fullHp)
+		if (hp >= maxHp)
 		{
 			setFullHP(hp);
 		}
-		double proportion = hp / fullHp;
+		double proportion = hp / maxHp;
 		if (proportion < 1.0 / 10)
 		{
 			bloodBar[0].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));

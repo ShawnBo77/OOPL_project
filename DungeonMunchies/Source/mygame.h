@@ -50,6 +50,7 @@
 #include "Monster.h"
 #include "MonsterCactus.h"
 #include "MonsterShrimp.h"
+#include "MonsterTree.h"
 
 namespace game_framework
 {
@@ -77,11 +78,16 @@ namespace game_framework
 		void OnBeginState();							// 設定每次重玩所需的變數
 		void OnKeyUp(UINT, UINT, UINT); 				// 處理鍵盤Up的動作
 		void OnLButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
+		void OnMouseMove(UINT nFlags, CPoint point);	// 處理滑鼠的動作 
 	protected:
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		//CMovingBitmap logo;								// csie的logo
 		CMovingBitmap startMenu;
+		CMovingBitmap startMenuChoice;
+		int choice;
+		int yChoice;
+		bool onChoice;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -124,6 +130,7 @@ namespace game_framework
 		Stage lastStage;
 		vector<Monster*> monsterCactus;
 		vector<Monster*> monsterShrimp;
+		vector<Monster*> monsterTree;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

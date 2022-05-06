@@ -622,27 +622,36 @@ namespace game_framework
 					Attack(0);
 			}
 
-			//if (isAttackedFromRight) //還要判定是否能移動
-			//{
-			//	characterX -= STEP_SIZE * 3;
-			//	isAttackedFromRight = false;
-			//}
-
-			//if (isAttackedFromLeft)
-			//{
-			//	characterX += STEP_SIZE * 3;
-			//	isAttackedFromLeft = false;
-			//}
-
-			//if (isAttackedFromButton)
-			//{
-			//	characterY -= STEP_SIZE * 3;
-			//	isAttackedFromButton = false;
-			//}
-
 			if (isInvincible)
 			{
-				invincible(1);
+				invincibleTime.CaculateTime(&isInvincible, 1);
+			}
+
+			if (isAttackedFromRight) //還要判定是否能移動
+			{
+				for (int i = 0; i < 50; i++)
+				{
+					characterX -= 1;
+				}
+				isAttackedFromRight = false;
+			}
+
+			if (isAttackedFromLeft)
+			{
+				for (int i = 0; i < 50; i++)
+				{
+					characterX += 1;
+				}
+				isAttackedFromLeft = false;
+			}
+
+			if (isAttackedFromButton)
+			{
+				for (int i = 0; i < 50; i++)
+				{
+					characterY -= 1;
+				}
+				isAttackedFromButton = false;
 			}
 		}
 
@@ -769,14 +778,14 @@ namespace game_framework
 		invincibleTime.Start();
 	}
 
-	void Character::invincible(int time)
-	{
-		invincibleTime.Finish();
-		if (invincibleTime.GetTime() / CLOCKS_PER_SEC > time)
-		{
-			isInvincible = false;
-		}
-	}
+	//void Character::invincible(int time)
+	//{
+	//	invincibleTime.Finish();
+	//	if (invincibleTime.GetTime() / CLOCKS_PER_SEC > time)
+	//	{
+	//		isInvincible = false;
+	//	}
+	//}
 
 	void Character::Attack(bool flag)
 	{
@@ -958,7 +967,7 @@ namespace game_framework
 		pDC2->SetTextColor(RGB(0, 0, 0));
 		char position[500];								// Demo 數字對字串的轉換
 		sprintf(position, "CharacterLeftX:%d CharacterRightX:%d CharacterTopY:%d CharacterButtonY:%d"
-			,GetLeftX(), GetRightX(), GetTopY(), GetButtonY());
+			, GetLeftX(), GetRightX(), GetTopY(), GetButtonY());
 		//sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
 		pDC2->TextOut(200, 100, position);
 		pDC2->SelectObject(f2p);						// 放掉 font f (千萬不要漏了放掉)

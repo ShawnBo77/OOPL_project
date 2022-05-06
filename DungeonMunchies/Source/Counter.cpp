@@ -53,4 +53,12 @@ namespace game_framework
 	{
 		return finishTime - startTime;
 	}
+	void Counter::CaculateTime(bool* b, int time)
+	{
+		Finish();
+		if (GetTime() / CLOCKS_PER_SEC > time)
+		{
+			*b = false;
+		}
+	}
 }

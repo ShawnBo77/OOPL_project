@@ -28,15 +28,57 @@ namespace game_framework
 		init_x = x;
 		init_y = y;
 		hp = enemyHp;
-		fullHp = enemyHp;
+		maxHp = enemyHp;
 		attackDamage = ATK;
 		isAttacking = false;
 		isIntersect = false;
 		character = c;
+		characterDirectionLR = 0;
+		characterDirectionTD = 0;
 	}
 
 	Monster::~Monster()
 	{
+	}
+
+	void Monster::intersect()
+	{
+		if (isAlive())
+		{
+			if (character->GetRightX() >= GetLeftX() && character->GetRightX() <= GetRightX()
+				&& character->GetButtonY() >= GetTopY() - 20 && character->GetButtonY() <= GetButtonY())
+			{ //角色右方碰到怪物
+				isIntersect = true;
+				if (!character->GetIsInvincible())
+				{
+					character->SetIsAttackedFromRight(true);
+					character->lossCurrentHp(attackDamage);
+				}
+			}
+			if (character->GetLeftX() <= GetRightX() && character->GetLeftX() >= GetLeftX()
+				&& character->GetButtonY() >= GetTopY() - 20 && character->GetButtonY() <= GetButtonY())
+			{ //角色左方碰到怪物
+				isIntersect = true;
+				if (!character->GetIsInvincible())
+				{
+					character->SetIsAttackedFromLeft(true);
+					character->lossCurrentHp(attackDamage);
+				}
+			}
+			if ((character->GetRightX() >= GetLeftX() && character->GetRightX() <= GetRightX() ||
+				character->GetLeftX() <= GetRightX() && character->GetLeftX() >= GetLeftX() ||
+				character->GetLeftX() <= GetLeftX() && character->GetRightX() >= GetRightX())
+				&& character->GetButtonY() >= GetTopY() - 20 && character->GetButtonY() <= GetButtonY())
+			{ //角色下方碰到怪物
+				isIntersect = true;
+				if (!character->GetIsInvincible())
+				{
+					character->SetIsAttackedFromButton(true);
+					character->lossCurrentHp(attackDamage);
+				}
+			}
+		}
+		isIntersect = false;
 	}
 
 	void Monster::SetIsIntersect(bool flag)
@@ -49,16 +91,57 @@ namespace game_framework
 		return isIntersect;
 	}
 
-	int Monster::distanceToHero() //與角色的距離 若太遠則不用動作
+	int Monster::distanceToCharacter() //與角色的距離 若太遠則不用動作
 	{
 		int x_distance = _x - character->GetLeftX();
 		int y_distance = _y - character->GetTopY();
 		return (int)(sqrt(pow(x_distance, 2) + pow(y_distance, 2)));
 	}
 
+	void Monster::SetCharacterDirection()
+	{
+		int cX, cY, mX, mY;
+		cX = (character->GetLeftX() + character->GetRightX()) / 2;
+		cY = (character->GetButtonY() + character->GetTopY()) / 2;
+		mX = (_x + GetRightX()) / 2;
+		mY = (_y + GetButtonY()) / 2;
+		if (cX < mX)
+		{
+			characterDirectionLR = 0; //角色在怪物左邊
+		}
+		else
+		{
+			characterDirectionLR = 1;
+		}
+		if (cY < mY)
+		{
+			characterDirectionTD = 0;
+		}
+		else
+		{
+			characterDirectionTD = 1;
+		}
+	}
+
+	bool Monster::GetCharacterDirectionLR()
+	{
+		return characterDirectionLR;
+	}
+
+	bool Monster::GetCharacterDirectionTD()
+	{
+		return characterDirectionTD;
+	}
+
 	double Monster::hpProportion()
 	{
-		return (double)(hp) / fullHp;
+		return (double)(hp) / maxHp;
+	}
+
+	void Monster::SetXY(int x, int y)
+	{
+		_x = x;
+		_y = y;
 	}
 
 	void Monster::SetMovingDown(bool b)
@@ -66,9 +149,19 @@ namespace game_framework
 		isMovingDown = b;
 	}
 
+	bool Monster::GetIsMovingDown()
+	{
+		return isMovingDown;
+	}
+
 	void Monster::SetMovingUp(bool b)
 	{
 		isMovingUp = b;
+	}
+
+	bool Monster::GetIsMovingUp()
+	{
+		return isMovingUp;
 	}
 
 	void Monster::SetMovingLeft(bool b)
@@ -76,15 +169,29 @@ namespace game_framework
 		isMovingLeft = b;
 	}
 
+	bool Monster::GetIsMovingLeft()
+	{
+		return isMovingLeft;
+	}
+
 	void Monster::SetMovingRight(bool b)
 	{
 		isMovingRight = b;
 	}
 
-	void Monster::SetXY(int x, int y)
+	bool Monster::GetIsMovingRight()
 	{
-		_x = x;
-		_y = y;
+		return isMovingRight;
+	}
+
+	void Monster::SetFacingLR(bool b)
+	{
+		facingLR = b;
+	}
+
+	bool Monster::GetFacingLR()
+	{
+		return facingLR;
 	}
 
 	bool Monster::isAlive()
@@ -103,13 +210,89 @@ namespace game_framework
 
 	void Monster::knockBack()
 	{
-		if (_direction == 0)
+		if (facingLR == 0)
 		{
 			_x += 1;
 		}
-		if (_direction == 1)
+		if (facingLR == 1)
 		{
 			_x -= 1;
+		}
+	}
+	void Monster::SetIsOnTheFloor(bool b)
+	{
+		isOnTheFloor = b;
+	}
+	bool Monster::GetIsOnTheFloor()
+	{
+		return isOnTheFloor;
+	}
+	void Monster::SetMaxHp(int x)
+	{
+		maxHp = x;
+	}
+	int Monster::GetMaxHp()
+	{
+		return maxHp;
+	}
+	void Monster::SetCurrentHp(int x)
+	{
+		hp = x;
+	}
+	int Monster::GetCurrentHp()
+	{
+		return hp;
+	}
+	void Monster::SetIsAttacking(bool flag)
+	{
+		isAttacking = flag;
+	}
+	bool Monster::GetIsAttacking()
+	{
+		return isAttacking;
+	}
+	void Monster::SetIsAttacked(bool flag)
+	{
+		isAttacked = flag;
+	}
+	bool Monster::GetIsAttacked()
+	{
+		return isAttacked;
+	}
+	void Monster::SetAttackDamage(int x)
+	{
+		attackDamage = x;
+	}
+	int Monster::GetAttackDamage()
+	{
+		return attackDamage;
+	}
+
+	bool Monster::isAttackSuccessfullyL(int range)
+	{
+		if (character->GetRightX() > GetLeftX() - range && character->GetRightX() < GetLeftX()
+			&& (character->GetButtonY() >= GetTopY() && character->GetButtonY() <= GetButtonY() ||
+				character->GetTopY() >= GetTopY() && character->GetTopY() <= GetButtonY()))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	bool Monster::isAttackSuccessfullyR(int range)
+	{
+		if (character->GetLeftX() < GetRightX() + range && character->GetLeftX() > GetRightX()
+			&& (character->GetButtonY() >= GetTopY() && character->GetButtonY() <= GetButtonY() ||
+				character->GetTopY() >= GetTopY() && character->GetTopY() <= GetButtonY()))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
 		}
 	}
 }
