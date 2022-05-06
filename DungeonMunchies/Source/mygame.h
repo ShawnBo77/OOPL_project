@@ -85,9 +85,11 @@ namespace game_framework
 		//CMovingBitmap logo;								// csieªºlogo
 		CMovingBitmap startMenu;
 		CMovingBitmap startMenuChoice;
+		CMovingBitmap staff;
 		int choice;
 		int yChoice;
 		bool onChoice;
+		bool showStaff;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
