@@ -86,6 +86,7 @@ namespace game_framework
 		//
 		startMenu.LoadBitmap(IDB_STARTMENU);
 		startMenuChoice.LoadBitmap(".\\res\\start_menu_choice.bmp", RGB(0, 0, 0));
+		staff.LoadBitmap(".\\res\\staff.bmp");
 		//logo.LoadBitmap(IDB_BACKGROUND);
 		//Sleep(300);				// 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
 		//
@@ -98,6 +99,7 @@ namespace game_framework
 		onChoice = false;
 		yChoice = 380;
 		choice = 0;
+		showStaff = false;
 	}
 
 	void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -112,49 +114,63 @@ namespace game_framework
 
 	void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 	{
-		if (choice == 1)
+		if (!showStaff)
 		{
-			GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
+			if (choice == 1)
+			{
+				GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
+			}
+			else if (choice == 2)
+			{
+				GotoGameState(GAME_STATE_OVER);
+			}
+			else if (choice == 3)
+			{
+				showStaff = true;
+			}
 		}
-		else if (choice == 2)
+		else
 		{
-			GotoGameState(GAME_STATE_OVER);
-		}
-		else if (choice == 3)
-		{
+			if (point.x >= 1306 && point.y <= 60)
+			{
+				showStaff = false;
+			}
 		}
 	}
 
 	void CGameStateInit::OnMouseMove(UINT nFlags, CPoint point)
 	{
-		if (point.x > 603 && point.x < 770)
+		if (!showStaff)
 		{
-			if (point.y > 380 && point.y < 446)
+			if (point.x > 603 && point.x < 770)
 			{
-				yChoice = 380;
-				choice = 1;
-				onChoice = true;
-			}
-			else if (point.y > 465 && point.y < 531)
-			{
-				yChoice = 465;
-				choice = 2;
-				onChoice = true;
-			}
-			else if (point.y > 550 && point.y < 616)
-			{
-				yChoice = 550;
-				choice = 3;
-				onChoice = true;
+				if (point.y > 380 && point.y < 446)
+				{
+					yChoice = 380;
+					choice = 1;
+					onChoice = true;
+				}
+				else if (point.y > 465 && point.y < 531)
+				{
+					yChoice = 465;
+					choice = 2;
+					onChoice = true;
+				}
+				else if (point.y > 550 && point.y < 616)
+				{
+					yChoice = 550;
+					choice = 3;
+					onChoice = true;
+				}
+				else
+				{
+					choice = 0;
+				}
 			}
 			else
 			{
 				choice = 0;
 			}
-		}
-		else
-		{
-			choice = 0;
 		}
 	}
 
@@ -187,6 +203,11 @@ namespace game_framework
 		{
 			startMenuChoice.SetTopLeft(603, yChoice);
 			startMenuChoice.ShowBitmap();
+		}
+		if (showStaff)
+		{
+			staff.SetTopLeft(0, 0);
+			staff.ShowBitmap();
 		}
 	}
 
@@ -484,7 +505,8 @@ namespace game_framework
 			}
 			else
 			{
-				if (currentStage != stage_props) {
+				if (currentStage != stage_props)
+				{
 					lastStage = currentStage;
 				}
 				currentStage = stage_1;
