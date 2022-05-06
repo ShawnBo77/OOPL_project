@@ -85,6 +85,7 @@ namespace game_framework
 		// 開始載入資料
 		//
 		startMenu.LoadBitmap(IDB_STARTMENU);
+		startMenuChoice.LoadBitmap(".\\res\\start_menu_choice.bmp", RGB(0, 0, 0));
 		//logo.LoadBitmap(IDB_BACKGROUND);
 		//Sleep(300);				// 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
 		//
@@ -94,6 +95,9 @@ namespace game_framework
 
 	void CGameStateInit::OnBeginState()
 	{
+		onChoice = false;
+		yChoice = 380;
+		choice = 0;
 	}
 
 	void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -108,7 +112,50 @@ namespace game_framework
 
 	void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 	{
-		GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
+		if (choice == 1)
+		{
+			GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
+		}
+		else if (choice == 2)
+		{
+			GotoGameState(GAME_STATE_OVER);
+		}
+		else if (choice == 3)
+		{
+		}
+	}
+
+	void CGameStateInit::OnMouseMove(UINT nFlags, CPoint point)
+	{
+		if (point.x > 603 && point.x < 770)
+		{
+			if (point.y > 380 && point.y < 446)
+			{
+				yChoice = 380;
+				choice = 1;
+				onChoice = true;
+			}
+			else if (point.y > 465 && point.y < 531)
+			{
+				yChoice = 465;
+				choice = 2;
+				onChoice = true;
+			}
+			else if (point.y > 550 && point.y < 616)
+			{
+				yChoice = 550;
+				choice = 3;
+				onChoice = true;
+			}
+			else
+			{
+				choice = 0;
+			}
+		}
+		else
+		{
+			choice = 0;
+		}
 	}
 
 	void CGameStateInit::OnShow()
@@ -136,6 +183,11 @@ namespace game_framework
 		//CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 		startMenu.SetTopLeft(0, 0);
 		startMenu.ShowBitmap();
+		if (onChoice)
+		{
+			startMenuChoice.SetTopLeft(603, yChoice);
+			startMenuChoice.ShowBitmap();
+		}
 	}
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -426,7 +478,35 @@ namespace game_framework
 			character.SetCurrentHp(50);
 			break;
 		case KEY_1:
-			currentStage = stage_1;
+			if (currentStage == stage_1)
+			{
+				currentStage = lastStage;
+			}
+			else
+			{
+				if (currentStage != stage_props) {
+					lastStage = currentStage;
+				}
+				currentStage = stage_1;
+			}
+			break;
+		case KEY_7:
+			if (currentStage == stage_boss)
+			{
+				currentStage = lastStage;
+			}
+			else
+			{
+				if (currentStage != stage_props)
+				{
+					lastStage = currentStage;
+				}
+				currentStage = stage_boss;
+			}
+			break;
+		case KEY_ESC:
+			PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);
+			break;
 		default:
 			break;
 		}
