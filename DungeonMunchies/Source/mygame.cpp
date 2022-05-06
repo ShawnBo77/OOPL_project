@@ -537,12 +537,8 @@ namespace game_framework
 	void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 	{
 		//eraser.SetMovingLeft(true);
-		switch (currentStage)
+		if (currentStage == stage_props)
 		{
-		case stage_boss:
-			character.SetAttacking(true);
-			break;
-		case stage_props:
 			if (point.x > 1253 && point.y > 57 && point.x < 1327 && point.y < 117)
 			{
 				currentStage = lastStage;
@@ -551,8 +547,10 @@ namespace game_framework
 			{
 				propsBook.setCase(point);
 			}
-		default:
-			break;
+		}
+		else
+		{
+			character.SetAttacking(true);
 		}
 	}
 
