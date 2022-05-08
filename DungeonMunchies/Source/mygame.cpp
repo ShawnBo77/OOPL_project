@@ -611,13 +611,15 @@ namespace game_framework
 		}
 		else
 		{
-			character.attack(&monsterS1);
+			if (!character.GetIsAttacking() && !character.GetIsRolling()) {
+				character.attack(&monsterS1);
+			}
 		}
 	}
 
 	void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 	{
-		character.SetAttacking(false);
+		//character.SetAttacking(false);
 		//eraser.SetMovingLeft(false);
 	}
 

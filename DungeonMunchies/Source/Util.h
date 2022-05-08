@@ -31,6 +31,15 @@ enum Stage
 	stage_props
 };
 
+enum Action
+{
+	stand_a,
+	walk_a,
+	roll_a,
+	jump_a,
+	attack_a
+};
+
 enum PropCase
 {
 	mosquito_jump_p,

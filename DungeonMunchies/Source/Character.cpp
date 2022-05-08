@@ -395,160 +395,93 @@ namespace game_framework
 		BloodShow();
 		if (characterX < 670 || GetMap() == NULL || GetMap()->mapScreenMoving() == false)
 		{
-			if (facingLR == 0)
-			{
-				if (GetIsRolling())
-				{
-					leftRolling.SetTopLeft(characterX - 5, characterY + 10);
-					leftRolling.OnShow();
-					leftRolling.SetDelayCount(1);
+			screenCX = characterX;
+		}
+		else
+		{
+			screenCX = 670;
+		}
 
-					/*leftRolling.SetTopLeft(characterX, characterY+15);
-					leftRolling.OnShow();
-					leftRolling.SetDelayCount(1);*/
-				}
-				else if (GetIsAttacking())
+		if (facingLR == 0)
+		{
+			if (action == roll_a)
+			{
+				leftRolling.SetTopLeft(screenCX - 5, characterY + 10);
+				leftRolling.OnShow();
+				leftRolling.SetDelayCount(1);
+				if (leftRolling.IsFinalBitmap())
 				{
-					leftAttacking.SetTopLeft(characterX, characterY);
-					leftAttacking.SetDelayCount(3);
-					leftAttacking.OnShow();
-					if (leftAttacking.IsFinalBitmap())
-					{
-						isAttacking = false;
-						actionNum = 0;
-					}
+					isRolling = false;
+					action = walk_a;
 				}
-				else if (GetIsRising() == true)
+			}
+			else if (action == attack_a) //attack
+			{
+				leftAttacking.SetTopLeft(screenCX, characterY);
+				leftAttacking.SetDelayCount(2);
+				leftAttacking.OnShow();
+				if (leftAttacking.IsFinalBitmap())
 				{
-					leftJump.SetTopLeft(characterX, characterY);
-					leftJump.OnShow();
-					leftJump.SetDelayCount(3);
+					isAttacking = false;
+					action = walk_a;
 				}
-				else if ((GetIsMovingLeft() == true || GetIsMovingRight() == true) && GetIsOnTheFloor() == true)
-				{
-					walkingLeft.SetTopLeft(characterX, characterY);
-					walkingLeft.OnShow();
-				}
-				else
-				{
-					standLeft.SetTopLeft(characterX, characterY);
-					standLeft.ShowBitmap();
-				}
+			}
+			else if (GetIsRising() == true)
+			{
+				leftJump.SetTopLeft(screenCX, characterY);
+				leftJump.OnShow();
+				leftJump.SetDelayCount(3);
+			}
+			else if (action == walk_a && (GetIsMovingLeft() == true || GetIsMovingRight() == true) && GetIsOnTheFloor() == true)
+			{
+				walkingLeft.SetTopLeft(screenCX, characterY);
+				walkingLeft.OnShow();
 			}
 			else
 			{
-				if (GetIsRolling())
-				{
-					rightRolling.SetTopLeft(characterX - 5, characterY + 10);
-					rightRolling.OnShow();
-					rightRolling.SetDelayCount(1);
-				}
-				else if (GetIsAttacking())
-				{
-					rightAttacking.SetTopLeft(characterX, characterY);
-					rightAttacking.SetDelayCount(3);
-					rightAttacking.OnShow();
-					if (rightAttacking.IsFinalBitmap())
-					{
-						isAttacking = false;
-						actionNum = 0;
-					}
-				}
-				else if (GetIsRising() == true)
-				{
-					rightJump.SetTopLeft(characterX, characterY);
-					rightJump.OnShow();
-					rightJump.SetDelayCount(3);
-				}
-				else if ((GetIsMovingLeft() == true || GetIsMovingRight() == true) && GetIsOnTheFloor() == true)
-				{
-					walkingRight.SetTopLeft(characterX, characterY);
-					walkingRight.OnShow();
-				}
-				else
-				{
-					standRight.SetTopLeft(characterX, characterY);
-					standRight.ShowBitmap();
-				}
+				standLeft.SetTopLeft(screenCX, characterY);
+				standLeft.ShowBitmap();
 			}
 		}
 		else
 		{
-			if (facingLR == 0)
+			if (action == roll_a)
 			{
-				if (GetIsRolling())
+				rightRolling.SetTopLeft(screenCX - 5, characterY + 10);
+				rightRolling.OnShow();
+				rightRolling.SetDelayCount(1);
+				if (rightRolling.IsFinalBitmap())
 				{
-					leftRolling.SetTopLeft(670 - 5, characterY + 10);
-					leftRolling.OnShow();
-					leftRolling.SetDelayCount(1);
-
-					/*leftRolling.SetTopLeft(characterX, characterY+15);
-					leftRolling.OnShow();
-					leftRolling.SetDelayCount(1);*/
+					isRolling = false;
+					action = walk_a;
 				}
-				else if (GetIsAttacking())
+			}
+			else if (action == attack_a)
+			{
+				rightAttacking.SetTopLeft(screenCX, characterY);
+				rightAttacking.SetDelayCount(2);
+				rightAttacking.OnShow();
+				if (rightAttacking.IsFinalBitmap())
 				{
-					leftAttacking.SetTopLeft(670, characterY);
-					leftAttacking.SetDelayCount(3);
-					leftAttacking.OnShow();
-					if (leftAttacking.IsFinalBitmap())
-					{
-						isAttacking = false;
-						actionNum = 0;
-					}
+					isAttacking = false;
+					action = walk_a;
 				}
-				else if (GetIsRising() == true)
-				{
-					leftJump.SetTopLeft(670, characterY);
-					leftJump.OnShow();
-					leftJump.SetDelayCount(3);
-				}
-				else if ((GetIsMovingLeft() == true || GetIsMovingRight() == true) && GetIsOnTheFloor() == true)
-				{
-					walkingLeft.SetTopLeft(670, characterY);
-					walkingLeft.OnShow();
-				}
-				else
-				{
-					standLeft.SetTopLeft(670, characterY);
-					standLeft.ShowBitmap();
-				}
+			}
+			else if (GetIsRising() == true)
+			{
+				rightJump.SetTopLeft(screenCX, characterY);
+				rightJump.OnShow();
+				rightJump.SetDelayCount(3);
+			}
+			else if (action == walk_a && (GetIsMovingLeft() == true || GetIsMovingRight() == true) && GetIsOnTheFloor() == true)
+			{
+				walkingRight.SetTopLeft(screenCX, characterY);
+				walkingRight.OnShow();
 			}
 			else
 			{
-				if (GetIsRolling())
-				{
-					rightRolling.SetTopLeft(670 - 5, characterY + 10);
-					rightRolling.OnShow();
-					rightRolling.SetDelayCount(1);
-				}
-				else if (GetIsAttacking())
-				{
-					rightAttacking.SetTopLeft(670, characterY);
-					rightAttacking.SetDelayCount(3);
-					rightAttacking.OnShow();
-					if (rightAttacking.IsFinalBitmap())
-					{
-						isAttacking = false;
-						actionNum = 0;
-					}
-				}
-				else if (GetIsRising() == true)
-				{
-					rightJump.SetTopLeft(670, characterY);
-					rightJump.OnShow();
-					rightJump.SetDelayCount(3);
-				}
-				else if ((GetIsMovingLeft() == true || GetIsMovingRight() == true) && GetIsOnTheFloor() == true)
-				{
-					walkingRight.SetTopLeft(670, characterY);
-					walkingRight.OnShow();
-				}
-				else
-				{
-					standRight.SetTopLeft(670, characterY);
-					standRight.ShowBitmap();
-				}
+				standRight.SetTopLeft(screenCX, characterY);
+				standRight.ShowBitmap();
 			}
 		}
 
@@ -616,11 +549,6 @@ namespace game_framework
 	int Character::GetMaxHp()
 	{
 		return maxHp;
-	}
-
-	bool Character::GetIsRolling()
-	{
-		return isRolling;
 	}
 
 	bool Character::GetIsAttackedFromRight()
@@ -701,19 +629,6 @@ namespace game_framework
 		}
 	}
 
-	void Character::SetRolling(bool flag)
-	{
-		if (GetIsOnTheFloor() && rolling_time <= 0)
-		{
-			rolling_time = 5;
-			isRolling = flag;
-		}
-		else
-		{
-			isRolling = false;
-		}
-	}
-
 	void Character::SetIsAttackedFromRight(bool flag)
 	{
 		isAttackedFromRight = flag;
@@ -737,6 +652,104 @@ namespace game_framework
 	void Character::SetIsInvincible(bool flag)
 	{
 		isInvincible = flag;
+	}
+
+	/*翻滾*/
+
+	void Character::SetRolling(bool flag)
+	{
+		if (GetIsOnTheFloor() && rolling_time <= 0)
+		{
+			rolling_time = 5;
+			isRolling = flag;
+		}
+		else
+		{
+			isRolling = false;
+		}
+	}
+
+	bool Character::GetIsRolling()
+	{
+		return isRolling;
+	}
+
+	void Character::Rolling(Map* m, bool flag)								//左:0 右:1
+	{
+		action = roll_a;
+		const int ROLLING_SIZE = 4;											//角色翻滾距離
+		const int BORDER = 5;
+		if (flag)
+		{
+			if (m->isEmpty(GetRightX() + ROLLING_SIZE * 3, GetTopY()) && m->isEmpty(GetRightX() + ROLLING_SIZE * 3, GetButtonY() - BORDER) && rolling_time >= 0)
+			{
+				if (characterX <= 670)
+				{
+					for (int i = 0; i < 10; i++)
+					{
+						if (characterX + ROLLING_SIZE > 670 && GetMap()->mapScreenMoving() == true)
+						{
+							characterX = 670;
+						}
+						else
+						{
+							characterX += ROLLING_SIZE;
+						}
+					}
+				}
+				else
+				{
+					for (int i = 0; i < 10; i++)
+					{
+						characterX += ROLLING_SIZE;
+						if (GetMap()->mapScreenMoving() == true)
+							m->addSX(-ROLLING_SIZE);
+					}
+				}
+				rolling_time--;
+			}
+			else
+			{
+				rolling_time = 0;
+				isRolling = false;
+			}
+		}
+		else
+		{
+			if (m->isEmpty(GetLeftX() - ROLLING_SIZE * 3, GetTopY()) && m->isEmpty(GetLeftX() - ROLLING_SIZE * 3, GetButtonY() - BORDER) && rolling_time >= 0)
+			{
+				if (characterX <= 670 || GetMap()->mapScreenMoving() == false)
+				{
+					for (int i = 0; i < 10; i++)
+					{
+						characterX -= ROLLING_SIZE;
+					}
+				}
+				else
+				{
+					for (int i = 0; i < 10; i++)
+					{
+						if (characterX - ROLLING_SIZE < 670)
+						{
+							m->addSX(characterX - 670);
+							characterX = 670;
+							break;
+						}
+						else
+						{
+							characterX -= ROLLING_SIZE;
+							m->addSX(ROLLING_SIZE);
+						}
+					}
+				}
+				rolling_time--;
+			}
+			else
+			{
+				rolling_time = 0;
+				isRolling = false;
+			}
+		}
 	}
 
 	/*攻擊*/
@@ -767,7 +780,7 @@ namespace game_framework
 
 	void Character::attack(vector<Monster*>* monsters)
 	{
-		actionNum = 3;
+		action = attack_a;
 		isAttacking = true;
 
 		for (unsigned int i = 0; i < monsters->size(); i++)
@@ -776,16 +789,22 @@ namespace game_framework
 			{
 				if (isAttackSuccessfullyL(50, monsters->at(i)))
 				{
-					//monsters[i].SetIsAttackedFromRight(true);
-					monsters->at(i)->lossCurrentHp(attackDamage);
+					if (monsters->at(i)->isAlive())
+					{
+						//monsters[i].SetIsAttackedFromRight(true);
+						monsters->at(i)->lossCurrentHp(attackDamage);
+					}
 				}
 			}
 			else
 			{
 				if (isAttackSuccessfullyR(50, monsters->at(i)))
 				{
-					//monsters[i].SetIsAttackedFromLeft(true);
-					monsters->at(i)->lossCurrentHp(attackDamage);
+					if (monsters->at(i)->isAlive())
+					{
+						//monsters[i].SetIsAttackedFromLeft(true);
+						monsters->at(i)->lossCurrentHp(attackDamage);
+					}
 				}
 			}
 		}
@@ -906,86 +925,6 @@ namespace game_framework
 		}
 	}
 
-	void Character::Rolling(Map* m, bool flag)								//左:0 右:1
-	{
-		const int ROLLING_SIZE = 4;											//角色翻滾距離
-		const int BORDER = 5;
-		if (flag)
-		{
-			if (m->isEmpty(GetRightX() + ROLLING_SIZE * 3, GetTopY()) && m->isEmpty(GetRightX() + ROLLING_SIZE * 3, GetButtonY() - BORDER) && rolling_time >= 0)
-			{
-				if (characterX <= 670)
-				{
-					for (int i = 0; i < 10; i++)
-					{
-						if (characterX + ROLLING_SIZE > 670 && GetMap()->mapScreenMoving() == true)
-						{
-							characterX = 670;
-						}
-						else
-						{
-							characterX += ROLLING_SIZE;
-						}
-					}
-				}
-				else
-				{
-					for (int i = 0; i < 10; i++)
-					{
-						characterX += ROLLING_SIZE;
-						if (GetMap()->mapScreenMoving() == true)
-							m->addSX(-ROLLING_SIZE);
-					}
-				}
-				rolling_time--;
-
-				//m->addSX(-STEP_SIZE);
-			}
-			else
-			{
-				rolling_time = 0;
-				isRolling = false;
-			}
-		}
-		else
-		{
-			if (m->isEmpty(GetLeftX() - ROLLING_SIZE * 3, GetTopY()) && m->isEmpty(GetLeftX() - ROLLING_SIZE * 3, GetButtonY() - BORDER) && rolling_time >= 0)
-			{
-				if (characterX <= 670 || GetMap()->mapScreenMoving() == false)
-				{
-					for (int i = 0; i < 10; i++)
-					{
-						characterX -= ROLLING_SIZE;
-					}
-				}
-				else
-				{
-					for (int i = 0; i < 10; i++)
-					{
-						if (characterX - ROLLING_SIZE < 670)
-						{
-							m->addSX(characterX - 670);
-							characterX = 670;
-							break;
-						}
-						else
-						{
-							characterX -= ROLLING_SIZE;
-							m->addSX(ROLLING_SIZE);
-						}
-					}
-				}
-				rolling_time--;
-				//m->addSX(STEP_SIZE);												//視角移動(王關不用)
-			}
-			else
-			{
-				rolling_time = 0;
-				isRolling = false;
-			}
-		}
-	}
-
 	void Character::restoreCurrentHp(int n)
 	{
 		(GetCurrentHp() + n) >= GetMaxHp() ? SetCurrentHp(GetMaxHp()) : currentHp += n;
@@ -1006,17 +945,17 @@ namespace game_framework
 
 	void Character::showData()
 	{
-		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
-		CFont f, * fp;
-		f.CreatePointFont(120, "Times New Roman");	// 產生 font f; 160表示16 point的字
-		fp = pDC->SelectObject(&f);					// 選用 font f
-		pDC->SetBkColor(RGB(230, 220, 200));
-		pDC->SetTextColor(RGB(0, 0, 0));
-		char str[100];								// Demo 數字對字串的轉換
-		sprintf(str, "CharacterBlood:%d invincibleTime(start:%d, finish:%d)", currentHp, (int)invincibleTime.GetStartTime(), (int)invincibleTime.GetFinishTime());
-		pDC->TextOut(200, 120, str);
-		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
-		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+		//CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+		//CFont f, * fp;
+		//f.CreatePointFont(120, "Times New Roman");	// 產生 font f; 160表示16 point的字
+		//fp = pDC->SelectObject(&f);					// 選用 font f
+		//pDC->SetBkColor(RGB(230, 220, 200));
+		//pDC->SetTextColor(RGB(0, 0, 0));
+		//char str[100];								// Demo 數字對字串的轉換
+		//sprintf(str, "CharacterBlood:%d invincibleTime(start:%d, finish:%d)", currentHp, (int)invincibleTime.GetStartTime(), (int)invincibleTime.GetFinishTime());
+		//pDC->TextOut(200, 120, str);
+		//pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+		//CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 
 		CDC* pDC2 = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 		CFont f2, * f2p;
@@ -1027,7 +966,7 @@ namespace game_framework
 		char position[500];								// Demo 數字對字串的轉換
 		sprintf(position, "CharacterLeftX:%d CharacterRightX:%d CharacterTopY:%d CharacterButtonY:%d"
 			, GetLeftX(), GetRightX(), GetTopY(), GetButtonY());
-		pDC2->TextOut(200, 100, position);
+		pDC2->TextOut(200, 120, position);
 		pDC2->SelectObject(f2p);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}

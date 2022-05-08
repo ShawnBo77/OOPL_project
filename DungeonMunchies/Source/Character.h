@@ -3,6 +3,7 @@
 
 #include "Map.h"
 #include "Counter.h"
+#include "Util.h"
 namespace game_framework
 {
 	/////////////////////////////////////////////////////////////////////////////
@@ -32,16 +33,14 @@ namespace game_framework
 		int  GetTopY();					// 左上角 y 座標
 		int  GetRightX();				// 右下角 x 座標
 		int  GetButtonY();				// 右下角 y 座標
+
 		void GetMovingDown();	        // 回傳是否正在往下移動
 		bool GetIsMovingLeft();	        // 回傳是否正在往左移動
 		bool GetIsMovingRight();        // 回傳是否正在往右移動
 		bool GetIsMovingUp();           // 回傳是否正在往上移動
-		bool GetIsRolling();            // 回傳是否正在翻滾
 		bool GetIsOnTheFloor();         // 回傳是否正在地面
 		bool GetIsRising();	            // 回傳是否正在上升
-		bool GetIsAttackedFromRight();    // 回傳攻擊是否來自右方
-		bool GetIsAttackedFromLeft();	    // 回傳攻擊是否來自左方
-		bool GetIsAttackedFromButton();	// 回傳攻擊是否來自下方
+		
 		int GetMaxHp();                // 取得最大血量
 		int GetCurrentHp();            // 取得目前血量
 		bool GetIsInvincible();         //回傳是否為無敵狀態
@@ -52,19 +51,19 @@ namespace game_framework
 		void SetMovingRight(bool flag);         // 設定是否正在往右移動
 		void SetFacingDirection(int mouseX);    // 設定面對方向
 		void SetMovingUp(bool flag);	        // 設定是否正在往上移動
-		void SetRolling(bool flag);	            // 設定是否翻滾
 		void SetXY(int x, int y);		        // 設定左上角座標
-		void SetIsAttackedFromRight(bool flag);	// 設定攻擊是否來自右方
-		void SetIsAttackedFromLeft(bool flag);	// 設定攻擊是否來自左方
-		void SetIsAttackedFromButton(bool flag);	// 設定攻擊是否來自下方
+		
 		void SetCurrentHp(int x);               // 設定目前血量
 		void SetIsInvincible(bool flag);         //設定是否為無敵狀態
 
-		void Rolling(Map* m, bool flag);        // 翻滾動作
 		void restoreCurrentHp(int n);           // 恢復目前血量
 		void lossCurrentHp(int n);              // 損血
 
 		/*行為*/
+		//翻滾
+		void SetRolling(bool flag);	            // 設定是否翻滾
+		bool GetIsRolling();            // 回傳是否正在翻滾
+		void Rolling(Map* m, bool flag);        // 翻滾動作
 		//攻擊
 		void SetAttacking(bool flag);		    // 設定是否攻擊
 		bool GetIsAttacking();	        // 回傳是否正在攻擊
@@ -72,6 +71,14 @@ namespace game_framework
 		int GetAttackDamage();                  // 取得攻擊力
 		void addAttackDamage(int x);                   // 提升攻擊力
 		void attack(vector<Monster*>* monsters);
+		//受到攻擊
+		void SetIsAttackedFromRight(bool flag);	// 設定攻擊是否來自右方
+		bool GetIsAttackedFromRight();    // 回傳攻擊是否來自右方
+		void SetIsAttackedFromLeft(bool flag);	// 設定攻擊是否來自左方
+		bool GetIsAttackedFromLeft();	    // 回傳攻擊是否來自左方
+		void SetIsAttackedFromButton(bool flag);	// 設定攻擊是否來自下方
+		bool GetIsAttackedFromButton();	// 回傳攻擊是否來自下方
+
 
 		/*餐點能力*/
 		SourceStorage* GetSourceStorage();	        // 回傳素材儲存空間
@@ -105,6 +112,7 @@ namespace game_framework
 		Map* currentMap;
 
 		int characterX, characterY;
+		int screenCX, screenCY;
 		int characterW, characterH;
 		bool mapScreenCanMoving;
 		int STEP_SIZE;              // 移動速度
@@ -123,7 +131,7 @@ namespace game_framework
 		bool isAttackedFromButton;
 		int  velocity;
 		int  rolling_time;
-		int actionNum; //0:walk; 1:roll; 2:jump; 3:attack;
+		Action action;
 
 		Counter healBloodTime;
 		Counter invincibleTime;
