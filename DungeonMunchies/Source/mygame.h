@@ -130,6 +130,7 @@ namespace game_framework
 		//CBouncingBall   bball;		// ¤ÏÂÐ¼u¸õªº²y
 		Stage currentStage;
 		Stage lastStage;
+		vector<Monster*> monsterS1;
 		vector<Monster*> monsterCactus;
 		vector<Monster*> monsterShrimp;
 		vector<Monster*> monsterTree;

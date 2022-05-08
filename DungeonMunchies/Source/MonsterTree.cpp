@@ -32,7 +32,7 @@ namespace game_framework
 
 	MonsterTree::MonsterTree(int x, int y, Character* c) : Monster(x, y, 12, 5, c)
 	{
-		hp = 10;
+		hp = 50;
 		attackDamage = 5;
 		facingLR = 0;
 		actionNum = 0;
@@ -82,7 +82,7 @@ namespace game_framework
 	{
 		_x = init_x;
 		_y = init_y;
-		hp = 10;
+		hp = 50;
 		attackDamage = 5;
 		facingLR = 0;
 		actionNum = 0;
@@ -186,29 +186,6 @@ namespace game_framework
 		}
 	}
 
-	void MonsterTree::showData()
-	{
-		int CharacterLeftX = character->GetLeftX();
-		int CharacterRightX = character->GetRightX();
-		int CharacterTopY = character->GetTopY();
-		int CharacterButtonY = character->GetButtonY();
-		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
-		CFont f, * fp;
-		f.CreatePointFont(120, "Times New Roman");	// 產生 font f; 160表示16 point的字
-		fp = pDC->SelectObject(&f);					// 選用 font f
-		pDC->SetBkColor(RGB(230, 220, 200));
-		pDC->SetTextColor(RGB(0, 0, 0));
-		char position[500];								// Demo 數字對字串的轉換
-		sprintf(position, "CharacterLeftX:%d CharacterRightX:%d CharacterTopY:%d CharacterButtonY:%d \r\n\
-			treeLeftX:%d treeRightX:%d treeTopY:%d treeButtonY:%d attackCD:%d"
-			, CharacterLeftX, CharacterRightX, CharacterTopY, CharacterButtonY,
-			GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), attackCD);
-		//sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
-		pDC->TextOut(200, 100, position);
-		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
-		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
-	}
-
 	void MonsterTree::SetFacingLR(bool flag)
 	{
 		facingLR = flag;
@@ -297,5 +274,26 @@ namespace game_framework
 				}
 			}
 		}
+	}
+
+	void MonsterTree::showData()
+	{
+		int CharacterLeftX = character->GetLeftX();
+		int CharacterRightX = character->GetRightX();
+		int CharacterTopY = character->GetTopY();
+		int CharacterButtonY = character->GetButtonY();
+		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+		CFont f, * fp;
+		f.CreatePointFont(120, "Times New Roman");	// 產生 font f; 160表示16 point的字
+		fp = pDC->SelectObject(&f);					// 選用 font f
+		pDC->SetBkColor(RGB(230, 220, 200));
+		pDC->SetTextColor(RGB(0, 0, 0));
+		char position[500];								// Demo 數字對字串的轉換
+		sprintf(position, "TreeLeftX:%d TreeRightX:%d TreeTopY:%d TreeButtonY:%d TreeHp:%d"
+			,GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), GetCurrentHp());
+		//sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
+		pDC->TextOut(200, 100, position);
+		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
 }

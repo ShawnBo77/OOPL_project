@@ -22,7 +22,7 @@ namespace game_framework
 	{
 		_x = 400;
 		_y = 400;
-		hp = 10;
+		hp = 50;
 		attackDamage = 5;
 	}
 
@@ -45,7 +45,7 @@ namespace game_framework
 	{
 		_x = init_x;
 		_y = init_y;
-		hp = 10;
+		hp = 50;
 		attackDamage = 5;
 		bloodBar.setFullHP(hp);
 	}
@@ -64,7 +64,7 @@ namespace game_framework
 			cactusDead.SetTopLeft(_x, _y + (cactusAlive.Height() - cactusDead.Height()));
 			cactusDead.ShowBitmap();
 		}
-		//showData();
+		showData();
 	}
 
 	void MonsterCactus::showData()
@@ -80,12 +80,10 @@ namespace game_framework
 		pDC->SetBkColor(RGB(230, 220, 200));
 		pDC->SetTextColor(RGB(0, 0, 0));
 		char position[500];								// Demo 數字對字串的轉換
-		sprintf(position, "CharacterLeftX:%d CharacterRightX:%d CharacterTopY:%d CharacterButtonY:%d \r\n\
-			CactusLeftX:%d CactusRightX:%d CactusTopY:%d CactusButtonY:%d"
-			, CharacterLeftX, CharacterRightX, CharacterTopY, CharacterButtonY,
-			GetLeftX(), GetRightX(), GetTopY(), GetButtonY());
+		sprintf(position, "CactusLeftX:%d CactusRightX:%d CactusTopY:%d CactusButtonY:%d CactusHp: %d"
+			, GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), GetCurrentHp());
 		//sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
-		pDC->TextOut(200, 100, position);
+		pDC->TextOut(200, 50, position);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}

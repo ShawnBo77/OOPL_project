@@ -287,6 +287,10 @@ namespace game_framework
 		: CGameState(g)
 	{
 		//ball = new CBall [NUMBALLS];
+		monsterS1.push_back(new MonsterCactus(700, 500, &character));
+		monsterS1.push_back(new MonsterShrimp(300, 400, &character));
+		monsterS1.push_back(new MonsterTree(400, 400, &character));
+
 		monsterCactus.push_back(new MonsterCactus(700, 500, &character));
 		monsterShrimp.push_back(new MonsterShrimp(300, 400, &character));
 		monsterTree.push_back(new MonsterTree(400, 400, &character));
@@ -294,6 +298,10 @@ namespace game_framework
 
 	CGameStateRun::~CGameStateRun()
 	{
+		for (vector<Monster*>::iterator it_i = monsterS1.begin(); it_i != monsterS1.end(); ++it_i)
+		{
+			delete* it_i;
+		}
 		for (vector<Monster*>::iterator it_i = monsterCactus.begin(); it_i != monsterCactus.end(); ++it_i)
 		{
 			delete* it_i;
@@ -335,6 +343,10 @@ namespace game_framework
 		//background.SetTopLeft(BACKGROUND_X,0);				// 設定背景的起始座標
 		currentStage = stage_boss;
 		lastStage = currentStage;
+		for (unsigned i = 0; i < monsterS1.size(); i++)
+		{
+			monsterS1[i]->Initialize();
+		}
 		for (unsigned i = 0; i < monsterCactus.size(); i++)
 		{
 			monsterCactus[i]->Initialize();
@@ -387,18 +399,22 @@ namespace game_framework
 			character.OnMove(&mapS1);
 			break;
 		case stage_boss:
-			for (unsigned i = 0; i < monsterCactus.size(); i++)
+			for (unsigned i = 0; i < monsterS1.size(); i++)
 			{
-				monsterCactus[i]->OnMove();
+				monsterS1[i]->OnMove();
 			}
+			//for (unsigned i = 0; i < monsterCactus.size(); i++)
+			//{
+			//	monsterCactus[i]->OnMove();
+			//}
 			//for (unsigned i = 0; i < monsterShrimp.size(); i++)
 			//{
 			//	monsterShrimp[i]->OnMove();
 			//}
-			for (unsigned i = 0; i < monsterTree.size(); i++)
-			{
-				monsterTree[i]->OnMove();
-			}
+			//for (unsigned i = 0; i < monsterTree.size(); i++)
+			//{
+			//	monsterTree[i]->OnMove();
+			//}
 			character.OnMove(&bossMap);
 			break;
 		default:
@@ -457,6 +473,10 @@ namespace game_framework
 		mapS1.LoadBitmap();
 		bossMap.LoadBitmap();
 		propsBook.LoadBitmap();
+		for (unsigned i = 0; i < monsterS1.size(); i++)
+		{
+			monsterS1[i]->LoadBitmap();
+		}
 		for (unsigned i = 0; i < monsterCactus.size(); i++)
 		{
 			monsterCactus[i]->LoadBitmap();
@@ -591,7 +611,7 @@ namespace game_framework
 		}
 		else
 		{
-			character.SetAttacking(true);
+			character.attack(&monsterS1);
 		}
 	}
 
@@ -651,18 +671,22 @@ namespace game_framework
 		case stage_boss:
 			bossMap.onShow();
 			character.OnShow();
-			for (unsigned i = 0; i < monsterCactus.size(); i++)
+			for (unsigned i = 0; i < monsterS1.size(); i++)
 			{
-				monsterCactus[i]->OnShow(&bossMap);
+				monsterS1[i]->OnShow(&bossMap);
 			}
+			//for (unsigned i = 0; i < monsterCactus.size(); i++)
+			//{
+			//	monsterCactus[i]->OnShow(&bossMap);
+			//}
 			//for (unsigned i = 0; i < monsterShrimp.size(); i++)
 			//{
 			//	monsterShrimp[i]->OnShow(&bossMap);
 			//}
-			for (unsigned i = 0; i < monsterTree.size(); i++)
-			{
-				monsterTree[i]->OnShow(&bossMap);
-			}
+			//for (unsigned i = 0; i < monsterTree.size(); i++)
+			//{
+			//	monsterTree[i]->OnShow(&bossMap);
+			//}
 			break;
 		case stage_props:
 			propsBook.onShow();

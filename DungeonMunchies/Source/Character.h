@@ -12,6 +12,7 @@ namespace game_framework
 	class SourceStorage;
 	class Prop;
 	class PropStorage;
+	class Monster;
 
 	class Character
 	{
@@ -21,9 +22,9 @@ namespace game_framework
 		Map* GetMap();				    // 地圖
 		void Initialize();				// 設定初始值
 		void LoadBitmap();				// 載入圖形
-		void ResetPosition(Map *m);			// 地圖切換時，重置位置
 		void OnMove(Map* m);		    // 移動
 		void OnShow();			        // 將圖形貼到畫面
+		void ResetPosition(Map *m);			// 地圖切換時，重置位置
 		void showData();
 		void BloodShow();
 
@@ -38,14 +39,12 @@ namespace game_framework
 		bool GetIsRolling();            // 回傳是否正在翻滾
 		bool GetIsOnTheFloor();         // 回傳是否正在地面
 		bool GetIsRising();	            // 回傳是否正在上升
-		bool GetIsAttacking();	        // 回傳是否正在攻擊
 		bool GetIsAttackedFromRight();    // 回傳攻擊是否來自右方
 		bool GetIsAttackedFromLeft();	    // 回傳攻擊是否來自左方
 		bool GetIsAttackedFromButton();	// 回傳攻擊是否來自下方
 		int GetMaxHp();                // 取得最大血量
 		int GetCurrentHp();            // 取得目前血量
 		bool GetIsInvincible();         //回傳是否為無敵狀態
-		int GetAtk();                  // 取得攻擊力
 
 		void SetMap(Map* m);
 		void SetMovingDown(bool flag);	        // 設定是否正在往下移動
@@ -55,20 +54,24 @@ namespace game_framework
 		void SetMovingUp(bool flag);	        // 設定是否正在往上移動
 		void SetRolling(bool flag);	            // 設定是否翻滾
 		void SetXY(int x, int y);		        // 設定左上角座標
-		void SetAttacking(bool flag);		    // 設定是否攻擊
 		void SetIsAttackedFromRight(bool flag);	// 設定攻擊是否來自右方
 		void SetIsAttackedFromLeft(bool flag);	// 設定攻擊是否來自左方
 		void SetIsAttackedFromButton(bool flag);	// 設定攻擊是否來自下方
 		void SetCurrentHp(int x);               // 設定目前血量
 		void SetIsInvincible(bool flag);         //設定是否為無敵狀態
-		void SetAtk(int x);                     // 設定攻擊力
 
 		void Rolling(Map* m, bool flag);        // 翻滾動作
-		void addAtk(int ATK);                   // 提升攻擊力
 		void restoreCurrentHp(int n);           // 恢復目前血量
 		void lossCurrentHp(int n);              // 損血
-		//void invincible(int time);              // 無敵
-		void Attack(bool flag);
+
+		/*行為*/
+		//攻擊
+		void SetAttacking(bool flag);		    // 設定是否攻擊
+		bool GetIsAttacking();	        // 回傳是否正在攻擊
+		void SetAttackDamage(int x);                     // 設定攻擊力
+		int GetAttackDamage();                  // 取得攻擊力
+		void addAttackDamage(int x);                   // 提升攻擊力
+		void attack(vector<Monster*>* monsters);
 
 		/*餐點能力*/
 		SourceStorage* GetSourceStorage();	        // 回傳素材儲存空間
@@ -84,6 +87,8 @@ namespace game_framework
 		void healBloodEveryTenSeconds();        // 每十秒回三滴血
 
 	protected:
+		bool isAttackSuccessfullyL(int range, Monster* monster);
+		bool isAttackSuccessfullyR(int range, Monster* monster);
 		CMovingBitmap standLeft;	    // 站立面向左
 		CMovingBitmap standRight;	    // 站立面向右
 		CMovingBitmap bloodFrame;	    // 角色血量框
@@ -112,18 +117,20 @@ namespace game_framework
 		bool isOnTheFloor;          // 是否位於地面
 		bool isRising;              // 是否正在上升
 		bool isAttacking;           // 是否正在攻擊
+		int attackRange;
 		bool isAttackedFromRight;
 		bool isAttackedFromLeft;
 		bool isAttackedFromButton;
 		int  velocity;
 		int  rolling_time;
+		int actionNum; //0:walk; 1:roll; 2:jump; 3:attack;
 
 		Counter healBloodTime;
 		Counter invincibleTime;
 
 		int currentHp;
 		int maxHp;
-		int atk;
+		int attackDamage;
 		bool doubleJump;
 		bool DJtemp;
 		bool healBlood;

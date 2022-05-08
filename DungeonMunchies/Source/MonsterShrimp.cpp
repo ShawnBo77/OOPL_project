@@ -32,7 +32,7 @@ namespace game_framework
 
 	MonsterShrimp::MonsterShrimp(int x, int y, Character* c) : Monster(x, y, 12, 5, c)
 	{
-		hp = 10;
+		hp = 50;
 		attackDamage = 5;
 		facingLR = 0;
 		actionNum = 0;
@@ -68,7 +68,7 @@ namespace game_framework
 	{
 		_x = init_x;
 		_y = init_y;
-		hp = 10;
+		hp = 50;
 		attackDamage = 5;
 		facingLR = 0;
 		actionNum = 0;
@@ -133,7 +133,7 @@ namespace game_framework
 				deadRight.ShowBitmap();
 			}
 		}
-		//showData();
+		showData();
 	}
 
 	void MonsterShrimp::OnMove()
@@ -169,29 +169,6 @@ namespace game_framework
 
 			//intersect();
 		}
-	}
-
-	void MonsterShrimp::showData()
-	{
-		int CharacterLeftX = character->GetLeftX();
-		int CharacterRightX = character->GetRightX();
-		int CharacterTopY = character->GetTopY();
-		int CharacterButtonY = character->GetButtonY();
-		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
-		CFont f, * fp;
-		f.CreatePointFont(120, "Times New Roman");	// 產生 font f; 160表示16 point的字
-		fp = pDC->SelectObject(&f);					// 選用 font f
-		pDC->SetBkColor(RGB(230, 220, 200));
-		pDC->SetTextColor(RGB(0, 0, 0));
-		char position[500];								// Demo 數字對字串的轉換
-		sprintf(position, "CharacterLeftX:%d CharacterRightX:%d CharacterTopY:%d CharacterButtonY:%d \r\n\
-			ShrimpLeftX:%d ShrimpRightX:%d ShrimpTopY:%d ShrimpButtonY:%d attackCD:%d"
-			, CharacterLeftX, CharacterRightX, CharacterTopY, CharacterButtonY,
-			GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), attackCD);
-		//sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
-		pDC->TextOut(200, 100, position);
-		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
-		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
 
 	void MonsterShrimp::SetFacingLR(bool flag)
@@ -275,5 +252,26 @@ namespace game_framework
 				}
 			}
 		}
+	}
+
+	void MonsterShrimp::showData()
+	{
+		int CharacterLeftX = character->GetLeftX();
+		int CharacterRightX = character->GetRightX();
+		int CharacterTopY = character->GetTopY();
+		int CharacterButtonY = character->GetButtonY();
+		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+		CFont f, * fp;
+		f.CreatePointFont(120, "Times New Roman");	// 產生 font f; 160表示16 point的字
+		fp = pDC->SelectObject(&f);					// 選用 font f
+		pDC->SetBkColor(RGB(230, 220, 200));
+		pDC->SetTextColor(RGB(0, 0, 0));
+		char position[500];								// Demo 數字對字串的轉換
+		sprintf(position, "ShrimpLeftX:%d ShrimpRightX:%d ShrimpTopY:%d ShrimpButtonY:%d ShrimpHp:%d"
+			,GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), GetCurrentHp());
+		//sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
+		pDC->TextOut(200, 80, position);
+		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
 }

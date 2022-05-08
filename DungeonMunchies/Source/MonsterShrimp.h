@@ -18,7 +18,6 @@ namespace game_framework
 		void Initialize() override;
 		void OnShow(Map* m) override;
 		void OnMove();
-		void showData();
 		void SetFacingLR(bool flag);
 		bool GetFacingLR();
 		void SetActionNum(int num);
@@ -28,6 +27,7 @@ namespace game_framework
 		int  GetRightX();				// 右下角 x 座標
 		int  GetButtonY();				// 右下角 y 座標
 		void attack();
+		void showData();
 	private:
 		int actionNum; // 0表示在走路，1為攻擊
 		CAnimation walkLeft;

@@ -243,6 +243,10 @@ namespace game_framework
 	{
 		return hp;
 	}
+	void Monster::lossCurrentHp(int x)
+	{
+		hp -= x;
+	}
 	void Monster::SetIsAttacking(bool flag)
 	{
 		isAttacking = flag;
@@ -270,9 +274,12 @@ namespace game_framework
 
 	bool Monster::isAttackSuccessfullyL(int range)
 	{
-		if (character->GetRightX() > GetLeftX() - range && character->GetRightX() < GetLeftX()
-			&& (character->GetButtonY() >= GetTopY() && character->GetButtonY() <= GetButtonY() ||
-				character->GetTopY() >= GetTopY() && character->GetTopY() <= GetButtonY()))
+		if (((character->GetRightX() >= GetLeftX() - range && character->GetRightX() <= GetLeftX()) ||
+			(character->GetLeftX() >= GetLeftX() - range && character->GetLeftX() <= GetLeftX()) ||
+			(character->GetLeftX() <= GetLeftX() - range && character->GetRightX() >= GetRightX()))
+			&& ((character->GetButtonY() >= GetTopY() && character->GetButtonY() <= GetButtonY()) ||
+				(character->GetTopY() >= GetTopY() && character->GetTopY() <= GetButtonY()) ||
+				(character->GetTopY() <= GetTopY() && character->GetButtonY() >= GetButtonY())))
 		{
 			return true;
 		}
@@ -284,9 +291,12 @@ namespace game_framework
 
 	bool Monster::isAttackSuccessfullyR(int range)
 	{
-		if (character->GetLeftX() < GetRightX() + range && character->GetLeftX() > GetRightX()
-			&& (character->GetButtonY() >= GetTopY() && character->GetButtonY() <= GetButtonY() ||
-				character->GetTopY() >= GetTopY() && character->GetTopY() <= GetButtonY()))
+		if (((character->GetLeftX() <= GetRightX() + range && character->GetLeftX() >= GetRightX()) ||
+			(character->GetRightX() <= GetRightX() + range && character->GetRightX() >= GetRightX()) ||
+			(character->GetLeftX() <= GetRightX() && character->GetRightX() >= GetRightX() + range))
+			&& ((character->GetButtonY() >= GetTopY() && character->GetButtonY() <= GetButtonY()) ||
+				(character->GetTopY() >= GetTopY() && character->GetTopY() <= GetButtonY()) ||
+				(character->GetButtonY() >= GetButtonY() && character->GetTopY() <= GetTopY())))
 		{
 			return true;
 		}

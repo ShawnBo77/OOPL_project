@@ -61,6 +61,7 @@ namespace game_framework
 		int GetMaxHp();                // 取得最大血量
 		void SetCurrentHp(int x);      // 設定目前血量
 		int GetCurrentHp();            // 取得目前血量
+		void lossCurrentHp(int x);
 
 		//攻擊
 		void SetIsAttacking(bool flag);		    // 設定是否攻擊
