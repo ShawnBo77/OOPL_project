@@ -417,7 +417,7 @@ namespace game_framework
 			}
 			else if (action == attack_a) //attack
 			{
-				leftAttacking.SetTopLeft(screenCX, characterY);
+				leftAttacking.SetTopLeft(screenCX - 30, characterY);
 				leftAttacking.SetDelayCount(2);
 				leftAttacking.OnShow();
 				if (leftAttacking.IsFinalBitmap())
@@ -458,7 +458,7 @@ namespace game_framework
 			}
 			else if (action == attack_a)
 			{
-				rightAttacking.SetTopLeft(screenCX, characterY);
+				rightAttacking.SetTopLeft(screenCX + 30, characterY);
 				rightAttacking.SetDelayCount(2);
 				rightAttacking.OnShow();
 				if (rightAttacking.IsFinalBitmap())
@@ -677,6 +677,8 @@ namespace game_framework
 	void Character::Rolling(Map* m, bool flag)								//¥ª:0 ¥k:1
 	{
 		action = roll_a;
+		isInvincible = true;
+		invincibleTime.Start();
 		const int ROLLING_SIZE = 4;											//¨¤¦âÂ½ºu¶ZÂ÷
 		const int BORDER = 5;
 		if (flag)
@@ -787,7 +789,7 @@ namespace game_framework
 		{
 			if (facingLR == 0)
 			{
-				if (isAttackSuccessfullyL(50, monsters->at(i)))
+				if (isAttackSuccessfullyL(40, monsters->at(i)))
 				{
 					if (monsters->at(i)->isAlive())
 					{
@@ -798,7 +800,7 @@ namespace game_framework
 			}
 			else
 			{
-				if (isAttackSuccessfullyR(50, monsters->at(i)))
+				if (isAttackSuccessfullyR(40, monsters->at(i)))
 				{
 					if (monsters->at(i)->isAlive())
 					{
