@@ -1,16 +1,16 @@
-#ifndef __COUNT__
-#define __COUNT__
+#ifndef __TIMER__
+#define __TIMER__
 
 namespace game_framework
 {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供計時功能													   //
 	/////////////////////////////////////////////////////////////////////////////
-	class Counter
+	class Timer
 	{
 	public:
-		Counter();
-		~Counter();
+		Timer();
+		~Timer();
 		void SetStartTime(clock_t time);
 		void SetFinishTime(clock_t time);
 		clock_t GetStartTime();
@@ -18,7 +18,8 @@ namespace game_framework
 		void Start();
 		void Finish();
 		clock_t GetTime();
-		void CaculateTime(bool* b, int time);
+		void CaculateTimeForFalse(bool* b, int time);
+		void CaculateTimeForTrue(bool* b, int time);
 	private:
 		clock_t startTime;
 		clock_t finishTime;

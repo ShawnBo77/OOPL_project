@@ -160,7 +160,7 @@ namespace game_framework
 					_x += STEP_SIZE;
 				}
 			}
-			attackCDTime.CaculateTime(&attackCD, 2);
+			attackCDTime.CaculateTimeForFalse(&attackCD, 2);
 			walkLeft.OnMove();
 			walkRight.OnMove();
 

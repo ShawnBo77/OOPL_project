@@ -28,5 +28,6 @@ namespace game_framework {
 
     void PropShrimpAttack::effect(Character* character)
     {
+        character->EatShrimpAttack(true);
     }
 }

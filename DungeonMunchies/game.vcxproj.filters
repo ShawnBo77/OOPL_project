@@ -178,7 +178,7 @@
     <ClCompile Include="Source\MonsterCactus.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Counter.cpp" />
+    <ClCompile Include="Source\Timer.cpp" />
     <ClCompile Include="Source\MonsterBoss.cpp" />
     <ClCompile Include="Source\MapS1.cpp">
       <Filter>MyGame</Filter>
@@ -275,7 +275,7 @@
     <ClInclude Include="Source\MonsterCactus.h">
       <Filter>MyGame</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Counter.h" />
+    <ClInclude Include="Source\Timer.h" />
     <ClInclude Include="Source\MonsterBoss.h" />
     <ClInclude Include="Source\MapS1.h">
       <Filter>MyGame</Filter>

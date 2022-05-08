@@ -5,60 +5,68 @@
 #include "audio.h"
 #include "gamelib.h"
 #include <ctime>
-#include "Counter.h"
+#include "Timer.h"
 
 namespace game_framework
 {
-	Counter::Counter()
+	Timer::Timer()
 	{
 		startTime = 0;
 		finishTime = 0;
 	}
 
-	Counter::~Counter()
+	Timer::~Timer()
 	{
 	}
 
-	void Counter::SetStartTime(clock_t time)
+	void Timer::SetStartTime(clock_t time)
 	{
 		startTime = time;
 	}
 
-	void Counter::SetFinishTime(clock_t time)
+	void Timer::SetFinishTime(clock_t time)
 	{
 		finishTime = time;
 	}
 
-	clock_t Counter::GetStartTime()
+	clock_t Timer::GetStartTime()
 	{
 		return startTime;
 	}
 
-	clock_t Counter::GetFinishTime()
+	clock_t Timer::GetFinishTime()
 	{
 		return finishTime;
 	}
 
-	void Counter::Start()
+	void Timer::Start()
 	{
 		startTime = clock();
 	}
 
-	void Counter::Finish()
+	void Timer::Finish()
 	{
 		finishTime = clock();
 	}
 
-	clock_t Counter::GetTime()
+	clock_t Timer::GetTime()
 	{
 		return finishTime - startTime;
 	}
-	void Counter::CaculateTime(bool* b, int time)
+	void Timer::CaculateTimeForFalse(bool* b, int time)
 	{
 		Finish();
 		if (GetTime() / CLOCKS_PER_SEC > time)
 		{
 			*b = false;
+		}
+	}
+	void Timer::CaculateTimeForTrue(bool* b, int time)
+	{
+		Finish();
+		if (GetTime() / CLOCKS_PER_SEC > time)
+		{
+			*b = true;
 		}
 	}
 }

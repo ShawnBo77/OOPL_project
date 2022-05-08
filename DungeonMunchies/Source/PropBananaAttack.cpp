@@ -28,5 +28,6 @@ namespace game_framework {
 
     void PropBananaAttack::effect(Character* character)
     {
+        character->EatBananaAttack(true);
     }
 }

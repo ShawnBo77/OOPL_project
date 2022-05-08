@@ -1,7 +1,7 @@
 #ifndef __MONSTERTREE__
 #define __MONSTERTREE__
 
-#include "Counter.h"
+#include "Timer.h"
 namespace game_framework
 {
 	/////////////////////////////////////////////////////////////////////////////
@@ -38,7 +38,7 @@ namespace game_framework
 		CAnimation attackRight;
 		CMovingBitmap deadLeft;
 		CMovingBitmap deadRight;
-		Counter attackCDTime;
+		Timer attackCDTime;
 		bool attackCD;
 	};
 }

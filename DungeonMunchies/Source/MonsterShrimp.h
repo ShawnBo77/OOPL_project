@@ -1,7 +1,7 @@
 #ifndef __MONSTERSHRIMP__
 #define __MONSTERSHRIMP__
 
-#include "Counter.h"
+#include "Timer.h"
 namespace game_framework
 {
 	/////////////////////////////////////////////////////////////////////////////
@@ -36,7 +36,7 @@ namespace game_framework
 		CAnimation attackRight;
 		CMovingBitmap deadLeft;
 		CMovingBitmap deadRight;
-		Counter attackCDTime;
+		Timer attackCDTime;
 		bool attackCD;
 	};
 }

@@ -2,7 +2,7 @@
 #define __CHARACTER__
 
 #include "Map.h"
-#include "Counter.h"
+#include "Timer.h"
 #include "Util.h"
 namespace game_framework
 {
@@ -92,6 +92,8 @@ namespace game_framework
 		void addMaxHp(int blood);               // 提升血量上限
 		void EatGuavaJuiceBlood(bool flag);     // 吃下每十秒回三滴血能力
 		void healBloodEveryTenSeconds();        // 每十秒回三滴血
+		void EatBananaAttack(bool flag);
+		void EatShrimpAttack(bool flag);
 
 	protected:
 		bool isAttackSuccessfullyL(int range, Monster* monster);
@@ -133,16 +135,21 @@ namespace game_framework
 		int  rolling_time;
 		Action action;
 
-		Counter healBloodTime;
-		Counter invincibleTime;
+		Timer healBloodTimer;
+		bool healBlood;
+
+		Timer invincibleTimer;
+		bool isInvincible;
+
+		Timer ShrimpAttackTimer;
+		bool shrimpAttack;
+		bool isShrimpAttack;
 
 		int currentHp;
 		int maxHp;
 		int attackDamage;
 		bool doubleJump;
 		bool DJtemp;
-		bool healBlood;
-		bool isInvincible;
 
 		SourceStorage* sourceStorage;
 		PropStorage* propStorage;

@@ -224,6 +224,8 @@ namespace game_framework
 		doubleJump = false;
 		DJtemp = doubleJump;
 		healBlood = false;
+		isShrimpAttack = false;
+		shrimpAttack = false;
 		currentMap = NULL;
 	}
 
@@ -342,11 +344,6 @@ namespace game_framework
 				}
 			}
 
-			if (isInvincible)
-			{
-				invincibleTime.CaculateTime(&isInvincible, 1);
-			}
-
 			if (isAttackedFromRight) //還要判定是否能移動
 			{
 				for (int i = 0; i < 50; i++)
@@ -373,6 +370,16 @@ namespace game_framework
 				}
 				isAttackedFromButton = false;
 			}
+		}
+
+		if (isInvincible)
+		{
+			invincibleTimer.CaculateTimeForFalse(&isInvincible, 1);
+		}
+
+		if (isShrimpAttack && !shrimpAttack)
+		{
+			ShrimpAttackTimer.CaculateTimeForTrue(&shrimpAttack, 3);
 		}
 
 		walkingLeft.OnMove();
@@ -678,7 +685,7 @@ namespace game_framework
 	{
 		action = roll_a;
 		isInvincible = true;
-		invincibleTime.Start();
+		invincibleTimer.Start();
 		const int ROLLING_SIZE = 4;											//角色翻滾距離
 		const int BORDER = 5;
 		if (flag)
@@ -794,7 +801,16 @@ namespace game_framework
 					if (monsters->at(i)->isAlive())
 					{
 						//monsters[i].SetIsAttackedFromRight(true);
-						monsters->at(i)->lossCurrentHp(attackDamage);
+						if (shrimpAttack)
+						{
+							monsters->at(i)->lossCurrentHp(attackDamage + 15);
+							shrimpAttack = false;
+							ShrimpAttackTimer.Start();
+						}
+						else
+						{
+							monsters->at(i)->lossCurrentHp(attackDamage);
+						}
 					}
 				}
 			}
@@ -805,7 +821,16 @@ namespace game_framework
 					if (monsters->at(i)->isAlive())
 					{
 						//monsters[i].SetIsAttackedFromLeft(true);
-						monsters->at(i)->lossCurrentHp(attackDamage);
+						if (shrimpAttack)
+						{
+							monsters->at(i)->lossCurrentHp(attackDamage + 15);
+							shrimpAttack = false;
+							ShrimpAttackTimer.Start();
+						}
+						else
+						{
+							monsters->at(i)->lossCurrentHp(attackDamage);
+						}
 					}
 				}
 			}
@@ -912,18 +937,43 @@ namespace game_framework
 
 	void Character::healBloodEveryTenSeconds()
 	{
-		if (healBloodTime.GetTime() == 0)
+		if (healBloodTimer.GetTime() == 0)
 		{
-			healBloodTime.Start();
+			healBloodTimer.Start();
 		}
 		else
 		{
-			healBloodTime.Finish();
-			if (healBloodTime.GetTime() / CLOCKS_PER_SEC > 10)
+			healBloodTimer.Finish();
+			if (healBloodTimer.GetTime() / CLOCKS_PER_SEC > 10)
 			{
 				restoreCurrentHp(3);
-				healBloodTime.Start();
+				healBloodTimer.Start();
 			}
+		}
+	}
+
+	void Character::EatBananaAttack(bool flag)
+	{
+		if (flag)
+		{
+			attackDamage += 3;
+		}
+		else
+		{
+			attackDamage -= 3;
+		}
+	}
+
+	void Character::EatShrimpAttack(bool flag)
+	{
+		if (flag)
+		{
+			isShrimpAttack = true;
+			ShrimpAttackTimer.Start();
+		}
+		else
+		{
+			isShrimpAttack = false;
 		}
 	}
 
@@ -936,7 +986,7 @@ namespace game_framework
 	{
 		currentHp -= n;
 		isInvincible = true;
-		invincibleTime.Start();
+		invincibleTimer.Start();
 	}
 
 	void Character::SetXY(int x, int y)
@@ -954,7 +1004,7 @@ namespace game_framework
 		//pDC->SetBkColor(RGB(230, 220, 200));
 		//pDC->SetTextColor(RGB(0, 0, 0));
 		//char str[100];								// Demo 數字對字串的轉換
-		//sprintf(str, "CharacterBlood:%d invincibleTime(start:%d, finish:%d)", currentHp, (int)invincibleTime.GetStartTime(), (int)invincibleTime.GetFinishTime());
+		//sprintf(str, "CharacterBlood:%d invincibleTimer(start:%d, finish:%d)", currentHp, (int)invincibleTimer.GetStartTime(), (int)invincibleTimer.GetFinishTime());
 		//pDC->TextOut(200, 120, str);
 		//pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		//CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
@@ -966,8 +1016,8 @@ namespace game_framework
 		pDC2->SetBkColor(RGB(230, 220, 200));
 		pDC2->SetTextColor(RGB(0, 0, 0));
 		char position[500];								// Demo 數字對字串的轉換
-		sprintf(position, "CharacterLeftX:%d CharacterRightX:%d CharacterTopY:%d CharacterButtonY:%d"
-			, GetLeftX(), GetRightX(), GetTopY(), GetButtonY());
+		sprintf(position, "CharacterLeftX:%d CharacterRightX:%d CharacterTopY:%d CharacterButtonY:%d CharacterAttack:%d"
+			, GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), attackDamage);
 		pDC2->TextOut(200, 120, position);
 		pDC2->SelectObject(f2p);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
