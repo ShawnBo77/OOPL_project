@@ -217,6 +217,7 @@ namespace game_framework
 		rolling_time = 0;
 		isAttacking = false;
 		attackDamage = 10;
+		attackRange = 40;
 		isAttackedFromRight = false;
 		isAttackedFromLeft = false;
 		isAttackedFromButton = false;
@@ -225,6 +226,7 @@ namespace game_framework
 		DJtemp = doubleJump;
 		healBlood = false;
 		isShrimpAttack = false;
+		isMosquitoJump = isGrassFast = isShrimpBlood = isGuavaJuiceBlood = isBananaAttack = false;
 		shrimpAttack = false;
 		currentMap = NULL;
 	}
@@ -663,6 +665,16 @@ namespace game_framework
 
 	/*Â½ºu*/
 
+	void Character::SetSpeed(int x)
+	{
+		STEP_SIZE = x;
+	}
+
+	int Character::GetSpeed()
+	{
+		return STEP_SIZE;
+	}
+
 	void Character::SetRolling(bool flag)
 	{
 		if (GetIsOnTheFloor() && rolling_time <= 0)
@@ -787,6 +799,16 @@ namespace game_framework
 		attackDamage += x;
 	}
 
+	void Character::SetAttackRange(int x)
+	{
+		attackRange = x;
+	}
+
+	int Character::GetAttackRange()
+	{
+		return attackRange;
+	}
+
 	void Character::attack(vector<Monster*>* monsters)
 	{
 		action = attack_a;
@@ -796,7 +818,7 @@ namespace game_framework
 		{
 			if (facingLR == 0)
 			{
-				if (isAttackSuccessfullyL(40, monsters->at(i)))
+				if (isAttackSuccessfullyL(attackRange, monsters->at(i)))
 				{
 					if (monsters->at(i)->isAlive())
 					{
@@ -816,7 +838,7 @@ namespace game_framework
 			}
 			else
 			{
-				if (isAttackSuccessfullyR(40, monsters->at(i)))
+				if (isAttackSuccessfullyR(attackRange, monsters->at(i)))
 				{
 					if (monsters->at(i)->isAlive())
 					{
@@ -890,6 +912,7 @@ namespace game_framework
 
 	void Character::EatMosquitoJump(bool flag)
 	{
+		isMosquitoJump = flag;
 		SetDoubleJump(flag);
 		DJtemp = flag;
 	}
@@ -906,6 +929,7 @@ namespace game_framework
 
 	void Character::EatGrassFast(bool flag)
 	{
+		isGrassFast = flag;
 		if (flag)
 		{
 			IncreaseSpeed(1.4);
@@ -919,6 +943,7 @@ namespace game_framework
 
 	void Character::EatShrimpBlood(bool flag)
 	{
+		isShrimpBlood = flag;
 		if (flag)
 		{
 			addMaxHp(20);
@@ -932,6 +957,7 @@ namespace game_framework
 
 	void Character::EatGuavaJuiceBlood(bool flag)
 	{
+		isGuavaJuiceBlood = flag;
 		healBlood = flag;
 	}
 
@@ -954,6 +980,7 @@ namespace game_framework
 
 	void Character::EatBananaAttack(bool flag)
 	{
+		isBananaAttack = flag;
 		if (flag)
 		{
 			attackDamage += 3;
@@ -975,6 +1002,66 @@ namespace game_framework
 		{
 			isShrimpAttack = false;
 		}
+	}
+
+	void Character::SetIsMosquitoJump(bool flag)
+	{
+		isMosquitoJump = flag;
+	}
+
+	bool Character::GetIsMosquitoJump()
+	{
+		return isMosquitoJump;
+	}
+
+	void Character::SetIsGrassFast(bool flag)
+	{
+		isGrassFast = flag;
+	}
+
+	bool Character::GetIsGrassFast()
+	{
+		return isGrassFast;
+	}
+
+	void Character::SetIsShrimpBlood(bool flag)
+	{
+		isShrimpBlood = flag;
+	}
+
+	bool Character::GetIsShrimpBlood()
+	{
+		return isShrimpBlood;
+	}
+
+	void Character::SetIsGuavaJuiceBlood(bool flag)
+	{
+		isGuavaJuiceBlood = flag;
+	}
+
+	bool Character::GetIsGuavaJuiceBlood()
+	{
+		return isGuavaJuiceBlood;
+	}
+
+	void Character::SetIsBananaAttack(bool flag)
+	{
+		isBananaAttack = flag;
+	}
+
+	bool Character::GetIsBananaAttack()
+	{
+		return isBananaAttack;
+	}
+
+	void Character::SetIsShrimpAttack(bool flag)
+	{
+		isShrimpAttack = flag;
+	}
+
+	bool Character::GetIsShrimpAttack()
+	{
+		return isShrimpAttack;
 	}
 
 	void Character::restoreCurrentHp(int n)

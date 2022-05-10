@@ -340,6 +340,10 @@ namespace game_framework
 		mapS1.Initialize();
 		bossMap.Initialize();
 		propsBook.Initialize(&character);
+		characterStatus.Initialize(&character);
+		characterStatusCall = false;
+		haveCalledCharacterStatus = false;
+		gamePause = false;
 		//background.SetTopLeft(BACKGROUND_X,0);				// 設定背景的起始座標
 		currentStage = stage_boss;
 		lastStage = currentStage;
@@ -393,32 +397,35 @@ namespace game_framework
 		{
 			GotoGameState(GAME_STATE_OVER);
 		}
-		switch (currentStage)
+		if (gamePause == false)
 		{
-		case stage_1:
-			character.OnMove(&mapS1);
-			break;
-		case stage_boss:
-			for (unsigned i = 0; i < monsterS1.size(); i++)
+			switch (currentStage)
 			{
-				monsterS1[i]->OnMove();
+			case stage_1:
+				character.OnMove(&mapS1);
+				break;
+			case stage_boss:
+				for (unsigned i = 0; i < monsterS1.size(); i++)
+				{
+					monsterS1[i]->OnMove();
+				}
+				//for (unsigned i = 0; i < monsterCactus.size(); i++)
+				//{
+				//	monsterCactus[i]->OnMove();
+				//}
+				//for (unsigned i = 0; i < monsterShrimp.size(); i++)
+				//{
+				//	monsterShrimp[i]->OnMove();
+				//}
+				//for (unsigned i = 0; i < monsterTree.size(); i++)
+				//{
+				//	monsterTree[i]->OnMove();
+				//}
+				character.OnMove(&bossMap);
+				break;
+			default:
+				break;
 			}
-			//for (unsigned i = 0; i < monsterCactus.size(); i++)
-			//{
-			//	monsterCactus[i]->OnMove();
-			//}
-			//for (unsigned i = 0; i < monsterShrimp.size(); i++)
-			//{
-			//	monsterShrimp[i]->OnMove();
-			//}
-			//for (unsigned i = 0; i < monsterTree.size(); i++)
-			//{
-			//	monsterTree[i]->OnMove();
-			//}
-			character.OnMove(&bossMap);
-			break;
-		default:
-			break;
 		}
 		//
 		// 判斷擦子是否碰到球
@@ -473,6 +480,7 @@ namespace game_framework
 		mapS1.LoadBitmap();
 		bossMap.LoadBitmap();
 		propsBook.LoadBitmap();
+		characterStatus.LoadBitmap();
 		for (unsigned i = 0; i < monsterS1.size(); i++)
 		{
 			monsterS1[i]->LoadBitmap();
@@ -527,17 +535,47 @@ namespace game_framework
 			if (currentStage == stage_props)
 			{
 				currentStage = lastStage;
+				if (!haveCalledCharacterStatus)
+				{
+					gamePause = false;
+				}
+				else {
+					characterStatusCall = true;
+				}
 			}
 			else
 			{
 				lastStage = currentStage;
 				currentStage = stage_props;
+				haveCalledCharacterStatus = characterStatusCall;
+				characterStatusCall = false;
+				gamePause = true;
+			}
+			break;
+		case KEY_TAB:
+			if (characterStatusCall == true)
+			{
+				characterStatusCall = false;
+				haveCalledCharacterStatus = false;
+				gamePause = false;
+			}
+			else
+			{
+				if (currentStage != stage_props)
+				{
+					characterStatusCall = true;
+					gamePause = true;
+				}
 			}
 			break;
 		case KEY_R:
 			character.SetCurrentHp(50);
 			break;
 		case KEY_1:
+			if (!haveCalledCharacterStatus)
+			{
+				gamePause = false;
+			}
 			if (currentStage == stage_1)
 			{
 				currentStage = lastStage;
@@ -552,6 +590,10 @@ namespace game_framework
 			}
 			break;
 		case KEY_7:
+			if (!haveCalledCharacterStatus)
+			{
+				gamePause = false;
+			}
 			if (currentStage == stage_boss)
 			{
 				currentStage = lastStage;
@@ -603,6 +645,14 @@ namespace game_framework
 			if (point.x > 1253 && point.y > 57 && point.x < 1327 && point.y < 117)
 			{
 				currentStage = lastStage;
+				if (!haveCalledCharacterStatus)
+				{
+					gamePause = false;
+				}
+				else
+				{
+					characterStatusCall = true;
+				}
 			}
 			else
 			{
@@ -611,8 +661,17 @@ namespace game_framework
 		}
 		else
 		{
-			if (!character.GetIsAttacking() && !character.GetIsRolling()) {
+			if (gamePause == false && !character.GetIsAttacking() && !character.GetIsRolling())
+			{
 				character.attack(&monsterS1);
+			}
+		}
+		if (characterStatusCall == true)
+		{
+			if (point.x > 1030 && point.y > 133 && point.x < 1082 && point.y < 189)
+			{
+				characterStatusCall = false;
+				gamePause = false;
 			}
 		}
 	}
@@ -692,8 +751,13 @@ namespace game_framework
 			break;
 		case stage_props:
 			propsBook.onShow();
+			break;
 		default:
 			break;
+		}
+		if (characterStatusCall)
+		{
+			characterStatus.onShow();
 		}
 
 	}

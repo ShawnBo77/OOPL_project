@@ -22,6 +22,7 @@ const char KEY_E = 69;
 const char KEY_R = 82;
 const char KEY_SPACE = 0x20;
 const char KEY_CTRL = 0x11;
+const char KEY_TAB = 9;
 
 // 定義各關卡的編號
 enum Stage

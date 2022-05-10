@@ -25,7 +25,7 @@ namespace game_framework
 		void LoadBitmap();				// 載入圖形
 		void OnMove(Map* m);		    // 移動
 		void OnShow();			        // 將圖形貼到畫面
-		void ResetPosition(Map *m);			// 地圖切換時，重置位置
+		void ResetPosition(Map* m);			// 地圖切換時，重置位置
 		void showData();
 		void BloodShow();
 
@@ -40,7 +40,7 @@ namespace game_framework
 		bool GetIsMovingUp();           // 回傳是否正在往上移動
 		bool GetIsOnTheFloor();         // 回傳是否正在地面
 		bool GetIsRising();	            // 回傳是否正在上升
-		
+
 		int GetMaxHp();                // 取得最大血量
 		int GetCurrentHp();            // 取得目前血量
 		bool GetIsInvincible();         //回傳是否為無敵狀態
@@ -52,7 +52,7 @@ namespace game_framework
 		void SetFacingDirection(int mouseX);    // 設定面對方向
 		void SetMovingUp(bool flag);	        // 設定是否正在往上移動
 		void SetXY(int x, int y);		        // 設定左上角座標
-		
+
 		void SetCurrentHp(int x);               // 設定目前血量
 		void SetIsInvincible(bool flag);         //設定是否為無敵狀態
 
@@ -60,6 +60,9 @@ namespace game_framework
 		void lossCurrentHp(int n);              // 損血
 
 		/*行為*/
+		//速度
+		void SetSpeed(int x);
+		int GetSpeed();
 		//翻滾
 		void SetRolling(bool flag);	            // 設定是否翻滾
 		bool GetIsRolling();            // 回傳是否正在翻滾
@@ -70,6 +73,8 @@ namespace game_framework
 		void SetAttackDamage(int x);                     // 設定攻擊力
 		int GetAttackDamage();                  // 取得攻擊力
 		void addAttackDamage(int x);                   // 提升攻擊力
+		void SetAttackRange(int x);
+		int GetAttackRange();
 		void attack(vector<Monster*>* monsters);
 		//受到攻擊
 		void SetIsAttackedFromRight(bool flag);	// 設定攻擊是否來自右方
@@ -94,6 +99,19 @@ namespace game_framework
 		void healBloodEveryTenSeconds();        // 每十秒回三滴血
 		void EatBananaAttack(bool flag);
 		void EatShrimpAttack(bool flag);
+
+		void SetIsMosquitoJump(bool flag);
+		bool GetIsMosquitoJump();
+		void SetIsGrassFast(bool flag);
+		bool GetIsGrassFast();
+		void SetIsShrimpBlood(bool flag);
+		bool GetIsShrimpBlood();
+		void SetIsGuavaJuiceBlood(bool flag);
+		bool GetIsGuavaJuiceBlood();
+		void SetIsBananaAttack(bool flag);
+		bool GetIsBananaAttack();
+		void SetIsShrimpAttack(bool flag);
+		bool GetIsShrimpAttack();
 
 	protected:
 		bool isAttackSuccessfullyL(int range, Monster* monster);
@@ -141,15 +159,22 @@ namespace game_framework
 		Timer invincibleTimer;
 		bool isInvincible;
 
-		Timer ShrimpAttackTimer;
-		bool shrimpAttack;
-		bool isShrimpAttack;
-
 		int currentHp;
 		int maxHp;
 		int attackDamage;
 		bool doubleJump;
 		bool DJtemp;
+
+		/*餐點*/
+		bool isMosquitoJump;
+		bool isGrassFast;
+		bool isShrimpBlood;
+		bool isGuavaJuiceBlood;
+		bool isBananaAttack;
+		Timer ShrimpAttackTimer;
+		bool shrimpAttack;
+		bool isShrimpAttack;
+
 
 		SourceStorage* sourceStorage;
 		PropStorage* propStorage;

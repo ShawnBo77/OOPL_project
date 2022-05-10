@@ -47,6 +47,7 @@
 #include "MapS1.h"
 #include "Util.h"
 #include "PropsBook.h"
+#include "CharacterStatus.h"
 #include "Monster.h"
 #include "MonsterCactus.h"
 #include "MonsterShrimp.h"
@@ -120,6 +121,7 @@ namespace game_framework
 		MapForBoss		bossMap;
 		MapS1 mapS1;
 		PropsBook		propsBook;
+		CharacterStatus characterStatus;
 		//const int		NUMBALLS;	// 球的總數
 		//CMovingBitmap	background;	// 背景圖
 		//CMovingBitmap	help;		// 說明圖
@@ -130,6 +132,9 @@ namespace game_framework
 		//CBouncingBall   bball;		// 反覆彈跳的球
 		Stage currentStage;
 		Stage lastStage;
+		bool characterStatusCall;
+		bool haveCalledCharacterStatus;
+		bool gamePause;
 		vector<Monster*> monsterS1;
 		vector<Monster*> monsterCactus;
 		vector<Monster*> monsterShrimp;
