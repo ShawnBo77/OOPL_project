@@ -384,6 +384,11 @@ namespace game_framework
 			ShrimpAttackTimer.CaculateTimeForTrue(&shrimpAttack, 3);
 		}
 
+		if (healBlood)
+		{
+			healBloodEveryTenSeconds();
+		}
+
 		walkingLeft.OnMove();
 		walkingRight.OnMove();
 
@@ -493,7 +498,7 @@ namespace game_framework
 				standRight.ShowBitmap();
 			}
 		}
-
+		
 		showData();
 	}
 
@@ -1115,11 +1120,6 @@ namespace game_framework
 		int frameNum;
 		int fullHeartNum;
 		int chagingHeart;
-
-		if (healBlood)
-		{
-			healBloodEveryTenSeconds();
-		}
 
 		frameNum = GetMaxHp() / 20;
 		fullHeartNum = GetCurrentHp() / 20;
