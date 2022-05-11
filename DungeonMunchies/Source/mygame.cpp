@@ -577,10 +577,8 @@ namespace game_framework
 			character.SetCurrentHp(50);
 			break;
 		case KEY_1:
-			if (!haveCalledCharacterStatus)
-			{
-				gamePause = false;
-			}
+			gamePause = false;
+			characterStatusCall = false;
 			if (currentStage == stage_1)
 			{
 				currentStage = lastStage;
@@ -595,10 +593,8 @@ namespace game_framework
 			}
 			break;
 		case KEY_7:
-			if (!haveCalledCharacterStatus)
-			{
-				gamePause = false;
-			}
+			gamePause = false;
+			characterStatusCall = false;
 			if (currentStage == stage_boss)
 			{
 				currentStage = lastStage;
