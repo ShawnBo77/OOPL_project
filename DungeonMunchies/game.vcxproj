@@ -374,6 +374,7 @@
   <ItemGroup>
     <Image Include="res\bitmap3.bmp" />
     <Image Include="res\bitmap6.bmp" />
+    <Image Include="res\bitmap7.bmp" />
     <Image Include="res\blood1.bmp" />
     <Image Include="res\blood10.bmp" />
     <Image Include="res\blood2.bmp" />
@@ -458,6 +459,7 @@
     <Image Include="RES\characterBlood09.bmp" />
     <Image Include="RES\characterBlood10.bmp" />
     <Image Include="res\characterBloodFrame.bmp" />
+    <Image Include="RES\exit.bmp" />
     <Image Include="res\g_left_jump.bmp" />
     <Image Include="res\g_left_stand.bmp" />
     <Image Include="res\g_left_walk01.bmp" />
@@ -478,6 +480,7 @@
     <Image Include="res\left_roll08.bmp" />
     <Image Include="RES\MeviusLevitating.bmp" />
     <Image Include="RES\MiConv.com__unknown.bmp" />
+    <Image Include="RES\pressE.bmp" />
     <Image Include="RES\props_book.bmp" />
     <Image Include="res\props_book_choice.bmp" />
     <Image Include="res\props_grass_fast.bmp" />

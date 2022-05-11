@@ -58,6 +58,14 @@ namespace game_framework
             mapGrid_init[52][j] = 0;
         }
 
+        for (int i = 60; i < 65; i++)
+        {
+            for (int j = 5; j < 11; j++)
+            {
+                mapGrid_init[i][j] = 2;
+            }
+        }
+
         for (int i = 0; i < 100; i++)
         {
             for (int j = 0; j < 18; j++)
@@ -76,6 +84,8 @@ namespace game_framework
 		//white.LoadBitmap(IDB_WHITE);
 		//blue.LoadBitmap(IDB_BLUE);
 		map.LoadBitmap(".\\res\\map01.bmp");
+        exitBitmap.LoadBitmap(IDB_EXIT, RGB(0, 0, 0));
+        pressEBitmap.LoadBitmap(IDB_PRESSE, RGB(0, 0, 0));
 	}
 
     void MapS1::Initialize()
@@ -104,10 +114,29 @@ namespace game_framework
 		return false;
 	}
 
+    bool MapS1::isPortal(int x, int y) const
+    {
+        int gridX = x / 40;
+        int gridY = y / 40;
+        if (mapGrid[gridX][gridY] == 2)
+        {
+            return true;
+        }
+        return false;
+    }
+
     void MapS1::onShow()
     {
         map.SetTopLeft(getSX(), getSY());
         map.ShowBitmap();
+
+        if (getPortalOpen())
+        {
+            exitBitmap.SetTopLeft(2895+getSX(), 180);
+            exitBitmap.ShowBitmap();
+            pressEBitmap.SetTopLeft(600, 620);
+            pressEBitmap.ShowBitmap();
+        }
 
         if (getSX() > -1520)
         {

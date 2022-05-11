@@ -16,6 +16,7 @@ namespace game_framework {
 	{
 		sx = x;
 		sy = y;
+		portalOpen = false;
 	}
 	string Map::getMapName()
 	{
@@ -54,6 +55,10 @@ namespace game_framework {
 			return endBoundary;
 		}
 	}
+	bool Map::getPortalOpen()
+	{
+		return portalOpen;
+	}
 	void Map::setMapName(string name)
 	{
 		mapName = name;
@@ -90,5 +95,9 @@ namespace game_framework {
 	void Map::setScreenMoving(bool flag)
 	{
 		screenMoving = flag;
+	}
+	void Map::setPortalOpen(bool flag)
+	{
+		portalOpen = flag;
 	}
 }

@@ -9,14 +9,18 @@ namespace game_framework {
 	public:
 		Map(int x, int y);
 		string getMapName();
+		CMovingBitmap exitBitmap;
+		CMovingBitmap pressEBitmap;
 		int getStartPosition();
 		virtual bool isEmpty(int x, int y) const = 0;
+		virtual bool isPortal(int x, int y) const = 0;
 		int getSX();
 		int getSY();
 		bool mapScreenMoving();
 		int getFloor();
 		int getCeiling();
 		int getEndBoundary();
+		bool getPortalOpen();
 		void setMapName(string name);
 		void setStartPosition(int x);									//角色起始位置
 		virtual void addSX(int n);
@@ -29,6 +33,7 @@ namespace game_framework {
 		void setCeiling(int y);
 		void setEndBoundary(int sx);
 		void setScreenMoving(bool flag);
+		void setPortalOpen(bool flag);
 		
 
 		virtual void setPos(int x, int y, int n) = 0;
@@ -42,6 +47,7 @@ namespace game_framework {
 		int endBoundary;
 		bool all_enemy_clear;
 		bool screenMoving;
+		bool portalOpen;
 	};
 }
 #endif

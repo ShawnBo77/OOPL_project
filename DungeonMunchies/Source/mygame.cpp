@@ -532,7 +532,12 @@ namespace game_framework
 			character.SetRolling(true);
 			break;
 		case KEY_E:
-			if (currentStage == stage_props)
+			if (character.GetCanGoToNextMap()) 
+			{
+				currentStage = stage_boss;
+				character.SetCanGoToNextMap(false);
+			}
+			else if (currentStage == stage_props)
 			{
 				currentStage = lastStage;
 				if (!haveCalledCharacterStatus)

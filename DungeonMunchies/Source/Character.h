@@ -40,6 +40,7 @@ namespace game_framework
 		bool GetIsMovingUp();           // 回傳是否正在往上移動
 		bool GetIsOnTheFloor();         // 回傳是否正在地面
 		bool GetIsRising();	            // 回傳是否正在上升
+		bool GetCanGoToNextMap();		// 回傳是否可以前往下一關
 
 		int GetMaxHp();                // 取得最大血量
 		int GetCurrentHp();            // 取得目前血量
@@ -52,6 +53,8 @@ namespace game_framework
 		void SetFacingDirection(int mouseX);    // 設定面對方向
 		void SetMovingUp(bool flag);	        // 設定是否正在往上移動
 		void SetXY(int x, int y);		        // 設定左上角座標
+		void SetCanGoToNextMap(bool flag);		// 設定左上角座標
+		
 
 		void SetCurrentHp(int x);               // 設定目前血量
 		void SetIsInvincible(bool flag);         //設定是否為無敵狀態
@@ -135,6 +138,7 @@ namespace game_framework
 		int screenCX, screenCY;
 		int characterW, characterH;
 		bool mapScreenCanMoving;
+		bool canGoToNextMap;
 		int STEP_SIZE;              // 移動速度
 		bool isMovingDown;		    // 是否正在往下移動
 		bool isMovingLeft;			// 是否正在往左移動

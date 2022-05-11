@@ -212,6 +212,7 @@ namespace game_framework
 		facingLR = 1;
 		STEP_SIZE = 15;
 		isMovingLeft = isMovingRight = isMovingUp = isRising = isRolling = false;
+		canGoToNextMap = false;
 		maxHp = 80;
 		currentHp = 37;
 		rolling_time = 0;
@@ -239,6 +240,17 @@ namespace game_framework
 		{
 			SetMap(m);
 			ResetPosition(m);
+		}
+
+		if (m->isPortal(GetLeftX() - BORDER, GetTopY()))
+		{
+			m->setPortalOpen(true);
+			SetCanGoToNextMap(true);
+		}
+		else
+		{
+			m->setPortalOpen(false);
+			SetCanGoToNextMap(false);
 		}
 
 		if (GetIsRolling())
@@ -498,7 +510,7 @@ namespace game_framework
 				standRight.ShowBitmap();
 			}
 		}
-		
+
 		showData();
 	}
 
@@ -597,6 +609,11 @@ namespace game_framework
 	bool Character::GetIsRising()
 	{
 		return isRising;
+	}
+
+	bool Character::GetCanGoToNextMap()
+	{
+		return canGoToNextMap;
 	}
 
 	/*Setter*/
@@ -1087,6 +1104,11 @@ namespace game_framework
 		characterY = y;
 	}
 
+	void Character::SetCanGoToNextMap(bool flag)
+	{
+		canGoToNextMap = flag;
+	}
+
 	void Character::showData()
 	{
 		//CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
@@ -1108,8 +1130,8 @@ namespace game_framework
 		pDC2->SetBkColor(RGB(230, 220, 200));
 		pDC2->SetTextColor(RGB(0, 0, 0));
 		char position[500];								// Demo 數字對字串的轉換
-		sprintf(position, "CharacterLeftX:%d CharacterRightX:%d CharacterTopY:%d CharacterButtonY:%d CharacterAttack:%d"
-			, GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), attackDamage);
+		sprintf(position, "CharacterLeftX:%d CharacterRightX:%d CharacterTopY:%d CharacterButtonY:%d CharacterAttack:%d ScreenX: %d"
+			, GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), attackDamage, (currentMap == NULL) ? 0 : currentMap->getSX());
 		pDC2->TextOut(200, 120, position);
 		pDC2->SelectObject(f2p);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC

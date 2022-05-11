@@ -15,6 +15,7 @@ namespace game_framework
 		void Initialize();
 		void setPos(int x, int y, int n);			//將地圖座標的陣列設為傳入的數字
 		bool isEmpty(int x, int y) const;
+		bool isPortal(int x, int y) const;
 		void onShow();
 		void setCharacterX(int x) override;
 		void setCharacterY(int y) override;

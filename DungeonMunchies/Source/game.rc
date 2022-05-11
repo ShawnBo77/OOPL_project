@@ -404,6 +404,10 @@ IDB_CHARACTERBLOOD09    BITMAP                  "..\\res\\characterBlood09.bmp"
 
 IDB_CHARACTERBLOOD10    BITMAP                  "..\\res\\characterBlood10.bmp"
 
+IDB_EXIT                BITMAP                  "..\\res\\exit.bmp"
+
+IDB_PRESSE              BITMAP                  "..\\res\\pressE.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
