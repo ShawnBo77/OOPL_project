@@ -230,6 +230,7 @@ namespace game_framework
 		isMosquitoJump = isGrassFast = isShrimpBlood = isGuavaJuiceBlood = isBananaAttack = false;
 		shrimpAttack = false;
 		currentMap = NULL;
+		action = walk_a;
 	}
 
 	void Character::OnMove(Map* m)
