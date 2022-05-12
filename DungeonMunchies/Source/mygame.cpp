@@ -402,7 +402,7 @@ namespace game_framework
 			switch (currentStage)
 			{
 			case stage_1:
-				character.OnMove(&mapS1);
+				character.OnMove(&mapS1, NULL);
 				break;
 			case stage_boss:
 				for (unsigned i = 0; i < monsterS1.size(); i++)
@@ -421,7 +421,7 @@ namespace game_framework
 				//{
 				//	monsterTree[i]->OnMove();
 				//}
-				character.OnMove(&bossMap);
+				character.OnMove(&bossMap, &monsterS1);
 				break;
 			default:
 				break;

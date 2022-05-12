@@ -211,6 +211,7 @@ namespace game_framework
 		characterY = Y_POS;
 		facingLR = 1;
 		STEP_SIZE = 15;
+		BORDER = 5;
 		isMovingLeft = isMovingRight = isMovingUp = isRising = isRolling = false;
 		canGoToNextMap = false;
 		maxHp = 80;
@@ -233,10 +234,9 @@ namespace game_framework
 		action = walk_a;
 	}
 
-	void Character::OnMove(Map* m)
+	void Character::OnMove(Map* m, vector<Monster*>* monsters)
 	{
-		//animation.OnMove();
-		const int BORDER = 5;													//角色邊框寬度
+		//animation.OnMove();													//角色邊框寬度
 		if (currentMap == NULL || m->getMapName() != currentMap->getMapName())
 		{
 			SetMap(m);
@@ -267,7 +267,7 @@ namespace game_framework
 		}
 		else
 		{
-			if (GetIsMovingLeft() && m->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetTopY()) && m->isEmpty(GetLeftX() - BORDER - STEP_SIZE, GetButtonY() - BORDER))
+			if (CanMovingLeft(m, monsters))
 			{
 				if (characterX <= 670 || GetMap()->mapScreenMoving() == false)
 				{
@@ -288,7 +288,7 @@ namespace game_framework
 				}
 			}
 
-			if (GetIsMovingRight() && m->isEmpty(GetRightX() + STEP_SIZE + BORDER, GetTopY()) && m->isEmpty(GetRightX() + BORDER + STEP_SIZE, GetButtonY() - BORDER))
+			if (CanMovingRight(m, monsters))
 			{
 				if (characterX < 670)
 				{
@@ -687,6 +687,72 @@ namespace game_framework
 	}
 
 	/*翻滾*/
+
+	bool Character::CanMovingLeft(Map* m, vector<Monster*>* monsters)
+	{
+		if (GetIsMovingLeft())
+		{
+			if (m->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetTopY()) && m->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetButtonY() - BORDER))
+			{
+				if (monsters == NULL) 
+				{
+					return true;
+				} 
+				else
+				{
+					for (unsigned int i = 0; i < monsters->size(); i++)
+					{
+						if (GetLeftX() - STEP_SIZE - BORDER <= monsters->at(i)->GetLeftX()+20 || GetLeftX() - STEP_SIZE - BORDER >= monsters->at(i)->GetRightX()-20)
+						{
+							return true;
+						}
+						else if(GetButtonY() + BORDER <= monsters->at(i)->GetTopY())
+						{
+							return true;
+						}
+						else
+						{
+							return false;
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	bool Character::CanMovingRight(Map* m, vector<Monster*>* monsters)
+	{
+		if (GetIsMovingRight())
+		{
+			if (m->isEmpty(GetRightX() + STEP_SIZE + BORDER, GetTopY()) && m->isEmpty(GetRightX() + STEP_SIZE + BORDER, GetButtonY() - BORDER))
+			{
+				if (monsters == NULL)
+				{
+					return true;
+				}
+				else
+				{
+					for (unsigned int i = 0; i < monsters->size(); i++)
+					{
+						if (GetRightX() + STEP_SIZE + BORDER >= monsters->at(i)->GetRightX()-20 || GetRightX() + STEP_SIZE + BORDER <= monsters->at(i)->GetLeftX()+20)
+						{
+							return true;
+						}
+						else if (GetButtonY() + BORDER <= monsters->at(i)->GetTopY())
+						{
+							return true;
+						}
+						else
+						{
+							return false;
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
 
 	void Character::SetSpeed(int x)
 	{

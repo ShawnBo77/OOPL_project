@@ -23,7 +23,7 @@ namespace game_framework
 		Map* GetMap();				    // 地圖
 		void Initialize();				// 設定初始值
 		void LoadBitmap();				// 載入圖形
-		void OnMove(Map* m);		    // 移動
+		void OnMove(Map* m, vector<Monster*>* monsters);		    // 移動
 		void OnShow();			        // 將圖形貼到畫面
 		void ResetPosition(Map* m);			// 地圖切換時，重置位置
 		void showData();
@@ -63,6 +63,9 @@ namespace game_framework
 		void lossCurrentHp(int n);              // 損血
 
 		/*行為*/
+		//判定是否可以左右移動
+		bool CanMovingLeft(Map* m, vector<Monster*>* monsters);
+		bool CanMovingRight(Map* m, vector<Monster*>* monsters);
 		//速度
 		void SetSpeed(int x);
 		int GetSpeed();
@@ -140,6 +143,7 @@ namespace game_framework
 		bool mapScreenCanMoving;
 		bool canGoToNextMap;
 		int STEP_SIZE;              // 移動速度
+		int BORDER;
 		bool isMovingDown;		    // 是否正在往下移動
 		bool isMovingLeft;			// 是否正在往左移動
 		bool isMovingRight;			// 是否正在往右移動
