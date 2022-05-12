@@ -702,6 +702,8 @@ namespace game_framework
 				{
 					for (unsigned int i = 0; i < monsters->size(); i++)
 					{
+						if (!monsters->at(i)->isAlive())
+							return true;
 						if (GetLeftX() - STEP_SIZE - BORDER <= monsters->at(i)->GetLeftX()+20 || GetLeftX() - STEP_SIZE - BORDER >= monsters->at(i)->GetRightX()-20)
 						{
 							return true;
@@ -735,6 +737,8 @@ namespace game_framework
 				{
 					for (unsigned int i = 0; i < monsters->size(); i++)
 					{
+						if (!monsters->at(i)->isAlive())
+							return true;
 						if (GetRightX() + STEP_SIZE + BORDER >= monsters->at(i)->GetRightX()-20 || GetRightX() + STEP_SIZE + BORDER <= monsters->at(i)->GetLeftX()+20)
 						{
 							return true;
