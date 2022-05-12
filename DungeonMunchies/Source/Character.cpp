@@ -431,21 +431,21 @@ namespace game_framework
 
 		if (facingLR == 0)
 		{
-			if (action == roll_a)
+			if (isRolling)//action == roll_a)
 			{
 				leftRolling.SetTopLeft(screenCX - 5, characterY + 10);
 				leftRolling.OnShow();
 				leftRolling.SetDelayCount(1);
 				if (leftRolling.IsFinalBitmap())
 				{
-					isRolling = false;
+					//isRolling = false;
 					action = walk_a;
 				}
 			}
-			else if (action == attack_a) //attack
+			else if (isAttacking)//action == attack_a) //attack
 			{
 				leftAttacking.SetTopLeft(screenCX - 30, characterY);
-				leftAttacking.SetDelayCount(2);
+				leftAttacking.SetDelayCount(1);
 				leftAttacking.OnShow();
 				if (leftAttacking.IsFinalBitmap())
 				{
@@ -472,21 +472,21 @@ namespace game_framework
 		}
 		else
 		{
-			if (action == roll_a)
+			if (isRolling)//action == roll_a)
 			{
 				rightRolling.SetTopLeft(screenCX - 5, characterY + 10);
 				rightRolling.OnShow();
 				rightRolling.SetDelayCount(1);
 				if (rightRolling.IsFinalBitmap())
 				{
-					isRolling = false;
+					//isRolling = false;
 					action = walk_a;
 				}
 			}
-			else if (action == attack_a)
+			else if (isAttacking)//action == attack_a)
 			{
 				rightAttacking.SetTopLeft(screenCX + 30, characterY);
-				rightAttacking.SetDelayCount(2);
+				rightAttacking.SetDelayCount(1);
 				rightAttacking.OnShow();
 				if (rightAttacking.IsFinalBitmap())
 				{
@@ -773,7 +773,7 @@ namespace game_framework
 		if (GetIsOnTheFloor() && rolling_time <= 0)
 		{
 			rolling_time = 5;
-			isRolling = flag;
+			isRolling = true;
 		}
 		else
 		{

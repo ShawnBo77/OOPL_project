@@ -288,8 +288,8 @@ namespace game_framework
 	{
 		//ball = new CBall [NUMBALLS];
 		monsterS1.push_back(new MonsterCactus(700, 500, &character));
-		//monsterS1.push_back(new MonsterShrimp(300, 400, &character));
-		//monsterS1.push_back(new MonsterTree(400, 400, &character));
+		monsterS1.push_back(new MonsterShrimp(300, 400, &character));
+		monsterS1.push_back(new MonsterTree(400, 400, &character));
 
 		monsterCactus.push_back(new MonsterCactus(700, 500, &character));
 		monsterShrimp.push_back(new MonsterShrimp(300, 400, &character));
@@ -577,10 +577,8 @@ namespace game_framework
 			character.SetCurrentHp(50);
 			break;
 		case KEY_1:
-			if (!haveCalledCharacterStatus)
-			{
-				gamePause = false;
-			}
+			gamePause = false;
+			characterStatusCall = false;
 			if (currentStage == stage_1)
 			{
 				currentStage = lastStage;
@@ -595,10 +593,8 @@ namespace game_framework
 			}
 			break;
 		case KEY_7:
-			if (!haveCalledCharacterStatus)
-			{
-				gamePause = false;
-			}
+			gamePause = false;
+			characterStatusCall = false;
 			if (currentStage == stage_boss)
 			{
 				currentStage = lastStage;
