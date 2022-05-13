@@ -287,9 +287,12 @@ namespace game_framework
 		: CGameState(g)
 	{
 		//ball = new CBall [NUMBALLS];
-		monsterS1.push_back(new MonsterCactus(700, 500, &character));
-		monsterS1.push_back(new MonsterShrimp(300, 400, &character));
+		//monsterS1.push_back(new MonsterCactus(700, 500, &character));
 		monsterS1.push_back(new MonsterTree(400, 400, &character));
+
+		monsterS2.push_back(new MonsterShrimp(300, 400, &character));
+		monsterS2.push_back(new MonsterCactus(700, 500, &character));
+		//monsterS2.push_back(new MonsterTree(400, 400, &character));
 
 		monsterCactus.push_back(new MonsterCactus(700, 500, &character));
 		monsterShrimp.push_back(new MonsterShrimp(300, 400, &character));
@@ -299,6 +302,10 @@ namespace game_framework
 	CGameStateRun::~CGameStateRun()
 	{
 		for (vector<Monster*>::iterator it_i = monsterS1.begin(); it_i != monsterS1.end(); ++it_i)
+		{
+			delete* it_i;
+		}
+		for (vector<Monster*>::iterator it_i = monsterS2.begin(); it_i != monsterS2.end(); ++it_i)
 		{
 			delete* it_i;
 		}
@@ -345,11 +352,15 @@ namespace game_framework
 		haveCalledCharacterStatus = false;
 		gamePause = false;
 		//background.SetTopLeft(BACKGROUND_X,0);				// 設定背景的起始座標
-		currentStage = stage_boss;
+		currentStage = stage_1;
 		lastStage = currentStage;
 		for (unsigned i = 0; i < monsterS1.size(); i++)
 		{
 			monsterS1[i]->Initialize();
+		}
+		for (unsigned i = 0; i < monsterS2.size(); i++)
+		{
+			monsterS2[i]->Initialize();
 		}
 		for (unsigned i = 0; i < monsterCactus.size(); i++)
 		{
@@ -402,12 +413,16 @@ namespace game_framework
 			switch (currentStage)
 			{
 			case stage_1:
-				character.OnMove(&mapS1, NULL);
-				break;
-			case stage_boss:
 				for (unsigned i = 0; i < monsterS1.size(); i++)
 				{
 					monsterS1[i]->OnMove();
+				}
+				character.OnMove(&mapS1, &monsterS1);
+				break;
+			case stage_boss:
+				for (unsigned i = 0; i < monsterS2.size(); i++)
+				{
+					monsterS2[i]->OnMove();
 				}
 				//for (unsigned i = 0; i < monsterCactus.size(); i++)
 				//{
@@ -421,7 +436,7 @@ namespace game_framework
 				//{
 				//	monsterTree[i]->OnMove();
 				//}
-				character.OnMove(&bossMap, &monsterS1);
+				character.OnMove(&bossMap, &monsterS2);
 				break;
 			default:
 				break;
@@ -484,6 +499,10 @@ namespace game_framework
 		for (unsigned i = 0; i < monsterS1.size(); i++)
 		{
 			monsterS1[i]->LoadBitmap();
+		}
+		for (unsigned i = 0; i < monsterS2.size(); i++)
+		{
+			monsterS2[i]->LoadBitmap();
 		}
 		for (unsigned i = 0; i < monsterCactus.size(); i++)
 		{
@@ -664,7 +683,14 @@ namespace game_framework
 		{
 			if (gamePause == false && !character.GetIsAttacking() && !character.GetIsRolling())
 			{
-				character.attack(&monsterS1);
+				if (currentStage == stage_1)
+				{
+					character.attack(&monsterS1);
+				}
+				else if (currentStage == stage_boss)
+				{
+					character.attack(&monsterS2);
+				}
 			}
 		}
 		if (characterStatusCall == true)
@@ -729,13 +755,17 @@ namespace game_framework
 		case stage_1:
 			mapS1.onShow();
 			character.OnShow();
+			for (unsigned i = 0; i < monsterS1.size(); i++)
+			{
+				monsterS1[i]->OnShow(&mapS1);
+			}
 			break;
 		case stage_boss:
 			bossMap.onShow();
 			character.OnShow();
-			for (unsigned i = 0; i < monsterS1.size(); i++)
+			for (unsigned i = 0; i < monsterS2.size(); i++)
 			{
-				monsterS1[i]->OnShow(&bossMap);
+				monsterS2[i]->OnShow(&bossMap);
 			}
 			//for (unsigned i = 0; i < monsterCactus.size(); i++)
 			//{

@@ -144,6 +144,21 @@ namespace game_framework
 		_y = y;
 	}
 
+	void Monster::SetRelativeMovement(int x)
+	{
+		RelativeMovement += x;
+	}
+
+	int Monster::GetBorder()
+	{
+		return BORDER;
+	}
+
+	int Monster::GetHorizontalGap()
+	{
+		return HORIZONTAL_GAP;
+	}
+
 	void Monster::SetMovingDown(bool b)
 	{
 		isMovingDown = b;

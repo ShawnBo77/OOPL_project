@@ -19,6 +19,7 @@ namespace game_framework
 		void onShow();
 		void setCharacterX(int x) override;
 		void setCharacterY(int y) override;
+		void monsterFloorChanging(int x) override;
 		int screenX(int x) override;
 		int screenY(int y) override;
 	protected:

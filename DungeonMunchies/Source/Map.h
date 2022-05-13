@@ -18,17 +18,21 @@ namespace game_framework {
 		int getSY();
 		bool mapScreenMoving();
 		int getFloor();
+		int getMonsterFloor();
 		int getCeiling();
 		int getEndBoundary();
 		bool getPortalOpen();
 		void setMapName(string name);
 		void setStartPosition(int x);									//角色起始位置
+		void setMonsterFloor(int y);
+
 		virtual void addSX(int n);
 		virtual void addSY(int n);
 		virtual int screenX(int x) { return 0; };
 		virtual int screenY(int y) { return 0; };
 		virtual void setCharacterX(int x) {};
 		virtual void setCharacterY(int y) {};
+		virtual void monsterFloorChanging(int x) {};
 		void setFloor(int y);
 		void setCeiling(int y);
 		void setEndBoundary(int sx);
@@ -43,6 +47,7 @@ namespace game_framework {
 		int startX; //開始位置
 		string mapName;
 		int floor;
+		int monsterFloor;
 		int ceiling;
 		int endBoundary;
 		bool all_enemy_clear;

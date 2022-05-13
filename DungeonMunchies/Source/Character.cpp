@@ -257,13 +257,13 @@ namespace game_framework
 		if (GetIsRolling())
 		{
 			if (isMovingLeft)
-				Rolling(m, 0);
+				Rolling(m, 0, monsters);
 			else if (isMovingRight)
-				Rolling(m, 1);
+				Rolling(m, 1, monsters);
 			else if (facingLR)
-				Rolling(m, 1);
+				Rolling(m, 1, monsters);
 			else if (facingLR == 0)
-				Rolling(m, 0);
+				Rolling(m, 0, monsters);
 		}
 		else
 		{
@@ -278,12 +278,21 @@ namespace game_framework
 					if (characterX - STEP_SIZE < 670)
 					{
 						m->addSX(characterX - 670);
+						for (unsigned int i = 0; i < monsters->size(); i++)
+						{
+							monsters->at(i)->SetRelativeMovement(characterX - 670);
+						}
 						characterX = 670;
 					}
 					else
 					{
 						characterX -= STEP_SIZE;
 						m->addSX(STEP_SIZE);
+
+						for (unsigned int i = 0; i < monsters->size(); i++)
+						{
+							monsters->at(i)->SetRelativeMovement(STEP_SIZE);
+						}
 					}										//視角移動(王關不用)
 				}
 			}
@@ -305,7 +314,13 @@ namespace game_framework
 				{
 					characterX += STEP_SIZE;
 					if (GetMap()->mapScreenMoving() == true)
+					{
 						m->addSX(-STEP_SIZE);
+						for (unsigned int i = 0; i < monsters->size(); i++)
+						{
+							monsters->at(i)->SetRelativeMovement(-STEP_SIZE);
+						}
+					}	
 				}
 			}
 
@@ -362,8 +377,11 @@ namespace game_framework
 			if (isAttackedFromRight) //還要判定是否能移動
 			{
 				for (int i = 0; i < 50; i++)
-				{
-					characterX -= 1;
+				{	
+					if (m->isEmpty(GetLeftX() - 1 - BORDER, GetTopY()) && m->isEmpty(GetLeftX() - 1 - BORDER, GetButtonY() - BORDER))
+					{
+						characterX -= 1;
+					}
 				}
 				isAttackedFromRight = false;
 			}
@@ -372,7 +390,10 @@ namespace game_framework
 			{
 				for (int i = 0; i < 50; i++)
 				{
-					characterX += 1;
+					if (m->isEmpty(GetRightX() + 1 + BORDER, GetTopY()) && m->isEmpty(GetRightX() + 1 + BORDER, GetButtonY() - BORDER))
+					{
+						characterX += 1;
+					}
 				}
 				isAttackedFromLeft = false;
 			}
@@ -459,7 +480,7 @@ namespace game_framework
 				leftJump.OnShow();
 				leftJump.SetDelayCount(3);
 			}
-			else if (action == walk_a && (GetIsMovingLeft() == true || GetIsMovingRight() == true) && GetIsOnTheFloor() == true)
+			else if ((GetIsMovingLeft() == true || GetIsMovingRight() == true) && GetIsOnTheFloor() == true)
 			{
 				walkingLeft.SetTopLeft(screenCX, characterY);
 				walkingLeft.OnShow();
@@ -500,7 +521,7 @@ namespace game_framework
 				rightJump.OnShow();
 				rightJump.SetDelayCount(3);
 			}
-			else if (action == walk_a && (GetIsMovingLeft() == true || GetIsMovingRight() == true) && GetIsOnTheFloor() == true)
+			else if ((GetIsMovingLeft() == true || GetIsMovingRight() == true) && GetIsOnTheFloor() == true)
 			{
 				walkingRight.SetTopLeft(screenCX, characterY);
 				walkingRight.OnShow();
@@ -690,6 +711,8 @@ namespace game_framework
 
 	bool Character::CanMovingLeft(Map* m, vector<Monster*>* monsters)
 	{
+		int monsterBorder;
+		int monsterHG;
 		if (GetIsMovingLeft())
 		{
 			if (m->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetTopY()) && m->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetButtonY() - BORDER))
@@ -702,21 +725,22 @@ namespace game_framework
 				{
 					for (unsigned int i = 0; i < monsters->size(); i++)
 					{
-						if (!monsters->at(i)->isAlive())
-							return true;
-						if (GetLeftX() - STEP_SIZE - BORDER <= monsters->at(i)->GetLeftX()+20 || GetLeftX() - STEP_SIZE - BORDER >= monsters->at(i)->GetRightX()-20)
+						monsterBorder = monsters->at(i)->GetBorder();
+						monsterHG = monsters->at(i)->GetHorizontalGap();
+						
+						if (GetLeftX() - STEP_SIZE - BORDER <= monsters->at(i)->GetLeftX()+ monsterHG + monsterBorder || GetLeftX() - STEP_SIZE - BORDER >= monsters->at(i)->GetRightX()+ monsterHG - monsterBorder)
 						{
-							return true;
 						}
 						else if(GetButtonY() + BORDER <= monsters->at(i)->GetTopY())
 						{
-							return true;
 						}
 						else
 						{
-							return false;
+							if (monsters->at(i)->isAlive())
+								return false;
 						}
 					}
+					return true;
 				}
 			}
 		}
@@ -725,6 +749,8 @@ namespace game_framework
 
 	bool Character::CanMovingRight(Map* m, vector<Monster*>* monsters)
 	{
+		int monsterBorder;
+		int monsterHG;
 		if (GetIsMovingRight())
 		{
 			if (m->isEmpty(GetRightX() + STEP_SIZE + BORDER, GetTopY()) && m->isEmpty(GetRightX() + STEP_SIZE + BORDER, GetButtonY() - BORDER))
@@ -737,21 +763,22 @@ namespace game_framework
 				{
 					for (unsigned int i = 0; i < monsters->size(); i++)
 					{
-						if (!monsters->at(i)->isAlive())
-							return true;
-						if (GetRightX() + STEP_SIZE + BORDER >= monsters->at(i)->GetRightX()-20 || GetRightX() + STEP_SIZE + BORDER <= monsters->at(i)->GetLeftX()+20)
+						monsterBorder = monsters->at(i)->GetBorder();
+						monsterHG = monsters->at(i)->GetHorizontalGap();
+						
+						if (GetRightX() + STEP_SIZE + BORDER >= monsters->at(i)->GetRightX()+ monsterHG - monsterBorder || GetRightX() + STEP_SIZE + BORDER <= monsters->at(i)->GetLeftX()+ monsterHG + monsterBorder)
 						{
-							return true;
 						}
 						else if (GetButtonY() + BORDER <= monsters->at(i)->GetTopY())
 						{
-							return true;
 						}
 						else
 						{
-							return false;
+							if (monsters->at(i)->isAlive())
+								return false;
 						}
 					}
+					return true;
 				}
 			}
 		}
@@ -786,7 +813,7 @@ namespace game_framework
 		return isRolling;
 	}
 
-	void Character::Rolling(Map* m, bool flag)								//左:0 右:1
+	void Character::Rolling(Map* m, bool flag, vector<Monster*>* monsters)								//左:0 右:1
 	{
 		action = roll_a;
 		isInvincible = true;
@@ -816,8 +843,14 @@ namespace game_framework
 					for (int i = 0; i < 10; i++)
 					{
 						characterX += ROLLING_SIZE;
-						if (GetMap()->mapScreenMoving() == true)
+						if (GetMap()->mapScreenMoving() == true) 
+						{
 							m->addSX(-ROLLING_SIZE);
+							for (unsigned int i = 0; i < monsters->size(); i++)
+							{
+								monsters->at(i)->SetRelativeMovement(-ROLLING_SIZE);
+							}
+						}
 					}
 				}
 				rolling_time--;
@@ -846,6 +879,10 @@ namespace game_framework
 						if (characterX - ROLLING_SIZE < 670)
 						{
 							m->addSX(characterX - 670);
+							for (unsigned int j = 0; j < monsters->size(); i++)
+							{
+								monsters->at(j)->SetRelativeMovement(characterX - 670);
+							}
 							characterX = 670;
 							break;
 						}
@@ -853,6 +890,10 @@ namespace game_framework
 						{
 							characterX -= ROLLING_SIZE;
 							m->addSX(ROLLING_SIZE);
+							for (unsigned int i = 0; i < monsters->size(); i++)
+							{
+								monsters->at(i)->SetRelativeMovement(ROLLING_SIZE);
+							}
 						}
 					}
 				}

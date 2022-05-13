@@ -56,52 +56,52 @@ namespace game_framework
 		double proportion = hp / maxHp;
 		if (proportion < 1.0 / 10)
 		{
-			bloodBar[0].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
+			bloodBar[0].SetTopLeft(_x, _y - 20);
 			bloodBar[0].ShowBitmap();
 		}
 		else if (proportion < 2.0 / 10)
 		{
-			bloodBar[1].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
+			bloodBar[1].SetTopLeft(_x, _y - 20);
 			bloodBar[1].ShowBitmap();
 		}
 		else if (proportion < 3.0 / 10)
 		{
-			bloodBar[2].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
+			bloodBar[2].SetTopLeft(_x, _y - 20);
 			bloodBar[2].ShowBitmap();
 		}
 		else if (proportion < 4.0 / 10)
 		{
-			bloodBar[3].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
+			bloodBar[3].SetTopLeft(_x, _y - 20);
 			bloodBar[3].ShowBitmap();
 		}
 		else if (proportion < 5.0 / 10)
 		{
-			bloodBar[4].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
+			bloodBar[4].SetTopLeft(_x, _y - 20);
 			bloodBar[4].ShowBitmap();
 		}
 		else if (proportion < 6.0 / 10)
 		{
-			bloodBar[5].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
+			bloodBar[5].SetTopLeft(_x, _y - 20);
 			bloodBar[5].ShowBitmap();
 		}
 		else if (proportion < 7.0 / 10)
 		{
-			bloodBar[6].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
+			bloodBar[6].SetTopLeft(_x, _y - 20);
 			bloodBar[6].ShowBitmap();
 		}
 		else if (proportion < 8.0 / 10)
 		{
-			bloodBar[7].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
+			bloodBar[7].SetTopLeft(_x, _y - 20);
 			bloodBar[7].ShowBitmap();
 		}
 		else if (proportion < 9.0 / 10)
 		{
-			bloodBar[8].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
+			bloodBar[8].SetTopLeft(_x, _y - 20);
 			bloodBar[8].ShowBitmap();
 		}
 		else
 		{
-			bloodBar[9].SetTopLeft(m->screenX(_x), m->screenY(_y - 20));
+			bloodBar[9].SetTopLeft(_x, _y-20);
 			bloodBar[9].ShowBitmap();
 		}
 	}

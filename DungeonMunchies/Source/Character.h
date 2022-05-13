@@ -72,7 +72,7 @@ namespace game_framework
 		//翻滾
 		void SetRolling(bool flag);	            // 設定是否翻滾
 		bool GetIsRolling();            // 回傳是否正在翻滾
-		void Rolling(Map* m, bool flag);        // 翻滾動作
+		void Rolling(Map* m, bool flag, vector<Monster*>* monsters);        // 翻滾動作
 		//攻擊
 		void SetAttacking(bool flag);		    // 設定是否攻擊
 		bool GetIsAttacking();	        // 回傳是否正在攻擊

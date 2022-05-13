@@ -21,6 +21,7 @@ namespace game_framework
         gridW = 40;
         gridH = 40;
         setFloor(640);
+        setMonsterFloor(640);
         int mapGrid_init[100][18];
         for (int i = 0; i < 100; i++)
         {
@@ -197,6 +198,21 @@ namespace game_framework
 	{
 		characterY = y;
 	}
+    void MapS1::monsterFloorChanging(int x)
+    {
+        if (x < 1000)
+        {
+            setMonsterFloor(640);
+        }
+        else if (x < 2000)
+        {
+            setMonsterFloor(560);
+        }
+        else
+        {
+            setMonsterFloor(460);
+        }
+    }
 	int MapS1::screenX(int x)
 	{
 		return x + getSX();

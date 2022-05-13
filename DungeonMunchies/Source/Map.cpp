@@ -67,6 +67,14 @@ namespace game_framework {
 	{
 		startX = x;
 	}
+	int Map::getMonsterFloor()
+	{
+		return monsterFloor;
+	}
+	void Map::setMonsterFloor(int y)
+	{
+		monsterFloor = y;
+	}
 	void Map::addSX(int n)			//sx+=n 表示地圖向左移動n
 	{
 		sx += n;

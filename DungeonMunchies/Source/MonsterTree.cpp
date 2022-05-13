@@ -82,6 +82,9 @@ namespace game_framework
 	{
 		_x = init_x;
 		_y = init_y;
+		RelativeMovement = 0;
+		BORDER = 5;
+		HORIZONTAL_GAP = 0;
 		hp = 50;
 		attackDamage = 5;
 		facingLR = 0;
@@ -98,13 +101,13 @@ namespace game_framework
 			{
 				if (actionNum == 0)
 				{
-					walkLeft.SetTopLeft(_x, _y); //讓圖片中怪物顯示靠向左
+					walkLeft.SetTopLeft(_x + RelativeMovement, _y); //讓圖片中怪物顯示靠向左
 					//walkLeft.SetDelayCount(3);
 					walkLeft.OnShow();
 				}
 				else
 				{
-					attackLeft.SetTopLeft(_x, _y);
+					attackLeft.SetTopLeft(_x + RelativeMovement, _y);
 					attackLeft.SetDelayCount(4);
 					attackLeft.OnShow();
 					if (attackLeft.IsFinalBitmap())
@@ -117,12 +120,12 @@ namespace game_framework
 			{
 				if (actionNum == 0)
 				{
-					walkRight.SetTopLeft(_x, _y);
+					walkRight.SetTopLeft(_x + RelativeMovement, _y);
 					walkRight.OnShow();
 				}
 				else
 				{
-					attackRight.SetTopLeft(_x, _y);
+					attackRight.SetTopLeft(_x + RelativeMovement, _y);
 					attackRight.SetDelayCount(4);
 					attackRight.OnShow();
 					if (attackRight.IsFinalBitmap())
@@ -131,19 +134,19 @@ namespace game_framework
 					}
 				}
 			}
-			bloodBar.setXY(GetLeftX(), GetTopY() - 16);
+			bloodBar.setXY(_x + RelativeMovement, _y - 16);
 			bloodBar.showBloodBar(m, hp);
 		}
 		else
 		{
 			if (facingLR == 0)
 			{
-				deadLeft.SetTopLeft(_x, _y);
+				deadLeft.SetTopLeft(_x + RelativeMovement, _y);
 				deadLeft.ShowBitmap();
 			}
 			else
 			{
-				deadRight.SetTopLeft(_x, _y);
+				deadRight.SetTopLeft(_x + RelativeMovement, _y);
 				deadRight.ShowBitmap();
 			}
 		}
@@ -152,6 +155,11 @@ namespace game_framework
 
 	void MonsterTree::OnMove()
 	{
+		if (!character->GetMap() == NULL)
+		{
+			character->GetMap()->monsterFloorChanging(GetLeftX());
+			_y = character->GetMap()->getMonsterFloor() -170;
+		}
 		if (isAlive())
 		{
 			SetCharacterDirection();
@@ -166,11 +174,11 @@ namespace game_framework
 			}
 			else if (distanceToCharacter() < 280 && actionNum == 0)
 			{
-				if (characterDirectionLR == 0)
+				if (characterDirectionLR == 0 && (GetLeftX() - STEP_SIZE + BORDER) >= character->GetRightX())
 				{
 					_x -= STEP_SIZE;
 				}
-				else
+				else if (characterDirectionLR == 1 && (GetRightX() + STEP_SIZE - BORDER - 5) <= character->GetLeftX())
 				{
 					_x += STEP_SIZE;
 				}

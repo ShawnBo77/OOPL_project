@@ -20,6 +20,7 @@ namespace game_framework {
         gridW = 40;
         gridH = 40;
         setFloor(560);
+        setMonsterFloor(560);
         int mapGrid_init[40][18];
         for (int i = 0; i < 40; i++)
         {
@@ -124,6 +125,12 @@ namespace game_framework {
     {
         characterY = y;
     }
+
+    void MapForBoss::monsterFloorChanging(int x)
+    {
+        setMonsterFloor(560);
+    }
+
     int MapForBoss::screenX(int x)
     {
         return x + getSX();

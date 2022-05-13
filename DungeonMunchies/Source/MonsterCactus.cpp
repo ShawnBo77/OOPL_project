@@ -24,10 +24,14 @@ namespace game_framework
 		_y = 400;
 		hp = 50;
 		attackDamage = 5;
+		BORDER = 20;
+		HORIZONTAL_GAP = 0;
 	}
 
 	MonsterCactus::MonsterCactus(int x, int y, Character* c) : Monster(x, y, 12, 5, c)
 	{
+		BORDER = 20;
+		HORIZONTAL_GAP = 0;
 	}
 
 	MonsterCactus::~MonsterCactus()
@@ -45,6 +49,7 @@ namespace game_framework
 	{
 		_x = init_x;
 		_y = init_y;
+		RelativeMovement = 0;
 		hp = 100;
 		attackDamage = 5;
 		bloodBar.setFullHP(hp);
@@ -54,14 +59,14 @@ namespace game_framework
 	{
 		if (isAlive())
 		{
-			cactusAlive.SetTopLeft(_x, _y);
+			cactusAlive.SetTopLeft(_x + RelativeMovement, _y);
 			cactusAlive.ShowBitmap();
-			bloodBar.setXY(GetLeftX(), GetTopY() - 16);
+			bloodBar.setXY(GetLeftX() + RelativeMovement, GetTopY() - 16);
 			bloodBar.showBloodBar(m, hp);
 		}
 		if (!isAlive())
 		{
-			cactusDead.SetTopLeft(_x, _y + (cactusAlive.Height() - cactusDead.Height()));
+			cactusDead.SetTopLeft(_x + RelativeMovement, _y + (cactusAlive.Height() - cactusDead.Height()));
 			cactusDead.ShowBitmap();
 		}
 		showData();
@@ -113,6 +118,11 @@ namespace game_framework
 		if (isAlive())
 		{
 			intersect();
+		}
+		if (!character->GetMap() == NULL)
+		{
+			character->GetMap()->monsterFloorChanging(GetLeftX());
+			_y = character->GetMap()->getMonsterFloor() -80;
 		}
 	}
 }
