@@ -93,7 +93,7 @@ namespace game_framework
 
 	int Monster::distanceToCharacter() //與角色的距離 若太遠則不用動作
 	{
-		int x_distance = _x - character->GetLeftX();
+		int x_distance = (GetLeftX() + GetRightX()) / 2 - (character->GetLeftX() + character->GetRightX()) / 2;
 		int y_distance = _y - character->GetTopY();
 		return (int)(sqrt(pow(x_distance, 2) + pow(y_distance, 2)));
 	}
@@ -208,7 +208,6 @@ namespace game_framework
 	{
 		return facingLR;
 	}
-
 	bool Monster::isAlive()
 	{
 		if (hp <= 0)
@@ -234,6 +233,7 @@ namespace game_framework
 			_x -= 1;
 		}
 	}
+	
 	void Monster::SetIsOnTheFloor(bool b)
 	{
 		isOnTheFloor = b;

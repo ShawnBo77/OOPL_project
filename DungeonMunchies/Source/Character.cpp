@@ -769,7 +769,7 @@ namespace game_framework
 						if (GetRightX() + STEP_SIZE + BORDER >= monsters->at(i)->GetRightX()+ monsterHG - monsterBorder || GetRightX() + STEP_SIZE + BORDER <= monsters->at(i)->GetLeftX()+ monsterHG + monsterBorder)
 						{
 						}
-						else if (GetButtonY() + BORDER <= monsters->at(i)->GetTopY())
+						else if (GetButtonY() + BORDER <= monsters->at(i)->GetTopY() + 10)
 						{
 						}
 						else

@@ -200,11 +200,11 @@ namespace game_framework
 	}
     void MapS1::monsterFloorChanging(int x)
     {
-        if (x < 1000)
+        if (x < 1750)
         {
             setMonsterFloor(640);
         }
-        else if (x < 2000)
+        else if (x < 2500)
         {
             setMonsterFloor(560);
         }

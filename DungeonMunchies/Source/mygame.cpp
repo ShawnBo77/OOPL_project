@@ -288,7 +288,7 @@ namespace game_framework
 	{
 		//ball = new CBall [NUMBALLS];
 		//monsterS1.push_back(new MonsterCactus(700, 500, &character));
-		monsterS1.push_back(new MonsterTree(400, 400, &character));
+		monsterS1.push_back(new MonsterTree(1900, 400, &character));
 
 		monsterS2.push_back(new MonsterShrimp(300, 400, &character));
 		monsterS2.push_back(new MonsterCactus(700, 500, &character));

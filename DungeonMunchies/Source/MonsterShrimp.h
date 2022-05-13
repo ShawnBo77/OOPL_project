@@ -30,6 +30,7 @@ namespace game_framework
 		void showData();
 	private:
 		int actionNum; // 0表示在走路，1為攻擊
+		int velocity;
 		CAnimation walkLeft;
 		CAnimation walkRight;
 		CAnimation attackLeft;
