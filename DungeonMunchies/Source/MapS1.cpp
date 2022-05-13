@@ -139,7 +139,7 @@ namespace game_framework
             pressEBitmap.ShowBitmap();
         }
 
-        if (getSX() > -1520)
+        if (getSX() > -1500)
         {
             setFloor(640);
         }
