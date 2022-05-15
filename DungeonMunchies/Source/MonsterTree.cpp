@@ -25,7 +25,7 @@ namespace game_framework
 		hp = 10;
 		attackDamage = 5;
 		facingLR = 0;
-		actionNum = 0;
+		action = sleep_a;
 		STEP_SIZE = 1;
 		attackCD = false;
 	}
@@ -35,7 +35,7 @@ namespace game_framework
 		hp = 50;
 		attackDamage = 5;
 		facingLR = 0;
-		actionNum = 0;
+		action = sleep_a;
 		STEP_SIZE = 1;
 		attackCD = false;
 	}
@@ -89,7 +89,7 @@ namespace game_framework
 		hp = 50;
 		attackDamage = 5;
 		facingLR = 0;
-		actionNum = 0;
+		action = sleep_a;
 		bloodBar.setFullHP(hp);
 		STEP_SIZE = 5;
 		velocity = 0;
@@ -101,7 +101,12 @@ namespace game_framework
 		{
 			if (facingLR == 0)
 			{
-				if (actionNum == 0)
+				if (action == sleep_a)
+				{
+					sleepLeft.SetTopLeft(_x + RelativeMovement, _y);
+					sleepLeft.ShowBitmap();
+				}
+				else if (action == walk_a)
 				{
 					walkLeft.SetTopLeft(_x + RelativeMovement, _y); //讓圖片中怪物顯示靠向左
 					//walkLeft.SetDelayCount(3);
@@ -114,13 +119,18 @@ namespace game_framework
 					attackLeft.OnShow();
 					if (attackLeft.IsFinalBitmap())
 					{
-						actionNum = 0;
+						action = actionController();
 					}
 				}
 			}
 			else
 			{
-				if (actionNum == 0)
+				if (action == sleep_a)
+				{
+					sleepRight.SetTopLeft(_x + RelativeMovement, _y);
+					sleepRight.ShowBitmap();
+				}
+				else if (action == walk_a)
 				{
 					walkRight.SetTopLeft(_x + RelativeMovement, _y);
 					walkRight.OnShow();
@@ -132,7 +142,7 @@ namespace game_framework
 					attackRight.OnShow();
 					if (attackRight.IsFinalBitmap())
 					{
-						actionNum = 0;
+						action = actionController();
 					}
 				}
 			}
@@ -162,8 +172,8 @@ namespace game_framework
 			character->GetMap()->monsterFloorChanging(GetLeftX());
 			if (character->GetMap()->getMonsterFloor() > currentFloor)
 			{
-				
-				if (_y < character->GetMap()->getMonsterFloor() -170)
+
+				if (_y < character->GetMap()->getMonsterFloor() - 170)
 				{
 					_y += velocity * 2;
 					if (velocity < 6)
@@ -172,7 +182,7 @@ namespace game_framework
 				else
 				{
 					currentFloor = character->GetMap()->getMonsterFloor();
-					_y = currentFloor-170;			// 當y座標低於地板，更正為地板上
+					_y = currentFloor - 170;			// 當y座標低於地板，更正為地板上
 					velocity = 0;
 				}
 			}
@@ -180,7 +190,15 @@ namespace game_framework
 		if (isAlive())
 		{
 			SetCharacterDirection();
-			if (actionNum == 0)
+			if (distanceToCharacter() < 280 && action == sleep_a)
+			{
+				action = walk_a;
+			}
+			if (distanceToCharacter() >= 280 && action == walk_a)
+			{
+				action = sleep_a;
+			}
+			if (action == walk_a)
 			{
 				facingLR = characterDirectionLR;
 			}
@@ -189,7 +207,7 @@ namespace game_framework
 				attack();
 				intersect();
 			}
-			else if (distanceToCharacter() < 280 && actionNum == 0)
+			else if (distanceToCharacter() < 280 && action == walk_a)
 			{
 				if (characterDirectionLR == 0 && (GetLeftX() - STEP_SIZE + BORDER) >= character->GetRightX() && character->GetMap()->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetButtonY() - 34))
 				{
@@ -221,16 +239,6 @@ namespace game_framework
 		return facingLR;
 	}
 
-	void MonsterTree::SetActionNum(int num)
-	{
-		actionNum = num;
-	}
-
-	bool MonsterTree::GetActionNum()
-	{
-		return actionNum;
-	}
-
 	int MonsterTree::GetLeftX() //以物件本體為主(攻擊範圍不要算在裡面)
 	{
 		if (facingLR == 0) //left
@@ -245,7 +253,7 @@ namespace game_framework
 
 	int MonsterTree::GetTopY() //需調整以對應顯示的圖(_y + (圖片高度-物體高度))
 	{
-		if (actionNum == 0) //left
+		if (action == walk_a) //left
 		{
 			return _y + 72;
 		}
@@ -272,11 +280,23 @@ namespace game_framework
 		return _y + walkLeft.Height();
 	}
 
+	Action MonsterTree::actionController()
+	{
+		if (distanceToCharacter() < 280)
+		{
+			return walk_a;
+		}
+		else
+		{
+			return sleep_a;
+		}
+	}
+
 	void MonsterTree::attack()
 	{
 		if (attackCD == false) //保險起見多加的
 		{
-			actionNum = 1;
+			action = attack_a;
 			attackCDTime.Start();
 			attackCD = true;
 			if (!character->GetIsInvincible())
@@ -315,7 +335,7 @@ namespace game_framework
 		pDC->SetTextColor(RGB(0, 0, 0));
 		char position[500];								// Demo 數字對字串的轉換
 		sprintf(position, "TreeLeftX:%d TreeRightX:%d TreeTopY:%d TreeButtonY:%d TreeHp:%d"
-			,GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), GetCurrentHp());
+			, GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), GetCurrentHp());
 		//sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
 		pDC->TextOut(200, 100, position);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)

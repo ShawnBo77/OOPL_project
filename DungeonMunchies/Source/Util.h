@@ -34,6 +34,7 @@ enum Stage
 
 enum Action
 {
+	sleep_a,
 	stand_a,
 	walk_a,
 	roll_a,

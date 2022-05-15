@@ -20,16 +20,15 @@ namespace game_framework
 		void OnMove();
 		void SetFacingLR(bool flag);
 		bool GetFacingLR();
-		void SetActionNum(int num);
-		bool GetActionNum();
 		int  GetLeftX();				// 左上角 x 座標
 		int  GetTopY();					// 左上角 y 座標
 		int  GetRightX();				// 右下角 x 座標
 		int  GetButtonY();				// 右下角 y 座標
+		Action actionController();
 		void attack();
 		void showData();
 	private:
-		int actionNum; // 0表示在走路，1為攻擊
+		Action action;
 		int velocity;
 		CMovingBitmap sleepLeft;
 		CMovingBitmap sleepRight;
