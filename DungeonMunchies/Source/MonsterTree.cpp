@@ -165,7 +165,7 @@ namespace game_framework
 		showData();
 	}
 
-	void MonsterTree::OnMove()
+	void MonsterTree::OnMove(Map* m)
 	{
 		if (!character->GetMap() == NULL)
 		{

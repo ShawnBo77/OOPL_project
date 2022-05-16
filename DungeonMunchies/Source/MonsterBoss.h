@@ -15,7 +15,7 @@ namespace game_framework
 		~MonsterBoss();
 		void LoadBitmap();
 		void Initialize() override;
-		void OnMove();
+		void OnMove(Map* m) override;
 		void OnShow(Map* m) override;
 		void showData();
 		int  GetLeftX();				// 左上角 x 座標
@@ -26,14 +26,23 @@ namespace game_framework
 	private:
 		/*行為*/
 		/*走路*/
+		void walk(Map* m);
+		void walkOnMove();
 		void walkOnShow();
 		/*攻擊*/
+		void ResetAtkCounter();
+		void atkCount(int i);
+		//hit
 		void hitStart();
-		void hitJudge();
 		void hitOnMove();
 		void hitOnShow();
-		void collide();
-		void collideOnShow();
+		void hitJudge();
+		//collide
+		void collideStart();
+		void collideOnMove();
+		void collideOnShow(Map* m);
+		void collideJudge();
+		void rushMove(Map* m);
 		
 		CAnimation walkingRight;        // 向右行走動畫
 		CAnimation walkingLeft;         // 向左行走動畫
@@ -48,12 +57,16 @@ namespace game_framework
 		CAnimation thron;        // 刺動畫
 
 		/*攻擊*/
+		int atkCounter[3]; //計算攻擊已連續使用幾次 (0:hit ; 1:collide)
+		int atkLimit[3]; //攻擊最多連續使用次數
 		//hit
 		int hitDamage;
 		int hitDelayCount;
 		bool hitCD;
 		Timer hitCDTimer;
-
+		//collide
+		int rushDistance;
+		int rushStepSize;
 
 	};
 }

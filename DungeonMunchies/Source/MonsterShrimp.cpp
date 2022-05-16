@@ -141,7 +141,7 @@ namespace game_framework
 		showData();
 	}
 
-	void MonsterShrimp::OnMove()
+	void MonsterShrimp::OnMove(Map* m)
 	{ 
 		if (!character->GetMap() == NULL)
 		{

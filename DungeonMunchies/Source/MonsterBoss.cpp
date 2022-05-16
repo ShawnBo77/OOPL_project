@@ -56,11 +56,13 @@ namespace game_framework
 		collideRight.AddBitmap(".\\res\\boss_right_collide01.bmp", RGB(0, 0, 0));
 		collideRight.AddBitmap(".\\res\\boss_right_collide02.bmp", RGB(0, 0, 0));
 		collideRight.AddBitmap(".\\res\\boss_right_collide03.bmp", RGB(0, 0, 0));
+		collideRight.AddBitmap(".\\res\\boss_right_collide03.bmp", RGB(0, 0, 0));
 		collideRight.AddBitmap(".\\res\\boss_right_collide04.bmp", RGB(0, 0, 0));
 
 		//¦V¥ª½Ä¼²°Êµe
 		collideLeft.AddBitmap(".\\res\\boss_left_collide01.bmp", RGB(0, 0, 0));
 		collideLeft.AddBitmap(".\\res\\boss_left_collide02.bmp", RGB(0, 0, 0));
+		collideLeft.AddBitmap(".\\res\\boss_left_collide03.bmp", RGB(0, 0, 0));
 		collideLeft.AddBitmap(".\\res\\boss_left_collide03.bmp", RGB(0, 0, 0));
 		collideLeft.AddBitmap(".\\res\\boss_left_collide04.bmp", RGB(0, 0, 0));
 
@@ -111,13 +113,18 @@ namespace game_framework
 		action = walk_a;
 		BORDER = 5;
 		facingLR = 1;
+		STEP_SIZE = 5;
+		attackDamage = 10;
 
+		ResetAtkCounter();
 		hitDamage = 5;
 		hitDelayCount = 8;
 		hitCD = false;
+		rushDistance = 10;
+		rushStepSize = 3;
 	}
 
-	void MonsterBoss::OnMove()
+	void MonsterBoss::OnMove(Map* m)
 	{
 		if (isAlive())
 		{
@@ -126,21 +133,30 @@ namespace game_framework
 			{
 				facingLR = characterDirectionLR;
 			}
-			if (distanceToCharacter() < 350 && hitCD == false)
+			if (distanceToCharacter() < 300 && hitCD == false && action == walk_a && atkCounter[0] < 4)
 			{
 				hitStart();
-				intersect();
+				atkCount(0);
+			}
+			else if ((distanceToCharacter() > 550 || atkCounter[0] >= 4) && action == walk_a)
+			{
+				collideStart();
+				atkCount(1);
 			}
 
-			walkingLeft.OnMove();
-			walkingRight.OnMove();
-			if (action == hit_a) {
+			if (action == walk_a)
+			{
+				walk(m);
+				walkOnMove();
+			}
+			else if (action == hit_a)
+			{
 				hitOnMove();
 			}
-			hitLeftEffect.OnMove();
-			hitRightEffect.OnMove();
-			collideLeft.OnMove();
-			collideRight.OnMove();
+			else if (action == collide_a)
+			{
+				collideOnMove();
+			}
 			hitCDTimer.CaculateTimeForFalse(&hitCD, 4);
 		}
 	}
@@ -159,7 +175,7 @@ namespace game_framework
 			}
 			else if (action == collide_a)
 			{
-				collideOnShow();
+				collideOnShow(m);
 			}
 
 			bloodBar.setXY(_x, _y - 16);
@@ -272,6 +288,30 @@ namespace game_framework
 		return _y + walkingLeft.Height();
 	}
 
+	void MonsterBoss::walk(Map* m)
+	{
+		if (facingLR == 0)
+		{
+			if (m->isEmpty(_x - STEP_SIZE, GetTopY())/* && m->isEmpty(_x - STEP_SIZE, GetButtonY())*/)
+			{
+				_x -= STEP_SIZE;
+			}
+		}
+		else
+		{
+			if (m->isEmpty(_x + STEP_SIZE, GetTopY())/* && m->isEmpty(_x + STEP_SIZE, GetButtonY())*/)
+			{
+				_x += STEP_SIZE;
+			}
+		}
+	}
+
+	void MonsterBoss::walkOnMove()
+	{
+		walkingLeft.OnMove();
+		walkingRight.OnMove();
+	}
+
 	void MonsterBoss::walkOnShow()
 	{
 		if (facingLR == 0)
@@ -286,6 +326,21 @@ namespace game_framework
 		}
 	}
 
+	void MonsterBoss::ResetAtkCounter()
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			atkCounter[i] = 0;
+		}
+	}
+
+	void MonsterBoss::atkCount(int i)
+	{
+		int temp = atkCounter[i];
+		ResetAtkCounter();
+		atkCounter[i] = temp + 1;
+	}
+
 	void MonsterBoss::hitStart()
 	{
 		action = hit_a;
@@ -293,40 +348,17 @@ namespace game_framework
 		hitCD = true;
 	}
 
-	void MonsterBoss::hitJudge()
-	{
-		if (!character->GetIsInvincible())
-		{
-			if (facingLR == 0)
-			{
-				if (isAttackSuccessfullyL(435))
-				{
-					character->SetIsAttackedFromRight(true);
-					character->SetIsAttackedFromButton(true);
-					character->lossCurrentHp(hitDamage);
-				}
-			}
-			else
-			{
-				if (isAttackSuccessfullyR(435))
-				{
-					character->SetIsAttackedFromLeft(true);
-					character->SetIsAttackedFromButton(true);
-					character->lossCurrentHp(hitDamage);
-				}
-			}
-		}
-	}
-
 	void MonsterBoss::hitOnMove()
 	{
 		if (facingLR == 0)
 		{
 			hitLeft.OnMove();
+			hitLeftEffect.OnMove();
 		}
 		else if (facingLR == 1)
 		{
 			hitRight.OnMove();
+			hitRightEffect.OnMove();
 		}
 	}
 
@@ -397,7 +429,49 @@ namespace game_framework
 		}
 	}
 
-	void MonsterBoss::collideOnShow()
+	void MonsterBoss::hitJudge()
+	{
+		if (!character->GetIsInvincible())
+		{
+			if (facingLR == 0)
+			{
+				if (isAttackSuccessfullyL(435))
+				{
+					character->SetIsAttackedFromRight(true);
+					character->SetIsAttackedFromButton(true);
+					character->lossCurrentHp(hitDamage);
+				}
+			}
+			else
+			{
+				if (isAttackSuccessfullyR(435))
+				{
+					character->SetIsAttackedFromLeft(true);
+					character->SetIsAttackedFromButton(true);
+					character->lossCurrentHp(hitDamage);
+				}
+			}
+		}
+	}
+
+	void MonsterBoss::collideStart()
+	{
+		action = collide_a;
+	}
+
+	void MonsterBoss::collideOnMove()
+	{
+		if (facingLR == 0)
+		{
+			collideLeft.OnMove();
+		}
+		else if (facingLR == 1)
+		{
+			collideRight.OnMove();
+		}
+	}
+
+	void MonsterBoss::collideOnShow(Map* m)
 	{
 		if (facingLR == 0)
 		{
@@ -409,8 +483,20 @@ namespace game_framework
 			{
 				collideLeft.SetTopLeft(_x, _y);
 			}
+
+			if (collideLeft.GetCurrentBitmapNumber() == 2 || collideLeft.GetCurrentBitmapNumber() == 3)
+			{
+				collideJudge();
+				rushMove(m);
+			}
+
 			collideLeft.OnShow();
-			
+
+			if (collideLeft.IsFinalBitmap())
+			{
+				action = walk_a;
+				collideLeft.Reset();
+			}
 		}
 		else
 		{
@@ -422,8 +508,57 @@ namespace game_framework
 			{
 				collideRight.SetTopLeft(_x, _y);
 			}
+
+			if (collideRight.GetCurrentBitmapNumber() == 2 || collideRight.GetCurrentBitmapNumber() == 3)
+			{
+				collideJudge();
+				rushMove(m);
+			}
+
 			collideRight.OnShow();
-			
+
+			if (collideRight.IsFinalBitmap())
+			{
+				action = walk_a;
+				collideRight.Reset();
+			}
+		}
+	}
+
+	void MonsterBoss::collideJudge()
+	{
+		intersect();
+	}
+
+	void MonsterBoss::rushMove(Map* m)
+	{
+		if (facingLR == 0)
+		{
+			for (int i = 0; i < rushDistance; i++)
+			{
+				if (m->isEmpty(_x - rushStepSize, GetTopY())/* && m->isEmpty(_x - STEP_SIZE, GetButtonY())*/)
+				{
+					_x -= rushStepSize;
+				}
+				else
+				{
+					break;
+				}
+			}
+		}
+		else
+		{
+			for (int i = 0; i < rushDistance; i++)
+			{
+				if (m->isEmpty(_x + rushStepSize, GetTopY())/* && m->isEmpty(_x + STEP_SIZE, GetButtonY())*/)
+				{
+					_x += rushStepSize;
+				}
+				else
+				{
+					break;
+				}
+			}
 		}
 	}
 }

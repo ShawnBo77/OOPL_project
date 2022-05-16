@@ -17,7 +17,7 @@ namespace game_framework
 		void LoadBitmap();
 		void Initialize() override;
 		void OnShow(Map* m) override;
-		void OnMove();
+		void OnMove(Map* m) override;
 		void SetFacingLR(bool flag);
 		bool GetFacingLR();
 		int  GetLeftX();				// ¥ª¤W¨¤ x ®y¼Ð

@@ -113,7 +113,7 @@ namespace game_framework
 		return _y + cactusAlive.Height();
 	}
 
-	void MonsterCactus::OnMove()
+	void MonsterCactus::OnMove(Map* m)
 	{
 		if (isAlive())
 		{

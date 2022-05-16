@@ -416,14 +416,14 @@ namespace game_framework
 			case stage_1:
 				for (unsigned i = 0; i < monsterS1.size(); i++)
 				{
-					monsterS1[i]->OnMove();
+					monsterS1[i]->OnMove(&mapS1);
 				}
 				character.OnMove(&mapS1, &monsterS1);
 				break;
 			case stage_boss:
 				for (unsigned i = 0; i < monsterS7.size(); i++)
 				{
-					monsterS7[i]->OnMove();
+					monsterS7[i]->OnMove(&bossMap);
 				}
 				//for (unsigned i = 0; i < monsterCactus.size(); i++)
 				//{
