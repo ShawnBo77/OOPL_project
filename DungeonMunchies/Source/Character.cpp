@@ -380,6 +380,14 @@ namespace game_framework
 				{	
 					if (m->isEmpty(GetLeftX() - 1 - BORDER, GetTopY()) && m->isEmpty(GetLeftX() - 1 - BORDER, GetButtonY() - BORDER))
 					{
+						if (characterX > 670 && m->mapScreenMoving()) 
+						{
+							m->addSX(1);
+							for (unsigned int i = 0; i < monsters->size(); i++)
+							{
+								monsters->at(i)->SetRelativeMovement(1);
+							}
+						}						
 						characterX -= 1;
 					}
 				}
@@ -392,6 +400,15 @@ namespace game_framework
 				{
 					if (m->isEmpty(GetRightX() + 1 + BORDER, GetTopY()) && m->isEmpty(GetRightX() + 1 + BORDER, GetButtonY() - BORDER))
 					{
+						if (characterX > 670 && m->mapScreenMoving())
+						{
+							m->addSX(-1);
+							for (unsigned int i = 0; i < monsters->size(); i++)
+							{
+								monsters->at(i)->SetRelativeMovement(-1);
+							}
+						}
+						
 						characterX += 1;
 					}
 				}
