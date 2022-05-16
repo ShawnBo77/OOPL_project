@@ -28,7 +28,6 @@ namespace game_framework
 		void attack();
 		void showData();
 	private:
-		Action action;
 		int velocity;
 		CMovingBitmap sleepLeft;
 		CMovingBitmap sleepRight;

@@ -52,6 +52,7 @@
 #include "MonsterCactus.h"
 #include "MonsterShrimp.h"
 #include "MonsterTree.h"
+#include "MonsterBoss.h"
 
 namespace game_framework
 {
@@ -115,6 +116,7 @@ namespace game_framework
 	protected:
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
+		void ShowData();
 	private:
 		//CMovingBitmap	monster;
 		Character		character;
@@ -136,10 +138,12 @@ namespace game_framework
 		bool haveCalledCharacterStatus;
 		bool gamePause;
 		vector<Monster*> monsterS1;
-		vector<Monster*> monsterS2;
+		vector<Monster*> monsterS7;
 		vector<Monster*> monsterCactus;
 		vector<Monster*> monsterShrimp;
 		vector<Monster*> monsterTree;
+
+		CPoint mousePosition;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

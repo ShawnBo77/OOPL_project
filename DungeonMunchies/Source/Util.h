@@ -39,7 +39,9 @@ enum Action
 	walk_a,
 	roll_a,
 	jump_a,
-	attack_a
+	attack_a,
+	hit_a,
+	collide_a
 };
 
 enum PropCase

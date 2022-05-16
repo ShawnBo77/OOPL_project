@@ -89,6 +89,7 @@ namespace game_framework
 		int attackDamage;
 		bool isIntersect;
 
+		Action action;
 		int STEP_SIZE;              // 移動速度
 		int RelativeMovement;              // 移動速度
 		int BORDER;				

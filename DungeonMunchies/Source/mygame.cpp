@@ -290,9 +290,10 @@ namespace game_framework
 		//monsterS1.push_back(new MonsterCactus(700, 500, &character));
 		monsterS1.push_back(new MonsterTree(1900, 400, &character));
 
-		monsterS2.push_back(new MonsterShrimp(300, 400, &character));
-		monsterS2.push_back(new MonsterCactus(700, 500, &character));
-		//monsterS2.push_back(new MonsterTree(400, 400, &character));
+		//monsterS7.push_back(new MonsterShrimp(300, 400, &character));
+		//monsterS7.push_back(new MonsterCactus(700, 500, &character));
+		//monsterS7.push_back(new MonsterTree(400, 400, &character));
+		monsterS7.push_back(new MonsterBoss(650, 300, &character));
 
 		monsterCactus.push_back(new MonsterCactus(700, 500, &character));
 		monsterShrimp.push_back(new MonsterShrimp(300, 400, &character));
@@ -305,7 +306,7 @@ namespace game_framework
 		{
 			delete* it_i;
 		}
-		for (vector<Monster*>::iterator it_i = monsterS2.begin(); it_i != monsterS2.end(); ++it_i)
+		for (vector<Monster*>::iterator it_i = monsterS7.begin(); it_i != monsterS7.end(); ++it_i)
 		{
 			delete* it_i;
 		}
@@ -352,15 +353,15 @@ namespace game_framework
 		haveCalledCharacterStatus = false;
 		gamePause = false;
 		//background.SetTopLeft(BACKGROUND_X,0);				// 設定背景的起始座標
-		currentStage = stage_1;
+		currentStage = stage_boss;
 		lastStage = currentStage;
 		for (unsigned i = 0; i < monsterS1.size(); i++)
 		{
 			monsterS1[i]->Initialize();
 		}
-		for (unsigned i = 0; i < monsterS2.size(); i++)
+		for (unsigned i = 0; i < monsterS7.size(); i++)
 		{
-			monsterS2[i]->Initialize();
+			monsterS7[i]->Initialize();
 		}
 		for (unsigned i = 0; i < monsterCactus.size(); i++)
 		{
@@ -420,9 +421,9 @@ namespace game_framework
 				character.OnMove(&mapS1, &monsterS1);
 				break;
 			case stage_boss:
-				for (unsigned i = 0; i < monsterS2.size(); i++)
+				for (unsigned i = 0; i < monsterS7.size(); i++)
 				{
-					monsterS2[i]->OnMove();
+					monsterS7[i]->OnMove();
 				}
 				//for (unsigned i = 0; i < monsterCactus.size(); i++)
 				//{
@@ -436,7 +437,7 @@ namespace game_framework
 				//{
 				//	monsterTree[i]->OnMove();
 				//}
-				character.OnMove(&bossMap, &monsterS2);
+				character.OnMove(&bossMap, &monsterS7);
 				break;
 			default:
 				break;
@@ -500,9 +501,9 @@ namespace game_framework
 		{
 			monsterS1[i]->LoadBitmap();
 		}
-		for (unsigned i = 0; i < monsterS2.size(); i++)
+		for (unsigned i = 0; i < monsterS7.size(); i++)
 		{
-			monsterS2[i]->LoadBitmap();
+			monsterS7[i]->LoadBitmap();
 		}
 		for (unsigned i = 0; i < monsterCactus.size(); i++)
 		{
@@ -689,7 +690,7 @@ namespace game_framework
 				}
 				else if (currentStage == stage_boss)
 				{
-					character.attack(&monsterS2);
+					character.attack(&monsterS7);
 				}
 			}
 		}
@@ -712,6 +713,7 @@ namespace game_framework
 	void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 	{
 		character.SetFacingDirection(point.x);					// 滑鼠位置改變角色方向
+		mousePosition = point;
 	}
 
 	void CGameStateRun::OnRButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
@@ -763,9 +765,9 @@ namespace game_framework
 		case stage_boss:
 			bossMap.onShow();
 			character.OnShow();
-			for (unsigned i = 0; i < monsterS2.size(); i++)
+			for (unsigned i = 0; i < monsterS7.size(); i++)
 			{
-				monsterS2[i]->OnShow(&bossMap);
+				monsterS7[i]->OnShow(&bossMap);
 			}
 			//for (unsigned i = 0; i < monsterCactus.size(); i++)
 			//{
@@ -779,6 +781,7 @@ namespace game_framework
 			//{
 			//	monsterTree[i]->OnShow(&bossMap);
 			//}
+			ShowData();
 			break;
 		case stage_props:
 			propsBook.onShow();
@@ -790,6 +793,20 @@ namespace game_framework
 		{
 			characterStatus.onShow();
 		}
+	}
 
+	void CGameStateRun::ShowData()
+	{
+		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+		CFont f, * fp;
+		f.CreatePointFont(120, "Times New Roman");	// 產生 font f; 160表示16 point的字
+		fp = pDC->SelectObject(&f);					// 選用 font f
+		pDC->SetBkColor(RGB(230, 220, 200));
+		pDC->SetTextColor(RGB(0, 0, 0));
+		char position[500];								// Demo 數字對字串的轉換
+		sprintf(position, "mouseX:%d mouseY:%d", mousePosition.x, mousePosition.y);
+		pDC->TextOut(200, 140, position);
+		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
 }
