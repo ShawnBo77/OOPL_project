@@ -58,7 +58,6 @@ namespace game_framework
 
 		/*攻擊*/
 		int atkCounter[3]; //計算攻擊已連續使用幾次 (0:hit ; 1:collide)
-		int atkLimit[3]; //攻擊最多連續使用次數
 		//hit
 		int hitDamage;
 		int hitDelayCount;

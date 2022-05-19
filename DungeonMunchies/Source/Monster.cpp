@@ -52,7 +52,6 @@ namespace game_framework
 				if (!character->GetIsInvincible())
 				{
 					character->SetIsAttackedFromRight(true);
-					character->lossCurrentHp(attackDamage);
 				}
 			}
 			if (character->GetLeftX() <= GetRightX() && character->GetLeftX() >= GetLeftX()
@@ -62,20 +61,23 @@ namespace game_framework
 				if (!character->GetIsInvincible())
 				{
 					character->SetIsAttackedFromLeft(true);
-					character->lossCurrentHp(attackDamage);
 				}
 			}
 			if ((character->GetRightX() >= GetLeftX() && character->GetRightX() <= GetRightX() ||
 				character->GetLeftX() <= GetRightX() && character->GetLeftX() >= GetLeftX() ||
-				character->GetLeftX() <= GetLeftX() && character->GetRightX() >= GetRightX())
+				character->GetLeftX() <= GetLeftX() && character->GetRightX() >= GetRightX() || //角色比怪物寬
+				character->GetRightX() <= GetRightX() && character->GetLeftX() >= GetLeftX()) //怪物比角色寬
 				&& character->GetButtonY() >= GetTopY() - 20 && character->GetButtonY() <= GetButtonY())
 			{ //角色下方碰到怪物
 				isIntersect = true;
 				if (!character->GetIsInvincible())
 				{
 					character->SetIsAttackedFromButton(true);
-					character->lossCurrentHp(attackDamage);
 				}
+			}
+			if (isIntersect && !character->GetIsInvincible())
+			{
+				character->lossCurrentHp(attackDamage);
 			}
 		}
 		isIntersect = false;
@@ -233,7 +235,7 @@ namespace game_framework
 			_x -= 1;
 		}
 	}
-	
+
 	void Monster::SetIsOnTheFloor(bool b)
 	{
 		isOnTheFloor = b;

@@ -177,7 +177,6 @@ namespace game_framework
 			{
 				collideOnShow(m);
 			}
-
 			bloodBar.setXY(_x, _y - 16);
 			bloodBar.showBloodBar(m, hp);
 		}
