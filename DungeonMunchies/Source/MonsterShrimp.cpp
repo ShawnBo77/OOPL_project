@@ -31,7 +31,7 @@ namespace game_framework
 		attackCD = false;
 	}
 
-	MonsterShrimp::MonsterShrimp(int x, int y, Character* c) : Monster(x, y, 12, 5, c)
+	MonsterShrimp::MonsterShrimp(int x, int y, Character* c) : Monster(x, y, 12, 50, c)
 	{
 		hp = 50;
 		attackDamage = 5;

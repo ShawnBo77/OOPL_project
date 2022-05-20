@@ -117,7 +117,7 @@ namespace game_framework
 	{
 		_x = init_x;
 		_y = init_y;
-		hp = 100;
+		//hp = 100;
 		bloodBar.setFullHP(hp);
 		action = walk_a;
 		BORDER = 5;
