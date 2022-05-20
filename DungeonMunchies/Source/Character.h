@@ -62,6 +62,8 @@ namespace game_framework
 		void restoreCurrentHp(int n);           // 恢復目前血量
 		void lossCurrentHp(int n);              // 損血
 
+		bool isIntersect(int lX, int rX, int tY, int bY); //看物體是否和角色重疊
+
 		/*行為*/
 		//判定是否可以左右移動
 		bool CanMovingLeft(Map* m, vector<Monster*>* monsters);

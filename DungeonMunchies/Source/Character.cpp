@@ -232,6 +232,13 @@ namespace game_framework
 		shrimpAttack = false;
 		currentMap = NULL;
 		action = walk_a;
+
+		//sourceStorage->getSource(0)->setNum(5);
+		//sourceStorage->getSource(1)->setNum(5);
+		//sourceStorage->getSource(2)->setNum(5);
+		//sourceStorage->getSource(3)->setNum(5);
+		//sourceStorage->getSource(4)->setNum(15);
+		//sourceStorage->getSource(5)->setNum(15);
 	}
 
 	void Character::OnMove(Map* m, vector<Monster*>* monsters)
@@ -1047,12 +1054,6 @@ namespace game_framework
 	/*餐點能力*/
 	SourceStorage* Character::GetSourceStorage()
 	{
-		sourceStorage->getSource(0)->setNum(5);
-		sourceStorage->getSource(1)->setNum(5);
-		sourceStorage->getSource(2)->setNum(5);
-		sourceStorage->getSource(3)->setNum(5);
-		sourceStorage->getSource(4)->setNum(15);
-		sourceStorage->getSource(5)->setNum(15);
 		return sourceStorage;
 	}
 
@@ -1225,6 +1226,20 @@ namespace game_framework
 		currentHp -= n;
 		isInvincible = true;
 		invincibleTimer.Start();
+	}
+
+	bool Character::isIntersect(int lX, int rX, int tY, int bY)
+	{
+		if ((GetRightX() >= lX && GetRightX() <= rX ||
+			GetLeftX() <= rX && GetLeftX() >= lX ||
+			GetLeftX() <= lX && GetRightX() >= rX || //角色比東西寬
+			GetRightX() <= rX && GetLeftX() >= lX) && //東西比角色寬
+			((GetButtonY() >= tY - 20 && GetButtonY() <= bY) ||
+			 (GetTopY() >= tY - 20 && GetTopY() <= bY)))
+		{
+			return true;
+		}
+		return false;
 	}
 
 	void Character::SetXY(int x, int y)

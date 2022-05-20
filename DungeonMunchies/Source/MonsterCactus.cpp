@@ -28,7 +28,7 @@ namespace game_framework
 		HORIZONTAL_GAP = 0;
 	}
 
-	MonsterCactus::MonsterCactus(int x, int y, Character* c) : Monster(x, y, 12, 5, c)
+	MonsterCactus::MonsterCactus(int x, int y, Character* c) : Monster(x, y, 50, 5, c)
 	{
 		BORDER = 20;
 		HORIZONTAL_GAP = 0;
@@ -43,6 +43,7 @@ namespace game_framework
 		bloodBar.LoadBitmap();
 		cactusAlive.LoadBitmap(IDB_MONSTERCACTUSALIVE, RGB(0, 0, 0));
 		cactusDead.LoadBitmap(IDB_MONSTERCACTUSDEAD, RGB(0, 0, 0));
+		sourceGrassFast.LoadBitmap(".\\res\\source_grass_fast.bmp", RGB(0, 0, 0));
 	}
 
 	void MonsterCactus::Initialize()
@@ -50,7 +51,7 @@ namespace game_framework
 		_x = init_x;
 		_y = init_y;
 		RelativeMovement = 0;
-		hp = 100;
+		//hp = 100;
 		attackDamage = 5;
 		bloodBar.setFullHP(hp);
 	}
@@ -68,16 +69,16 @@ namespace game_framework
 		{
 			cactusDead.SetTopLeft(_x + RelativeMovement, _y + (cactusAlive.Height() - cactusDead.Height()));
 			cactusDead.ShowBitmap();
+			if (!hasGottenSource) {
+				sourceGrassFast.SetTopLeft((_x + GetRightX()) / 2 + RelativeMovement, m->getMonsterFloor() - 64);
+				sourceGrassFast.ShowBitmap();
+			}
 		}
 		showData();
 	}
 
 	void MonsterCactus::showData()
 	{
-		int CharacterLeftX = character->GetLeftX();
-		int CharacterRightX = character->GetRightX();
-		int CharacterTopY = character->GetTopY();
-		int CharacterButtonY = character->GetButtonY();
 		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 		CFont f, * fp;
 		f.CreatePointFont(120, "Times New Roman");	// 產生 font f; 160表示16 point的字
@@ -118,6 +119,13 @@ namespace game_framework
 		if (isAlive())
 		{
 			intersect();
+		}
+		else 
+		{
+			if (!hasGottenSource)
+			{
+				touchSource(m, grass_fast_p);
+			}
 		}
 		if (!character->GetMap() == NULL)
 		{

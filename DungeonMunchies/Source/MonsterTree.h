@@ -37,6 +37,7 @@ namespace game_framework
 		CAnimation attackRight;
 		CMovingBitmap deadLeft;
 		CMovingBitmap deadRight;
+		CMovingBitmap sourceGuavaJuiceBlood;
 		Timer attackCDTime;
 		bool attackCD;
 	};

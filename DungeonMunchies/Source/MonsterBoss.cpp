@@ -28,7 +28,7 @@ namespace game_framework
 		BORDER = 5;
 	}
 
-	MonsterBoss::MonsterBoss(int x, int y, Character* c) : Monster(x, y, 12, 5, c)
+	MonsterBoss::MonsterBoss(int x, int y, Character* c) : Monster(x, y, 100, 5, c)
 	{
 	}
 
@@ -217,7 +217,7 @@ namespace game_framework
 		{
 			deadOnShow();
 		}
-		showData();
+		//showData();
 	}
 
 	void MonsterBoss::showData()
@@ -229,8 +229,8 @@ namespace game_framework
 		pDC->SetBkColor(RGB(230, 220, 200));
 		pDC->SetTextColor(RGB(0, 0, 0));
 		char position[500];								// Demo 數字對字串的轉換
-		sprintf(position, "BossLeftX:%d BossRightX:%d BossTopY:%d BossButtonY:%d hitTimer:(%d, %d) distanceToCharacter:%d cMidX:%d",
-			GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), hitCDTimer.GetStartTime(), hitCDTimer.GetFinishTime(), distanceToCharacter(), cMidX);
+		sprintf(position, "BossLeftX:%d BossRightX:%d BossTopY:%d BossButtonY:%d hitTimer:(%d, %d) distanceToCharacter:%d hpProportion:%f",
+			GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), hitCDTimer.GetStartTime(), hitCDTimer.GetFinishTime(), distanceToCharacter(), hpProportion());
 		pDC->TextOut(200, 100, position);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
@@ -361,7 +361,7 @@ namespace game_framework
 
 	bool MonsterBoss::CanWalkL(Map* m)
 	{
-		if (m->isEmpty(_x - STEP_SIZE, GetTopY()) && !intersect(GetLeftX() - STEP_SIZE, GetRightX() - STEP_SIZE, GetTopY(), GetButtonY()))
+		if (m->isEmpty(_x - STEP_SIZE, GetTopY()) && !character->isIntersect(GetLeftX() - STEP_SIZE, GetRightX() - STEP_SIZE, GetTopY(), GetButtonY()))
 		{
 			return true;
 		}
@@ -370,7 +370,7 @@ namespace game_framework
 
 	bool MonsterBoss::CanWalkR(Map* m)
 	{
-		if (m->isEmpty(_x - STEP_SIZE, GetTopY()) && !intersect(GetLeftX() + STEP_SIZE, GetRightX() + STEP_SIZE, GetTopY(), GetButtonY()))
+		if (m->isEmpty(_x - STEP_SIZE, GetTopY()) && !character->isIntersect(GetLeftX() + STEP_SIZE, GetRightX() + STEP_SIZE, GetTopY(), GetButtonY()))
 		{
 			return true;
 		}

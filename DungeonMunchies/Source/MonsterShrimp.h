@@ -37,6 +37,9 @@ namespace game_framework
 		CAnimation attackRight;
 		CMovingBitmap deadLeft;
 		CMovingBitmap deadRight;
+		CMovingBitmap sourceShrimpAttack;
+		CMovingBitmap sourceShrimpBlood;
+		int randN;
 		Timer attackCDTime;
 		bool attackCD;
 	};

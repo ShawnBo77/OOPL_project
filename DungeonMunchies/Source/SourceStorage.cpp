@@ -64,30 +64,27 @@ namespace game_framework {
         }
     }
 
-    //void SourceStorage::setNum(int sourceCase, int num) {
-    //    getSource(sourceCase)->setNum(num);
-    //}
+    void SourceStorage::setNum(int sourceCase, int num) {
+        getSource(sourceCase)->setNum(num);
+    }
 
-    //int SourceStorage::getNum(int sourceCase) {
-    //    getSource(sourceCase)->getNum();
-    //}
+    int SourceStorage::getNum(int sourceCase) {
+        return getSource(sourceCase)->getNum();
+    }
 
-    //void SourceStorage::add(int sourceCase, int num) {
-    //    getSource(sourceCase)->add(num);
-    //}
+    void SourceStorage::add(int sourceCase, int num) {
+        getSource(sourceCase)->add(num);
+    }
 
-    //void SourceStorage::add(int sourceCase) {
-    //    getSource(sourceCase)->add();
-    //}
+    void SourceStorage::add(int sourceCase) {
+        getSource(sourceCase)->add();
+    }
 
-    //void SourceStorage::consume(int sourceCase, int num) {
-    //    getSource(sourceCase)->consume(num);
-    //}
+    void SourceStorage::consume(int sourceCase, int num) {
+        getSource(sourceCase)->consume(num);
+    }
 
-    //void SourceStorage::setXY(int sourceCase, int x, int y) {
-    //    getSource(sourceCase)->setXY(x, y);
-    //}
-
-    //void SourceStorage::onShow() {
-    //}
+    void SourceStorage::setXY(int sourceCase, int x, int y) {
+        getSource(sourceCase)->setXY(x, y);
+    }
 }

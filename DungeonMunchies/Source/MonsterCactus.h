@@ -7,6 +7,7 @@ namespace game_framework
 	//這個class是怪物Cactus的物件											   //
 	/////////////////////////////////////////////////////////////////////////////
 	//class Monster;
+	
 	class MonsterCactus :public Monster
 	{
 	public:
@@ -25,6 +26,7 @@ namespace game_framework
 	private:
 		CMovingBitmap cactusAlive;
 		CMovingBitmap cactusDead;
+		CMovingBitmap sourceGrassFast;
 	};
 }
 #endif 

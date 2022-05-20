@@ -291,9 +291,12 @@ namespace game_framework
 		monsterS1.push_back(new MonsterTree(1900, 400, &character));
 
 		//monsterS7.push_back(new MonsterShrimp(300, 400, &character));
+		//monsterS7.push_back(new MonsterShrimp(600, 400, &character));
+		//monsterS7.push_back(new MonsterShrimp(900, 400, &character));
 		//monsterS7.push_back(new MonsterCactus(700, 500, &character));
-		//monsterS7.push_back(new MonsterTree(400, 400, &character));
-		monsterS7.push_back(new MonsterBoss(650, 280, &character));
+		monsterS7.push_back(new MonsterTree(400, 400, &character));
+		//monsterS7.push_back(new MonsterBoss(650, 280, &character));
+		//monsterS7.push_back(new MonsterCactus(700, 500, &character));
 
 		monsterCactus.push_back(new MonsterCactus(700, 500, &character));
 		monsterShrimp.push_back(new MonsterShrimp(300, 400, &character));
