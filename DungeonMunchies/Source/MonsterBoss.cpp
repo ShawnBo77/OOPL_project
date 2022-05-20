@@ -154,12 +154,12 @@ namespace game_framework
 				hitStart();
 				atkCount(0);
 			}
-			else if ((distanceToCharacter() > 550 || atkCounter[0] >= 3) && action == walk_a && hpProportion() < 0.5)
+			else if ((distanceToCharacter() > 550 || atkCounter[0] >= 3) && action == walk_a && hpProportion() > 0.5)
 			{
 				collideStart();
 				atkCount(1);
 			}
-			else if ((distanceToCharacter() > 550 || atkCounter[0] >= 3) && action == walk_a && hpProportion() >= 0.5)
+			else if ((distanceToCharacter() > 550 || atkCounter[0] >= 3) && action == walk_a && hpProportion() <= 0.5)
 			{
 				thronStart();
 				atkCount(2);
