@@ -30,6 +30,8 @@ namespace game_framework
 		void walk(Map* m);
 		void walkOnMove();
 		void walkOnShow();
+		bool CanWalkL(Map* m);
+		bool CanWalkR(Map* m);
 		/*§ðÀ»*/
 		void ResetAtkCounter();
 		void atkCount(int i);

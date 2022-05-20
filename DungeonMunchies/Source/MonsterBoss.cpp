@@ -325,14 +325,14 @@ namespace game_framework
 	{
 		if (facingLR == 0)
 		{
-			if (m->isEmpty(_x - STEP_SIZE, GetTopY())/* && m->isEmpty(_x - STEP_SIZE, GetButtonY())*/)
+			if (CanWalkL(m))
 			{
 				_x -= STEP_SIZE;
 			}
 		}
 		else
 		{
-			if (m->isEmpty(_x + STEP_SIZE, GetTopY())/* && m->isEmpty(_x + STEP_SIZE, GetButtonY())*/)
+			if (CanWalkR(m))
 			{
 				_x += STEP_SIZE;
 			}
@@ -357,6 +357,24 @@ namespace game_framework
 			walkingRight.SetTopLeft(_x, _y);
 			walkingRight.OnShow();
 		}
+	}
+
+	bool MonsterBoss::CanWalkL(Map* m)
+	{
+		if (m->isEmpty(_x - STEP_SIZE, GetTopY()) && !intersect(GetLeftX() - STEP_SIZE, GetRightX() - STEP_SIZE, GetTopY(), GetButtonY()))
+		{
+			return true;
+		}
+		return false;
+	}
+
+	bool MonsterBoss::CanWalkR(Map* m)
+	{
+		if (m->isEmpty(_x - STEP_SIZE, GetTopY()) && !intersect(GetLeftX() + STEP_SIZE, GetRightX() + STEP_SIZE, GetTopY(), GetButtonY()))
+		{
+			return true;
+		}
+		return false;
 	}
 
 	void MonsterBoss::ResetAtkCounter()
