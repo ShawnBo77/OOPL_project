@@ -76,6 +76,10 @@ namespace game_framework
 		int GetAttackDamage();
 		//virtual void attack(int attackRange, int attackCD);
 
+		//結束
+		void SetBossDead(bool flag);
+		bool GetBossDead();
+
 	protected:
 		bool isAttackSuccessfullyL(int range);
 		bool isAttackSuccessfullyR(int range);
@@ -104,6 +108,8 @@ namespace game_framework
 		bool isAttacked;			// 是否受到攻擊
 		bool characterDirectionLR;
 		bool characterDirectionTD;
+
+		bool bossDead;
 	};
 }
 #endif

@@ -35,6 +35,7 @@ namespace game_framework
 		character = c;
 		characterDirectionLR = 0;
 		characterDirectionTD = 0;
+		bossDead = false;
 	}
 
 	Monster::~Monster()
@@ -287,6 +288,16 @@ namespace game_framework
 	int Monster::GetAttackDamage()
 	{
 		return attackDamage;
+	}
+
+	void Monster::SetBossDead(bool flag)
+	{
+		bossDead = flag;
+	}
+
+	bool Monster::GetBossDead()
+	{
+		return bossDead;
 	}
 
 	bool Monster::isAttackSuccessfullyL(int range)

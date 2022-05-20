@@ -293,7 +293,7 @@ namespace game_framework
 		//monsterS7.push_back(new MonsterShrimp(300, 400, &character));
 		//monsterS7.push_back(new MonsterCactus(700, 500, &character));
 		//monsterS7.push_back(new MonsterTree(400, 400, &character));
-		monsterS7.push_back(new MonsterBoss(650, 300, &character));
+		monsterS7.push_back(new MonsterBoss(650, 280, &character));
 
 		monsterCactus.push_back(new MonsterCactus(700, 500, &character));
 		monsterShrimp.push_back(new MonsterShrimp(300, 400, &character));
@@ -352,6 +352,7 @@ namespace game_framework
 		characterStatusCall = false;
 		haveCalledCharacterStatus = false;
 		gamePause = false;
+		gameCompleteFlag = false;
 		//background.SetTopLeft(BACKGROUND_X,0);				// 設定背景的起始座標
 		currentStage = stage_boss;
 		lastStage = currentStage;
@@ -408,6 +409,11 @@ namespace game_framework
 		if (character.GetCurrentHp() <= 0)
 		{
 			GotoGameState(GAME_STATE_OVER);
+		}
+		if (monsterS7[0]->GetBossDead())
+		{
+			gameCompleteFlag = true;
+			currentStage = stage_game_complete;
 		}
 		if (gamePause == false)
 		{
@@ -497,6 +503,7 @@ namespace game_framework
 		bossMap.LoadBitmap();
 		propsBook.LoadBitmap();
 		characterStatus.LoadBitmap();
+		gameComplete.LoadBitmap(".\\res\\game_complete.bmp");
 		for (unsigned i = 0; i < monsterS1.size(); i++)
 		{
 			monsterS1[i]->LoadBitmap();
@@ -533,106 +540,109 @@ namespace game_framework
 
 	void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
-		switch (nChar)
-		{
-		case KEY_A:
-			character.SetMovingLeft(true);
-			break;
-		case KEY_D:
-			character.SetMovingRight(true);
-			break;
-		case KEY_W:
-		case KEY_SPACE:
-			character.SetMovingUp(true);
-			break;
-		case KEY_S:
-			character.SetMovingDown(true);
-			break;
-		case KEY_CTRL:
-			character.SetRolling(true);
-			break;
-		case KEY_E:
-			if (character.GetCanGoToNextMap()) 
+		if (!gameCompleteFlag) {
+			switch (nChar)
 			{
-				currentStage = stage_boss;
-				character.SetCanGoToNextMap(false);
-			}
-			else if (currentStage == stage_props)
-			{
-				currentStage = lastStage;
-				if (!haveCalledCharacterStatus)
+			case KEY_A:
+				character.SetMovingLeft(true);
+				break;
+			case KEY_D:
+				character.SetMovingRight(true);
+				break;
+			case KEY_W:
+			case KEY_SPACE:
+				character.SetMovingUp(true);
+				break;
+			case KEY_S:
+				character.SetMovingDown(true);
+				break;
+			case KEY_CTRL:
+				character.SetRolling(true);
+				break;
+			case KEY_E:
+				if (character.GetCanGoToNextMap())
 				{
-					gamePause = false;
+					currentStage = stage_boss;
+					character.SetCanGoToNextMap(false);
 				}
-				else {
-					characterStatusCall = true;
-				}
-			}
-			else
-			{
-				lastStage = currentStage;
-				currentStage = stage_props;
-				haveCalledCharacterStatus = characterStatusCall;
-				characterStatusCall = false;
-				gamePause = true;
-			}
-			break;
-		case KEY_TAB:
-			if (characterStatusCall == true)
-			{
-				characterStatusCall = false;
-				haveCalledCharacterStatus = false;
-				gamePause = false;
-			}
-			else
-			{
-				if (currentStage != stage_props)
+				else if (currentStage == stage_props)
 				{
-					characterStatusCall = true;
+					currentStage = lastStage;
+					if (!haveCalledCharacterStatus)
+					{
+						gamePause = false;
+					}
+					else
+					{
+						characterStatusCall = true;
+					}
+				}
+				else
+				{
+					lastStage = currentStage;
+					currentStage = stage_props;
+					haveCalledCharacterStatus = characterStatusCall;
+					characterStatusCall = false;
 					gamePause = true;
 				}
-			}
-			break;
-		case KEY_R:
-			character.SetCurrentHp(50);
-			break;
-		case KEY_1:
-			gamePause = false;
-			characterStatusCall = false;
-			if (currentStage == stage_1)
-			{
-				currentStage = lastStage;
-			}
-			else
-			{
-				if (currentStage != stage_props)
+				break;
+			case KEY_TAB:
+				if (characterStatusCall == true)
 				{
-					lastStage = currentStage;
+					characterStatusCall = false;
+					haveCalledCharacterStatus = false;
+					gamePause = false;
 				}
-				currentStage = stage_1;
-			}
-			break;
-		case KEY_7:
-			gamePause = false;
-			characterStatusCall = false;
-			if (currentStage == stage_boss)
-			{
-				currentStage = lastStage;
-			}
-			else
-			{
-				if (currentStage != stage_props)
+				else
 				{
-					lastStage = currentStage;
+					if (currentStage != stage_props)
+					{
+						characterStatusCall = true;
+						gamePause = true;
+					}
 				}
-				currentStage = stage_boss;
+				break;
+			case KEY_R:
+				character.SetCurrentHp(50);
+				break;
+			case KEY_1:
+				gamePause = false;
+				characterStatusCall = false;
+				if (currentStage == stage_1)
+				{
+					currentStage = lastStage;
+				}
+				else
+				{
+					if (currentStage != stage_props)
+					{
+						lastStage = currentStage;
+					}
+					currentStage = stage_1;
+				}
+				break;
+			case KEY_7:
+				gamePause = false;
+				characterStatusCall = false;
+				if (currentStage == stage_boss)
+				{
+					currentStage = lastStage;
+				}
+				else
+				{
+					if (currentStage != stage_props)
+					{
+						lastStage = currentStage;
+					}
+					currentStage = stage_boss;
+				}
+				break;
+			case KEY_ESC:
+				PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);
+				break;
+			default:
+				break;
 			}
-			break;
-		case KEY_ESC:
-			PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);
-			break;
-		default:
-			break;
 		}
 	}
 
@@ -680,6 +690,17 @@ namespace game_framework
 				propsBook.setCase(point);
 			}
 		}
+		else if (currentStage == stage_game_complete)
+		{
+			if (point.x > 80 && point.y > 170 && point.x < 700 && point.y < 610)
+			{
+				PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);
+			}
+			if (point.x > 840 && point.y > 215 && point.x < 1210 && point.y < 585)
+			{
+				GotoGameState(GAME_STATE_INIT);
+			}
+		}
 		else
 		{
 			if (gamePause == false && !character.GetIsAttacking() && !character.GetIsRolling())
@@ -694,7 +715,7 @@ namespace game_framework
 				}
 			}
 		}
-		if (characterStatusCall == true)
+		if (characterStatusCall == true && gameCompleteFlag == false)
 		{
 			if (point.x > 1030 && point.y > 133 && point.x < 1082 && point.y < 189)
 			{
@@ -786,6 +807,10 @@ namespace game_framework
 		case stage_props:
 			propsBook.onShow();
 			break;
+		case stage_game_complete:
+			gameComplete.ShowBitmap();
+			gameCompleteNoteShow();
+			break;
 		default:
 			break;
 		}
@@ -806,6 +831,20 @@ namespace game_framework
 		char position[500];								// Demo 數字對字串的轉換
 		sprintf(position, "mouseX:%d mouseY:%d", mousePosition.x, mousePosition.y);
 		pDC->TextOut(200, 140, position);
+		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+	}
+	void CGameStateRun::gameCompleteNoteShow()
+	{
+		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+		CFont f, * fp;
+		f.CreatePointFont(160, "Times New Roman");	// 產生 font f; 160表示16 point的字
+		fp = pDC->SelectObject(&f);					// 選用 font f
+		pDC->SetBkColor(RGB(0, 0, 0));
+		pDC->SetTextColor(RGB(255, 255, 255));
+		char str[80];								// Demo 數字對字串的轉換
+		sprintf(str, "Please click \"GAME COMPLETE\" to close the game, or \"PLAY AGAIN\" to restart!");
+		pDC->TextOut(670, 730, str);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}

@@ -29,7 +29,8 @@ enum Stage
 {
 	stage_1,
 	stage_boss,
-	stage_props
+	stage_props,
+	stage_game_complete
 };
 
 enum Action
@@ -41,7 +42,8 @@ enum Action
 	jump_a,
 	attack_a,
 	hit_a,
-	collide_a
+	collide_a,
+	thron_a
 };
 
 enum PropCase

@@ -118,6 +118,7 @@ namespace game_framework
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 		void ShowData();
 	private:
+		void gameCompleteNoteShow();
 		//CMovingBitmap	monster;
 		Character		character;
 		MapForBoss		bossMap;
@@ -144,6 +145,8 @@ namespace game_framework
 		vector<Monster*> monsterTree;
 
 		CPoint mousePosition;
+		CMovingBitmap gameComplete;
+		bool gameCompleteFlag;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

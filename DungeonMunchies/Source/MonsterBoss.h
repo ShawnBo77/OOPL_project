@@ -23,6 +23,7 @@ namespace game_framework
 		int  GetRightX();				// 右下角 x 座標
 		int  GetButtonY();				// 右下角 y 座標
 		void SetXY(int x, int y);
+		
 	private:
 		/*行為*/
 		/*走路*/
@@ -43,6 +44,16 @@ namespace game_framework
 		void collideOnShow(Map* m);
 		void collideJudge();
 		void rushMove(Map* m);
+		//thron
+		void thronStart();
+		void thronBossOnMove();
+		void thronBossOnShow();
+		void thronOnShow();
+		void thronJudge();
+		void SetCMidX();
+		//dead
+		void deadOnMove();
+		void deadOnShow();
 		
 		CAnimation walkingRight;        // 向右行走動畫
 		CAnimation walkingLeft;         // 向左行走動畫
@@ -55,9 +66,11 @@ namespace game_framework
 		CAnimation thronRight;        // 向右刺動畫
 		CAnimation thronLeft;        // 向左刺動畫
 		CAnimation thron;        // 刺動畫
+		CAnimation deadRight;
+		CAnimation deadLeft;
 
 		/*攻擊*/
-		int atkCounter[3]; //計算攻擊已連續使用幾次 (0:hit ; 1:collide)
+		int atkCounter[3]; //計算攻擊已連續使用幾次 (0:hit ; 1:collide ; 2:thronBoss)
 		//hit
 		int hitDamage;
 		int hitDelayCount;
@@ -66,7 +79,11 @@ namespace game_framework
 		//collide
 		int rushDistance;
 		int rushStepSize;
-
+		//thron
+		int thronDamage;
+		int thronCount;
+		int cMidX, floor;
+		bool thronExist;
 	};
 }
 #endif
