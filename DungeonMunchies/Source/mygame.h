@@ -50,6 +50,7 @@
 #include "CharacterStatus.h"
 #include "Monster.h"
 #include "MonsterCactus.h"
+#include "MonsterBanana.h"
 #include "MonsterShrimp.h"
 #include "MonsterTree.h"
 #include "MonsterBoss.h"
