@@ -618,6 +618,19 @@ namespace game_framework
 					currentStage = stage_1;
 				}
 				break;
+			case KEY_1:
+				monsterInitialize();
+				gamePause = false;
+				characterStatusCall = false;
+
+				if (currentStage != stage_props)
+				{
+					lastStage = currentStage;
+				}
+				mapS1.Initialize();
+				currentStage = stage_1;
+
+				break;
 			case KEY_2:
 				monsterInitialize();
 				gamePause = false;
