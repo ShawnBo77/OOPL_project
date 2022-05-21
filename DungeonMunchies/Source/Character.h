@@ -47,7 +47,7 @@ namespace game_framework
 		bool GetIsInvincible();         //回傳是否為無敵狀態
 
 		void SetMap(Map* m);
-		void SetMovingDown(bool flag);	        // 設定是否正在往下移動
+		void SetMovingDown();					// 設定是否正在往下移動
 		void SetMovingLeft(bool flag);	        // 設定是否正在往左移動
 		void SetMovingRight(bool flag);         // 設定是否正在往右移動
 		void SetFacingDirection(int mouseX);    // 設定面對方向
@@ -66,6 +66,8 @@ namespace game_framework
 		//判定是否可以左右移動
 		bool CanMovingLeft(Map* m, vector<Monster*>* monsters);
 		bool CanMovingRight(Map* m, vector<Monster*>* monsters);
+
+		void monsterRelativeMove(vector<Monster*>* monsters, int x);
 		//速度
 		void SetSpeed(int x);
 		int GetSpeed();

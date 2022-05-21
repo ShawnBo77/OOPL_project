@@ -126,6 +126,17 @@ namespace game_framework
         return false;
     }
 
+    bool MapS1::isBridge(int x, int y) const
+    {
+        int gridX = x / 40;
+        int gridY = y / 40;
+        if (mapGrid[gridX][gridY] == 3)
+        {
+            return true;
+        }
+        return false;
+    }
+
     void MapS1::onShow()
     {
         map.SetTopLeft(getSX(), getSY());

@@ -206,7 +206,7 @@ namespace game_framework
 		characterH = 80;
 		characterW = 80;
 		const int X_POS = 80;													//角色起始X軸
-		const int Y_POS = 100;													//角色起始Y軸
+		const int Y_POS = 80;													//角色起始Y軸
 		characterX = X_POS;
 		characterY = Y_POS;
 		facingLR = 1;
@@ -241,6 +241,13 @@ namespace game_framework
 		{
 			SetMap(m);
 			ResetPosition(m);
+		}
+
+		if (m->getMapName() == "MapS2") 
+		{
+			m->setCharacterX(characterX);
+			m->setCharacterY(characterY);
+			m->characterFloorChanging();
 		}
 
 		if (m->isPortal(GetLeftX() - BORDER, GetTopY()))
@@ -278,21 +285,14 @@ namespace game_framework
 					if (characterX - STEP_SIZE < 670)
 					{
 						m->addSX(characterX - 670);
-						for (unsigned int i = 0; i < monsters->size(); i++)
-						{
-							monsters->at(i)->SetRelativeMovement(characterX - 670);
-						}
+						monsterRelativeMove(monsters, characterX - 670);
 						characterX = 670;
 					}
 					else
 					{
 						characterX -= STEP_SIZE;
 						m->addSX(STEP_SIZE);
-
-						for (unsigned int i = 0; i < monsters->size(); i++)
-						{
-							monsters->at(i)->SetRelativeMovement(STEP_SIZE);
-						}
+						monsterRelativeMove(monsters, STEP_SIZE);
 					}										//視角移動(王關不用)
 				}
 			}
@@ -316,10 +316,7 @@ namespace game_framework
 					if (GetMap()->mapScreenMoving() == true)
 					{
 						m->addSX(-STEP_SIZE);
-						for (unsigned int i = 0; i < monsters->size(); i++)
-						{
-							monsters->at(i)->SetRelativeMovement(-STEP_SIZE);
-						}
+						monsterRelativeMove(monsters, -STEP_SIZE);
 					}	
 				}
 			}
@@ -362,7 +359,10 @@ namespace game_framework
 			{
 				if (GetButtonY() < m->getFloor())				// 當y座標還沒碰到地板
 				{
-					characterY += velocity * 3;			// y軸下降(移動velocity個點，velocity的單位為 點/次)
+					if (characterY + velocity * 3 < m->getFloor() - 80)
+						characterY += velocity * 3;			// y軸下降(移動velocity個點，velocity的單位為 點/次)
+					else 
+						characterY = m->getFloor() - 79;
 					if (velocity < 6)
 						velocity++;
 				}
@@ -661,9 +661,10 @@ namespace game_framework
 		currentMap = m;
 	}
 
-	void Character::SetMovingDown(bool flag)
+	void Character::SetMovingDown()
 	{
-		isMovingDown = flag;
+		if (GetMap()->isBridge(characterX - BORDER, GetButtonY()))
+			characterY += 5;
 	}
 
 	void Character::SetMovingLeft(bool flag)
@@ -802,6 +803,17 @@ namespace game_framework
 		return false;
 	}
 
+	void Character::monsterRelativeMove(vector<Monster*>* monsters, int x)
+	{
+		if (!monsters == NULL)
+		{
+			for (unsigned int i = 0; i < monsters->size(); i++)
+			{
+				monsters->at(i)->SetRelativeMovement(x);
+			}
+		}
+	}
+
 	void Character::SetSpeed(int x)
 	{
 		STEP_SIZE = x;
@@ -863,10 +875,7 @@ namespace game_framework
 						if (GetMap()->mapScreenMoving() == true) 
 						{
 							m->addSX(-ROLLING_SIZE);
-							for (unsigned int i = 0; i < monsters->size(); i++)
-							{
-								monsters->at(i)->SetRelativeMovement(-ROLLING_SIZE);
-							}
+							monsterRelativeMove(monsters, -ROLLING_SIZE);
 						}
 					}
 				}
@@ -896,10 +905,7 @@ namespace game_framework
 						if (characterX - ROLLING_SIZE < 670)
 						{
 							m->addSX(characterX - 670);
-							for (unsigned int j = 0; j < monsters->size(); i++)
-							{
-								monsters->at(j)->SetRelativeMovement(characterX - 670);
-							}
+							monsterRelativeMove(monsters, characterX - 670);
 							characterX = 670;
 							break;
 						}
@@ -907,10 +913,7 @@ namespace game_framework
 						{
 							characterX -= ROLLING_SIZE;
 							m->addSX(ROLLING_SIZE);
-							for (unsigned int i = 0; i < monsters->size(); i++)
-							{
-								monsters->at(i)->SetRelativeMovement(ROLLING_SIZE);
-							}
+							monsterRelativeMove(monsters, ROLLING_SIZE);
 						}
 					}
 				}
@@ -1259,8 +1262,8 @@ namespace game_framework
 		pDC2->SetBkColor(RGB(230, 220, 200));
 		pDC2->SetTextColor(RGB(0, 0, 0));
 		char position[500];								// Demo 數字對字串的轉換
-		sprintf(position, "CharacterLeftX:%d CharacterRightX:%d CharacterTopY:%d CharacterButtonY:%d CharacterAttack:%d ScreenX: %d"
-			, GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), attackDamage, (currentMap == NULL) ? 0 : currentMap->getSX());
+		sprintf(position, "CharacterLeftX:%d CharacterRightX:%d CharacterTopY:%d CharacterButtonY:%d CharacterAttack:%d ScreenX: %d ScreenY: %d"
+			, GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), attackDamage, (currentMap == NULL) ? 0 : currentMap->getSX(), (currentMap == NULL) ? 0 : currentMap->getSY());
 		pDC2->TextOut(200, 120, position);
 		pDC2->SelectObject(f2p);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC

@@ -45,6 +45,7 @@
 #include "Map.h"
 #include "MapForBoss.h"
 #include "MapS1.h"
+#include "MapS2.h"
 #include "Util.h"
 #include "PropsBook.h"
 #include "CharacterStatus.h"
@@ -117,11 +118,13 @@ namespace game_framework
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 		void ShowData();
+		void monsterInitialize();
 	private:
 		//CMovingBitmap	monster;
 		Character		character;
 		MapForBoss		bossMap;
 		MapS1 mapS1;
+		MapS2 mapS2;
 		PropsBook		propsBook;
 		CharacterStatus characterStatus;
 		//const int		NUMBALLS;	// 球的總數

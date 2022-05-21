@@ -264,6 +264,7 @@
     <ClCompile Include="Source\CBouncingBall.cpp" />
     <ClCompile Include="Source\CEraser.cpp" />
     <ClCompile Include="Source\CharacterStatus.cpp" />
+    <ClCompile Include="Source\MapS2.cpp" />
     <ClCompile Include="Source\Timer.cpp" />
     <ClCompile Include="Source\MapS1.cpp" />
     <ClCompile Include="Source\Monster.cpp" />
@@ -334,6 +335,7 @@
     <ClInclude Include="Source\CEraser.h" />
     <ClInclude Include="Source\Character.h" />
     <ClInclude Include="Source\CharacterStatus.h" />
+    <ClInclude Include="Source\MapS2.h" />
     <ClInclude Include="Source\Timer.h" />
     <ClInclude Include="Source\MapS1.h" />
     <ClInclude Include="Source\Monster.h" />

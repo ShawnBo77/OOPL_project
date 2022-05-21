@@ -14,6 +14,7 @@ namespace game_framework {
 		int getStartPosition();
 		virtual bool isEmpty(int x, int y) const = 0;
 		virtual bool isPortal(int x, int y) const = 0;
+		virtual bool isBridge(int x, int y) const = 0;
 		int getSX();
 		int getSY();
 		bool mapScreenMoving();
@@ -33,6 +34,7 @@ namespace game_framework {
 		virtual void setCharacterX(int x) {};
 		virtual void setCharacterY(int y) {};
 		virtual void monsterFloorChanging(int x) {};
+		virtual void characterFloorChanging() {};
 		void setFloor(int y);
 		void setCeiling(int y);
 		void setEndBoundary(int sx);

@@ -28,6 +28,7 @@ const char KEY_TAB = 9;
 enum Stage
 {
 	stage_1,
+	stage_2,
 	stage_boss,
 	stage_props
 };

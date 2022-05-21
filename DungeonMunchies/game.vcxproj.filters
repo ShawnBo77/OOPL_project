@@ -186,6 +186,7 @@
     <ClCompile Include="Source\MonsterShrimp.cpp" />
     <ClCompile Include="Source\MonsterTree.cpp" />
     <ClCompile Include="Source\CharacterStatus.cpp" />
+    <ClCompile Include="Source\MapS2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -284,6 +285,7 @@
     <ClInclude Include="Source\MonsterShrimp.h" />
     <ClInclude Include="Source\MonsterTree.h" />
     <ClInclude Include="Source\CharacterStatus.h" />
+    <ClInclude Include="Source\MapS2.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc">

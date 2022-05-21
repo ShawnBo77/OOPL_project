@@ -346,6 +346,7 @@ namespace game_framework
 		//eraser.Initialize();
 		character.Initialize();
 		mapS1.Initialize();
+		mapS2.Initialize();
 		bossMap.Initialize();
 		propsBook.Initialize(&character);
 		characterStatus.Initialize(&character);
@@ -355,26 +356,7 @@ namespace game_framework
 		//background.SetTopLeft(BACKGROUND_X,0);				// 設定背景的起始座標
 		currentStage = stage_boss;
 		lastStage = currentStage;
-		for (unsigned i = 0; i < monsterS1.size(); i++)
-		{
-			monsterS1[i]->Initialize();
-		}
-		for (unsigned i = 0; i < monsterS7.size(); i++)
-		{
-			monsterS7[i]->Initialize();
-		}
-		for (unsigned i = 0; i < monsterCactus.size(); i++)
-		{
-			monsterCactus[i]->Initialize();
-		}
-		for (unsigned i = 0; i < monsterShrimp.size(); i++)
-		{
-			monsterShrimp[i]->Initialize();
-		}
-		for (unsigned i = 0; i < monsterTree.size(); i++)
-		{
-			monsterTree[i]->Initialize();
-		}
+		monsterInitialize();
 		//help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
 		//hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
 		//hits_left.SetTopLeft(HITS_LEFT_X,HITS_LEFT_Y);		// 指定剩下撞擊數的座標
@@ -419,6 +401,9 @@ namespace game_framework
 					monsterS1[i]->OnMove(&mapS1);
 				}
 				character.OnMove(&mapS1, &monsterS1);
+				break;
+			case stage_2:
+				character.OnMove(&mapS2, NULL);
 				break;
 			case stage_boss:
 				for (unsigned i = 0; i < monsterS7.size(); i++)
@@ -494,6 +479,7 @@ namespace game_framework
 		character.LoadBitmap();
 		//monster.LoadBitmap(IDB_MONSTER, RGB(255, 0, 255));
 		mapS1.LoadBitmap();
+		mapS2.LoadBitmap();
 		bossMap.LoadBitmap();
 		propsBook.LoadBitmap();
 		characterStatus.LoadBitmap();
@@ -546,7 +532,7 @@ namespace game_framework
 			character.SetMovingUp(true);
 			break;
 		case KEY_S:
-			character.SetMovingDown(true);
+			character.SetMovingDown();
 			break;
 		case KEY_CTRL:
 			character.SetRolling(true);
@@ -554,8 +540,17 @@ namespace game_framework
 		case KEY_E:
 			if (character.GetCanGoToNextMap()) 
 			{
-				currentStage = stage_boss;
-				character.SetCanGoToNextMap(false);
+				monsterInitialize();
+				switch (currentStage)
+				{
+				case stage_1:
+					bossMap.Initialize();
+					currentStage = stage_boss;
+					character.SetCanGoToNextMap(false);
+					break;
+				default:
+					break;
+				}			
 			}
 			else if (currentStage == stage_props)
 			{
@@ -594,9 +589,10 @@ namespace game_framework
 			}
 			break;
 		case KEY_R:
-			character.SetCurrentHp(50);
+			character.SetCurrentHp(character.GetMaxHp());
 			break;
 		case KEY_1:
+			monsterInitialize();
 			gamePause = false;
 			characterStatusCall = false;
 			if (currentStage == stage_1)
@@ -609,10 +605,25 @@ namespace game_framework
 				{
 					lastStage = currentStage;
 				}
+				mapS1.Initialize();
 				currentStage = stage_1;
 			}
 			break;
+		case KEY_2:
+			monsterInitialize();
+			gamePause = false;
+			characterStatusCall = false;
+			
+			if (currentStage != stage_props)
+			{
+				lastStage = currentStage;
+			}
+			mapS2.Initialize();
+			currentStage = stage_2;
+			
+			break;
 		case KEY_7:
+			monsterInitialize();
 			gamePause = false;
 			characterStatusCall = false;
 			if (currentStage == stage_boss)
@@ -625,6 +636,7 @@ namespace game_framework
 				{
 					lastStage = currentStage;
 				}
+				bossMap.Initialize();
 				currentStage = stage_boss;
 			}
 			break;
@@ -649,9 +661,6 @@ namespace game_framework
 		case KEY_W:
 		case KEY_SPACE:
 			character.SetMovingUp(false);
-			break;
-		case KEY_S:
-			character.SetMovingDown(false);
 			break;
 		default:
 			break;
@@ -762,6 +771,10 @@ namespace game_framework
 				monsterS1[i]->OnShow(&mapS1);
 			}
 			break;
+		case stage_2:
+			mapS2.onShow();
+			character.OnShow();
+			break;
 		case stage_boss:
 			bossMap.onShow();
 			character.OnShow();
@@ -808,5 +821,28 @@ namespace game_framework
 		pDC->TextOut(200, 140, position);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+	}
+	void CGameStateRun::monsterInitialize()
+	{
+		for (unsigned i = 0; i < monsterS1.size(); i++)
+		{
+			monsterS1[i]->Initialize();
+		}
+		for (unsigned i = 0; i < monsterS7.size(); i++)
+		{
+			monsterS7[i]->Initialize();
+		}
+		for (unsigned i = 0; i < monsterCactus.size(); i++)
+		{
+			monsterCactus[i]->Initialize();
+		}
+		for (unsigned i = 0; i < monsterShrimp.size(); i++)
+		{
+			monsterShrimp[i]->Initialize();
+		}
+		for (unsigned i = 0; i < monsterTree.size(); i++)
+		{
+			monsterTree[i]->Initialize();
+		}
 	}
 }
