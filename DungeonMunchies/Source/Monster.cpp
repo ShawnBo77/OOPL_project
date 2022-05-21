@@ -7,6 +7,7 @@
 #include "Util.h"
 #include "Monster.h"
 #include "Character.h"
+#include "SourceStorage.h"
 #include "Map.h"
 
 namespace game_framework
@@ -35,6 +36,8 @@ namespace game_framework
 		character = c;
 		characterDirectionLR = 0;
 		characterDirectionTD = 0;
+		bossDead = false;
+		hasGottenSource = false;
 	}
 
 	Monster::~Monster()
@@ -82,6 +85,22 @@ namespace game_framework
 		}
 		isIntersect = false;
 	}
+
+	//bool Monster::intersect(int lX, int rX, int tY, int bY)
+	//{
+	//	if (isAlive())
+	//	{
+	//		if ((character->GetRightX() >= lX && character->GetRightX() <= rX ||
+	//			character->GetLeftX() <= rX && character->GetLeftX() >= lX ||
+	//			character->GetLeftX() <= lX && character->GetRightX() >= rX || //角色比怪物寬
+	//			character->GetRightX() <= rX && character->GetLeftX() >= lX) //怪物比角色寬
+	//			&& character->GetButtonY() >= tY - 20 && character->GetButtonY() <= bY)
+	//		{ //角色下方碰到怪物
+	//			return true;
+	//		}
+	//	}
+	//	return false;
+	//}
 
 	void Monster::SetIsIntersect(bool flag)
 	{
@@ -289,6 +308,16 @@ namespace game_framework
 		return attackDamage;
 	}
 
+	void Monster::SetBossDead(bool flag)
+	{
+		bossDead = flag;
+	}
+
+	bool Monster::GetBossDead()
+	{
+		return bossDead;
+	}
+
 	bool Monster::isAttackSuccessfullyL(int range)
 	{
 		if (((character->GetRightX() >= GetLeftX() - range && character->GetRightX() <= GetLeftX()) ||
@@ -320,6 +349,15 @@ namespace game_framework
 		else
 		{
 			return false;
+		}
+	}
+
+	void Monster::touchSource(Map* m, int sourceCase)
+	{
+		if (character->isIntersect((_x + GetRightX())/2 + RelativeMovement, (_x + GetRightX()) / 2 + RelativeMovement + 64, m->getMonsterFloor() - 64, m->getMonsterFloor()))
+		{
+			hasGottenSource = true;
+			character->GetSourceStorage()->add(sourceCase);
 		}
 	}
 }

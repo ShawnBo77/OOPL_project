@@ -51,6 +51,7 @@
 #include "CharacterStatus.h"
 #include "Monster.h"
 #include "MonsterCactus.h"
+#include "MonsterBanana.h"
 #include "MonsterShrimp.h"
 #include "MonsterTree.h"
 #include "MonsterBoss.h"
@@ -120,6 +121,7 @@ namespace game_framework
 		void ShowData();
 		void monsterInitialize();
 	private:
+		void gameCompleteNoteShow();
 		//CMovingBitmap	monster;
 		Character		character;
 		MapForBoss		bossMap;
@@ -147,6 +149,8 @@ namespace game_framework
 		vector<Monster*> monsterTree;
 
 		CPoint mousePosition;
+		CMovingBitmap gameComplete;
+		bool gameCompleteFlag;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

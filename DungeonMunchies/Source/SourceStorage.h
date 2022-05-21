@@ -17,15 +17,13 @@ namespace game_framework {
         //void LoadBitmap(int code);
         void Initialize();
         Source* getSource(int sourceCase);
-        //void setNum(int sourceCase, int num);
-        //int getNum(int sourceCase);
-        //void add(int sourceCase, int num);
-        //void add(int sourceCase);
-        //void consume(int sourceCase, int num);
-        //void setXY(int sourceCase, int x, int y);
-        //void onShow();
+        void setNum(int sourceCase, int num);
+        int getNum(int sourceCase);
+        void add(int sourceCase, int num);
+        void add(int sourceCase);
+        void consume(int sourceCase, int num);
+        void setXY(int sourceCase, int x, int y);
     private:
-        //Source* getSource(int sourceCase);
         SourceCase sourceCase;
         Source* MosquitoJumpS;
         Source* ShrimpBloodS;

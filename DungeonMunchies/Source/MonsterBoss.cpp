@@ -28,7 +28,7 @@ namespace game_framework
 		BORDER = 5;
 	}
 
-	MonsterBoss::MonsterBoss(int x, int y, Character* c) : Monster(x, y, 12, 5, c)
+	MonsterBoss::MonsterBoss(int x, int y, Character* c) : Monster(x, y, 100, 5, c)
 	{
 	}
 
@@ -45,7 +45,6 @@ namespace game_framework
 		walkingRight.AddBitmap(".\\res\\boss_right_walk02.bmp", RGB(0, 0, 0));
 		walkingRight.AddBitmap(".\\res\\boss_right_walk03.bmp", RGB(0, 0, 0));
 		walkingRight.AddBitmap(".\\res\\boss_right_walk04.bmp", RGB(0, 0, 0));
-
 		//向左走動畫
 		walkingLeft.AddBitmap(".\\res\\boss_left_walk01.bmp", RGB(0, 0, 0));
 		walkingLeft.AddBitmap(".\\res\\boss_left_walk02.bmp", RGB(0, 0, 0));
@@ -58,7 +57,6 @@ namespace game_framework
 		collideRight.AddBitmap(".\\res\\boss_right_collide03.bmp", RGB(0, 0, 0));
 		collideRight.AddBitmap(".\\res\\boss_right_collide03.bmp", RGB(0, 0, 0));
 		collideRight.AddBitmap(".\\res\\boss_right_collide04.bmp", RGB(0, 0, 0));
-
 		//向左衝撞動畫
 		collideLeft.AddBitmap(".\\res\\boss_left_collide01.bmp", RGB(0, 0, 0));
 		collideLeft.AddBitmap(".\\res\\boss_left_collide02.bmp", RGB(0, 0, 0));
@@ -76,7 +74,6 @@ namespace game_framework
 		//向右捶效果
 		hitRightEffect.AddBitmap(".\\res\\boss_right_hit_effect05.bmp", RGB(0, 0, 0));
 		hitRightEffect.AddBitmap(".\\res\\boss_right_hit_effect04.bmp", RGB(0, 0, 0));
-
 		//向左捶
 		hitLeft.AddBitmap(".\\res\\boss_left_hit01.bmp", RGB(0, 0, 0));
 		hitLeft.AddBitmap(".\\res\\boss_left_hit02.bmp", RGB(0, 0, 0));
@@ -92,23 +89,35 @@ namespace game_framework
 		thronRight.AddBitmap(".\\res\\boss_right_thorn01.bmp", RGB(0, 0, 0));
 		thronRight.AddBitmap(".\\res\\boss_right_thorn02.bmp", RGB(0, 0, 0));
 		thronRight.AddBitmap(".\\res\\boss_right_thorn03.bmp", RGB(0, 0, 0));
-
 		//向左刺
 		thronLeft.AddBitmap(".\\res\\boss_left_thorn01.bmp", RGB(0, 0, 0));
 		thronLeft.AddBitmap(".\\res\\boss_left_thorn02.bmp", RGB(0, 0, 0));
 		thronLeft.AddBitmap(".\\res\\boss_left_thorn03.bmp", RGB(0, 0, 0));
-
 		//刺
 		thron.AddBitmap(".\\res\\thron_grow01.bmp", RGB(0, 0, 0));
 		thron.AddBitmap(".\\res\\thron_grow02.bmp", RGB(0, 0, 0));
 		thron.AddBitmap(".\\res\\thron_red.bmp", RGB(0, 0, 0));
+
+		//死亡動畫
+		deadRight.AddBitmap(".\\res\\boss_right_dead01.bmp", RGB(0, 0, 0));
+		deadRight.AddBitmap(".\\res\\boss_right_dead02.bmp", RGB(0, 0, 0));
+		deadRight.AddBitmap(".\\res\\boss_right_dead03.bmp", RGB(0, 0, 0));
+		deadRight.AddBitmap(".\\res\\boss_right_dead04.bmp", RGB(0, 0, 0));
+		deadRight.AddBitmap(".\\res\\boss_right_dead05.bmp", RGB(0, 0, 0));
+		deadRight.AddBitmap(".\\res\\boss_right_dead06.bmp", RGB(0, 0, 0));
+		deadLeft.AddBitmap(".\\res\\boss_left_dead01.bmp", RGB(0, 0, 0));
+		deadLeft.AddBitmap(".\\res\\boss_left_dead02.bmp", RGB(0, 0, 0));
+		deadLeft.AddBitmap(".\\res\\boss_left_dead03.bmp", RGB(0, 0, 0));
+		deadLeft.AddBitmap(".\\res\\boss_left_dead04.bmp", RGB(0, 0, 0));
+		deadLeft.AddBitmap(".\\res\\boss_left_dead05.bmp", RGB(0, 0, 0));
+		deadLeft.AddBitmap(".\\res\\boss_left_dead06.bmp", RGB(0, 0, 0));
 	}
 
 	void MonsterBoss::Initialize()
 	{
 		_x = init_x;
 		_y = init_y;
-		hp = 100;
+		//hp = 100;
 		bloodBar.setFullHP(hp);
 		action = walk_a;
 		BORDER = 5;
@@ -122,6 +131,13 @@ namespace game_framework
 		hitCD = false;
 		rushDistance = 10;
 		rushStepSize = 3;
+		thronDamage = 10;
+		thronCount = 0;
+		cMidX = 0;
+		floor = 595;
+		thronExist = false;
+
+		bossDead = false;
 	}
 
 	void MonsterBoss::OnMove(Map* m)
@@ -133,15 +149,20 @@ namespace game_framework
 			{
 				facingLR = characterDirectionLR;
 			}
-			if (distanceToCharacter() < 300 && hitCD == false && action == walk_a && atkCounter[0] < 4)
+			if (distanceToCharacter() < 300 && hitCD == false && action == walk_a && atkCounter[0] < 3)
 			{
 				hitStart();
 				atkCount(0);
 			}
-			else if ((distanceToCharacter() > 550 || atkCounter[0] >= 4) && action == walk_a)
+			else if ((distanceToCharacter() > 550 || atkCounter[0] >= 3) && action == walk_a && hpProportion() > 0.5)
 			{
 				collideStart();
 				atkCount(1);
+			}
+			else if ((distanceToCharacter() > 550 || atkCounter[0] >= 3) && action == walk_a && hpProportion() <= 0.5)
+			{
+				thronStart();
+				atkCount(2);
 			}
 
 			if (action == walk_a)
@@ -157,7 +178,15 @@ namespace game_framework
 			{
 				collideOnMove();
 			}
+			else if (action == thron_a)
+			{
+				thronBossOnMove();
+			}
 			hitCDTimer.CaculateTimeForFalse(&hitCD, 4);
+		}
+		else
+		{
+			deadOnMove();
 		}
 	}
 
@@ -177,13 +206,18 @@ namespace game_framework
 			{
 				collideOnShow(m);
 			}
+			else if (action == thron_a)
+			{
+				thronBossOnShow();
+			}
 			bloodBar.setXY(_x, _y - 16);
 			bloodBar.showBloodBar(m, hp);
 		}
 		else
 		{
+			deadOnShow();
 		}
-		showData();
+		//showData();
 	}
 
 	void MonsterBoss::showData()
@@ -195,8 +229,8 @@ namespace game_framework
 		pDC->SetBkColor(RGB(230, 220, 200));
 		pDC->SetTextColor(RGB(0, 0, 0));
 		char position[500];								// Demo 數字對字串的轉換
-		sprintf(position, "BossLeftX:%d BossRightX:%d BossTopY:%d BossButtonY:%d hitTimer:(%d, %d) distanceToCharacter:%d",
-			GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), hitCDTimer.GetStartTime(), hitCDTimer.GetFinishTime(), distanceToCharacter());
+		sprintf(position, "BossLeftX:%d BossRightX:%d BossTopY:%d BossButtonY:%d hitTimer:(%d, %d) distanceToCharacter:%d hpProportion:%f",
+			GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), hitCDTimer.GetStartTime(), hitCDTimer.GetFinishTime(), distanceToCharacter(), hpProportion());
 		pDC->TextOut(200, 100, position);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
@@ -291,14 +325,14 @@ namespace game_framework
 	{
 		if (facingLR == 0)
 		{
-			if (m->isEmpty(_x - STEP_SIZE, GetTopY())/* && m->isEmpty(_x - STEP_SIZE, GetButtonY())*/)
+			if (CanWalkL(m))
 			{
 				_x -= STEP_SIZE;
 			}
 		}
 		else
 		{
-			if (m->isEmpty(_x + STEP_SIZE, GetTopY())/* && m->isEmpty(_x + STEP_SIZE, GetButtonY())*/)
+			if (CanWalkR(m))
 			{
 				_x += STEP_SIZE;
 			}
@@ -323,6 +357,24 @@ namespace game_framework
 			walkingRight.SetTopLeft(_x, _y);
 			walkingRight.OnShow();
 		}
+	}
+
+	bool MonsterBoss::CanWalkL(Map* m)
+	{
+		if (m->isEmpty(_x - STEP_SIZE, GetTopY()) && !character->isIntersect(GetLeftX() - STEP_SIZE, GetRightX() - STEP_SIZE, GetTopY(), GetButtonY()))
+		{
+			return true;
+		}
+		return false;
+	}
+
+	bool MonsterBoss::CanWalkR(Map* m)
+	{
+		if (m->isEmpty(_x - STEP_SIZE, GetTopY()) && !character->isIntersect(GetLeftX() + STEP_SIZE, GetRightX() + STEP_SIZE, GetTopY(), GetButtonY()))
+		{
+			return true;
+		}
+		return false;
 	}
 
 	void MonsterBoss::ResetAtkCounter()
@@ -557,6 +609,156 @@ namespace game_framework
 				{
 					break;
 				}
+			}
+		}
+	}
+
+	void MonsterBoss::thronStart()
+	{
+		action = thron_a;
+	}
+
+	void MonsterBoss::thronBossOnMove()
+	{
+		if (facingLR == 0)
+		{
+			if (thronLeft.GetCurrentBitmapNumber() != 2)
+			{
+				thronLeft.OnMove();
+			}
+			else
+			{
+				thron.OnMove();
+			}
+		}
+		else if (facingLR == 1)
+		{
+			if (thronRight.GetCurrentBitmapNumber() != 2)
+			{
+				thronRight.OnMove();
+			}
+			else
+			{
+				thron.OnMove();
+			}
+		}
+
+	}
+
+	void MonsterBoss::thronBossOnShow()
+	{
+		if (facingLR == 0)
+		{
+			thronLeft.SetTopLeft(_x, _y);
+			thronLeft.OnShow();
+			if (thronLeft.GetCurrentBitmapNumber() == 2)
+			{
+				thronOnShow();
+			}
+			if (thronLeft.IsFinalBitmap() && thronCount >= 3)
+			{
+				thronCount = 0;
+				action = walk_a;
+				thronLeft.Reset();
+				thron.Reset();
+			}
+		}
+		else
+		{
+			thronRight.SetTopLeft(_x, _y);
+			thronRight.OnShow();
+			if (thronRight.GetCurrentBitmapNumber() == 2)
+			{
+				thronOnShow();
+			}
+			if (thronRight.IsFinalBitmap() && thronCount >= 3)
+			{
+				thronCount = 0;
+				action = walk_a;
+				thronRight.Reset();
+				thron.Reset();
+			}
+		}
+	}
+
+	void MonsterBoss::thronOnShow()
+	{
+		if (thron.GetCurrentBitmapNumber() == 0)
+		{
+			if (!thronExist)
+			{
+				SetCMidX();
+				thronExist = true;
+			}
+			thron.SetTopLeft(cMidX - 7, floor - 50);
+		}
+		else
+		{
+			thron.SetTopLeft(cMidX - 18, floor - 199);
+		}
+		if (thron.GetCurrentBitmapNumber() == 2)
+		{
+			thronJudge();
+			thronCount += 1;
+			thronExist = false;
+		}
+		thron.OnShow();
+	}
+
+	void MonsterBoss::thronJudge()
+	{
+		if (((character->GetRightX() >= cMidX - 18 && character->GetRightX() <= cMidX + 20) || //角色右邊碰到刺
+			(character->GetLeftX() <= cMidX + 20 && character->GetLeftX() >= cMidX - 18) || //角色左邊碰到刺
+			(character->GetLeftX() <= cMidX - 18 && character->GetRightX() >= cMidX + 20)) && //角色左右橫跨刺
+			(character->GetButtonY() >= floor - 200 && character->GetButtonY() <= floor))
+		{
+			if (!character->GetIsInvincible())
+			{
+				character->SetIsAttackedFromButton(true);
+				character->lossCurrentHp(thronDamage);
+			}
+		}
+	}
+
+	void MonsterBoss::SetCMidX()
+	{
+		cMidX = (character->GetLeftX() + character->GetRightX()) / 2;
+	}
+
+	void MonsterBoss::deadOnMove()
+	{
+		if (facingLR == 0)
+		{
+			deadLeft.OnMove();
+		}
+		else if (facingLR == 1)
+		{
+			deadRight.OnMove();
+		}
+	}
+
+	void MonsterBoss::deadOnShow()
+	{
+		if (facingLR == 0)
+		{
+			deadLeft.SetTopLeft(_x, _y);
+
+			deadLeft.OnShow();
+
+			if (deadLeft.IsFinalBitmap())
+			{
+				bossDead = true;
+			}
+		}
+		else
+		{
+			deadRight.SetTopLeft(_x, _y);
+
+			deadRight.OnShow();
+
+			if (deadRight.IsFinalBitmap())
+			{
+				bossDead = true;
 			}
 		}
 	}

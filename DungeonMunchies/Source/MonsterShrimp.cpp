@@ -12,6 +12,7 @@
 #include "Monster.h"
 #include "MonsterShrimp.h"
 #include "Util.h"
+#include <time.h>
 
 namespace game_framework
 {
@@ -30,7 +31,7 @@ namespace game_framework
 		attackCD = false;
 	}
 
-	MonsterShrimp::MonsterShrimp(int x, int y, Character* c) : Monster(x, y, 12, 5, c)
+	MonsterShrimp::MonsterShrimp(int x, int y, Character* c) : Monster(x, y, 12, 50, c)
 	{
 		hp = 50;
 		attackDamage = 5;
@@ -62,6 +63,8 @@ namespace game_framework
 
 		deadLeft.LoadBitmap(".\\res\\monster_shrimp_dead_left.bmp", RGB(0, 0, 0));
 		deadRight.LoadBitmap(".\\res\\monster_shrimp_dead_right.bmp", RGB(0, 0, 0));
+		sourceShrimpAttack.LoadBitmap(".\\res\\source_shrimp_attack.bmp", RGB(0, 0, 0));
+		sourceShrimpBlood.LoadBitmap(".\\res\\source_shrimp_blood.bmp", RGB(0, 0, 0));
 	}
 
 	void MonsterShrimp::Initialize()
@@ -79,6 +82,7 @@ namespace game_framework
 		bloodBar.setFullHP(hp);
 		STEP_SIZE = 5;
 		velocity = 0;
+		srand((unsigned int)time(NULL));
 	}
 
 	void MonsterShrimp::OnShow(Map* m)
@@ -137,12 +141,25 @@ namespace game_framework
 				deadRight.SetTopLeft(_x + RelativeMovement, _y);
 				deadRight.ShowBitmap();
 			}
+			if (!hasGottenSource)
+			{
+				if (randN == 0)
+				{
+					sourceShrimpAttack.SetTopLeft((_x + GetRightX()) / 2 + RelativeMovement, m->getMonsterFloor() - 64);
+					sourceShrimpAttack.ShowBitmap();
+				}
+				else
+				{
+					sourceShrimpBlood.SetTopLeft((_x + GetRightX()) / 2 + RelativeMovement, m->getMonsterFloor() - 64);
+					sourceShrimpBlood.ShowBitmap();
+				}
+			}
 		}
 		showData();
 	}
 
 	void MonsterShrimp::OnMove(Map* m)
-	{ 
+	{
 		if (!character->GetMap() == NULL)
 		{
 			character->GetMap()->monsterFloorChanging(GetLeftX());
@@ -162,7 +179,7 @@ namespace game_framework
 				}
 			}
 		}
-			
+
 		if (isAlive())
 		{
 			SetCharacterDirection();
@@ -180,10 +197,11 @@ namespace game_framework
 				{
 					_x -= STEP_SIZE;
 				}
-				else if(characterDirectionLR == 1 && (GetRightX() + STEP_SIZE - BORDER) <= character->GetLeftX() && character->GetMap()->isEmpty(GetRightX() + STEP_SIZE + BORDER, GetButtonY() - BORDER))
+				else if (characterDirectionLR == 1 && (GetRightX() + STEP_SIZE - BORDER) <= character->GetLeftX() && character->GetMap()->isEmpty(GetRightX() + STEP_SIZE + BORDER, GetButtonY() - BORDER))
 				{
 					_x += STEP_SIZE;
 				}
+				randN = rand() % 2;
 			}
 			attackCDTime.CaculateTimeForFalse(&attackCD, 2);
 			walkLeft.OnMove();
@@ -193,6 +211,20 @@ namespace game_framework
 			attackRight.OnMove();
 
 			//intersect();
+		}
+		else
+		{
+			if (hasGottenSource == false) {
+				
+				if (randN == 0)
+				{
+					touchSource(m, shrimp_attack_p);
+				}
+				else
+				{
+					touchSource(m, shrimp_blood_p);
+				}
+			}
 		}
 	}
 
@@ -293,7 +325,7 @@ namespace game_framework
 		pDC->SetTextColor(RGB(0, 0, 0));
 		char position[500];								// Demo 數字對字串的轉換
 		sprintf(position, "ShrimpLeftX:%d ShrimpRightX:%d ShrimpTopY:%d ShrimpButtonY:%d ShrimpHp:%d"
-			,GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), GetCurrentHp());
+			, GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), GetCurrentHp());
 		//sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
 		pDC->TextOut(200, 80, position);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)

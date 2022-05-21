@@ -30,7 +30,7 @@ namespace game_framework
 		attackCD = false;
 	}
 
-	MonsterTree::MonsterTree(int x, int y, Character* c) : Monster(x, y, 12, 5, c)
+	MonsterTree::MonsterTree(int x, int y, Character* c) : Monster(x, y, 50, 5, c)
 	{
 		hp = 50;
 		attackDamage = 5;
@@ -76,6 +76,7 @@ namespace game_framework
 
 		deadLeft.LoadBitmap(".\\res\\monster_tree_dead_left.bmp", RGB(0, 0, 0));
 		deadRight.LoadBitmap(".\\res\\monster_tree_dead_right.bmp", RGB(0, 0, 0));
+		sourceGuavaJuiceBlood.LoadBitmap(".\\res\\source_guava_juice_blood.bmp", RGB(0, 0, 0));
 	}
 
 	void MonsterTree::Initialize()
@@ -86,7 +87,7 @@ namespace game_framework
 		RelativeMovement = 0;
 		BORDER = 5;
 		HORIZONTAL_GAP = 0;
-		hp = 50;
+		//hp = 50;
 		attackDamage = 5;
 		facingLR = 0;
 		action = sleep_a;
@@ -161,6 +162,11 @@ namespace game_framework
 				deadRight.SetTopLeft(_x + RelativeMovement, _y);
 				deadRight.ShowBitmap();
 			}
+			if (!hasGottenSource)
+			{
+				sourceGuavaJuiceBlood.SetTopLeft((_x + GetRightX()) / 2 + RelativeMovement, m->getMonsterFloor() - 64);
+				sourceGuavaJuiceBlood.ShowBitmap();
+			}
 		}
 		showData();
 	}
@@ -226,6 +232,13 @@ namespace game_framework
 			attackRight.OnMove();
 
 			//intersect();
+		}
+		else
+		{
+			if (!hasGottenSource)
+			{
+				touchSource(m, guava_juice_blood_p);
+			}
 		}
 	}
 

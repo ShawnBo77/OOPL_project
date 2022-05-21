@@ -11,6 +11,8 @@ namespace game_framework
 	class Character;
 	class Map;
 	class BloodBar;
+	class SourceStorage;
+
 	class Monster
 	{
 	public:
@@ -27,6 +29,7 @@ namespace game_framework
 		virtual int  GetButtonY() = 0;				// 右下角 y 座標
 		//英雄是否和此敵人碰觸
 		virtual void intersect();
+		//virtual bool intersect(int lX, int rX, int tY, int bY);
 		void SetIsIntersect(bool flag);
 		bool GetIsIntersect();
 		double hpProportion();
@@ -76,9 +79,14 @@ namespace game_framework
 		int GetAttackDamage();
 		//virtual void attack(int attackRange, int attackCD);
 
+		//結束
+		void SetBossDead(bool flag);
+		bool GetBossDead();
+
 	protected:
 		bool isAttackSuccessfullyL(int range);
 		bool isAttackSuccessfullyR(int range);
+		void touchSource(Map* m, int sourceCase);
 		Character* character;
 		int _x, _y;
 		int init_x, init_y;
@@ -88,6 +96,7 @@ namespace game_framework
 		BloodBar bloodBar;
 		int attackDamage;
 		bool isIntersect;
+		bool hasGottenSource; //看素材是否已被取得
 
 		Action action;
 		int STEP_SIZE;              // 移動速度
@@ -104,6 +113,8 @@ namespace game_framework
 		bool isAttacked;			// 是否受到攻擊
 		bool characterDirectionLR;
 		bool characterDirectionTD;
+
+		bool bossDead;
 	};
 }
 #endif
