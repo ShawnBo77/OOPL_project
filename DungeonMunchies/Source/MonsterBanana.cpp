@@ -64,6 +64,11 @@ namespace game_framework
 			bananaAlive.ShowBitmap();
 			bloodBar.setXY(GetLeftX() + RelativeMovement, GetTopY() - 16);
 			bloodBar.showBloodBar(m, hp);
+			if (lossHpShowFlag)
+			{
+				lossHpShow();
+			}
+			lossHpTimer.CaculateTimeForFalse(&lossHpShowFlag, 0.5);
 		}
 		if (!isAlive())
 		{

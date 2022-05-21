@@ -212,6 +212,11 @@ namespace game_framework
 			}
 			bloodBar.setXY(_x, _y - 16);
 			bloodBar.showBloodBar(m, hp);
+			if (lossHpShowFlag)
+			{
+				lossHpShow();
+			}
+			lossHpTimer.CaculateTimeForFalse(&lossHpShowFlag, 0.5);
 		}
 		else
 		{

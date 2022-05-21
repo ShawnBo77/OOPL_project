@@ -38,6 +38,8 @@ namespace game_framework
 		characterDirectionTD = 0;
 		bossDead = false;
 		hasGottenSource = false;
+		lossHp = 0;
+		lossHpShowFlag = 0;
 	}
 
 	Monster::~Monster()
@@ -259,50 +261,81 @@ namespace game_framework
 	{
 		isOnTheFloor = b;
 	}
+
 	bool Monster::GetIsOnTheFloor()
 	{
 		return isOnTheFloor;
 	}
+
 	void Monster::SetMaxHp(int x)
 	{
 		maxHp = x;
 	}
+
 	int Monster::GetMaxHp()
 	{
 		return maxHp;
 	}
+
 	void Monster::SetCurrentHp(int x)
 	{
 		hp = x;
 	}
+
 	int Monster::GetCurrentHp()
 	{
 		return hp;
 	}
+
 	void Monster::lossCurrentHp(int x)
 	{
 		hp -= x;
+		lossHp = x;
+		lossHpShowFlag = true;
+		lossHpTimer.Start();
 	}
+
+	void Monster::lossHpShow()
+	{
+		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+		CFont f, * fp;
+		f.CreatePointFont(120, "Times New Roman");	// 產生 font f; 160表示16 point的字
+		fp = pDC->SelectObject(&f);					// 選用 font f
+		/*pDC->SetBkColor(RGB(230, 220, 200));*/
+		pDC->SetBkMode(TRANSPARENT);
+		pDC->SetTextColor(RGB(255, 0, 0));
+		char position[500];								// Demo 數字對字串的轉換
+		sprintf(position, "%d", lossHp);
+		pDC->TextOut(GetRightX() + 10, GetTopY() + 10, position);
+		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+	}
+
 	void Monster::SetIsAttacking(bool flag)
 	{
 		isAttacking = flag;
 	}
+
 	bool Monster::GetIsAttacking()
 	{
 		return isAttacking;
 	}
+
 	void Monster::SetIsAttacked(bool flag)
 	{
 		isAttacked = flag;
 	}
+
 	bool Monster::GetIsAttacked()
 	{
 		return isAttacked;
 	}
+
 	void Monster::SetAttackDamage(int x)
 	{
 		attackDamage = x;
 	}
+
 	int Monster::GetAttackDamage()
 	{
 		return attackDamage;
@@ -354,7 +387,7 @@ namespace game_framework
 
 	void Monster::touchSource(Map* m, int sourceCase)
 	{
-		if (character->isIntersect((_x + GetRightX())/2 + RelativeMovement, (_x + GetRightX()) / 2 + RelativeMovement + 64, m->getMonsterFloor() - 64, m->getMonsterFloor()))
+		if (character->isIntersect((_x + GetRightX()) / 2 + RelativeMovement, (_x + GetRightX()) / 2 + RelativeMovement + 64, m->getMonsterFloor() - 64, m->getMonsterFloor()))
 		{
 			hasGottenSource = true;
 			character->GetSourceStorage()->add(sourceCase);

@@ -64,17 +64,23 @@ namespace game_framework
 			cactusAlive.ShowBitmap();
 			bloodBar.setXY(GetLeftX() + RelativeMovement, GetTopY() - 16);
 			bloodBar.showBloodBar(m, hp);
+			if (lossHpShowFlag)
+			{
+				lossHpShow();
+			}
+			lossHpTimer.CaculateTimeForFalse(&lossHpShowFlag, 0.5);
 		}
-		if (!isAlive())
+		else
 		{
 			cactusDead.SetTopLeft(_x + RelativeMovement, _y + (cactusAlive.Height() - cactusDead.Height()));
 			cactusDead.ShowBitmap();
-			if (!hasGottenSource) {
+			if (!hasGottenSource)
+			{
 				sourceGrassFast.SetTopLeft((_x + GetRightX()) / 2 + RelativeMovement, m->getMonsterFloor() - 64);
 				sourceGrassFast.ShowBitmap();
 			}
 		}
-		showData();
+		//showData();
 	}
 
 	void MonsterCactus::showData()
@@ -85,9 +91,9 @@ namespace game_framework
 		fp = pDC->SelectObject(&f);					// 選用 font f
 		pDC->SetBkColor(RGB(230, 220, 200));
 		pDC->SetTextColor(RGB(0, 0, 0));
-		char position[500];								// Demo 數字對字串的轉換
-		sprintf(position, "CactusLeftX:%d CactusRightX:%d CactusTopY:%d CactusButtonY:%d CactusHp: %d"
-			, GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), GetCurrentHp());
+		char position[600];								// Demo 數字對字串的轉換
+		sprintf(position, "CactusLeftX:%d CactusRightX:%d CactusTopY:%d CactusButtonY:%d CactusHp: %d lossHpTimer(%f, %f, %f)"
+			, GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), GetCurrentHp(), (double)lossHpTimer.GetStartTime(), (double)lossHpTimer.GetFinishTime(), (double)lossHpTimer.GetTime());
 		//sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
 		pDC->TextOut(200, 50, position);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
@@ -120,7 +126,7 @@ namespace game_framework
 		{
 			intersect();
 		}
-		else 
+		else
 		{
 			if (!hasGottenSource)
 			{
@@ -130,7 +136,7 @@ namespace game_framework
 		if (!character->GetMap() == NULL)
 		{
 			character->GetMap()->monsterFloorChanging(GetLeftX());
-			_y = character->GetMap()->getMonsterFloor() -80;
+			_y = character->GetMap()->getMonsterFloor() - 80;
 		}
 	}
 }

@@ -2,6 +2,7 @@
 #define __MONSTER__
 
 #include "BloodBar.h"
+#include "Timer.h"
 
 namespace game_framework
 {
@@ -69,6 +70,7 @@ namespace game_framework
 		void SetCurrentHp(int x);      // 設定目前血量
 		int GetCurrentHp();            // 取得目前血量
 		void lossCurrentHp(int x);
+		void lossHpShow();
 
 		//攻擊
 		void SetIsAttacking(bool flag);		    // 設定是否攻擊
@@ -111,6 +113,9 @@ namespace game_framework
 		bool isOnTheFloor;          // 是否位於地面
 		bool isAttacking;           // 是否正在攻擊
 		bool isAttacked;			// 是否受到攻擊
+		int lossHp;
+		bool lossHpShowFlag;
+		Timer lossHpTimer;
 		bool characterDirectionLR;
 		bool characterDirectionTD;
 
