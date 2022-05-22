@@ -20,16 +20,13 @@ namespace game_framework
 		void OnMove(Map* m) override;
 		void SetFacingLR(bool flag);
 		bool GetFacingLR();
-		void SetActionNum(int num);
-		bool GetActionNum();
 		int  GetLeftX();				// 左上角 x 座標
 		int  GetTopY();					// 左上角 y 座標
 		int  GetRightX();				// 右下角 x 座標
 		int  GetButtonY();				// 右下角 y 座標
-		void attack();
 		void showData();
 	private:
-		int actionNum; // 0表示在走路，1為攻擊
+		void attackOnMove();
 		int velocity;
 		CAnimation walkLeft;
 		CAnimation walkRight;
@@ -40,8 +37,7 @@ namespace game_framework
 		CMovingBitmap sourceShrimpAttack;
 		CMovingBitmap sourceShrimpBlood;
 		int randN;
-		Timer attackCDTime;
-		bool attackCD;
+		
 	};
 }
 #endif 

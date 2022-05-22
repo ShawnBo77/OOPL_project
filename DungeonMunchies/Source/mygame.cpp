@@ -287,16 +287,16 @@ namespace game_framework
 		: CGameState(g)
 	{
 		//ball = new CBall [NUMBALLS];
-		//monsterS1.push_back(new MonsterCactus(700, 500, &character));
+		monsterS1.push_back(new MonsterShrimp(700, 500, &character));
 		monsterS1.push_back(new MonsterTree(1900, 400, &character));
 
-		//monsterS7.push_back(new MonsterShrimp(300, 400, &character));
+		monsterS7.push_back(new MonsterTree(800, 400, &character));
 		//monsterS7.push_back(new MonsterShrimp(600, 400, &character));
-		//monsterS7.push_back(new MonsterShrimp(900, 400, &character));
+		//monsterS7.push_back(new MonsterShrimp(850, 400, &character));
 		//monsterS7.push_back(new MonsterCactus(700, 500, &character));
-		//monsterS7.push_back(new MonsterTree(400, 400, &character));
-		monsterS7.push_back(new MonsterBanana(600, 400, &character));
-		//monsterS7.push_back(new MonsterBoss(650, 280, &character));
+		monsterS7.push_back(new MonsterTree(400, 400, &character));
+		//monsterS7.push_back(new MonsterBanana(600, 400, &character));
+		//monsterS7.push_back(new MonsterBoss(900, 280, &character));
 		//monsterS7.push_back(new MonsterCactus(700, 500, &character));
 
 		monsterCactus.push_back(new MonsterCactus(700, 500, &character));
@@ -610,20 +610,6 @@ namespace game_framework
 			case KEY_R:
 				character.SetCurrentHp(50);
 				break;
-				if (currentStage == stage_1)
-				{
-					currentStage = lastStage;
-				}
-				else
-				{
-					if (currentStage != stage_props)
-					{
-						lastStage = currentStage;
-					}
-					mapS1.Initialize();
-					currentStage = stage_1;
-				}
-				break;
 			case KEY_1:
 				monsterInitialize();
 				gamePause = false;
@@ -866,6 +852,7 @@ namespace game_framework
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
+
 	void CGameStateRun::gameCompleteNoteShow()
 	{
 		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 

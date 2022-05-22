@@ -28,7 +28,7 @@ namespace game_framework
 		HORIZONTAL_GAP = 0;
 	}
 
-	MonsterBanana::MonsterBanana(int x, int y, Character* c) : Monster(x, y, 10, 5, c)
+	MonsterBanana::MonsterBanana(int x, int y, Character* c) : Monster(x, y, 20, 5, c)
 	{
 		BORDER = 20;
 		HORIZONTAL_GAP = 0;
@@ -51,9 +51,12 @@ namespace game_framework
 		_x = init_x;
 		_y = init_y;
 		RelativeMovement = 0;
-		//hp = 100;
+		hp = 20;
 		attackDamage = 5;
 		bloodBar.setFullHP(hp);
+		hasGottenSource = false;
+		lightBulbInside = 60;
+		hasGottenLightBulb = false;
 	}
 
 	void MonsterBanana::OnShow(Map* m)
@@ -64,6 +67,11 @@ namespace game_framework
 			bananaAlive.ShowBitmap();
 			bloodBar.setXY(GetLeftX() + RelativeMovement, GetTopY() - 16);
 			bloodBar.showBloodBar(m, hp);
+			if (lossHpShowFlag)
+			{
+				lossHpShow();
+			}
+			lossHpTimer.CaculateTimeForFalse(&lossHpShowFlag, 0.5);
 		}
 		if (!isAlive())
 		{
@@ -123,6 +131,10 @@ namespace game_framework
 		}
 		else
 		{
+			if (!hasGottenLightBulb) {
+				character->AddLightBulb(lightBulbInside);
+				hasGottenLightBulb = true;
+			}
 			if (!hasGottenSource)
 			{
 				touchSource(m, banana_attack_p);

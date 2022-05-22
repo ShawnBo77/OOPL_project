@@ -117,7 +117,7 @@ namespace game_framework
 	{
 		_x = init_x;
 		_y = init_y;
-		//hp = 100;
+		hp = 100;
 		bloodBar.setFullHP(hp);
 		action = walk_a;
 		BORDER = 5;
@@ -212,6 +212,11 @@ namespace game_framework
 			}
 			bloodBar.setXY(_x, _y - 16);
 			bloodBar.showBloodBar(m, hp);
+			if (lossHpShowFlag)
+			{
+				lossHpShow();
+			}
+			lossHpTimer.CaculateTimeForFalse(&lossHpShowFlag, 0.5);
 		}
 		else
 		{

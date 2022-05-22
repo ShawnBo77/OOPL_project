@@ -25,9 +25,10 @@ namespace game_framework
 		int  GetRightX();				// 右下角 x 座標
 		int  GetButtonY();				// 右下角 y 座標
 		Action actionController();
-		void attack();
 		void showData();
 	private:
+		void walkOnMove();
+		void attackOnMove();
 		int velocity;
 		CMovingBitmap sleepLeft;
 		CMovingBitmap sleepRight;
@@ -38,8 +39,6 @@ namespace game_framework
 		CMovingBitmap deadLeft;
 		CMovingBitmap deadRight;
 		CMovingBitmap sourceGuavaJuiceBlood;
-		Timer attackCDTime;
-		bool attackCD;
 	};
 }
 #endif 

@@ -87,13 +87,16 @@ namespace game_framework
 		RelativeMovement = 0;
 		BORDER = 5;
 		HORIZONTAL_GAP = 0;
-		//hp = 50;
+		hp = 50;
 		attackDamage = 5;
 		facingLR = 0;
 		action = sleep_a;
 		bloodBar.setFullHP(hp);
 		STEP_SIZE = 5;
 		velocity = 0;
+		lightBulbInside = 25;
+		hasGottenLightBulb = false;
+		hasGottenSource = false;
 	}
 
 	void MonsterTree::OnShow(Map* m)
@@ -116,11 +119,16 @@ namespace game_framework
 				else
 				{
 					attackLeft.SetTopLeft(_x + RelativeMovement, _y);
-					attackLeft.SetDelayCount(4);
+					attackLeft.SetDelayCount(3);
 					attackLeft.OnShow();
+					if (attackLeft.GetCurrentBitmapNumber() == 4)
+					{
+						attackJudge(90);
+					}
 					if (attackLeft.IsFinalBitmap())
 					{
 						action = actionController();
+						attackLeft.Reset();
 					}
 				}
 			}
@@ -139,16 +147,26 @@ namespace game_framework
 				else
 				{
 					attackRight.SetTopLeft(_x + RelativeMovement, _y);
-					attackRight.SetDelayCount(4);
+					attackRight.SetDelayCount(3);
 					attackRight.OnShow();
+					if (attackRight.GetCurrentBitmapNumber() == 4)
+					{
+						attackJudge(90);
+					}
 					if (attackRight.IsFinalBitmap())
 					{
 						action = actionController();
+						attackRight.Reset();
 					}
 				}
 			}
 			bloodBar.setXY(_x + RelativeMovement, _y - 16);
 			bloodBar.showBloodBar(m, hp);
+			if (lossHpShowFlag)
+			{
+				lossHpShow();
+			}
+			lossHpTimer.CaculateTimeForFalse(&lossHpShowFlag, 0.5);
 		}
 		else
 		{
@@ -168,7 +186,7 @@ namespace game_framework
 				sourceGuavaJuiceBlood.ShowBitmap();
 			}
 		}
-		showData();
+		//showData();
 	}
 
 	void MonsterTree::OnMove(Map* m)
@@ -208,10 +226,9 @@ namespace game_framework
 			{
 				facingLR = characterDirectionLR;
 			}
-			if (distanceToCharacter() < 130 && attackCD == false)
+			if (distanceToCharacter() < 130 && attackCD == false && action != attack_a)
 			{
-				attack();
-				intersect();
+				attackStart();
 			}
 			else if (distanceToCharacter() < 280 && action == walk_a)
 			{
@@ -224,17 +241,27 @@ namespace game_framework
 					_x += STEP_SIZE;
 				}
 			}
-			attackCDTime.CaculateTimeForFalse(&attackCD, 2);
-			walkLeft.OnMove();
-			walkRight.OnMove();
+			attackCDTime.CaculateTimeForFalse(&attackCD, 3);
 
-			attackLeft.OnMove();
-			attackRight.OnMove();
+			if (action == walk_a)
+			{
+				walkOnMove();
+			}
+
+			if (action == attack_a)
+			{
+				attackOnMove();
+			}
 
 			//intersect();
 		}
 		else
 		{
+			if (!hasGottenLightBulb)
+			{
+				character->AddLightBulb(lightBulbInside);
+				hasGottenLightBulb = true;
+			}
 			if (!hasGottenSource)
 			{
 				touchSource(m, guava_juice_blood_p);
@@ -272,7 +299,7 @@ namespace game_framework
 		}
 		else
 		{
-			return _y;
+			return _y + 50;
 		}
 	}
 
@@ -305,35 +332,6 @@ namespace game_framework
 		}
 	}
 
-	void MonsterTree::attack()
-	{
-		if (attackCD == false) //保險起見多加的
-		{
-			action = attack_a;
-			attackCDTime.Start();
-			attackCD = true;
-			if (!character->GetIsInvincible())
-			{
-				if (facingLR == 0)
-				{
-					if (isAttackSuccessfullyL(90))
-					{
-						character->SetIsAttackedFromRight(true);
-						character->lossCurrentHp(attackDamage);
-					}
-				}
-				else
-				{
-					if (isAttackSuccessfullyR(90))
-					{
-						character->SetIsAttackedFromLeft(true);
-						character->lossCurrentHp(attackDamage);
-					}
-				}
-			}
-		}
-	}
-
 	void MonsterTree::showData()
 	{
 		int CharacterLeftX = character->GetLeftX();
@@ -353,5 +351,29 @@ namespace game_framework
 		pDC->TextOut(200, 100, position);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+	}
+
+	void MonsterTree::walkOnMove()
+	{
+		if (facingLR == 0)
+		{
+			walkLeft.OnMove();
+		}
+		else if (facingLR == 1)
+		{
+			walkRight.OnMove();
+		}
+	}
+
+	void MonsterTree::attackOnMove()
+	{
+		if (facingLR == 0)
+		{
+			attackLeft.OnMove();
+		}
+		else if (facingLR == 1)
+		{
+			attackRight.OnMove();
+		}
 	}
 }

@@ -86,6 +86,7 @@ namespace game_framework
 		void SetAttackRange(int x);
 		int GetAttackRange();
 		void attack(vector<Monster*>* monsters);
+		void attackOnMove();
 		//受到攻擊
 		void SetIsAttackedFromRight(bool flag);	// 設定攻擊是否來自右方
 		bool GetIsAttackedFromRight();    // 回傳攻擊是否來自右方
@@ -122,6 +123,11 @@ namespace game_framework
 		bool GetIsBananaAttack();
 		void SetIsShrimpAttack(bool flag);
 		bool GetIsShrimpAttack();
+		void SetLightBulbNum(int num);
+		int GetLightBulbNum();
+		void AddLightBulb(int num);
+		void ConsumeLightBulb(int num);
+		void LightBulbShow();
 
 	protected:
 		bool isAttackSuccessfullyL(int range, Monster* monster);
@@ -187,6 +193,8 @@ namespace game_framework
 		bool shrimpAttack;
 		bool isShrimpAttack;
 
+		int lightBulbNum;
+		CMovingBitmap lightBulb;
 
 		SourceStorage* sourceStorage;
 		PropStorage* propStorage;

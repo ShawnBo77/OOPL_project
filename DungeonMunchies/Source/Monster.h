@@ -2,6 +2,7 @@
 #define __MONSTER__
 
 #include "BloodBar.h"
+#include "Timer.h"
 
 namespace game_framework
 {
@@ -29,7 +30,6 @@ namespace game_framework
 		virtual int  GetButtonY() = 0;				// 右下角 y 座標
 		//英雄是否和此敵人碰觸
 		virtual void intersect();
-		//virtual bool intersect(int lX, int rX, int tY, int bY);
 		void SetIsIntersect(bool flag);
 		bool GetIsIntersect();
 		double hpProportion();
@@ -64,11 +64,10 @@ namespace game_framework
 		bool GetIsOnTheFloor();         // 回傳是否正在地面
 
 		//血量
-		void SetMaxHp(int x);			// 設定最大血量
-		int GetMaxHp();                // 取得最大血量
 		void SetCurrentHp(int x);      // 設定目前血量
 		int GetCurrentHp();            // 取得目前血量
 		void lossCurrentHp(int x);
+		void lossHpShow();
 
 		//攻擊
 		void SetIsAttacking(bool flag);		    // 設定是否攻擊
@@ -77,7 +76,8 @@ namespace game_framework
 		bool GetIsAttacked();    // 回傳是否受到攻擊
 		void SetAttackDamage(int x);
 		int GetAttackDamage();
-		//virtual void attack(int attackRange, int attackCD);
+		virtual void attackStart();
+		virtual void attackJudge(int attackRange);
 
 		//結束
 		void SetBossDead(bool flag);
@@ -91,12 +91,13 @@ namespace game_framework
 		int _x, _y;
 		int init_x, init_y;
 		int currentFloor;
-		int maxHp;
 		int hp;
 		BloodBar bloodBar;
 		int attackDamage;
 		bool isIntersect;
 		bool hasGottenSource; //看素材是否已被取得
+		int lightBulbInside;
+		bool hasGottenLightBulb;
 
 		Action action;
 		int STEP_SIZE;              // 移動速度
@@ -110,7 +111,12 @@ namespace game_framework
 		bool facingLR;              // 面向 左:0, 右:1
 		bool isOnTheFloor;          // 是否位於地面
 		bool isAttacking;           // 是否正在攻擊
+		Timer attackCDTime;
+		bool attackCD;
 		bool isAttacked;			// 是否受到攻擊
+		int lossHp;
+		bool lossHpShowFlag;
+		Timer lossHpTimer;
 		bool characterDirectionLR;
 		bool characterDirectionTD;
 

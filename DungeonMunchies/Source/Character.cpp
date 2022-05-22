@@ -43,39 +43,9 @@ namespace game_framework
 		characterBlood[7].LoadBitmap(IDB_CHARACTERBLOOD08, RGB(255, 255, 255));
 		characterBlood[8].LoadBitmap(IDB_CHARACTERBLOOD09, RGB(255, 255, 255));
 		characterBlood[9].LoadBitmap(IDB_CHARACTERBLOOD10, RGB(255, 255, 255));
-		//animation.AddBitmap(IDB_GRAY);
-		//animation.AddBitmap(IDB_BOSSRIGHTSTAND, RGB(0, 0, 0));
-		//
-		//animation.AddBitmap(IDB_HERORIGHTSTAND_G, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HERORIGHTJUMP_G, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HERORIGHTWALK1_G, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HERORIGHTWALK2_G, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HERORIGHTWALK3_G, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTSTAND_G, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTJUMP_G, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTWALK1_G, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTWALK2_G, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTWALK3_G, RGB(0, 0, 0));
-		//
-		//animation.AddBitmap(IDB_HERORIGHTSTAND_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HERORIGHTWALK1_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HERORIGHTWALK2_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HERORIGHTWALK3_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTSTAND_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTJUMP_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTWALK1_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTWALK2_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTWALK3_S, RGB(0, 0, 0));
-		//
-		//animation.AddBitmap(IDB_HERORIGHTATTACK1_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HERORIGHTATTACK2_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HERORIGHTATTACK3_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HERORIGHTATTACK4_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTATTACK1_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTATTACK2_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTATTACK3_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTATTACK4_S, RGB(0, 0, 0));
-		//
+
+		lightBulb.LoadBitmap(".\\res\\light_bulb.bmp", RGB(0, 0, 0));
+
 		standLeft.LoadBitmap(IDB_HEROLEFTSTAND_S, RGB(0, 0, 0));		//向左站
 		standRight.LoadBitmap(IDB_HERORIGHTSTAND_S, RGB(0, 0, 0));		//向右站
 
@@ -219,7 +189,7 @@ namespace game_framework
 		rolling_time = 0;
 		isAttacking = false;
 		attackDamage = 10;
-		attackRange = 40;
+		attackRange = 60;
 		isAttackedFromRight = false;
 		isAttackedFromLeft = false;
 		isAttackedFromButton = false;
@@ -232,13 +202,14 @@ namespace game_framework
 		shrimpAttack = false;
 		currentMap = NULL;
 		action = walk_a;
+		lightBulbNum = 0;
 
-		//sourceStorage->getSource(0)->setNum(5);
-		//sourceStorage->getSource(1)->setNum(5);
-		//sourceStorage->getSource(2)->setNum(5);
-		//sourceStorage->getSource(3)->setNum(5);
-		//sourceStorage->getSource(4)->setNum(15);
-		//sourceStorage->getSource(5)->setNum(15);
+		sourceStorage->getSource(0)->setNum(5);
+		sourceStorage->getSource(1)->setNum(5);
+		sourceStorage->getSource(2)->setNum(5);
+		sourceStorage->getSource(3)->setNum(5);
+		sourceStorage->getSource(4)->setNum(15);
+		sourceStorage->getSource(5)->setNum(15);
 	}
 
 	void Character::OnMove(Map* m, vector<Monster*>* monsters)
@@ -387,17 +358,17 @@ namespace game_framework
 			if (isAttackedFromRight) //還要判定是否能移動
 			{
 				for (int i = 0; i < 50; i++)
-				{	
+				{
 					if (m->isEmpty(GetLeftX() - 1 - BORDER, GetTopY()) && m->isEmpty(GetLeftX() - 1 - BORDER, GetButtonY() - BORDER))
 					{
-						if (characterX > 670 && m->mapScreenMoving()) 
+						if (characterX > 670 && m->mapScreenMoving())
 						{
 							m->addSX(1);
 							for (unsigned int i = 0; i < monsters->size(); i++)
 							{
 								monsters->at(i)->SetRelativeMovement(1);
 							}
-						}						
+						}
 						characterX -= 1;
 					}
 				}
@@ -418,7 +389,7 @@ namespace game_framework
 								monsters->at(i)->SetRelativeMovement(-1);
 							}
 						}
-						
+
 						characterX += 1;
 					}
 				}
@@ -459,8 +430,10 @@ namespace game_framework
 		leftJump.OnMove();
 		rightJump.OnMove();
 
-		leftAttacking.OnMove();
-		rightAttacking.OnMove();
+		if (isAttacking)
+		{
+			attackOnMove();
+		}
 	}
 
 	void Character::OnShow()
@@ -504,6 +477,7 @@ namespace game_framework
 				{
 					isAttacking = false;
 					action = walk_a;
+					leftAttacking.Reset();
 				}
 			}
 			else if (GetIsRising() == true)
@@ -545,6 +519,7 @@ namespace game_framework
 				{
 					isAttacking = false;
 					action = walk_a;
+					rightAttacking.Reset();
 				}
 			}
 			else if (GetIsRising() == true)
@@ -564,8 +539,8 @@ namespace game_framework
 				standRight.ShowBitmap();
 			}
 		}
-
-		showData();
+		LightBulbShow();
+		//showData();
 	}
 
 	void Character::ResetPosition(Map* m)
@@ -750,21 +725,21 @@ namespace game_framework
 		{
 			if (m->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetTopY()) && m->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetButtonY() - BORDER))
 			{
-				if (monsters == NULL) 
+				if (monsters == NULL)
 				{
 					return true;
-				} 
+				}
 				else
 				{
 					for (unsigned int i = 0; i < monsters->size(); i++)
 					{
 						monsterBorder = monsters->at(i)->GetBorder();
 						monsterHG = monsters->at(i)->GetHorizontalGap();
-						
-						if (GetLeftX() - STEP_SIZE - BORDER <= monsters->at(i)->GetLeftX()+ monsterHG + monsterBorder || GetLeftX() - STEP_SIZE - BORDER >= monsters->at(i)->GetRightX()+ monsterHG - monsterBorder)
+
+						if (GetLeftX() - STEP_SIZE - BORDER <= monsters->at(i)->GetLeftX() + monsterHG + monsterBorder || GetLeftX() - STEP_SIZE - BORDER >= monsters->at(i)->GetRightX() + monsterHG - monsterBorder)
 						{
 						}
-						else if(GetButtonY() + BORDER <= monsters->at(i)->GetTopY())
+						else if (GetButtonY() + BORDER <= monsters->at(i)->GetTopY())
 						{
 						}
 						else
@@ -798,8 +773,8 @@ namespace game_framework
 					{
 						monsterBorder = monsters->at(i)->GetBorder();
 						monsterHG = monsters->at(i)->GetHorizontalGap();
-						
-						if (GetRightX() + STEP_SIZE + BORDER >= monsters->at(i)->GetRightX()+ monsterHG - monsterBorder || GetRightX() + STEP_SIZE + BORDER <= monsters->at(i)->GetLeftX()+ monsterHG + monsterBorder)
+
+						if (GetRightX() + STEP_SIZE + BORDER >= monsters->at(i)->GetRightX() + monsterHG - monsterBorder || GetRightX() + STEP_SIZE + BORDER <= monsters->at(i)->GetLeftX() + monsterHG + monsterBorder)
 						{
 						}
 						else if (GetButtonY() + BORDER <= monsters->at(i)->GetTopY() + 10)
@@ -887,7 +862,7 @@ namespace game_framework
 					for (int i = 0; i < 10; i++)
 					{
 						characterX += ROLLING_SIZE;
-						if (GetMap()->mapScreenMoving() == true) 
+						if (GetMap()->mapScreenMoving() == true)
 						{
 							m->addSX(-ROLLING_SIZE);
 							monsterRelativeMove(monsters, -ROLLING_SIZE);
@@ -1028,11 +1003,23 @@ namespace game_framework
 		}
 	}
 
+	void Character::attackOnMove()
+	{
+		if (facingLR == 0)
+		{
+			leftAttacking.OnMove();
+		}
+		else
+		{
+			rightAttacking.OnMove();
+		}
+	}
+
 	bool Character::isAttackSuccessfullyL(int range, Monster* monster)
 	{
 		if (((monster->GetRightX() >= GetLeftX() - range && monster->GetRightX() <= GetLeftX()) ||
 			(monster->GetLeftX() >= GetLeftX() - range && monster->GetLeftX() <= GetLeftX()) ||
-			(monster->GetLeftX() <= GetLeftX() - range && monster->GetRightX() >= GetRightX()))
+			(monster->GetLeftX() <= GetLeftX() - range && monster->GetRightX() >= GetLeftX()))
 			&& ((monster->GetButtonY() >= GetTopY() && monster->GetButtonY() <= GetButtonY()) ||
 				(monster->GetTopY() >= GetTopY() && monster->GetTopY() <= GetButtonY()) ||
 				(monster->GetTopY() <= GetTopY() && monster->GetButtonY() >= GetButtonY())))
@@ -1227,6 +1214,43 @@ namespace game_framework
 		return isShrimpAttack;
 	}
 
+	void Character::SetLightBulbNum(int num)
+	{
+		lightBulbNum = num;
+	}
+
+	int Character::GetLightBulbNum()
+	{
+		return lightBulbNum;
+	}
+
+	void Character::AddLightBulb(int num)
+	{
+		lightBulbNum += num;
+	}
+
+	void Character::ConsumeLightBulb(int num)
+	{
+		lightBulbNum -= num;
+	}
+
+	void Character::LightBulbShow()
+	{
+		lightBulb.SetTopLeft(18, 80);
+		lightBulb.ShowBitmap();
+		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+		CFont f, * fp;
+		f.CreatePointFont(200, "Times New Roman");	// 產生 font f; 160表示16 point的字
+		fp = pDC->SelectObject(&f);					// 選用 font f
+		pDC->SetBkMode(TRANSPARENT);
+		pDC->SetTextColor(RGB(255, 255, 255));
+		char position[100];								// Demo 數字對字串的轉換
+		sprintf(position, "x %d", lightBulbNum);
+		pDC->TextOut(57, 87, position);
+		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+	}
+
 	void Character::restoreCurrentHp(int n)
 	{
 		(GetCurrentHp() + n) >= GetMaxHp() ? SetCurrentHp(GetMaxHp()) : currentHp += n;
@@ -1246,7 +1270,7 @@ namespace game_framework
 			GetLeftX() <= lX && GetRightX() >= rX || //角色比東西寬
 			GetRightX() <= rX && GetLeftX() >= lX) && //東西比角色寬
 			((GetButtonY() >= tY - 20 && GetButtonY() <= bY) ||
-			 (GetTopY() >= tY - 20 && GetTopY() <= bY)))
+				(GetTopY() >= tY - 20 && GetTopY() <= bY)))
 		{
 			return true;
 		}

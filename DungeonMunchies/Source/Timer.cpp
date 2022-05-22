@@ -53,18 +53,18 @@ namespace game_framework
 	{
 		return finishTime - startTime;
 	}
-	void Timer::CaculateTimeForFalse(bool* b, int time)
+	void Timer::CaculateTimeForFalse(bool* b, double time)
 	{
 		Finish();
-		if (GetTime() / CLOCKS_PER_SEC > time)
+		if (GetTime() > time * CLOCKS_PER_SEC)
 		{
 			*b = false;
 		}
 	}
-	void Timer::CaculateTimeForTrue(bool* b, int time)
+	void Timer::CaculateTimeForTrue(bool* b, double time)
 	{
 		Finish();
-		if (GetTime() / CLOCKS_PER_SEC > time)
+		if (GetTime() > time * CLOCKS_PER_SEC)
 		{
 			*b = true;
 		}

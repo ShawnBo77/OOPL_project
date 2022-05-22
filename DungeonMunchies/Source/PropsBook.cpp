@@ -148,45 +148,50 @@ namespace game_framework {
 	void PropsBook::cook() { //用過不能再用
 		switch (Case) {
 		case mosquito_jump_p:
-			if (!(propStorage->getProp(mosquito_jump_p)->getPropFlag()) && sourceStorage->getSource(mosquito_jump_p)->getNum() >= 5) {
+			if (!(propStorage->getProp(mosquito_jump_p)->getPropFlag()) && sourceStorage->getSource(mosquito_jump_p)->getNum() >= 5 && _character->GetLightBulbNum() >= 0) {
 				sourceStorage->getSource(mosquito_jump_p)->consume(5);
 				propStorage->getProp(mosquito_jump_p)->setPropFlag(true);
 				propStorage->getProp(mosquito_jump_p)->effect(_character);
 			}
 			break;
 		case shrimp_blood_p:
-			if (!(propStorage->getProp(shrimp_blood_p)->getPropFlag()) && sourceStorage->getSource(shrimp_blood_p)->getNum() >= 1) {
+			if (!(propStorage->getProp(shrimp_blood_p)->getPropFlag()) && sourceStorage->getSource(shrimp_blood_p)->getNum() >= 1 && _character->GetLightBulbNum() >= 50) {
 				sourceStorage->getSource(shrimp_blood_p)->consume(1);
 				propStorage->getProp(shrimp_blood_p)->setPropFlag(true);
 				propStorage->getProp(shrimp_blood_p)->effect(_character);
+				_character->ConsumeLightBulb(50);
 			}
 			break;
 		case grass_fast_p:
-			if (!(propStorage->getProp(grass_fast_p)->getPropFlag()) && sourceStorage->getSource(grass_fast_p)->getNum() >= 5) {
+			if (!(propStorage->getProp(grass_fast_p)->getPropFlag()) && sourceStorage->getSource(grass_fast_p)->getNum() >= 5 && _character->GetLightBulbNum() >= 40) {
 				sourceStorage->getSource(grass_fast_p)->consume(5);
 				propStorage->getProp(grass_fast_p)->setPropFlag(true);
 				propStorage->getProp(grass_fast_p)->effect(_character);
+				_character->ConsumeLightBulb(40);
 			}
 			break;
 		case banana_attack_p:
-			if (!(propStorage->getProp(banana_attack_p)->getPropFlag()) && sourceStorage->getSource(banana_attack_p)->getNum() >= 1) {
+			if (!(propStorage->getProp(banana_attack_p)->getPropFlag()) && sourceStorage->getSource(banana_attack_p)->getNum() >= 1 && _character->GetLightBulbNum() >= 60) {
 				sourceStorage->getSource(banana_attack_p)->consume(1);
 				propStorage->getProp(banana_attack_p)->setPropFlag(true);
 				propStorage->getProp(banana_attack_p)->effect(_character);
+				_character->ConsumeLightBulb(60);
 			}
 			break;
 		case shrimp_attack_p:
-			if (!(propStorage->getProp(shrimp_attack_p)->getPropFlag()) && sourceStorage->getSource(guava_juice_blood_p)->getNum() >= 1) {
+			if (!(propStorage->getProp(shrimp_attack_p)->getPropFlag()) && sourceStorage->getSource(guava_juice_blood_p)->getNum() >= 1 && _character->GetLightBulbNum() >= 60) {
 				sourceStorage->getSource(shrimp_attack_p)->consume(1);
 				propStorage->getProp(shrimp_attack_p)->setPropFlag(true);
 				propStorage->getProp(shrimp_attack_p)->effect(_character);
+				_character->ConsumeLightBulb(60);
 			}
 			break;
 		case guava_juice_blood_p:
-			if (!(propStorage->getProp(guava_juice_blood_p)->getPropFlag()) && sourceStorage->getSource(guava_juice_blood_p)->getNum() >= 1) {
+			if (!(propStorage->getProp(guava_juice_blood_p)->getPropFlag()) && sourceStorage->getSource(guava_juice_blood_p)->getNum() >= 1 && _character->GetLightBulbNum() >= 50) {
 				sourceStorage->getSource(guava_juice_blood_p)->consume(1);
 				propStorage->getProp(guava_juice_blood_p)->setPropFlag(true);
 				propStorage->getProp(guava_juice_blood_p)->effect(_character);
+				_character->ConsumeLightBulb(50);
 			}
 			break;
 		default:
