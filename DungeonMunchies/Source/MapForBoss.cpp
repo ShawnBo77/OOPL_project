@@ -19,8 +19,8 @@ namespace game_framework {
         Y = 0;
         gridW = 40;
         gridH = 40;
-        setFloor(560);
-        setMonsterFloor(560);
+        setFloor(600);
+        setMonsterFloor(600);
         int mapGrid_init[40][18];
         for (int i = 0; i < 40; i++)
         {
@@ -32,7 +32,7 @@ namespace game_framework {
        //給予地圖左上角座標及每張小圖寬度
         for (int i = 2; i < 30; i++)
         {
-            for (int j = 5; j < 15; j++)
+            for (int j = 5; j < 16; j++)
             {
                 mapGrid_init[i][j] = 1;
             }
@@ -139,7 +139,7 @@ namespace game_framework {
 
     void MapForBoss::monsterFloorChanging(int x)
     {
-        setMonsterFloor(560);
+        setMonsterFloor(600);
     }
 
     int MapForBoss::screenX(int x)

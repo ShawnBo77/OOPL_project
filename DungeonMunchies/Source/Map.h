@@ -15,6 +15,8 @@ namespace game_framework {
 		virtual bool isEmpty(int x, int y) const = 0;
 		virtual bool isPortal(int x, int y) const = 0;
 		virtual bool isBridge(int x, int y) const = 0;
+		void setSX(int x);
+		void setSY(int y);
 		int getSX();
 		int getSY();
 		bool mapScreenMoving();

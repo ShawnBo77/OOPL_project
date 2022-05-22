@@ -26,6 +26,14 @@ namespace game_framework {
 	{
 		return startX;
 	}
+	void Map::setSX(int x)
+	{
+		sx = x;
+	}
+	void Map::setSY(int y)
+	{
+		sy = y;
+	}
 	int Map::getSX()
 	{
 		return sx;

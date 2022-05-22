@@ -20,8 +20,8 @@ namespace game_framework
         Y = 40;
         gridW = 40;
         gridH = 40;
-        setFloor(640);
-        setMonsterFloor(640);
+        setFloor(680);
+        setMonsterFloor(680);
         int mapGrid_init[100][18];
         for (int i = 0; i < 100; i++)
         {
@@ -33,7 +33,7 @@ namespace game_framework
         //給予地圖左上角座標及每張小圖寬度
         for (int i = 2; i < 45; i++)
         {
-            for (int j = 1; j < 16; j++)
+            for (int j = 1; j < 17; j++)
             {
                 mapGrid_init[i][j] = 1;
             }
@@ -41,7 +41,7 @@ namespace game_framework
 
         for (int i = 45; i < 60; i++)
         {
-            for (int j = 1; j < 15; j++)
+            for (int j = 1; j < 16; j++)
             {
                 mapGrid_init[i][j] = 1;
             }
@@ -49,19 +49,19 @@ namespace game_framework
 
         for (int i = 60; i < 71; i++)
         {
-            for (int j = 1; j < 11; j++)
+            for (int j = 1; j < 12; j++)
             {
                 mapGrid_init[i][j] = 1;
             }
         }
 
-        for (int j = 1; j < 9; j++) {
+        for (int j = 1; j < 10; j++) {
             mapGrid_init[52][j] = 0;
         }
 
         for (int i = 60; i < 65; i++)
         {
-            for (int j = 5; j < 11; j++)
+            for (int j = 5; j < 12; j++)
             {
                 mapGrid_init[i][j] = 2;
             }
@@ -69,7 +69,7 @@ namespace game_framework
 
         for (int i = 0; i < 100; i++)
         {
-            for (int j = 0; j < 18; j++)
+            for (int j = 0; j < 19; j++)
             {
                 mapGrid[i][j] = mapGrid_init[i][j]; //依序填入mapGrid
             }
@@ -152,15 +152,15 @@ namespace game_framework
 
         if (getSX() > -1500)
         {
-            setFloor(640);
+            setFloor(680);
         }
         else if (getSX() > -2060)
         {
-            setFloor(560);
+            setFloor(600);
         }
         else
         {
-            setFloor(420);
+            setFloor(460);
         }
 
         if (getSX() > -425)

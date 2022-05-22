@@ -203,7 +203,7 @@ namespace game_framework
 
 	void Character::Initialize()
 	{
-		characterH = 80;
+		characterH = 120;
 		characterW = 80;
 		const int X_POS = 80;													//角色起始X軸
 		const int Y_POS = 80;													//角色起始Y軸
@@ -353,6 +353,10 @@ namespace game_framework
 					else
 					{
 						characterY -= velocity * 2;			// 當速度 > 0時，y軸上升(移動velocity個點，velocity的單位為 點/次)
+						if (m->mapScreenMoving())
+						{
+							m->addSY(velocity * 2);
+						}
 						velocity--;							// 受重力影響，下次的上升速度降低
 					}
 				}
@@ -366,16 +370,19 @@ namespace game_framework
 			{
 				if (GetButtonY() < m->getFloor())				// 當y座標還沒碰到地板
 				{
-					if (characterY + velocity * 3 < m->getFloor() - 80)
+					if (characterY + velocity * 3 < m->getFloor() - 120)
+					{
 						characterY += velocity * 3;			// y軸下降(移動velocity個點，velocity的單位為 點/次)
+					}
+						
 					else 
-						characterY = m->getFloor() - 79;
+						characterY = m->getFloor() - 119;
 					if (velocity < 6)
 						velocity++;
 				}
 				else
 				{
-					characterY = m->getFloor() - 80;			// 當y座標低於地板，更正為地板上
+					characterY = m->getFloor() - 120;			// 當y座標低於地板，更正為地板上
 					velocity = 0;
 					SetDoubleJump(DJtemp);
 				}
