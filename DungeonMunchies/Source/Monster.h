@@ -79,7 +79,8 @@ namespace game_framework
 		bool GetIsAttacked();    // 回傳是否受到攻擊
 		void SetAttackDamage(int x);
 		int GetAttackDamage();
-		//virtual void attack(int attackRange, int attackCD);
+		virtual void attackStart();
+		virtual void attackJudge(int attackRange);
 
 		//結束
 		void SetBossDead(bool flag);
@@ -112,6 +113,8 @@ namespace game_framework
 		bool facingLR;              // 面向 左:0, 右:1
 		bool isOnTheFloor;          // 是否位於地面
 		bool isAttacking;           // 是否正在攻擊
+		Timer attackCDTime;
+		bool attackCD;
 		bool isAttacked;			// 是否受到攻擊
 		int lossHp;
 		bool lossHpShowFlag;

@@ -219,7 +219,7 @@ namespace game_framework
 		rolling_time = 0;
 		isAttacking = false;
 		attackDamage = 10;
-		attackRange = 40;
+		attackRange = 60;
 		isAttackedFromRight = false;
 		isAttackedFromLeft = false;
 		isAttackedFromButton = false;
@@ -1021,7 +1021,7 @@ namespace game_framework
 	{
 		if (((monster->GetRightX() >= GetLeftX() - range && monster->GetRightX() <= GetLeftX()) ||
 			(monster->GetLeftX() >= GetLeftX() - range && monster->GetLeftX() <= GetLeftX()) ||
-			(monster->GetLeftX() <= GetLeftX() - range && monster->GetRightX() >= GetRightX()))
+			(monster->GetLeftX() <= GetLeftX() - range && monster->GetRightX() >= GetLeftX()))
 			&& ((monster->GetButtonY() >= GetTopY() && monster->GetButtonY() <= GetButtonY()) ||
 				(monster->GetTopY() >= GetTopY() && monster->GetTopY() <= GetButtonY()) ||
 				(monster->GetTopY() <= GetTopY() && monster->GetButtonY() >= GetButtonY())))

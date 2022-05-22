@@ -341,6 +341,36 @@ namespace game_framework
 		return attackDamage;
 	}
 
+	void Monster::attackStart()
+	{
+		action = attack_a;
+		attackCDTime.Start();
+		attackCD = true;
+	}
+
+	void Monster::attackJudge(int attackRange)
+	{
+		if (!character->GetIsInvincible())
+		{
+			if (facingLR == 0)
+			{
+				if (isAttackSuccessfullyL(attackRange))
+				{
+					character->SetIsAttackedFromRight(true);
+					character->lossCurrentHp(attackDamage);
+				}
+			}
+			else
+			{
+				if (isAttackSuccessfullyR(attackRange))
+				{
+					character->SetIsAttackedFromLeft(true);
+					character->lossCurrentHp(attackDamage);
+				}
+			}
+		}
+	}
+
 	void Monster::SetBossDead(bool flag)
 	{
 		bossDead = flag;

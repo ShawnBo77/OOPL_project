@@ -26,7 +26,7 @@ namespace game_framework
 		hp = 10;
 		attackDamage = 5;
 		facingLR = 0;
-		actionNum = 0;
+		action = walk_a;
 		STEP_SIZE = 1;
 		attackCD = false;
 	}
@@ -36,7 +36,7 @@ namespace game_framework
 		hp = 50;
 		attackDamage = 5;
 		facingLR = 0;
-		actionNum = 0;
+		action = walk_a;
 		STEP_SIZE = 1;
 		attackCD = false;
 	}
@@ -78,7 +78,7 @@ namespace game_framework
 		hp = 50;
 		attackDamage = 5;
 		facingLR = 0;
-		actionNum = 0;
+		action = walk_a;
 		bloodBar.setFullHP(hp);
 		STEP_SIZE = 5;
 		velocity = 0;
@@ -91,7 +91,7 @@ namespace game_framework
 		{
 			if (facingLR == 0)
 			{
-				if (actionNum == 0)
+				if (action == walk_a)
 				{
 					walkLeft.SetTopLeft(_x - 140 + RelativeMovement, _y); //讓圖片中怪物顯示靠向左
 					//walkLeft.SetDelayCount(3);
@@ -100,17 +100,22 @@ namespace game_framework
 				else
 				{
 					attackLeft.SetTopLeft(_x + RelativeMovement - 110, _y);
-					attackLeft.SetDelayCount(4);
+					attackLeft.SetDelayCount(3);
 					attackLeft.OnShow();
+					if (attackLeft.GetCurrentBitmapNumber() == 2)
+					{
+						attackJudge(100);
+					}
 					if (attackLeft.IsFinalBitmap())
 					{
-						actionNum = 0;
+						action = walk_a;
+						attackLeft.Reset();
 					}
 				}
 			}
 			else
 			{
-				if (actionNum == 0)
+				if (action == walk_a)
 				{
 					walkRight.SetTopLeft(_x + RelativeMovement, _y);
 					walkRight.OnShow();
@@ -118,11 +123,16 @@ namespace game_framework
 				else
 				{
 					attackRight.SetTopLeft(_x + RelativeMovement, _y);
-					attackRight.SetDelayCount(4);
+					attackRight.SetDelayCount(3);
 					attackRight.OnShow();
+					if (attackRight.GetCurrentBitmapNumber() == 2)
+					{
+						attackJudge(100);
+					}
 					if (attackRight.IsFinalBitmap())
 					{
-						actionNum = 0;
+						action = walk_a;
+						attackRight.Reset();
 					}
 				}
 			}
@@ -160,7 +170,7 @@ namespace game_framework
 				}
 			}
 		}
-		showData();
+		//showData();
 	}
 
 	void MonsterShrimp::OnMove(Map* m)
@@ -188,15 +198,15 @@ namespace game_framework
 		if (isAlive())
 		{
 			SetCharacterDirection();
-			if (actionNum == 0)
+			if (action == walk_a)
 			{
 				facingLR = characterDirectionLR;
 			}
 			if (distanceToCharacter() < 190 && attackCD == false)
 			{
-				attack();
+				attackStart();
 			}
-			else if (distanceToCharacter() < 280 && actionNum == 0)
+			else if (distanceToCharacter() < 280 && action == walk_a)
 			{
 				if (characterDirectionLR == 0 && (GetLeftX() - STEP_SIZE + BORDER) >= character->GetRightX() && character->GetMap()->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetButtonY() - BORDER))
 				{
@@ -211,16 +221,18 @@ namespace game_framework
 			attackCDTime.CaculateTimeForFalse(&attackCD, 2);
 			walkLeft.OnMove();
 			walkRight.OnMove();
-
-			attackLeft.OnMove();
-			attackRight.OnMove();
+			if (action == attack_a)
+			{
+				attackOnMove();
+			}
 
 			//intersect();
 		}
 		else
 		{
-			if (hasGottenSource == false) {
-				
+			if (hasGottenSource == false)
+			{
+
 				if (randN == 0)
 				{
 					touchSource(m, shrimp_attack_p);
@@ -243,16 +255,6 @@ namespace game_framework
 		return facingLR;
 	}
 
-	void MonsterShrimp::SetActionNum(int num)
-	{
-		actionNum = num;
-	}
-
-	bool MonsterShrimp::GetActionNum()
-	{
-		return actionNum;
-	}
-
 	int MonsterShrimp::GetLeftX() //顯示的圖會往左邊靠(onShow調整的)
 	{
 		return _x;
@@ -260,7 +262,7 @@ namespace game_framework
 
 	int MonsterShrimp::GetTopY() //需調整以對應顯示的圖(_y + (圖片高度-物體高度))
 	{
-		if (actionNum == 0) //walk
+		if (action == walk_a) //walk
 		{
 			return _y + 68;
 		}
@@ -272,7 +274,7 @@ namespace game_framework
 
 	int MonsterShrimp::GetRightX() //加上物體本身的長度
 	{
-		if (actionNum == 0) //walk 
+		if (action == walk_a) //walk 
 		{
 			return _x + 125;
 		}
@@ -285,35 +287,6 @@ namespace game_framework
 	int MonsterShrimp::GetButtonY()
 	{
 		return _y + walkLeft.Height();
-	}
-
-	void MonsterShrimp::attack()
-	{
-		if (attackCD == false) //保險起見多加的
-		{
-			actionNum = 1;
-			attackCDTime.Start();
-			attackCD = true;
-			if (!character->GetIsInvincible())
-			{
-				if (facingLR == 0)
-				{
-					if (isAttackSuccessfullyL(100))
-					{
-						character->SetIsAttackedFromRight(true);
-						character->lossCurrentHp(attackDamage);
-					}
-				}
-				else
-				{
-					if (isAttackSuccessfullyR(100))
-					{
-						character->SetIsAttackedFromLeft(true);
-						character->lossCurrentHp(attackDamage);
-					}
-				}
-			}
-		}
 	}
 
 	void MonsterShrimp::showData()
@@ -335,5 +308,17 @@ namespace game_framework
 		pDC->TextOut(200, 80, position);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+	}
+
+	void MonsterShrimp::attackOnMove()
+	{
+		if (facingLR == 0)
+		{
+			attackLeft.OnMove();
+		}
+		else if (facingLR == 1)
+		{
+			attackRight.OnMove();
+		}
 	}
 }

@@ -290,12 +290,12 @@ namespace game_framework
 		//monsterS1.push_back(new MonsterCactus(700, 500, &character));
 		monsterS1.push_back(new MonsterTree(1900, 400, &character));
 
-		//monsterS7.push_back(new MonsterShrimp(300, 400, &character));
+		monsterS7.push_back(new MonsterTree(800, 400, &character));
 		//monsterS7.push_back(new MonsterShrimp(600, 400, &character));
-		monsterS7.push_back(new MonsterShrimp(850, 400, &character));
+		//monsterS7.push_back(new MonsterShrimp(850, 400, &character));
 		//monsterS7.push_back(new MonsterCactus(700, 500, &character));
 		monsterS7.push_back(new MonsterTree(400, 400, &character));
-		monsterS7.push_back(new MonsterBanana(600, 400, &character));
+		//monsterS7.push_back(new MonsterBanana(600, 400, &character));
 		//monsterS7.push_back(new MonsterBoss(900, 280, &character));
 		//monsterS7.push_back(new MonsterCactus(700, 500, &character));
 
@@ -626,6 +626,10 @@ namespace game_framework
 				}
 				break;
 			case KEY_7:
+				for (unsigned i = 0; i < monsterS7.size(); i++)
+				{
+					monsterS7[i]->Initialize();
+				}
 				gamePause = false;
 				characterStatusCall = false;
 				if (currentStage == stage_boss)
