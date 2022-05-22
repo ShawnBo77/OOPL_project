@@ -20,12 +20,13 @@ namespace game_framework
         Y = 20;
         gridW = 20;
         gridH = 20;
-        setFloor(500);
-        setMonsterFloor(500);
-        int mapGrid_init[200][36];
-        for (int i = 0; i < 200; i++)
+        setFloor(540);
+        setCeiling(0);
+        setMonsterFloor(540);
+        int mapGrid_init[400][70];
+        for (int i = 0; i < 400; i++)
         {
-            for (int j = 0; j < 36; j++)
+            for (int j = 0; j < 70; j++)
             {
                 mapGrid_init[i][j] = 1;
             }
@@ -33,7 +34,20 @@ namespace game_framework
         //給予地圖左上角座標及每張小圖寬度
         for (int i = 0; i < 11; i++)
         {
-            for (int j = 25; j < 36; j++)
+            for (int j = 27; j < 70; j++)
+            {
+                mapGrid_init[i][j] = 0;
+            }
+        }
+
+        for (int i = 13; i < 26; i++)
+        {
+            mapGrid_init[i][33] = 4;
+        }
+
+        for (int i = 42; i < 77; i++)
+        {
+            for (int j = 0; j < 13; j++)
             {
                 mapGrid_init[i][j] = 0;
             }
@@ -41,7 +55,15 @@ namespace game_framework
 
         for (int i = 27; i < 77; i++)
         {
-            for (int j = 20; j < 36; j++)
+            for (int j = 22; j < 70; j++)
+            {
+                mapGrid_init[i][j] = 0;
+            }
+        }
+
+        for (int i = 94; i < 114; i++)
+        {
+            for (int j = 12; j < 37; j++)
             {
                 mapGrid_init[i][j] = 0;
             }
@@ -49,41 +71,29 @@ namespace game_framework
 
         for (int i = 77; i < 93; i++)
         {  
-            mapGrid_init[i][27] = 3;
-            mapGrid_init[i][34] = 3;
+            mapGrid_init[i][29] = 3;
+            mapGrid_init[i][36] = 3;
         }
 
-        //for (int i = 45; i < 60; i++)
-        //{
-        //    for (int j = 1; j < 15; j++)
-        //    {
-        //        mapGrid_init[i][j] = 1;
-        //    }
-        //}
-
-        //for (int i = 60; i < 71; i++)
-        //{
-        //    for (int j = 1; j < 11; j++)
-        //    {
-        //        mapGrid_init[i][j] = 1;
-        //    }
-        //}
-
-        //for (int j = 1; j < 9; j++) {
-        //    mapGrid_init[52][j] = 0;
-        //}
-
-        //for (int i = 60; i < 65; i++)
-        //{
-        //    for (int j = 5; j < 11; j++)
-        //    {
-        //        mapGrid_init[i][j] = 2;
-        //    }
-        //}
-
-        for (int i = 0; i < 200; i++)
+        for (int i = 186; i < 190; i++)
         {
-            for (int j = 0; j < 36; j++)
+            for (int j = 0; j < 70; j++)
+            {
+                mapGrid_init[i][j] = 0;
+            }
+        }
+
+        for (int i = 166; i < 186; i++)
+        {
+            for (int j = 0; j < 70; j++)
+            {
+                mapGrid_init[i][j] = 2;
+            }
+        }
+
+        for (int i = 0; i < 400; i++)
+        {
+            for (int j = 0; j < 70; j++)
             {
                 mapGrid[i][j] = mapGrid_init[i][j]; //依序填入mapGrid
             }
@@ -108,7 +118,12 @@ namespace game_framework
         setXY(-100, -260);
         setScreenMoving(true);
         setMapName("MapS2");
+        setCeiling(0);
         setStartPosition(100);
+        setCharacterYRelativeMovement(0);
+        previousFloor = 0;
+        targetSY = 0;
+        screenUp = screenDown = false;
     }
 
     void MapS2::setPos(int x, int y, int n)
@@ -155,13 +170,61 @@ namespace game_framework
     {
         map.SetTopLeft(getSX(), getSY());
         map.ShowBitmap();
+        syMoving(targetSY);
 
         if (getPortalOpen())
         {
-            exitBitmap.SetTopLeft(2895 + getSX(), 180);
+            exitBitmap.SetTopLeft(3470 + getSX(), 300);
             exitBitmap.ShowBitmap();
-            pressEBitmap.SetTopLeft(600, 620);
+            pressEBitmap.SetTopLeft(600, 650);
             pressEBitmap.ShowBitmap();
+        }
+    }
+
+    void MapS2::syMoving(int y)
+    {
+        if (screenUp)
+        {
+            if (getSY()-20 > y)
+            {
+                addCharacterYRelativeMovement(20);
+                addSY(-20);
+            }
+            else
+            {
+                screenUp = false;
+                addCharacterYRelativeMovement(y - getSY());
+                addSY(getSY()-y);
+            }
+        }
+
+        if (screenUp)
+        {
+            if (getSY()-20 > y)
+            {
+                addCharacterYRelativeMovement(20);
+                addSY(-20);
+            }
+            else
+            {
+                screenUp = false;
+                addCharacterYRelativeMovement(getSY() - y);
+                addSY(y - getSY());
+            }
+        }
+        else if (screenDown)
+        {
+            if (getSY() + 20 < y)
+            {
+                addCharacterYRelativeMovement(-20);
+                addSY(20);
+            }
+            else
+            {
+                screenDown = false;
+                addCharacterYRelativeMovement(getSY() - y);
+                addSY(y - getSY());
+            }
         }
     }
 
@@ -193,33 +256,64 @@ namespace game_framework
     {
         if (characterX < 218)
         {
-            setFloor(500);
+            setFloor(540);
         }
         else if (characterX < 410)
         {
-            setFloor(640);
+            setFloor(680);
         }
         else if (characterX < 500)
         {
             if (characterY > 382)
-                setFloor(640);
+                setFloor(680);
             else
-                setFloor(460);
+                setFloor(500);
         }
         else if (characterX < 1538)
         {
-            setFloor(400);
-            setCeiling(265);
+            setFloor(440);
+            if (getSX() < -205)
+                setCeiling(265);
+            else 
+                setCeiling(0);
         }
         else
         {
-            if (characterY > 612)
-                setFloor(900);
-            else if (characterY > 462)
-                setFloor(690);
-            else
-                setFloor(540);
+            if (characterY > 612 || characterX>2280)
+            {
+                setFloor(880);
+                if (characterX > 1850 && characterX < 2280)
+                    setCeiling(740);
+                else
+                    setCeiling(470);
+                if (getSY() != -550)
+                {
+                    screenUp = true;
+                    targetSY = -550;
+                }
+                previousFloor = 880;
 
+            }
+            else if (characterY > 462)
+            {
+                setFloor(730);
+                setCeiling(265);
+                if (characterY > 490 && previousFloor == 580 && getSY() != -550)
+                {
+                    screenUp = true;
+                    targetSY = -550;
+                } 
+            }     
+            else
+            {
+                setFloor(580);
+                if (getSY() != -260)
+                {
+                    screenDown = true;
+                    targetSY = -260;
+                }
+                previousFloor = 580;
+            }
         }
     }
 

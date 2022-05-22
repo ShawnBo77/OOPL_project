@@ -556,7 +556,13 @@ namespace game_framework
 					switch (currentStage)
 					{
 					case stage_1:
+						mapS2.Initialize();
+						currentStage = stage_2;
+						character.SetCanGoToNextMap(false);
+						break;
+					case stage_2:
 						bossMap.Initialize();
+						monsterInitialize();
 						currentStage = stage_boss;
 						character.SetCanGoToNextMap(false);
 						break;

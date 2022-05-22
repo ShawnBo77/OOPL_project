@@ -19,6 +19,9 @@ namespace game_framework {
 		void setSY(int y);
 		int getSX();
 		int getSY();
+		int getCharacterYRelativeMovement();
+		void setCharacterYRelativeMovement(int y);
+		void addCharacterYRelativeMovement(int y);
 		bool mapScreenMoving();
 		int getFloor();
 		int getMonsterFloor();
@@ -49,6 +52,7 @@ namespace game_framework {
 	private:
 		int sx, sy; //screen 的座標
 		int startX; //開始位置
+		int cyRelativeMovement;
 		string mapName;
 		int floor;
 		int monsterFloor;

@@ -23,7 +23,7 @@ namespace game_framework
 		_x = 400;
 		_y = 400;
 		hp = 50;
-		attackDamage = 5;
+		attackDamage = 0;
 		BORDER = 20;
 		HORIZONTAL_GAP = 0;
 	}

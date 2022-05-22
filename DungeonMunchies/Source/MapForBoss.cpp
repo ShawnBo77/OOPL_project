@@ -20,7 +20,7 @@ namespace game_framework {
         gridW = 40;
         gridH = 40;
         setFloor(600);
-        setMonsterFloor(600);
+        setMonsterFloor(560);
         int mapGrid_init[40][18];
         for (int i = 0; i < 40; i++)
         {
