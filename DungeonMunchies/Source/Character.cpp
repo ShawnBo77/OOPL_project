@@ -327,7 +327,7 @@ namespace game_framework
 						{
 							monsters->at(i)->SetRelativeMovement(-STEP_SIZE);
 						}
-					}	
+					}
 				}
 			}
 
@@ -384,17 +384,17 @@ namespace game_framework
 			if (isAttackedFromRight) //還要判定是否能移動
 			{
 				for (int i = 0; i < 50; i++)
-				{	
+				{
 					if (m->isEmpty(GetLeftX() - 1 - BORDER, GetTopY()) && m->isEmpty(GetLeftX() - 1 - BORDER, GetButtonY() - BORDER))
 					{
-						if (characterX > 670 && m->mapScreenMoving()) 
+						if (characterX > 670 && m->mapScreenMoving())
 						{
 							m->addSX(1);
 							for (unsigned int i = 0; i < monsters->size(); i++)
 							{
 								monsters->at(i)->SetRelativeMovement(1);
 							}
-						}						
+						}
 						characterX -= 1;
 					}
 				}
@@ -415,7 +415,7 @@ namespace game_framework
 								monsters->at(i)->SetRelativeMovement(-1);
 							}
 						}
-						
+
 						characterX += 1;
 					}
 				}
@@ -456,8 +456,9 @@ namespace game_framework
 		leftJump.OnMove();
 		rightJump.OnMove();
 
-		leftAttacking.OnMove();
-		rightAttacking.OnMove();
+		if (isAttacking) {
+			attackOnMove();
+		}
 	}
 
 	void Character::OnShow()
@@ -496,6 +497,7 @@ namespace game_framework
 				{
 					isAttacking = false;
 					action = walk_a;
+					leftAttacking.Reset();
 				}
 			}
 			else if (GetIsRising() == true)
@@ -537,6 +539,7 @@ namespace game_framework
 				{
 					isAttacking = false;
 					action = walk_a;
+					rightAttacking.Reset();
 				}
 			}
 			else if (GetIsRising() == true)
@@ -741,21 +744,21 @@ namespace game_framework
 		{
 			if (m->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetTopY()) && m->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetButtonY() - BORDER))
 			{
-				if (monsters == NULL) 
+				if (monsters == NULL)
 				{
 					return true;
-				} 
+				}
 				else
 				{
 					for (unsigned int i = 0; i < monsters->size(); i++)
 					{
 						monsterBorder = monsters->at(i)->GetBorder();
 						monsterHG = monsters->at(i)->GetHorizontalGap();
-						
-						if (GetLeftX() - STEP_SIZE - BORDER <= monsters->at(i)->GetLeftX()+ monsterHG + monsterBorder || GetLeftX() - STEP_SIZE - BORDER >= monsters->at(i)->GetRightX()+ monsterHG - monsterBorder)
+
+						if (GetLeftX() - STEP_SIZE - BORDER <= monsters->at(i)->GetLeftX() + monsterHG + monsterBorder || GetLeftX() - STEP_SIZE - BORDER >= monsters->at(i)->GetRightX() + monsterHG - monsterBorder)
 						{
 						}
-						else if(GetButtonY() + BORDER <= monsters->at(i)->GetTopY())
+						else if (GetButtonY() + BORDER <= monsters->at(i)->GetTopY())
 						{
 						}
 						else
@@ -789,8 +792,8 @@ namespace game_framework
 					{
 						monsterBorder = monsters->at(i)->GetBorder();
 						monsterHG = monsters->at(i)->GetHorizontalGap();
-						
-						if (GetRightX() + STEP_SIZE + BORDER >= monsters->at(i)->GetRightX()+ monsterHG - monsterBorder || GetRightX() + STEP_SIZE + BORDER <= monsters->at(i)->GetLeftX()+ monsterHG + monsterBorder)
+
+						if (GetRightX() + STEP_SIZE + BORDER >= monsters->at(i)->GetRightX() + monsterHG - monsterBorder || GetRightX() + STEP_SIZE + BORDER <= monsters->at(i)->GetLeftX() + monsterHG + monsterBorder)
 						{
 						}
 						else if (GetButtonY() + BORDER <= monsters->at(i)->GetTopY() + 10)
@@ -867,7 +870,7 @@ namespace game_framework
 					for (int i = 0; i < 10; i++)
 					{
 						characterX += ROLLING_SIZE;
-						if (GetMap()->mapScreenMoving() == true) 
+						if (GetMap()->mapScreenMoving() == true)
 						{
 							m->addSX(-ROLLING_SIZE);
 							for (unsigned int i = 0; i < monsters->size(); i++)
@@ -1014,6 +1017,18 @@ namespace game_framework
 					}
 				}
 			}
+		}
+	}
+
+	void Character::attackOnMove()
+	{
+		if (facingLR == 0)
+		{
+			leftAttacking.OnMove();
+		}
+		else
+		{
+			rightAttacking.OnMove();
 		}
 	}
 
@@ -1235,7 +1250,7 @@ namespace game_framework
 			GetLeftX() <= lX && GetRightX() >= rX || //角色比東西寬
 			GetRightX() <= rX && GetLeftX() >= lX) && //東西比角色寬
 			((GetButtonY() >= tY - 20 && GetButtonY() <= bY) ||
-			 (GetTopY() >= tY - 20 && GetTopY() <= bY)))
+				(GetTopY() >= tY - 20 && GetTopY() <= bY)))
 		{
 			return true;
 		}

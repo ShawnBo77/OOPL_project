@@ -84,6 +84,7 @@ namespace game_framework
 		void SetAttackRange(int x);
 		int GetAttackRange();
 		void attack(vector<Monster*>* monsters);
+		void attackOnMove();
 		//受到攻擊
 		void SetIsAttackedFromRight(bool flag);	// 設定攻擊是否來自右方
 		bool GetIsAttackedFromRight();    // 回傳攻擊是否來自右方
