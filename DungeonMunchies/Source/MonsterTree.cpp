@@ -87,13 +87,14 @@ namespace game_framework
 		RelativeMovement = 0;
 		BORDER = 5;
 		HORIZONTAL_GAP = 0;
-		//hp = 50;
+		hp = 50;
 		attackDamage = 5;
 		facingLR = 0;
 		action = sleep_a;
 		bloodBar.setFullHP(hp);
 		STEP_SIZE = 5;
 		velocity = 0;
+		hasGottenSource = false;
 	}
 
 	void MonsterTree::OnShow(Map* m)

@@ -28,7 +28,7 @@ namespace game_framework
 		HORIZONTAL_GAP = 0;
 	}
 
-	MonsterBanana::MonsterBanana(int x, int y, Character* c) : Monster(x, y, 10, 5, c)
+	MonsterBanana::MonsterBanana(int x, int y, Character* c) : Monster(x, y, 20, 5, c)
 	{
 		BORDER = 20;
 		HORIZONTAL_GAP = 0;
@@ -51,9 +51,10 @@ namespace game_framework
 		_x = init_x;
 		_y = init_y;
 		RelativeMovement = 0;
-		//hp = 100;
+		hp = 20;
 		attackDamage = 5;
 		bloodBar.setFullHP(hp);
+		hasGottenSource = false;
 	}
 
 	void MonsterBanana::OnShow(Map* m)

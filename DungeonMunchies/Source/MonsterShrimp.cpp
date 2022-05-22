@@ -76,12 +76,13 @@ namespace game_framework
 		BORDER = 5;
 		HORIZONTAL_GAP = 0;
 		hp = 50;
+		bloodBar.setFullHP(hp);
 		attackDamage = 5;
 		facingLR = 0;
 		action = walk_a;
-		bloodBar.setFullHP(hp);
 		STEP_SIZE = 5;
 		velocity = 0;
+		hasGottenSource = false;
 		srand((unsigned int)time(NULL));
 	}
 

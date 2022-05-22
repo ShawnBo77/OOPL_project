@@ -29,7 +29,6 @@ namespace game_framework
 		init_x = x;
 		init_y = y;
 		hp = enemyHp;
-		maxHp = enemyHp;
 		attackDamage = ATK;
 		isAttacking = false;
 		isIntersect = false;
@@ -158,7 +157,7 @@ namespace game_framework
 
 	double Monster::hpProportion()
 	{
-		return (double)(hp) / maxHp;
+		return (double)(hp) / bloodBar.getFullHP();
 	}
 
 	void Monster::SetXY(int x, int y)
@@ -265,16 +264,6 @@ namespace game_framework
 	bool Monster::GetIsOnTheFloor()
 	{
 		return isOnTheFloor;
-	}
-
-	void Monster::SetMaxHp(int x)
-	{
-		maxHp = x;
-	}
-
-	int Monster::GetMaxHp()
-	{
-		return maxHp;
 	}
 
 	void Monster::SetCurrentHp(int x)

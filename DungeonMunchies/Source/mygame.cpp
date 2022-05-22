@@ -287,7 +287,7 @@ namespace game_framework
 		: CGameState(g)
 	{
 		//ball = new CBall [NUMBALLS];
-		//monsterS1.push_back(new MonsterCactus(700, 500, &character));
+		monsterS1.push_back(new MonsterShrimp(700, 500, &character));
 		monsterS1.push_back(new MonsterTree(1900, 400, &character));
 
 		monsterS7.push_back(new MonsterTree(800, 400, &character));
@@ -610,6 +610,11 @@ namespace game_framework
 				character.SetCurrentHp(50);
 				break;
 			case KEY_1:
+				mapS1.Initialize();
+				for (unsigned i = 0; i < monsterS7.size(); i++)
+				{
+					monsterS1[i]->Initialize();
+				}
 				gamePause = false;
 				characterStatusCall = false;
 				if (currentStage == stage_1)
@@ -626,6 +631,7 @@ namespace game_framework
 				}
 				break;
 			case KEY_7:
+				bossMap.Initialize();
 				for (unsigned i = 0; i < monsterS7.size(); i++)
 				{
 					monsterS7[i]->Initialize();

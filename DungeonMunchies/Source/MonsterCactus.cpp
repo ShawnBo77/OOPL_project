@@ -51,9 +51,10 @@ namespace game_framework
 		_x = init_x;
 		_y = init_y;
 		RelativeMovement = 0;
-		//hp = 100;
+		hp = 50;
 		attackDamage = 5;
 		bloodBar.setFullHP(hp);
+		hasGottenSource = false;
 	}
 
 	void MonsterCactus::OnShow(Map* m)

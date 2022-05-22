@@ -65,8 +65,6 @@ namespace game_framework
 		bool GetIsOnTheFloor();         // 回傳是否正在地面
 
 		//血量
-		void SetMaxHp(int x);			// 設定最大血量
-		int GetMaxHp();                // 取得最大血量
 		void SetCurrentHp(int x);      // 設定目前血量
 		int GetCurrentHp();            // 取得目前血量
 		void lossCurrentHp(int x);
@@ -94,7 +92,6 @@ namespace game_framework
 		int _x, _y;
 		int init_x, init_y;
 		int currentFloor;
-		int maxHp;
 		int hp;
 		BloodBar bloodBar;
 		int attackDamage;
