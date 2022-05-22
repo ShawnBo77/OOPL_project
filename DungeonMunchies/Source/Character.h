@@ -121,6 +121,11 @@ namespace game_framework
 		bool GetIsBananaAttack();
 		void SetIsShrimpAttack(bool flag);
 		bool GetIsShrimpAttack();
+		void SetLightBulbNum(int num);
+		int GetLightBulbNum();
+		void AddLightBulb(int num);
+		void ConsumeLightBulb(int num);
+		void LightBulbShow();
 
 	protected:
 		bool isAttackSuccessfullyL(int range, Monster* monster);
@@ -186,6 +191,8 @@ namespace game_framework
 		bool shrimpAttack;
 		bool isShrimpAttack;
 
+		int lightBulbNum;
+		CMovingBitmap lightBulb;
 
 		SourceStorage* sourceStorage;
 		PropStorage* propStorage;

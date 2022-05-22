@@ -55,6 +55,8 @@ namespace game_framework
 		attackDamage = 5;
 		bloodBar.setFullHP(hp);
 		hasGottenSource = false;
+		lightBulbInside = 10;
+		hasGottenLightBulb = false;
 	}
 
 	void MonsterCactus::OnShow(Map* m)
@@ -129,6 +131,11 @@ namespace game_framework
 		}
 		else
 		{
+			if (!hasGottenLightBulb)
+			{
+				character->AddLightBulb(lightBulbInside);
+				hasGottenLightBulb = true;
+			}
 			if (!hasGottenSource)
 			{
 				touchSource(m, grass_fast_p);

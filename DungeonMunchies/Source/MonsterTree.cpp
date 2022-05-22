@@ -94,6 +94,8 @@ namespace game_framework
 		bloodBar.setFullHP(hp);
 		STEP_SIZE = 5;
 		velocity = 0;
+		lightBulbInside = 25;
+		hasGottenLightBulb = false;
 		hasGottenSource = false;
 	}
 
@@ -255,6 +257,11 @@ namespace game_framework
 		}
 		else
 		{
+			if (!hasGottenLightBulb)
+			{
+				character->AddLightBulb(lightBulbInside);
+				hasGottenLightBulb = true;
+			}
 			if (!hasGottenSource)
 			{
 				touchSource(m, guava_juice_blood_p);

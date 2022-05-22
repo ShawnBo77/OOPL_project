@@ -39,6 +39,8 @@ namespace game_framework
 		hasGottenSource = false;
 		lossHp = 0;
 		lossHpShowFlag = 0;
+		lightBulbInside = 0;
+		hasGottenLightBulb = false;
 	}
 
 	Monster::~Monster()
@@ -86,22 +88,6 @@ namespace game_framework
 		}
 		isIntersect = false;
 	}
-
-	//bool Monster::intersect(int lX, int rX, int tY, int bY)
-	//{
-	//	if (isAlive())
-	//	{
-	//		if ((character->GetRightX() >= lX && character->GetRightX() <= rX ||
-	//			character->GetLeftX() <= rX && character->GetLeftX() >= lX ||
-	//			character->GetLeftX() <= lX && character->GetRightX() >= rX || //角色比怪物寬
-	//			character->GetRightX() <= rX && character->GetLeftX() >= lX) //怪物比角色寬
-	//			&& character->GetButtonY() >= tY - 20 && character->GetButtonY() <= bY)
-	//		{ //角色下方碰到怪物
-	//			return true;
-	//		}
-	//	}
-	//	return false;
-	//}
 
 	void Monster::SetIsIntersect(bool flag)
 	{

@@ -848,6 +848,7 @@ namespace game_framework
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
+
 	void CGameStateRun::gameCompleteNoteShow()
 	{
 		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 

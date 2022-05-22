@@ -43,39 +43,9 @@ namespace game_framework
 		characterBlood[7].LoadBitmap(IDB_CHARACTERBLOOD08, RGB(255, 255, 255));
 		characterBlood[8].LoadBitmap(IDB_CHARACTERBLOOD09, RGB(255, 255, 255));
 		characterBlood[9].LoadBitmap(IDB_CHARACTERBLOOD10, RGB(255, 255, 255));
-		//animation.AddBitmap(IDB_GRAY);
-		//animation.AddBitmap(IDB_BOSSRIGHTSTAND, RGB(0, 0, 0));
-		//
-		//animation.AddBitmap(IDB_HERORIGHTSTAND_G, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HERORIGHTJUMP_G, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HERORIGHTWALK1_G, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HERORIGHTWALK2_G, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HERORIGHTWALK3_G, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTSTAND_G, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTJUMP_G, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTWALK1_G, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTWALK2_G, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTWALK3_G, RGB(0, 0, 0));
-		//
-		//animation.AddBitmap(IDB_HERORIGHTSTAND_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HERORIGHTWALK1_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HERORIGHTWALK2_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HERORIGHTWALK3_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTSTAND_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTJUMP_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTWALK1_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTWALK2_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTWALK3_S, RGB(0, 0, 0));
-		//
-		//animation.AddBitmap(IDB_HERORIGHTATTACK1_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HERORIGHTATTACK2_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HERORIGHTATTACK3_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HERORIGHTATTACK4_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTATTACK1_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTATTACK2_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTATTACK3_S, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_HEROLEFTATTACK4_S, RGB(0, 0, 0));
-		//
+
+		lightBulb.LoadBitmap(".\\res\\light_bulb.bmp", RGB(0, 0, 0));
+
 		standLeft.LoadBitmap(IDB_HEROLEFTSTAND_S, RGB(0, 0, 0));		//向左站
 		standRight.LoadBitmap(IDB_HERORIGHTSTAND_S, RGB(0, 0, 0));		//向右站
 
@@ -232,6 +202,7 @@ namespace game_framework
 		shrimpAttack = false;
 		currentMap = NULL;
 		action = walk_a;
+		lightBulbNum = 0;
 
 		sourceStorage->getSource(0)->setNum(5);
 		sourceStorage->getSource(1)->setNum(5);
@@ -456,7 +427,8 @@ namespace game_framework
 		leftJump.OnMove();
 		rightJump.OnMove();
 
-		if (isAttacking) {
+		if (isAttacking)
+		{
 			attackOnMove();
 		}
 	}
@@ -559,8 +531,8 @@ namespace game_framework
 				standRight.ShowBitmap();
 			}
 		}
-
-		showData();
+		LightBulbShow();
+		//showData();
 	}
 
 	void Character::ResetPosition(Map* m)
@@ -1229,6 +1201,43 @@ namespace game_framework
 	bool Character::GetIsShrimpAttack()
 	{
 		return isShrimpAttack;
+	}
+
+	void Character::SetLightBulbNum(int num)
+	{
+		lightBulbNum = num;
+	}
+
+	int Character::GetLightBulbNum()
+	{
+		return lightBulbNum;
+	}
+
+	void Character::AddLightBulb(int num)
+	{
+		lightBulbNum += num;
+	}
+
+	void Character::ConsumeLightBulb(int num)
+	{
+		lightBulbNum -= num;
+	}
+
+	void Character::LightBulbShow()
+	{
+		lightBulb.SetTopLeft(18, 80);
+		lightBulb.ShowBitmap();
+		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+		CFont f, * fp;
+		f.CreatePointFont(200, "Times New Roman");	// 產生 font f; 160表示16 point的字
+		fp = pDC->SelectObject(&f);					// 選用 font f
+		pDC->SetBkMode(TRANSPARENT);
+		pDC->SetTextColor(RGB(255, 255, 255));
+		char position[100];								// Demo 數字對字串的轉換
+		sprintf(position, "x %d", lightBulbNum);
+		pDC->TextOut(57, 87, position);
+		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
 
 	void Character::restoreCurrentHp(int n)

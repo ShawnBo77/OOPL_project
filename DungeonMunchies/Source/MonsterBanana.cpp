@@ -55,6 +55,8 @@ namespace game_framework
 		attackDamage = 5;
 		bloodBar.setFullHP(hp);
 		hasGottenSource = false;
+		lightBulbInside = 60;
+		hasGottenLightBulb = false;
 	}
 
 	void MonsterBanana::OnShow(Map* m)
@@ -129,6 +131,10 @@ namespace game_framework
 		}
 		else
 		{
+			if (!hasGottenLightBulb) {
+				character->AddLightBulb(lightBulbInside);
+				hasGottenLightBulb = true;
+			}
 			if (!hasGottenSource)
 			{
 				touchSource(m, banana_attack_p);

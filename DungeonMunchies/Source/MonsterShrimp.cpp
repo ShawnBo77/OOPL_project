@@ -83,6 +83,8 @@ namespace game_framework
 		STEP_SIZE = 5;
 		velocity = 0;
 		hasGottenSource = false;
+		lightBulbInside = 30;
+		hasGottenLightBulb = false;
 		srand((unsigned int)time(NULL));
 	}
 
@@ -231,6 +233,11 @@ namespace game_framework
 		}
 		else
 		{
+			if (!hasGottenLightBulb)
+			{
+				character->AddLightBulb(lightBulbInside);
+				hasGottenLightBulb = true;
+			}
 			if (hasGottenSource == false)
 			{
 
