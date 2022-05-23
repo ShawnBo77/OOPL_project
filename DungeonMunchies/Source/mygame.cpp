@@ -290,6 +290,8 @@ namespace game_framework
 		monsterS1.push_back(new MonsterShrimp(700, 500, &character));
 		monsterS1.push_back(new MonsterTree(1900, 400, &character));
 
+		monsterS2.push_back(new MonsterBanana(2650, 400, &character));
+
 		monsterS7.push_back(new MonsterTree(800, 400, &character));
 		//monsterS7.push_back(new MonsterShrimp(600, 400, &character));
 		//monsterS7.push_back(new MonsterShrimp(850, 400, &character));
@@ -299,7 +301,6 @@ namespace game_framework
 		//monsterS7.push_back(new MonsterBoss(900, 280, &character));
 		//monsterS7.push_back(new MonsterCactus(700, 500, &character));
 
-		monsterCactus.push_back(new MonsterCactus(700, 500, &character));
 		monsterShrimp.push_back(new MonsterShrimp(300, 400, &character));
 		monsterTree.push_back(new MonsterTree(400, 400, &character));
 	}
@@ -310,11 +311,11 @@ namespace game_framework
 		{
 			delete* it_i;
 		}
-		for (vector<Monster*>::iterator it_i = monsterS7.begin(); it_i != monsterS7.end(); ++it_i)
+		for (vector<Monster*>::iterator it_i = monsterS2.begin(); it_i != monsterS2.end(); ++it_i)
 		{
 			delete* it_i;
 		}
-		for (vector<Monster*>::iterator it_i = monsterCactus.begin(); it_i != monsterCactus.end(); ++it_i)
+		for (vector<Monster*>::iterator it_i = monsterS7.begin(); it_i != monsterS7.end(); ++it_i)
 		{
 			delete* it_i;
 		}
@@ -413,7 +414,11 @@ namespace game_framework
 				character.OnMove(&mapS1, &monsterS1);
 				break;
 			case stage_2:
-				character.OnMove(&mapS2, NULL);
+				for (unsigned i = 0; i < monsterS2.size(); i++)
+				{
+					monsterS2[i]->OnMove(&mapS1);
+				}
+				character.OnMove(&mapS2, &monsterS2);
 				break;
 			case stage_boss:
 				for (unsigned i = 0; i < monsterS7.size(); i++)
@@ -498,13 +503,13 @@ namespace game_framework
 		{
 			monsterS1[i]->LoadBitmap();
 		}
+		for (unsigned i = 0; i < monsterS2.size(); i++)
+		{
+			monsterS2[i]->LoadBitmap();
+		}
 		for (unsigned i = 0; i < monsterS7.size(); i++)
 		{
 			monsterS7[i]->LoadBitmap();
-		}
-		for (unsigned i = 0; i < monsterCactus.size(); i++)
-		{
-			monsterCactus[i]->LoadBitmap();
 		}
 		for (unsigned i = 0; i < monsterShrimp.size(); i++)
 		{
@@ -530,7 +535,8 @@ namespace game_framework
 
 	void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
-		if (!gameCompleteFlag) {
+		if (!gameCompleteFlag)
+		{
 			switch (nChar)
 			{
 			case KEY_A:
@@ -603,6 +609,7 @@ namespace game_framework
 					if (currentStage != stage_props)
 					{
 						characterStatusCall = true;
+						haveCalledCharacterStatus = true;
 						gamePause = true;
 					}
 				}
@@ -614,33 +621,23 @@ namespace game_framework
 				monsterInitialize();
 				gamePause = false;
 				characterStatusCall = false;
-
-				if (currentStage != stage_props)
-				{
-					lastStage = currentStage;
-				}
 				mapS1.Initialize();
 				currentStage = stage_1;
-
 				break;
 			case KEY_2:
 				monsterInitialize();
 				gamePause = false;
 				characterStatusCall = false;
-
-				if (currentStage != stage_props)
-				{
-					lastStage = currentStage;
-				}
 				mapS2.Initialize();
 				currentStage = stage_2;
-
 				break;
 			case KEY_7:
 				monsterInitialize();
 				gamePause = false;
 				characterStatusCall = false;
-				if (currentStage == stage_boss)
+				bossMap.Initialize();
+				currentStage = stage_boss;
+				/*if (currentStage == stage_boss)
 				{
 					currentStage = lastStage;
 				}
@@ -652,7 +649,7 @@ namespace game_framework
 					}
 					bossMap.Initialize();
 					currentStage = stage_boss;
-				}
+				}*/
 				break;
 			case KEY_ESC:
 				PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);
@@ -722,6 +719,10 @@ namespace game_framework
 				if (currentStage == stage_1)
 				{
 					character.attack(&monsterS1);
+				}
+				else if (currentStage == stage_2)
+				{
+					character.attack(&monsterS2);
 				}
 				else if (currentStage == stage_boss)
 				{
@@ -800,6 +801,10 @@ namespace game_framework
 		case stage_2:
 			mapS2.onShow();
 			character.OnShow();
+			for (unsigned i = 0; i < monsterS2.size(); i++)
+			{
+				monsterS2[i]->OnShow(&mapS2);
+			}
 			break;
 		case stage_boss:
 			bossMap.onShow();
@@ -820,7 +825,6 @@ namespace game_framework
 			//{
 			//	monsterTree[i]->OnShow(&bossMap);
 			//}
-			ShowData();
 			break;
 		case stage_props:
 			propsBook.onShow();
@@ -836,6 +840,7 @@ namespace game_framework
 		{
 			characterStatus.onShow();
 		}
+		ShowData();
 	}
 
 	void CGameStateRun::ShowData()
@@ -873,13 +878,13 @@ namespace game_framework
 		{
 			monsterS1[i]->Initialize();
 		}
+		for (unsigned i = 0; i < monsterS2.size(); i++)
+		{
+			monsterS2[i]->Initialize();
+		}
 		for (unsigned i = 0; i < monsterS7.size(); i++)
 		{
 			monsterS7[i]->Initialize();
-		}
-		for (unsigned i = 0; i < monsterCactus.size(); i++)
-		{
-			monsterCactus[i]->Initialize();
 		}
 		for (unsigned i = 0; i < monsterShrimp.size(); i++)
 		{

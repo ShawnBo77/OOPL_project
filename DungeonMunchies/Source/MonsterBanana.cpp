@@ -143,7 +143,7 @@ namespace game_framework
 		if (!character->GetMap() == NULL)
 		{
 			character->GetMap()->monsterFloorChanging(GetLeftX());
-			_y = character->GetMap()->getMonsterFloor() - 80;
+			_y = character->GetMap()->getMonsterFloor() - bananaAlive.Height();;
 		}
 	}
 }

@@ -143,8 +143,8 @@ namespace game_framework
 		bool haveCalledCharacterStatus;
 		bool gamePause;
 		vector<Monster*> monsterS1;
+		vector<Monster*> monsterS2;
 		vector<Monster*> monsterS7;
-		vector<Monster*> monsterCactus;
 		vector<Monster*> monsterShrimp;
 		vector<Monster*> monsterTree;
 

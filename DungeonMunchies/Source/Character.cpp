@@ -540,7 +540,7 @@ namespace game_framework
 			}
 		}
 		LightBulbShow();
-		//showData();
+		showData();
 	}
 
 	void Character::ResetPosition(Map* m)
