@@ -65,6 +65,7 @@ namespace game_framework
 		deadRight.LoadBitmap(".\\res\\monster_shrimp_dead_right.bmp", RGB(0, 0, 0));
 		sourceShrimpAttack.LoadBitmap(".\\res\\source_shrimp_attack.bmp", RGB(0, 0, 0));
 		sourceShrimpBlood.LoadBitmap(".\\res\\source_shrimp_blood.bmp", RGB(0, 0, 0));
+		black.LoadBitmap(".\\res\\black.bmp", RGB(0, 0, 0));
 	}
 
 	void MonsterShrimp::Initialize()
@@ -92,50 +93,56 @@ namespace game_framework
 	{
 		if (isAlive())
 		{
-			if (facingLR == 0)
+			if (isAttacked && isSparkleEffectShow)
 			{
-				if (action == walk_a)
-				{
-					walkLeft.SetTopLeft(_x - 140 + RelativeMovement, _y); //讓圖片中怪物顯示靠向左
-					//walkLeft.SetDelayCount(3);
-					walkLeft.OnShow();
-				}
-				else
-				{
-					attackLeft.SetTopLeft(_x + RelativeMovement - 110, _y);
-					attackLeft.SetDelayCount(3);
-					attackLeft.OnShow();
-					if (attackLeft.GetCurrentBitmapNumber() == 2)
-					{
-						attackJudge(100);
-					}
-					if (attackLeft.IsFinalBitmap())
-					{
-						action = walk_a;
-						attackLeft.Reset();
-					}
-				}
+				isAttackedEffectOnShow();
 			}
-			else
-			{
-				if (action == walk_a)
+			else {
+				if (facingLR == 0)
 				{
-					walkRight.SetTopLeft(_x + RelativeMovement, _y);
-					walkRight.OnShow();
+					if (action == walk_a)
+					{
+						walkLeft.SetTopLeft(_x - 140 + RelativeMovement, _y); //讓圖片中怪物顯示靠向左
+						//walkLeft.SetDelayCount(3);
+						walkLeft.OnShow();
+					}
+					else
+					{
+						attackLeft.SetTopLeft(_x + RelativeMovement - 110, _y);
+						attackLeft.SetDelayCount(3);
+						attackLeft.OnShow();
+						if (attackLeft.GetCurrentBitmapNumber() == 2)
+						{
+							attackJudge(100);
+						}
+						if (attackLeft.IsFinalBitmap())
+						{
+							action = walk_a;
+							attackLeft.Reset();
+						}
+					}
 				}
 				else
 				{
-					attackRight.SetTopLeft(_x + RelativeMovement, _y);
-					attackRight.SetDelayCount(3);
-					attackRight.OnShow();
-					if (attackRight.GetCurrentBitmapNumber() == 2)
+					if (action == walk_a)
 					{
-						attackJudge(100);
+						walkRight.SetTopLeft(_x + RelativeMovement, _y);
+						walkRight.OnShow();
 					}
-					if (attackRight.IsFinalBitmap())
+					else
 					{
-						action = walk_a;
-						attackRight.Reset();
+						attackRight.SetTopLeft(_x + RelativeMovement, _y);
+						attackRight.SetDelayCount(3);
+						attackRight.OnShow();
+						if (attackRight.GetCurrentBitmapNumber() == 2)
+						{
+							attackJudge(100);
+						}
+						if (attackRight.IsFinalBitmap())
+						{
+							action = walk_a;
+							attackRight.Reset();
+						}
 					}
 				}
 			}
@@ -228,7 +235,7 @@ namespace game_framework
 			{
 				attackOnMove();
 			}
-
+			isAttackedEffectCaculation();
 			//intersect();
 		}
 		else

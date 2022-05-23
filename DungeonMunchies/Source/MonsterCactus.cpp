@@ -44,6 +44,7 @@ namespace game_framework
 		cactusAlive.LoadBitmap(IDB_MONSTERCACTUSALIVE, RGB(0, 0, 0));
 		cactusDead.LoadBitmap(IDB_MONSTERCACTUSDEAD, RGB(0, 0, 0));
 		sourceGrassFast.LoadBitmap(".\\res\\source_grass_fast.bmp", RGB(0, 0, 0));
+		black.LoadBitmap(".\\res\\black.bmp", RGB(0, 0, 0));
 	}
 
 	void MonsterCactus::Initialize()
@@ -63,8 +64,15 @@ namespace game_framework
 	{
 		if (isAlive())
 		{
-			cactusAlive.SetTopLeft(_x + RelativeMovement, _y);
-			cactusAlive.ShowBitmap();
+			if (isAttacked && isSparkleEffectShow)
+			{
+				isAttackedEffectOnShow();
+			}
+			else
+			{
+				cactusAlive.SetTopLeft(_x + RelativeMovement, _y);
+				cactusAlive.ShowBitmap();
+			}
 			bloodBar.setXY(GetLeftX() + RelativeMovement, GetTopY() - 16);
 			bloodBar.showBloodBar(m, hp);
 			if (lossHpShowFlag)
@@ -95,8 +103,8 @@ namespace game_framework
 		pDC->SetBkColor(RGB(230, 220, 200));
 		pDC->SetTextColor(RGB(0, 0, 0));
 		char position[600];								// Demo 數字對字串的轉換
-		sprintf(position, "CactusLeftX:%d CactusRightX:%d CactusTopY:%d CactusButtonY:%d CactusHp: %d lossHpTimer(%f, %f, %f)"
-			, GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), GetCurrentHp(), (double)lossHpTimer.GetStartTime(), (double)lossHpTimer.GetFinishTime(), (double)lossHpTimer.GetTime());
+		sprintf(position, "CactusLeftX:%d CactusRightX:%d CactusTopY:%d CactusButtonY:%d CactusHp: %d sparkleEffectTimer(%f, %f, %f)"
+			, GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), GetCurrentHp(), (double)sparkleEffectTimer.GetStartTime(), (double)sparkleEffectTimer.GetFinishTime(), (double)sparkleEffectTimer.GetTime());
 		//sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
 		pDC->TextOut(200, 50, position);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
@@ -128,6 +136,7 @@ namespace game_framework
 		if (isAlive())
 		{
 			intersect();
+			isAttackedEffectCaculation();
 		}
 		else
 		{

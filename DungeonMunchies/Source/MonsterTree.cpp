@@ -77,6 +77,7 @@ namespace game_framework
 		deadLeft.LoadBitmap(".\\res\\monster_tree_dead_left.bmp", RGB(0, 0, 0));
 		deadRight.LoadBitmap(".\\res\\monster_tree_dead_right.bmp", RGB(0, 0, 0));
 		sourceGuavaJuiceBlood.LoadBitmap(".\\res\\source_guava_juice_blood.bmp", RGB(0, 0, 0));
+		black.LoadBitmap(".\\res\\black.bmp", RGB(0, 0, 0));
 	}
 
 	void MonsterTree::Initialize()
@@ -103,60 +104,67 @@ namespace game_framework
 	{
 		if (isAlive())
 		{
-			if (facingLR == 0)
+			if (isAttacked && isSparkleEffectShow)
 			{
-				if (action == sleep_a)
-				{
-					sleepLeft.SetTopLeft(_x + RelativeMovement, _y);
-					sleepLeft.ShowBitmap();
-				}
-				else if (action == walk_a)
-				{
-					walkLeft.SetTopLeft(_x + RelativeMovement, _y); //讓圖片中怪物顯示靠向左
-					//walkLeft.SetDelayCount(3);
-					walkLeft.OnShow();
-				}
-				else
-				{
-					attackLeft.SetTopLeft(_x + RelativeMovement, _y);
-					attackLeft.SetDelayCount(3);
-					attackLeft.OnShow();
-					if (attackLeft.GetCurrentBitmapNumber() == 4)
-					{
-						attackJudge(90);
-					}
-					if (attackLeft.IsFinalBitmap())
-					{
-						action = actionController();
-						attackLeft.Reset();
-					}
-				}
+				isAttackedEffectOnShow();
 			}
 			else
 			{
-				if (action == sleep_a)
+				if (facingLR == 0)
 				{
-					sleepRight.SetTopLeft(_x + RelativeMovement, _y);
-					sleepRight.ShowBitmap();
-				}
-				else if (action == walk_a)
-				{
-					walkRight.SetTopLeft(_x + RelativeMovement, _y);
-					walkRight.OnShow();
+					if (action == sleep_a)
+					{
+						sleepLeft.SetTopLeft(_x + RelativeMovement, _y);
+						sleepLeft.ShowBitmap();
+					}
+					else if (action == walk_a)
+					{
+						walkLeft.SetTopLeft(_x + RelativeMovement, _y); //讓圖片中怪物顯示靠向左
+						//walkLeft.SetDelayCount(3);
+						walkLeft.OnShow();
+					}
+					else
+					{
+						attackLeft.SetTopLeft(_x + RelativeMovement, _y);
+						attackLeft.SetDelayCount(3);
+						attackLeft.OnShow();
+						if (attackLeft.GetCurrentBitmapNumber() == 4)
+						{
+							attackJudge(90);
+						}
+						if (attackLeft.IsFinalBitmap())
+						{
+							action = actionController();
+							attackLeft.Reset();
+						}
+					}
 				}
 				else
 				{
-					attackRight.SetTopLeft(_x + RelativeMovement, _y);
-					attackRight.SetDelayCount(3);
-					attackRight.OnShow();
-					if (attackRight.GetCurrentBitmapNumber() == 4)
+					if (action == sleep_a)
 					{
-						attackJudge(90);
+						sleepRight.SetTopLeft(_x + RelativeMovement, _y);
+						sleepRight.ShowBitmap();
 					}
-					if (attackRight.IsFinalBitmap())
+					else if (action == walk_a)
 					{
-						action = actionController();
-						attackRight.Reset();
+						walkRight.SetTopLeft(_x + RelativeMovement, _y);
+						walkRight.OnShow();
+					}
+					else
+					{
+						attackRight.SetTopLeft(_x + RelativeMovement, _y);
+						attackRight.SetDelayCount(3);
+						attackRight.OnShow();
+						if (attackRight.GetCurrentBitmapNumber() == 4)
+						{
+							attackJudge(90);
+						}
+						if (attackRight.IsFinalBitmap())
+						{
+							action = actionController();
+							attackRight.Reset();
+						}
 					}
 				}
 			}
@@ -253,6 +261,7 @@ namespace game_framework
 				attackOnMove();
 			}
 
+			isAttackedEffectCaculation();
 			//intersect();
 		}
 		else

@@ -72,12 +72,14 @@ namespace game_framework
 		//攻擊
 		void SetIsAttacking(bool flag);		    // 設定是否攻擊
 		bool GetIsAttacking();	        // 回傳是否正在攻擊
-		void SetIsAttacked(bool flag);	// 設定是否受到攻擊
-		bool GetIsAttacked();    // 回傳是否受到攻擊
 		void SetAttackDamage(int x);
 		int GetAttackDamage();
 		virtual void attackStart();
 		virtual void attackJudge(int attackRange);
+		void SetIsAttacked(bool flag);	// 設定是否受到攻擊
+		bool GetIsAttacked();    // 回傳是否受到攻擊
+		void isAttackedEffectCaculation();
+		void isAttackedEffectOnShow();
 
 		//結束
 		void SetBossDead(bool flag);
@@ -113,7 +115,14 @@ namespace game_framework
 		bool isAttacking;           // 是否正在攻擊
 		Timer attackCDTime;
 		bool attackCD;
+
+		Timer isAttackedTimer;
 		bool isAttacked;			// 是否受到攻擊
+		Timer sparkleEffectTimer;
+		bool isSparkleEffectTimerStart;
+		bool isSparkleEffectShow;
+		CMovingBitmap black;
+
 		int lossHp;
 		bool lossHpShowFlag;
 		Timer lossHpTimer;

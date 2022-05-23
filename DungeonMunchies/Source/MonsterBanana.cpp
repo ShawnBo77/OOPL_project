@@ -44,6 +44,7 @@ namespace game_framework
 		bananaAlive.LoadBitmap(".\\res\\monster_banana.bmp", RGB(0, 0, 0));
 		bananaDead.LoadBitmap(".\\res\\monster_banana_dead.bmp", RGB(0, 0, 0));
 		sourceBananaAttack.LoadBitmap(".\\res\\source_banana_attack.bmp", RGB(0, 0, 0));
+		black.LoadBitmap(".\\res\\black.bmp", RGB(0, 0, 0));
 	}
 
 	void MonsterBanana::Initialize()
@@ -51,7 +52,7 @@ namespace game_framework
 		_x = init_x;
 		_y = init_y;
 		RelativeMovement = 0;
-		hp = 20;
+		hp = 50;
 		attackDamage = 5;
 		bloodBar.setFullHP(hp);
 		hasGottenSource = false;
@@ -63,8 +64,15 @@ namespace game_framework
 	{
 		if (isAlive())
 		{
-			bananaAlive.SetTopLeft(_x + RelativeMovement, _y);
-			bananaAlive.ShowBitmap();
+			if (isAttacked && isSparkleEffectShow)
+			{
+				isAttackedEffectOnShow();
+			}
+			else
+			{
+				bananaAlive.SetTopLeft(_x + RelativeMovement, _y);
+				bananaAlive.ShowBitmap();
+			}
 			bloodBar.setXY(GetLeftX() + RelativeMovement, GetTopY() - 16);
 			bloodBar.showBloodBar(m, hp);
 			if (lossHpShowFlag)
@@ -128,10 +136,12 @@ namespace game_framework
 		if (isAlive())
 		{
 			intersect();
+			isAttackedEffectCaculation();
 		}
 		else
 		{
-			if (!hasGottenLightBulb) {
+			if (!hasGottenLightBulb)
+			{
 				character->AddLightBulb(lightBulbInside);
 				hasGottenLightBulb = true;
 			}

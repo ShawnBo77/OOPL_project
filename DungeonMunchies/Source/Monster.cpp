@@ -41,6 +41,9 @@ namespace game_framework
 		lossHpShowFlag = 0;
 		lightBulbInside = 0;
 		hasGottenLightBulb = false;
+		isAttacked = false;
+		isSparkleEffectTimerStart = false;
+		isSparkleEffectShow = false;
 	}
 
 	Monster::~Monster()
@@ -268,6 +271,11 @@ namespace game_framework
 		lossHp = x;
 		lossHpShowFlag = true;
 		lossHpTimer.Start();
+		isAttacked = true;
+		isAttackedTimer.Start();
+		isSparkleEffectShow = true;
+		sparkleEffectTimer.Start();
+		isSparkleEffectTimerStart = true;
 	}
 
 	void Monster::lossHpShow()
@@ -294,16 +302,6 @@ namespace game_framework
 	bool Monster::GetIsAttacking()
 	{
 		return isAttacking;
-	}
-
-	void Monster::SetIsAttacked(bool flag)
-	{
-		isAttacked = flag;
-	}
-
-	bool Monster::GetIsAttacked()
-	{
-		return isAttacked;
 	}
 
 	void Monster::SetAttackDamage(int x)
@@ -344,6 +342,47 @@ namespace game_framework
 				}
 			}
 		}
+	}
+
+	void Monster::SetIsAttacked(bool flag)
+	{
+		isAttacked = flag;
+	}
+
+	bool Monster::GetIsAttacked()
+	{
+		return isAttacked;
+	}
+
+	void Monster::isAttackedEffectCaculation()
+	{
+		if (isAttacked)
+		{
+			isAttackedTimer.CaculateTimeForFalse(&isAttacked, 1);
+		}
+		if (isSparkleEffectShow)
+		{
+			sparkleEffectTimer.CaculateTimeForFalse(&isSparkleEffectShow, 0.1);
+			if (!isSparkleEffectShow)
+			{
+				isSparkleEffectTimerStart = false;
+			}
+		}
+		else
+		{
+			if (!isSparkleEffectTimerStart)
+			{
+				sparkleEffectTimer.Start();
+				isSparkleEffectTimerStart = true;
+			}
+			sparkleEffectTimer.CaculateTimeForTrue(&isSparkleEffectShow, 0.15);
+		}
+	}
+
+	void Monster::isAttackedEffectOnShow()
+	{
+		black.SetTopLeft(_x + RelativeMovement, _y);
+		black.ShowBitmap();
 	}
 
 	void Monster::SetBossDead(bool flag)

@@ -111,13 +111,15 @@ namespace game_framework
 		deadLeft.AddBitmap(".\\res\\boss_left_dead04.bmp", RGB(0, 0, 0));
 		deadLeft.AddBitmap(".\\res\\boss_left_dead05.bmp", RGB(0, 0, 0));
 		deadLeft.AddBitmap(".\\res\\boss_left_dead06.bmp", RGB(0, 0, 0));
+
+		black.LoadBitmap(".\\res\\black.bmp", RGB(0, 0, 0));
 	}
 
 	void MonsterBoss::Initialize()
 	{
 		_x = init_x;
 		_y = init_y;
-		hp = 100;
+		hp = 50;
 		bloodBar.setFullHP(hp);
 		action = walk_a;
 		BORDER = 5;
@@ -183,10 +185,14 @@ namespace game_framework
 				thronBossOnMove();
 			}
 			hitCDTimer.CaculateTimeForFalse(&hitCD, 4);
+			isAttackedEffectCaculation();
 		}
 		else
 		{
-			deadOnMove();
+			if (!bossDead)
+			{
+				deadOnMove();
+			}
 		}
 	}
 
@@ -194,21 +200,27 @@ namespace game_framework
 	{
 		if (isAlive())
 		{
-			if (action == walk_a)
+			if (isAttacked && isSparkleEffectShow)
 			{
-				walkOnShow();
+				isAttackedEffectOnShow();
 			}
-			else if (action == hit_a)
-			{
-				hitOnShow();
-			}
-			else if (action == collide_a)
-			{
-				collideOnShow(m);
-			}
-			else if (action == thron_a)
-			{
-				thronBossOnShow();
+			else {
+				if (action == walk_a)
+				{
+					walkOnShow();
+				}
+				else if (action == hit_a)
+				{
+					hitOnShow();
+				}
+				else if (action == collide_a)
+				{
+					collideOnShow(m);
+				}
+				else if (action == thron_a)
+				{
+					thronBossOnShow();
+				}
 			}
 			bloodBar.setXY(_x, _y - 16);
 			bloodBar.showBloodBar(m, hp);
@@ -220,7 +232,9 @@ namespace game_framework
 		}
 		else
 		{
-			deadOnShow();
+			if (!bossDead) {
+				deadOnShow();
+			}
 		}
 		//showData();
 	}
@@ -747,23 +761,23 @@ namespace game_framework
 		if (facingLR == 0)
 		{
 			deadLeft.SetTopLeft(_x, _y);
-
 			deadLeft.OnShow();
 
 			if (deadLeft.IsFinalBitmap())
 			{
 				bossDead = true;
+				deadLeft.Reset();
 			}
 		}
 		else
 		{
 			deadRight.SetTopLeft(_x, _y);
-
 			deadRight.OnShow();
 
 			if (deadRight.IsFinalBitmap())
 			{
 				bossDead = true;
+				deadRight.Reset();
 			}
 		}
 	}
