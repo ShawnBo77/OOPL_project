@@ -87,6 +87,8 @@ namespace game_framework
 		startMenu.LoadBitmap(IDB_STARTMENU);
 		startMenuChoice.LoadBitmap(".\\res\\start_menu_choice.bmp", RGB(0, 0, 0));
 		staff.LoadBitmap(".\\res\\staff.bmp");
+		CAudio::Instance()->Load(AUDIO_STARTMENU, "sounds\\start_menu_audio.mp3");
+		CAudio::Instance()->Play(AUDIO_STARTMENU, true);
 		//logo.LoadBitmap(IDB_BACKGROUND);
 		//Sleep(300);				// 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
 		//
@@ -119,6 +121,7 @@ namespace game_framework
 			if (choice == 1)
 			{
 				GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
+				CAudio::Instance()->Stop(AUDIO_STARTMENU);
 			}
 			else if (choice == 2)
 			{
