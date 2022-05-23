@@ -213,15 +213,15 @@ namespace game_framework
     {
         if (x < 1750)
         {
-            setMonsterFloor(640);
+            setMonsterFloor(680);
         }
         else if (x < 2500)
         {
-            setMonsterFloor(560);
+            setMonsterFloor(600);
         }
         else
         {
-            setMonsterFloor(460);
+            setMonsterFloor(500);
         }
     }
 	int MapS1::screenX(int x)

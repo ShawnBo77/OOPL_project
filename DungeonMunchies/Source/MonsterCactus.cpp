@@ -150,10 +150,10 @@ namespace game_framework
 				touchSource(m, grass_fast_p);
 			}
 		}
-		if (!character->GetMap() == NULL)
+		if (!m == NULL)
 		{
-			character->GetMap()->monsterFloorChanging(GetLeftX());
-			_y = character->GetMap()->getMonsterFloor() - 80;
+			m->monsterFloorChanging(GetLeftX());
+			_y = m->getMonsterFloor() - 120;
 		}
 	}
 }
