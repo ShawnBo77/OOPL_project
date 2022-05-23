@@ -358,7 +358,7 @@ namespace game_framework
 	{
 		if (isAttacked)
 		{
-			isAttackedTimer.CaculateTimeForFalse(&isAttacked, 1);
+			isAttackedTimer.CaculateTimeForFalse(&isAttacked, 0.5);
 		}
 		if (isSparkleEffectShow)
 		{

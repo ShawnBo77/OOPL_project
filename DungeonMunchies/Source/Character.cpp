@@ -32,6 +32,7 @@ namespace game_framework
 
 	void Character::LoadBitmap()
 	{
+		black.LoadBitmap(".\\res\\black.bmp", RGB(0, 0, 0));
 		bloodFrame.LoadBitmap(IDB_CHARACTERBLOODFRAME, RGB(0, 0, 0));
 		characterBlood[0].LoadBitmap(IDB_CHARACTERBLOOD01, RGB(255, 255, 255));
 		characterBlood[1].LoadBitmap(IDB_CHARACTERBLOOD02, RGB(255, 255, 255));
@@ -179,6 +180,7 @@ namespace game_framework
 		const int Y_POS = 80;													//¨¤¦â°_©lY¶b
 		characterX = X_POS;
 		characterY = Y_POS;
+		yRelativeMovement = 0;
 		facingLR = 1;
 		STEP_SIZE = 15;
 		BORDER = 5;
@@ -193,6 +195,10 @@ namespace game_framework
 		isAttackedFromRight = false;
 		isAttackedFromLeft = false;
 		isAttackedFromButton = false;
+		isAttacked = false;
+		isSparkleEffectTimerStart = false;
+		isSparkleEffectShow = false;
+
 		isInvincible = false;
 		doubleJump = false;
 		DJtemp = doubleJump;
@@ -421,6 +427,8 @@ namespace game_framework
 			healBloodEveryTenSeconds();
 		}
 
+		isAttackedEffectCaculation();
+
 		walkingLeft.OnMove();
 		walkingRight.OnMove();
 
@@ -441,7 +449,7 @@ namespace game_framework
 		//animation.SetTopLeft(500, 350);
 		//animation.OnShow();
 		BloodShow();
-		int yRelativeMovement = 0;
+		yRelativeMovement = 0;
 		if (GetMap() != NULL) 
 		{
 			yRelativeMovement = GetMap()->getCharacterYRelativeMovement();
@@ -454,91 +462,96 @@ namespace game_framework
 		{
 			screenCX = 670;
 		}
-
-		if (facingLR == 0)
+		if (isAttacked && isSparkleEffectShow)
 		{
-			if (isRolling)//action == roll_a)
+			isAttackedEffectOnShow();
+		}else {
+			if (facingLR == 0)
 			{
-				leftRolling.SetTopLeft(screenCX - 5, characterY + 10 - yRelativeMovement);
-				leftRolling.OnShow();
-				leftRolling.SetDelayCount(1);
-				if (leftRolling.IsFinalBitmap())
+				if (isRolling)//action == roll_a)
 				{
-					//isRolling = false;
-					action = walk_a;
+					leftRolling.SetTopLeft(screenCX - 5, characterY + 10 - yRelativeMovement);
+					leftRolling.OnShow();
+					leftRolling.SetDelayCount(1);
+					if (leftRolling.IsFinalBitmap())
+					{
+						//isRolling = false;
+						action = walk_a;
+					}
 				}
-			}
-			else if (isAttacking)//action == attack_a) //attack
-			{
-				leftAttacking.SetTopLeft(screenCX - 30, characterY - yRelativeMovement);
-				leftAttacking.SetDelayCount(1);
-				leftAttacking.OnShow();
-				if (leftAttacking.IsFinalBitmap())
+				else if (isAttacking)//action == attack_a) //attack
 				{
-					isAttacking = false;
-					action = walk_a;
-					leftAttacking.Reset();
+					leftAttacking.SetTopLeft(screenCX - 30, characterY - yRelativeMovement);
+					leftAttacking.SetDelayCount(1);
+					leftAttacking.OnShow();
+					if (leftAttacking.IsFinalBitmap())
+					{
+						isAttacking = false;
+						action = walk_a;
+						leftAttacking.Reset();
+					}
 				}
-			}
-			else if (GetIsRising() == true)
-			{
-				leftJump.SetTopLeft(screenCX, characterY - yRelativeMovement);
-				leftJump.OnShow();
-				leftJump.SetDelayCount(3);
-			}
-			else if ((GetIsMovingLeft() == true || GetIsMovingRight() == true) && GetIsOnTheFloor() == true)
-			{
-				walkingLeft.SetTopLeft(screenCX, characterY - yRelativeMovement);
-				walkingLeft.OnShow();
+				else if (GetIsRising() == true)
+				{
+					leftJump.SetTopLeft(screenCX, characterY - yRelativeMovement);
+					leftJump.OnShow();
+					leftJump.SetDelayCount(3);
+				}
+				else if ((GetIsMovingLeft() == true || GetIsMovingRight() == true) && GetIsOnTheFloor() == true)
+				{
+					walkingLeft.SetTopLeft(screenCX, characterY - yRelativeMovement);
+					walkingLeft.OnShow();
+				}
+				else
+				{
+					standLeft.SetTopLeft(screenCX, characterY - yRelativeMovement);
+					standLeft.ShowBitmap();
+				}
 			}
 			else
 			{
-				standLeft.SetTopLeft(screenCX, characterY - yRelativeMovement);
-				standLeft.ShowBitmap();
-			}
-		}
-		else
-		{
-			if (isRolling)//action == roll_a)
-			{
-				rightRolling.SetTopLeft(screenCX - 5, characterY + 10 - yRelativeMovement);
-				rightRolling.OnShow();
-				rightRolling.SetDelayCount(1);
-				if (rightRolling.IsFinalBitmap())
+				if (isRolling)//action == roll_a)
 				{
-					//isRolling = false;
-					action = walk_a;
+					rightRolling.SetTopLeft(screenCX - 5, characterY + 10 - yRelativeMovement);
+					rightRolling.OnShow();
+					rightRolling.SetDelayCount(1);
+					if (rightRolling.IsFinalBitmap())
+					{
+						//isRolling = false;
+						action = walk_a;
+					}
+				}
+				else if (isAttacking)//action == attack_a)
+				{
+					rightAttacking.SetTopLeft(screenCX + 30, characterY - yRelativeMovement);
+					rightAttacking.SetDelayCount(1);
+					rightAttacking.OnShow();
+					if (rightAttacking.IsFinalBitmap())
+					{
+						isAttacking = false;
+						action = walk_a;
+						rightAttacking.Reset();
+					}
+				}
+				else if (GetIsRising() == true)
+				{
+					rightJump.SetTopLeft(screenCX, characterY - yRelativeMovement);
+					rightJump.OnShow();
+					rightJump.SetDelayCount(3);
+				}
+				else if ((GetIsMovingLeft() == true || GetIsMovingRight() == true) && GetIsOnTheFloor() == true)
+				{
+					walkingRight.SetTopLeft(screenCX, characterY - yRelativeMovement);
+					walkingRight.OnShow();
+				}
+				else
+				{
+					standRight.SetTopLeft(screenCX, characterY - yRelativeMovement);
+					standRight.ShowBitmap();
 				}
 			}
-			else if (isAttacking)//action == attack_a)
-			{
-				rightAttacking.SetTopLeft(screenCX + 30, characterY - yRelativeMovement);
-				rightAttacking.SetDelayCount(1);
-				rightAttacking.OnShow();
-				if (rightAttacking.IsFinalBitmap())
-				{
-					isAttacking = false;
-					action = walk_a;
-					rightAttacking.Reset();
-				}
-			}
-			else if (GetIsRising() == true)
-			{
-				rightJump.SetTopLeft(screenCX, characterY - yRelativeMovement);
-				rightJump.OnShow();
-				rightJump.SetDelayCount(3);
-			}
-			else if ((GetIsMovingLeft() == true || GetIsMovingRight() == true) && GetIsOnTheFloor() == true)
-			{
-				walkingRight.SetTopLeft(screenCX, characterY - yRelativeMovement);
-				walkingRight.OnShow();
-			}
-			else
-			{
-				standRight.SetTopLeft(screenCX, characterY - yRelativeMovement);
-				standRight.ShowBitmap();
-			}
 		}
+		
 		LightBulbShow();
 		showData();
 	}
@@ -619,6 +632,37 @@ namespace game_framework
 	bool Character::GetIsAttackedFromButton()
 	{
 		return isAttackedFromButton;
+	}
+
+	void Character::isAttackedEffectCaculation()
+	{
+		if (isAttacked)
+		{
+			isAttackedTimer.CaculateTimeForFalse(&isAttacked, 0.5);
+		}
+		if (isSparkleEffectShow)
+		{
+			sparkleEffectTimer.CaculateTimeForFalse(&isSparkleEffectShow, 0.1);
+			if (!isSparkleEffectShow)
+			{
+				isSparkleEffectTimerStart = false;
+			}
+		}
+		else
+		{
+			if (!isSparkleEffectTimerStart)
+			{
+				sparkleEffectTimer.Start();
+				isSparkleEffectTimerStart = true;
+			}
+			sparkleEffectTimer.CaculateTimeForTrue(&isSparkleEffectShow, 0.15);
+		}
+	}
+
+	void Character::isAttackedEffectOnShow()
+	{
+		black.SetTopLeft(screenCX, characterY - yRelativeMovement);
+		black.ShowBitmap();
 	}
 
 	bool Character::GetIsOnTheFloor()
@@ -1261,6 +1305,11 @@ namespace game_framework
 		currentHp -= n;
 		isInvincible = true;
 		invincibleTimer.Start();
+		isAttacked = true;
+		isAttackedTimer.Start();
+		isSparkleEffectShow = true;
+		sparkleEffectTimer.Start();
+		isSparkleEffectTimerStart = true;
 	}
 
 	bool Character::isIntersect(int lX, int rX, int tY, int bY)

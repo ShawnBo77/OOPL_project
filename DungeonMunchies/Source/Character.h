@@ -94,6 +94,8 @@ namespace game_framework
 		bool GetIsAttackedFromLeft();	    // 回傳攻擊是否來自左方
 		void SetIsAttackedFromButton(bool flag);	// 設定攻擊是否來自下方
 		bool GetIsAttackedFromButton();	// 回傳攻擊是否來自下方
+		void isAttackedEffectCaculation();
+		void isAttackedEffectOnShow();
 
 
 		/*餐點能力*/
@@ -149,6 +151,7 @@ namespace game_framework
 
 		int characterX, characterY;
 		int screenCX, screenCY;
+		int yRelativeMovement;
 		int characterW, characterH;
 		bool mapScreenCanMoving;
 		bool canGoToNextMap;
@@ -167,6 +170,13 @@ namespace game_framework
 		bool isAttackedFromRight;
 		bool isAttackedFromLeft;
 		bool isAttackedFromButton;
+		Timer isAttackedTimer;
+		bool isAttacked;			// 是否受到攻擊
+		Timer sparkleEffectTimer;
+		bool isSparkleEffectTimerStart;
+		bool isSparkleEffectShow;
+		CMovingBitmap black;
+
 		int  velocity;
 		int  rolling_time;
 		Action action;
