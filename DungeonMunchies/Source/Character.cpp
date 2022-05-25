@@ -220,6 +220,7 @@ namespace game_framework
 
 	void Character::OnMove(Map* m, vector<Monster*>* monsters)
 	{
+		int monsterBorder;
 		//animation.OnMove();													//角色邊框寬度
 		if (currentMap == NULL || m->getMapName() != currentMap->getMapName())
 		{
@@ -345,7 +346,19 @@ namespace game_framework
 				{
 					if (characterY + velocity * 3 < m->getFloor() - 120)
 					{
-						characterY += velocity * 3;			// y軸下降(移動velocity個點，velocity的單位為 點/次)
+						for (unsigned int i = 0; i < monsters->size(); i++)
+						{
+							monsterBorder = monsters->at(i)->GetBorder();
+
+							if (GetRightX()> monsters->at(i)->GetLeftX() && GetLeftX() < monsters->at(i)->GetRightX() && GetButtonY() + velocity * 3 >= monsters->at(i)->GetTopY() + monsterBorder && monsters->at(i)->isAlive())
+							{
+								characterY = monsters->at(i)->GetTopY();
+							}
+							else
+							{
+								characterY += velocity * 3;			// y軸下降(移動velocity個點，velocity的單位為 點/次)
+							}
+						}
 					}
 						
 					else 
@@ -370,10 +383,7 @@ namespace game_framework
 						if (characterX > 670 && m->mapScreenMoving())
 						{
 							m->addSX(1);
-							for (unsigned int i = 0; i < monsters->size(); i++)
-							{
-								monsters->at(i)->SetRelativeMovement(1);
-							}
+							monsterRelativeMove(monsters, 1);
 						}
 						characterX -= 1;
 					}
@@ -390,10 +400,7 @@ namespace game_framework
 						if (characterX > 670 && m->mapScreenMoving())
 						{
 							m->addSX(-1);
-							for (unsigned int i = 0; i < monsters->size(); i++)
-							{
-								monsters->at(i)->SetRelativeMovement(-1);
-							}
+							monsterRelativeMove(monsters, -1);
 						}
 
 						characterX += 1;
