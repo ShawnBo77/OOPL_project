@@ -294,13 +294,15 @@ namespace game_framework
 		//ball = new CBall [NUMBALLS];
 		monsterS1.push_back(new MonsterShrimp(700, 500, &character));
 		monsterS1.push_back(new MonsterTree(1900, 400, &character));
+		monsterS1.push_back(new MonsterCactus(1700, 500, &character));
+		monsterS1.push_back(new MonsterBanana(200, 400, &character));
 
 		monsterS2.push_back(new MonsterBanana(2650, 400, &character));
 
-		//monsterS7.push_back(new MonsterTree(700, 400, &character));
-		//monsterS7.push_back(new MonsterShrimp(600, 400, &character));
+		monsterS7.push_back(new MonsterTree(700, 400, &character));
+		monsterS7.push_back(new MonsterShrimp(600, 400, &character));
 		//monsterS7.push_back(new MonsterShrimp(850, 400, &character));
-		//monsterS7.push_back(new MonsterCactus(700, 500, &character));
+		monsterS7.push_back(new MonsterCactus(700, 500, &character));
 		//monsterS7.push_back(new MonsterTree(400, 400, &character));
 		monsterS7.push_back(new MonsterBanana(1000, 400, &character));
 		//monsterS7.push_back(new MonsterBoss(900, 280, &character));

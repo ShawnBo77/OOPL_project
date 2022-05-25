@@ -146,7 +146,7 @@ namespace game_framework
 					}
 				}
 			}
-			bloodBar.setXY(GetLeftX(), GetTopY() - 16);
+			bloodBar.setXY(GetLeftX() + RelativeMovement, GetTopY() - 16);
 			bloodBar.showBloodBar(m, hp);
 			if (lossHpShowFlag)
 			{
@@ -185,12 +185,12 @@ namespace game_framework
 
 	void MonsterShrimp::OnMove(Map* m)
 	{
-		if (!character->GetMap() == NULL)
+		if (!m == NULL)
 		{
-			character->GetMap()->monsterFloorChanging(GetLeftX());
-			if (character->GetMap()->getMonsterFloor() > currentFloor)
+			m->monsterFloorChanging(GetLeftX());
+			if (m->getMonsterFloor() > currentFloor)
 			{
-				if (_y < character->GetMap()->getMonsterFloor() - 138)
+				if (_y < m->getMonsterFloor() - 178)
 				{
 					_y += velocity * 2;
 					if (velocity < 6)
@@ -198,8 +198,8 @@ namespace game_framework
 				}
 				else
 				{
-					currentFloor = character->GetMap()->getMonsterFloor();
-					_y = currentFloor - 138;			// 當y座標低於地板，更正為地板上
+					currentFloor = m->getMonsterFloor();
+					_y = currentFloor - 178;			// 當y座標低於地板，更正為地板上
 					velocity = 0;
 				}
 			}
@@ -218,11 +218,11 @@ namespace game_framework
 			}
 			else if (distanceToCharacter() < 280 && action == walk_a)
 			{
-				if (characterDirectionLR == 0 && (GetLeftX() - STEP_SIZE + BORDER) >= character->GetRightX() && character->GetMap()->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetButtonY() - BORDER))
+				if (characterDirectionLR == 0 && (GetLeftX() - STEP_SIZE + BORDER) >= character->GetRightX() && m->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetButtonY() - BORDER))
 				{
 					_x -= STEP_SIZE;
 				}
-				else if (characterDirectionLR == 1 && (GetRightX() + STEP_SIZE - BORDER) <= character->GetLeftX() && character->GetMap()->isEmpty(GetRightX() + STEP_SIZE + BORDER, GetButtonY() - BORDER))
+				else if (characterDirectionLR == 1 && (GetRightX() + STEP_SIZE - BORDER) <= character->GetLeftX() && m->isEmpty(GetRightX() + STEP_SIZE + BORDER, GetButtonY() - BORDER))
 				{
 					_x += STEP_SIZE;
 				}

@@ -199,13 +199,13 @@ namespace game_framework
 
 	void MonsterTree::OnMove(Map* m)
 	{
-		if (!character->GetMap() == NULL)
+		if (!m == NULL)
 		{
-			character->GetMap()->monsterFloorChanging(GetLeftX());
-			if (character->GetMap()->getMonsterFloor() > currentFloor)
+			m->monsterFloorChanging(GetLeftX());
+			if (m->getMonsterFloor() > currentFloor)
 			{
 
-				if (_y < character->GetMap()->getMonsterFloor() - 170)
+				if (_y < m->getMonsterFloor() - 210)
 				{
 					_y += velocity * 2;
 					if (velocity < 6)
@@ -213,8 +213,8 @@ namespace game_framework
 				}
 				else
 				{
-					currentFloor = character->GetMap()->getMonsterFloor();
-					_y = currentFloor - 170;			// 當y座標低於地板，更正為地板上
+					currentFloor = m->getMonsterFloor();
+					_y = currentFloor - 210;			// 當y座標低於地板，更正為地板上
 					velocity = 0;
 				}
 			}
@@ -240,11 +240,11 @@ namespace game_framework
 			}
 			else if (distanceToCharacter() < 280 && action == walk_a)
 			{
-				if (characterDirectionLR == 0 && (GetLeftX() - STEP_SIZE + BORDER) >= character->GetRightX() && character->GetMap()->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetButtonY() - 34))
+				if (characterDirectionLR == 0 && (GetLeftX() - STEP_SIZE + BORDER) >= character->GetRightX() && m->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetButtonY()))
 				{
 					_x -= STEP_SIZE;
 				}
-				else if (characterDirectionLR == 1 && (GetRightX() + STEP_SIZE - BORDER - 5) <= character->GetLeftX() && character->GetMap()->isEmpty(GetRightX() + STEP_SIZE + BORDER, GetButtonY() - 34))
+				else if (characterDirectionLR == 1 && (GetRightX() + STEP_SIZE - BORDER - 5) <= character->GetLeftX() && m->isEmpty(GetRightX() + STEP_SIZE + BORDER, GetButtonY()))
 				{
 					_x += STEP_SIZE;
 				}

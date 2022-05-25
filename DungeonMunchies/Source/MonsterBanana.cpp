@@ -135,7 +135,7 @@ namespace game_framework
 	{
 		if (isAlive())
 		{
-			intersect();
+			//intersect();
 			isAttackedEffectCaculation();
 		}
 		else
@@ -150,10 +150,10 @@ namespace game_framework
 				touchSource(m, banana_attack_p);
 			}
 		}
-		if (!character->GetMap() == NULL)
+		if (!m == NULL)
 		{
-			character->GetMap()->monsterFloorChanging(GetLeftX());
-			_y = character->GetMap()->getMonsterFloor() - bananaAlive.Height();;
+			m->monsterFloorChanging(GetLeftX());
+			_y = m->getMonsterFloor() - bananaAlive.Height() - 6;
 		}
 	}
 }
