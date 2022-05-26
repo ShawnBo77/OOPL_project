@@ -221,6 +221,7 @@ namespace game_framework
 	void Character::OnMove(Map* m, vector<Monster*>* monsters)
 	{
 		int monsterBorder;
+		bool isOnMonster = false;
 		//animation.OnMove();													//角色邊框寬度
 		if (currentMap == NULL || m->getMapName() != currentMap->getMapName())
 		{
@@ -352,13 +353,13 @@ namespace game_framework
 
 							if (GetRightX()> monsters->at(i)->GetLeftX() && GetLeftX() < monsters->at(i)->GetRightX() && GetButtonY() + velocity * 3 >= monsters->at(i)->GetTopY() + monsterBorder && monsters->at(i)->isAlive())
 							{
-								characterY = monsters->at(i)->GetTopY();
-							}
-							else
-							{
-								characterY += velocity * 3;			// y軸下降(移動velocity個點，velocity的單位為 點/次)
+								characterY = monsters->at(i)->GetTopY()+monsterBorder-120;
+								isOnMonster = true;
+								break;
 							}
 						}
+						if (!isOnMonster)
+							characterY += velocity * 3;
 					}
 						
 					else 
@@ -790,7 +791,7 @@ namespace game_framework
 						if (GetLeftX() - STEP_SIZE - BORDER <= monsters->at(i)->GetLeftX() + monsterHG + monsterBorder || GetLeftX() - STEP_SIZE - BORDER >= monsters->at(i)->GetRightX() + monsterHG - monsterBorder)
 						{
 						}
-						else if (GetButtonY() + BORDER <= monsters->at(i)->GetTopY())
+						else if (GetButtonY() - BORDER < monsters->at(i)->GetTopY() + monsterBorder)
 						{
 						}
 						else
@@ -828,7 +829,7 @@ namespace game_framework
 						if (GetRightX() + STEP_SIZE + BORDER >= monsters->at(i)->GetRightX() + monsterHG - monsterBorder || GetRightX() + STEP_SIZE + BORDER <= monsters->at(i)->GetLeftX() + monsterHG + monsterBorder)
 						{
 						}
-						else if (GetButtonY() + BORDER <= monsters->at(i)->GetTopY() + 10)
+						else if (GetButtonY()-BORDER < monsters->at(i)->GetTopY()+monsterBorder)
 						{
 						}
 						else

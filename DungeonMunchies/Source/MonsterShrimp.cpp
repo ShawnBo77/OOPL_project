@@ -279,7 +279,7 @@ namespace game_framework
 	{
 		if (action == walk_a) //walk
 		{
-			return _y + 68;
+			return _y + 95;
 		}
 		else// if (actionNum == 1) //attack ?????????????????
 		{

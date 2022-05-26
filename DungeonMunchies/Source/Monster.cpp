@@ -55,7 +55,7 @@ namespace game_framework
 		if (isAlive())
 		{
 			if (character->GetRightX() >= GetLeftX() && character->GetRightX() <= GetRightX()
-				&& character->GetButtonY() >= GetTopY() - 20 && character->GetButtonY() <= GetButtonY())
+				&& character->GetButtonY() >= GetTopY() && character->GetButtonY() <= GetButtonY())
 			{ //角色右方碰到怪物
 				isIntersect = true;
 				if (!character->GetIsInvincible())
@@ -64,7 +64,7 @@ namespace game_framework
 				}
 			}
 			if (character->GetLeftX() <= GetRightX() && character->GetLeftX() >= GetLeftX()
-				&& character->GetButtonY() >= GetTopY() - 20 && character->GetButtonY() <= GetButtonY())
+				&& character->GetButtonY() >= GetTopY() && character->GetButtonY() <= GetButtonY())
 			{ //角色左方碰到怪物
 				isIntersect = true;
 				if (!character->GetIsInvincible())
@@ -76,7 +76,7 @@ namespace game_framework
 				character->GetLeftX() <= GetRightX() && character->GetLeftX() >= GetLeftX() ||
 				character->GetLeftX() <= GetLeftX() && character->GetRightX() >= GetRightX() || //角色比怪物寬
 				character->GetRightX() <= GetRightX() && character->GetLeftX() >= GetLeftX()) //怪物比角色寬
-				&& character->GetButtonY() >= GetTopY() - 20 && character->GetButtonY() <= GetButtonY())
+				&& character->GetButtonY() >= GetTopY() && character->GetButtonY() <= GetButtonY())
 			{ //角色下方碰到怪物
 				isIntersect = true;
 				if (!character->GetIsInvincible())
