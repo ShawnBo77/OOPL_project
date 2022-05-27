@@ -371,6 +371,8 @@ namespace game_framework
 		currentStage = stage_boss;
 		lastStage = currentStage;
 		monsterInitialize();
+
+		isStageChanged = true;
 	}
 
 	void CGameStateRun::OnMove()							// 移動遊戲元素
@@ -395,45 +397,52 @@ namespace game_framework
 			gameCompleteFlag = true;
 			currentStage = stage_game_complete;
 		}
-		if (gamePause == false)
+		else
 		{
-			switch (currentStage)
+			if (gamePause == false)
 			{
-			case stage_1:
-				for (unsigned i = 0; i < monsterS1.size(); i++)
+				switch (currentStage)
 				{
-					monsterS1[i]->OnMove(&mapS1);
+				case stage_1:
+					for (unsigned i = 0; i < monsterS1.size(); i++)
+					{
+						monsterS1[i]->OnMove(&mapS1);
+					}
+					character.OnMove(&mapS1, &monsterS1);
+					break;
+				case stage_2:
+					for (unsigned i = 0; i < monsterS2.size(); i++)
+					{
+						monsterS2[i]->OnMove(&mapS1);
+					}
+					character.OnMove(&mapS2, &monsterS2);
+					break;
+				case stage_boss:
+					for (unsigned i = 0; i < monsterS7.size(); i++)
+					{
+						monsterS7[i]->OnMove(&bossMap);
+					}
+					//for (unsigned i = 0; i < monsterCactus.size(); i++)
+					//{
+					//	monsterCactus[i]->OnMove();
+					//}
+					//for (unsigned i = 0; i < monsterShrimp.size(); i++)
+					//{
+					//	monsterShrimp[i]->OnMove();
+					//}
+					//for (unsigned i = 0; i < monsterTree.size(); i++)
+					//{
+					//	monsterTree[i]->OnMove();
+					//}
+					character.OnMove(&bossMap, &monsterS7);
+					break;
+				default:
+					break;
 				}
-				character.OnMove(&mapS1, &monsterS1);
-				break;
-			case stage_2:
-				for (unsigned i = 0; i < monsterS2.size(); i++)
-				{
-					monsterS2[i]->OnMove(&mapS1);
-				}
-				character.OnMove(&mapS2, &monsterS2);
-				break;
-			case stage_boss:
-				for (unsigned i = 0; i < monsterS7.size(); i++)
-				{
-					monsterS7[i]->OnMove(&bossMap);
-				}
-				//for (unsigned i = 0; i < monsterCactus.size(); i++)
-				//{
-				//	monsterCactus[i]->OnMove();
-				//}
-				//for (unsigned i = 0; i < monsterShrimp.size(); i++)
-				//{
-				//	monsterShrimp[i]->OnMove();
-				//}
-				//for (unsigned i = 0; i < monsterTree.size(); i++)
-				//{
-				//	monsterTree[i]->OnMove();
-				//}
-				character.OnMove(&bossMap, &monsterS7);
-				break;
-			default:
-				break;
+			}
+			if (isStageChanged) {
+				bgmPlayer();
+				isStageChanged = false;
 			}
 		}
 	}
@@ -485,6 +494,13 @@ namespace game_framework
 
 		CAudio::Instance()->Load(AUDIO_COOK, "sounds\\cook.mp3");
 		CAudio::Instance()->Load(AUDIO_ATTACK_HU, "sounds\\attack_hu.mp3");
+		CAudio::Instance()->Load(AUDIO_MUSIC_01, "sounds\\music01.mp3");
+		CAudio::Instance()->Load(AUDIO_MUSIC_02, "sounds\\music02.mp3");
+		CAudio::Instance()->Load(AUDIO_MUSIC_03, "sounds\\music03.mp3");
+		CAudio::Instance()->Load(AUDIO_MUSIC_04, "sounds\\music04.mp3");
+		CAudio::Instance()->Load(AUDIO_MUSIC_05, "sounds\\music05.mp3");
+		CAudio::Instance()->Load(AUDIO_MUSIC_06, "sounds\\music06.mp3");
+		CAudio::Instance()->Load(AUDIO_MUSIC_07, "sounds\\music07.mp3");
 
 		//
 		// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
@@ -522,12 +538,14 @@ namespace game_framework
 					case stage_1:
 						mapS2.Initialize();
 						currentStage = stage_2;
+						isStageChanged = true;
 						character.SetCanGoToNextMap(false);
 						break;
 					case stage_2:
 						bossMap.Initialize();
 						monsterInitialize();
 						currentStage = stage_boss;
+						isStageChanged = true;
 						character.SetCanGoToNextMap(false);
 						break;
 					default:
@@ -537,6 +555,7 @@ namespace game_framework
 				else if (currentStage == stage_props)
 				{
 					currentStage = lastStage;
+					isStageChanged = true;
 					if (!haveCalledCharacterStatus)
 					{
 						gamePause = false;
@@ -550,6 +569,7 @@ namespace game_framework
 				{
 					lastStage = currentStage;
 					currentStage = stage_props;
+					isStageChanged = true;
 					haveCalledCharacterStatus = characterStatusCall;
 					characterStatusCall = false;
 					gamePause = true;
@@ -581,6 +601,7 @@ namespace game_framework
 				characterStatusCall = false;
 				mapS1.Initialize();
 				currentStage = stage_1;
+				isStageChanged = true;
 				break;
 			case KEY_2:
 				monsterInitialize();
@@ -588,6 +609,7 @@ namespace game_framework
 				characterStatusCall = false;
 				mapS2.Initialize();
 				currentStage = stage_2;
+				isStageChanged = true;
 				break;
 			case KEY_7:
 				monsterInitialize();
@@ -595,6 +617,7 @@ namespace game_framework
 				characterStatusCall = false;
 				bossMap.Initialize();
 				currentStage = stage_boss;
+				isStageChanged = true;
 				/*if (currentStage == stage_boss)
 				{
 					currentStage = lastStage;
@@ -831,6 +854,37 @@ namespace game_framework
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
+
+	void CGameStateRun::bgmPlayer()
+	{
+		if (currentStage == stage_1)
+		{
+			stopAllBgm();
+			CAudio::Instance()->Play(AUDIO_MUSIC_01, true);
+		}
+		else if (currentStage == stage_2)
+		{
+			stopAllBgm();
+			CAudio::Instance()->Play(AUDIO_MUSIC_02, true);
+		}
+		else if (currentStage == stage_boss)
+		{
+			stopAllBgm();
+			CAudio::Instance()->Play(AUDIO_MUSIC_07, true);
+		}
+	}
+
+	void CGameStateRun::stopAllBgm()
+	{
+		CAudio::Instance()->Stop(AUDIO_MUSIC_01);
+		CAudio::Instance()->Stop(AUDIO_MUSIC_02);
+		CAudio::Instance()->Stop(AUDIO_MUSIC_03);
+		CAudio::Instance()->Stop(AUDIO_MUSIC_04);
+		CAudio::Instance()->Stop(AUDIO_MUSIC_05);
+		CAudio::Instance()->Stop(AUDIO_MUSIC_06);
+		CAudio::Instance()->Stop(AUDIO_MUSIC_07);
+	}
+
 	void CGameStateRun::monsterInitialize()
 	{
 		for (unsigned i = 0; i < monsterS1.size(); i++)

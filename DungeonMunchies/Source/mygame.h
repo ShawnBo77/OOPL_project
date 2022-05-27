@@ -119,6 +119,8 @@ namespace game_framework
 		void monsterInitialize();
 	private:
 		void gameCompleteNoteShow();
+		void bgmPlayer();
+		void stopAllBgm();
 		//CMovingBitmap	monster;
 		Character		character;
 		MapForBoss		bossMap;
@@ -141,6 +143,7 @@ namespace game_framework
 		CMovingBitmap lightBulb;
 		CMovingBitmap gameComplete;
 		bool gameCompleteFlag;
+		bool isStageChanged; //for bmgPlayer
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
