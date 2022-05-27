@@ -555,7 +555,6 @@ namespace game_framework
 				else if (currentStage == stage_props)
 				{
 					currentStage = lastStage;
-					isStageChanged = true;
 					if (!haveCalledCharacterStatus)
 					{
 						gamePause = false;
@@ -569,7 +568,6 @@ namespace game_framework
 				{
 					lastStage = currentStage;
 					currentStage = stage_props;
-					isStageChanged = true;
 					haveCalledCharacterStatus = characterStatusCall;
 					characterStatusCall = false;
 					gamePause = true;
