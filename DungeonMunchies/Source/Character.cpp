@@ -206,7 +206,7 @@ namespace game_framework
 		shrimpAttack = false;
 		currentMap = NULL;
 		action = walk_a;
-		lightBulbNum = 0;
+		lightBulbNum = 1000;
 
 		sourceStorage->getSource(0)->setNum(5);
 		sourceStorage->getSource(1)->setNum(5);

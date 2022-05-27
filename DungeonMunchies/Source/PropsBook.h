@@ -34,6 +34,7 @@ namespace game_framework {
 		vector<CMovingBitmap> setIconPosition(vector<CMovingBitmap> iconList);
 		void cook();
 		void sourceNumShow(int sourceCase);
+		void propListOnShow();
 		void onShow();
 		void LightBulbOnShow();
 	private:
@@ -53,6 +54,15 @@ namespace game_framework {
 		CMovingBitmap ShrimpAttackIcon;
 		CMovingBitmap GuavaJuiceBloodIcon;
 		vector<CMovingBitmap> iconList;
+
+		CMovingBitmap MosquitoJumpIconS;
+		CMovingBitmap ShrimpBloodIconS;
+		CMovingBitmap GrassFastIconS;
+		CMovingBitmap BananaAttackIconS;
+		CMovingBitmap ShrimpAttackIconS;
+		CMovingBitmap GuavaJuiceBloodIconS;
+		vector<CMovingBitmap> propList;
+		int px;
 
 		CMovingBitmap MosquitoJumpDetails;
 		CMovingBitmap ShrimpBloodDetails;
