@@ -1004,6 +1004,7 @@ namespace game_framework
 
 	void Character::attack(vector<Monster*>* monsters)
 	{
+		CAudio::Instance()->Play(AUDIO_ATTACK_HU, false);
 		action = attack_a;
 		isAttacking = true;
 

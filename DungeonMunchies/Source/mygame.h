@@ -77,6 +77,8 @@ namespace game_framework
 		void OnLButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
 		void OnMouseMove(UINT nFlags, CPoint point);	// 處理滑鼠的動作 
 	protected:
+		void isChoiceChange();
+		void OnMove();
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		//CMovingBitmap logo;								// csie的logo
@@ -84,6 +86,7 @@ namespace game_framework
 		CMovingBitmap startMenuChoice;
 		CMovingBitmap staff;
 		int choice;
+		int lastChoice;
 		int yChoice;
 		bool onChoice;
 		bool showStaff;

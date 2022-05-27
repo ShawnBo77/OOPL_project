@@ -28,7 +28,9 @@ const char KEY_TAB = 9;
 enum AUDIO_ID
 {				
 	AUDIO_STARTMENU,
-	AUDIO_COOK
+	AUDIO_CHOOSE,
+	AUDIO_COOK,
+	AUDIO_ATTACK_HU
 };
 
 // 定義各關卡的編號

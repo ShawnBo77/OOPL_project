@@ -88,6 +88,7 @@ namespace game_framework
 		startMenuChoice.LoadBitmap(".\\res\\start_menu_choice.bmp", RGB(0, 0, 0));
 		staff.LoadBitmap(".\\res\\staff.bmp");
 		CAudio::Instance()->Load(AUDIO_STARTMENU, "sounds\\start_menu_audio.mp3");
+		CAudio::Instance()->Load(AUDIO_CHOOSE, "sounds\\choose.mp3");
 		CAudio::Instance()->Play(AUDIO_STARTMENU, true);
 		//logo.LoadBitmap(IDB_BACKGROUND);
 		//Sleep(300);				// 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
@@ -101,6 +102,7 @@ namespace game_framework
 		onChoice = false;
 		yChoice = 380;
 		choice = 0;
+		lastChoice = 0;
 		showStaff = false;
 	}
 
@@ -129,14 +131,16 @@ namespace game_framework
 			{
 				showStaff = true;
 			}
-			if (point.x >= 0 && point.x <= 31 && point.y >= 735  && point.y <= 768) {
+			if (point.x >= 0 && point.x <= 31 && point.y >= 735 && point.y <= 768)
+			{
 				ShellExecute(0, NULL, _T("https://www.facebook.com/dungeonmunchies/"), NULL, NULL, SW_NORMAL);
 			}
-			if (point.x > 31 && point.x <= 73 && point.y >= 735  && point.y <= 768)
+			if (point.x > 31 && point.x <= 73 && point.y >= 735 && point.y <= 768)
 			{
 				ShellExecute(0, NULL, _T("https://twitter.com/dungeonmunchies"), NULL, NULL, SW_NORMAL);
 			}
-			if (point.x > 73 && point.x <= 98 && point.y >= 735 && point.y <= 768) {
+			if (point.x > 73 && point.x <= 98 && point.y >= 735 && point.y <= 768)
+			{
 				ShellExecute(0, NULL, _T("https://discord.com/invite/8NyCnxN"), NULL, NULL, SW_NORMAL);
 			}
 		}
@@ -183,6 +187,20 @@ namespace game_framework
 				choice = 0;
 			}
 		}
+	}
+
+	void CGameStateInit::isChoiceChange()
+	{
+		if (lastChoice != choice && choice != 0)
+		{
+			CAudio::Instance()->Play(AUDIO_CHOOSE, false);
+			lastChoice = choice;
+		}
+	}
+
+	void CGameStateInit::OnMove()
+	{
+		isChoiceChange();
 	}
 
 	void CGameStateInit::OnShow()
@@ -466,6 +484,7 @@ namespace game_framework
 		}
 
 		CAudio::Instance()->Load(AUDIO_COOK, "sounds\\cook.mp3");
+		CAudio::Instance()->Load(AUDIO_ATTACK_HU, "sounds\\attack_hu.mp3");
 
 		//
 		// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
