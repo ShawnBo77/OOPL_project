@@ -14,7 +14,7 @@ namespace game_framework {
         virtual void Initialize();
         void setPropFlag(bool flag);
         bool getPropFlag();
-        virtual void effect(Character* character) = 0;
+        virtual void effect(Character* character, bool flag) = 0;
         void onShow();
     private:
         bool propFlag;

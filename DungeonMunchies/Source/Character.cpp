@@ -227,7 +227,7 @@ namespace game_framework
 			ResetPosition(m);
 		}
 
-		if (m->getMapName() == "MapS2") 
+		if (m->getMapName() == "MapS2")
 		{
 			m->setCharacterX(characterX);
 			m->setCharacterY(characterY);
@@ -301,7 +301,7 @@ namespace game_framework
 					{
 						m->addSX(-STEP_SIZE);
 						monsterRelativeMove(monsters, -STEP_SIZE);
-					}	
+					}
 				}
 			}
 
@@ -349,9 +349,9 @@ namespace game_framework
 						{
 							monsterBorder = monsters->at(i)->GetBorder();
 
-							if (GetRightX()> monsters->at(i)->GetLeftX() && GetLeftX() < monsters->at(i)->GetRightX() && GetButtonY() + velocity * 3 >= monsters->at(i)->GetTopY() + monsterBorder && monsters->at(i)->isAlive())
+							if (GetRightX() > monsters->at(i)->GetLeftX() && GetLeftX() < monsters->at(i)->GetRightX() && GetButtonY() + velocity * 3 >= monsters->at(i)->GetTopY() + monsterBorder && monsters->at(i)->isAlive())
 							{
-								characterY = monsters->at(i)->GetTopY()+monsterBorder-120;
+								characterY = monsters->at(i)->GetTopY() + monsterBorder - 120;
 								isOnMonster = true;
 								break;
 							}
@@ -359,8 +359,8 @@ namespace game_framework
 						if (!isOnMonster)
 							characterY += velocity * 3;
 					}
-						
-					else 
+
+					else
 						characterY = m->getFloor() - 119;
 					if (velocity < 6)
 						velocity++;
@@ -456,7 +456,7 @@ namespace game_framework
 		//animation.OnShow();
 		BloodShow();
 		yRelativeMovement = 0;
-		if (GetMap() != NULL) 
+		if (GetMap() != NULL)
 		{
 			yRelativeMovement = GetMap()->getCharacterYRelativeMovement();
 		}
@@ -471,7 +471,9 @@ namespace game_framework
 		if (isAttacked && isSparkleEffectShow)
 		{
 			isAttackedEffectOnShow();
-		}else {
+		}
+		else
+		{
 			if (facingLR == 0)
 			{
 				if (isRolling)//action == roll_a)
@@ -826,7 +828,7 @@ namespace game_framework
 						if (GetRightX() + STEP_SIZE + BORDER >= monsters->at(i)->GetRightX() + monsterHG - monsterBorder || GetRightX() + STEP_SIZE + BORDER <= monsters->at(i)->GetLeftX() + monsterHG + monsterBorder)
 						{
 						}
-						else if (GetButtonY()-BORDER < monsters->at(i)->GetTopY()+monsterBorder)
+						else if (GetButtonY() - BORDER < monsters->at(i)->GetTopY() + monsterBorder)
 						{
 						}
 						else
@@ -1132,11 +1134,14 @@ namespace game_framework
 		isGrassFast = flag;
 		if (flag)
 		{
-			IncreaseSpeed(1.4);
+			ChangeSpeed(1.4);
+		}
+		else {
+			ChangeSpeed(0.72);
 		}
 	}
 
-	void Character::IncreaseSpeed(double m)
+	void Character::ChangeSpeed(double m)
 	{
 		STEP_SIZE = int(STEP_SIZE * m);
 	}
@@ -1146,7 +1151,11 @@ namespace game_framework
 		isShrimpBlood = flag;
 		if (flag)
 		{
-			addMaxHp(20);
+			maxHp += 20;
+		}
+		else
+		{
+			maxHp -= 20;
 		}
 	}
 

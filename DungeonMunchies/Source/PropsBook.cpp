@@ -141,6 +141,10 @@ namespace game_framework
 		{
 			cook();
 		}
+		else if (mx > 219 && my > 612 && mx < 541 && my < 657)
+		{
+			propCancellation();
+		}
 	}
 
 	void PropsBook::setIconList()
@@ -180,68 +184,68 @@ namespace game_framework
 		switch (Case)
 		{
 		case mosquito_jump_p:
-			if (!(propStorage->getProp(mosquito_jump_p)->getPropFlag()) && sourceStorage->getSource(mosquito_jump_p)->getNum() >= 5 && _character->GetLightBulbNum() >= 0)
+			if (!(propStorage->getProp(mosquito_jump_p)->getPropFlag()) && sourceStorage->getSource(mosquito_jump_s)->getNum() >= 5 && _character->GetLightBulbNum() >= 0)
 			{
 				CAudio::Instance()->Play(AUDIO_COOK, false);
-				sourceStorage->getSource(mosquito_jump_p)->consume(5);
+				sourceStorage->getSource(mosquito_jump_s)->consume(5);
 				propStorage->getProp(mosquito_jump_p)->setPropFlag(true);
-				propStorage->getProp(mosquito_jump_p)->effect(_character);
-				propList.push_back(MosquitoJumpIconS);
+				propStorage->getProp(mosquito_jump_p)->effect(_character, true);
+				propList.push_back(mosquito_jump_p);
 			}
 			break;
 		case shrimp_blood_p:
-			if (!(propStorage->getProp(shrimp_blood_p)->getPropFlag()) && sourceStorage->getSource(shrimp_blood_p)->getNum() >= 1 && _character->GetLightBulbNum() >= 50)
+			if (!(propStorage->getProp(shrimp_blood_p)->getPropFlag()) && sourceStorage->getSource(shrimp_blood_s)->getNum() >= 1 && _character->GetLightBulbNum() >= 50)
 			{
 				CAudio::Instance()->Play(AUDIO_COOK, false);
-				sourceStorage->getSource(shrimp_blood_p)->consume(1);
+				sourceStorage->getSource(shrimp_blood_s)->consume(1);
 				propStorage->getProp(shrimp_blood_p)->setPropFlag(true);
-				propStorage->getProp(shrimp_blood_p)->effect(_character);
+				propStorage->getProp(shrimp_blood_p)->effect(_character, true);
 				_character->ConsumeLightBulb(50);
-				propList.push_back(ShrimpBloodIconS);
+				propList.push_back(shrimp_blood_p);
 			}
 			break;
 		case grass_fast_p:
-			if (!(propStorage->getProp(grass_fast_p)->getPropFlag()) && sourceStorage->getSource(grass_fast_p)->getNum() >= 5 && _character->GetLightBulbNum() >= 40)
+			if (!(propStorage->getProp(grass_fast_p)->getPropFlag()) && sourceStorage->getSource(grass_fast_s)->getNum() >= 5 && _character->GetLightBulbNum() >= 40)
 			{
 				CAudio::Instance()->Play(AUDIO_COOK, false);
-				sourceStorage->getSource(grass_fast_p)->consume(5);
+				sourceStorage->getSource(grass_fast_s)->consume(5);
 				propStorage->getProp(grass_fast_p)->setPropFlag(true);
-				propStorage->getProp(grass_fast_p)->effect(_character);
+				propStorage->getProp(grass_fast_p)->effect(_character, true);
 				_character->ConsumeLightBulb(40);
-				propList.push_back(GrassFastIconS);
+				propList.push_back(grass_fast_p);
 			}
 			break;
 		case banana_attack_p:
-			if (!(propStorage->getProp(banana_attack_p)->getPropFlag()) && sourceStorage->getSource(banana_attack_p)->getNum() >= 1 && _character->GetLightBulbNum() >= 60)
+			if (!(propStorage->getProp(banana_attack_p)->getPropFlag()) && sourceStorage->getSource(banana_attack_s)->getNum() >= 1 && _character->GetLightBulbNum() >= 60)
 			{
 				CAudio::Instance()->Play(AUDIO_COOK, false);
-				sourceStorage->getSource(banana_attack_p)->consume(1);
+				sourceStorage->getSource(banana_attack_s)->consume(1);
 				propStorage->getProp(banana_attack_p)->setPropFlag(true);
-				propStorage->getProp(banana_attack_p)->effect(_character);
+				propStorage->getProp(banana_attack_p)->effect(_character, true);
 				_character->ConsumeLightBulb(60);
-				propList.push_back(BananaAttackIconS);
+				propList.push_back(banana_attack_p);
 			}
 			break;
 		case shrimp_attack_p:
-			if (!(propStorage->getProp(shrimp_attack_p)->getPropFlag()) && sourceStorage->getSource(guava_juice_blood_p)->getNum() >= 1 && _character->GetLightBulbNum() >= 60)
+			if (!(propStorage->getProp(shrimp_attack_p)->getPropFlag()) && sourceStorage->getSource(guava_juice_blood_s)->getNum() >= 1 && _character->GetLightBulbNum() >= 60)
 			{
 				CAudio::Instance()->Play(AUDIO_COOK, false);
-				sourceStorage->getSource(shrimp_attack_p)->consume(1);
+				sourceStorage->getSource(shrimp_attack_s)->consume(1);
 				propStorage->getProp(shrimp_attack_p)->setPropFlag(true);
-				propStorage->getProp(shrimp_attack_p)->effect(_character);
+				propStorage->getProp(shrimp_attack_p)->effect(_character, true);
 				_character->ConsumeLightBulb(60);
-				propList.push_back(ShrimpAttackIconS);
+				propList.push_back(shrimp_attack_p);
 			}
 			break;
 		case guava_juice_blood_p:
-			if (!(propStorage->getProp(guava_juice_blood_p)->getPropFlag()) && sourceStorage->getSource(guava_juice_blood_p)->getNum() >= 1 && _character->GetLightBulbNum() >= 50)
+			if (!(propStorage->getProp(guava_juice_blood_p)->getPropFlag()) && sourceStorage->getSource(guava_juice_blood_s)->getNum() >= 1 && _character->GetLightBulbNum() >= 50)
 			{
 				CAudio::Instance()->Play(AUDIO_COOK, false);
-				sourceStorage->getSource(guava_juice_blood_p)->consume(1);
+				sourceStorage->getSource(guava_juice_blood_s)->consume(1);
 				propStorage->getProp(guava_juice_blood_p)->setPropFlag(true);
-				propStorage->getProp(guava_juice_blood_p)->effect(_character);
+				propStorage->getProp(guava_juice_blood_p)->effect(_character, true);
 				_character->ConsumeLightBulb(50);
-				propList.push_back(GuavaJuiceBloodIconS);
+				propList.push_back(guava_juice_blood_p);
 			}
 			break;
 		default:
@@ -254,8 +258,8 @@ namespace game_framework
 		px = 219;
 		for (int i = 0; (unsigned)i < propList.size(); i++)
 		{
-			propList.at(i).SetTopLeft(px, 612);
-			propList.at(i).ShowBitmap();
+			propBitmap(propList.at(i))->SetTopLeft(px, 612);
+			propBitmap(propList.at(i))->ShowBitmap();
 			px += 46;
 		}
 	}
@@ -273,6 +277,79 @@ namespace game_framework
 		pDC->TextOut(228, 73, position);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+	}
+
+	CMovingBitmap* PropsBook::propBitmap(PropCase pc)
+	{
+		switch (pc)
+		{
+		case mosquito_jump_p:
+			return &MosquitoJumpIconS;
+		case shrimp_blood_p:
+			return &ShrimpBloodIconS;
+		case grass_fast_p:
+			return &GrassFastIconS;
+		case banana_attack_p:
+			return &BananaAttackIconS;
+		case shrimp_attack_p:
+			return &ShrimpAttackIconS;
+		case guava_juice_blood_p:
+			return &GuavaJuiceBloodIconS;
+		}
+		throw;
+	}
+
+	void PropsBook::propCancellation()
+	{
+		int cancellationCase = (mx - 219) / 46;
+		vector <PropCase>::iterator it;
+		it = propList.begin();
+		advance(it, cancellationCase);
+		switch (propList.at(cancellationCase))
+		{
+		case mosquito_jump_p:
+			propStorage->getProp(mosquito_jump_p)->setPropFlag(false);
+			sourceStorage->getSource(mosquito_jump_s)->add(5);
+			propStorage->getProp(mosquito_jump_p)->effect(_character, false);
+			propList.erase(it);
+			break;
+		case shrimp_blood_p:
+			propStorage->getProp(shrimp_blood_p)->setPropFlag(false);
+			sourceStorage->getSource(shrimp_blood_s)->add(1);
+			_character->AddLightBulb(50);
+			propStorage->getProp(shrimp_blood_p)->effect(_character, false);
+			propList.erase(it);
+			break;
+		case grass_fast_p:
+			propStorage->getProp(grass_fast_p)->setPropFlag(false);
+			sourceStorage->getSource(grass_fast_p)->add(5);
+			_character->AddLightBulb(40);
+			propStorage->getProp(grass_fast_p)->effect(_character, false);
+			propList.erase(it);
+			break;
+		case banana_attack_p:
+			propStorage->getProp(banana_attack_p)->setPropFlag(false);
+			sourceStorage->getSource(banana_attack_p)->add(1);
+			_character->AddLightBulb(60);
+			propStorage->getProp(banana_attack_p)->effect(_character, false);
+			propList.erase(it);
+			break;
+		case shrimp_attack_p:
+			propStorage->getProp(shrimp_attack_p)->setPropFlag(false);
+			sourceStorage->getSource(shrimp_attack_p)->add(1);
+			_character->AddLightBulb(60);
+			propStorage->getProp(shrimp_attack_p)->effect(_character, false);
+			propList.erase(it);
+			break;
+		case guava_juice_blood_p:
+			propStorage->getProp(guava_juice_blood_p)->setPropFlag(false);
+			sourceStorage->getSource(guava_juice_blood_p)->add(1);
+			_character->AddLightBulb(50);
+			propStorage->getProp(guava_juice_blood_p)->effect(_character, false);
+			propList.erase(it);
+			break;
+		}
+
 	}
 
 	void PropsBook::sourceNumShow(int sourceCase)

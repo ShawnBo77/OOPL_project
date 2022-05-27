@@ -35,6 +35,8 @@ namespace game_framework {
 		void cook();
 		void sourceNumShow(int sourceCase);
 		void propListOnShow();
+		void propCancellation();
+		CMovingBitmap* propBitmap(PropCase pc); //回傳該bitmap是何prop
 		void onShow();
 		void LightBulbOnShow();
 	private:
@@ -61,7 +63,7 @@ namespace game_framework {
 		CMovingBitmap BananaAttackIconS;
 		CMovingBitmap ShrimpAttackIconS;
 		CMovingBitmap GuavaJuiceBloodIconS;
-		vector<CMovingBitmap> propList;
+		vector<PropCase> propList;
 		int px;
 
 		CMovingBitmap MosquitoJumpDetails;

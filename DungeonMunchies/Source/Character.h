@@ -105,7 +105,7 @@ namespace game_framework
 		bool CanDoubleJump();                   // 回傳是否可以二段跳
 		void SetDoubleJump(bool flag);          // 設定是否可以二段跳
 		void EatGrassFast(bool flag);           // 吃下移動速度提升能力
-		void IncreaseSpeed(double m);           // 提升移動速度(倍率)
+		void ChangeSpeed(double m);           // 提升移動速度(倍率)
 		void EatShrimpBlood(bool flag);         // 吃下血量提升能力
 		void addMaxHp(int blood);               // 提升血量上限
 		void EatGuavaJuiceBlood(bool flag);     // 吃下每十秒回三滴血能力

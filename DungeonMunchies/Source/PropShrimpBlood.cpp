@@ -26,8 +26,8 @@ namespace game_framework {
     {
     }
 
-    void PropShrimpBlood::effect(Character* character)
+    void PropShrimpBlood::effect(Character* character, bool flag)
     {
-        character->EatShrimpBlood(true);
+        character->EatShrimpBlood(flag);
     }
 }

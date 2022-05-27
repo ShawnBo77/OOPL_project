@@ -126,27 +126,27 @@ namespace game_framework
 			{
 				col[0] = 1;
 			}
+			else
+			{
+				col[0] = 0;
+			}
 			if (_character->GetIsGrassFast())
 			{
 				col[1] = 1;
+			}
+			else
+			{
+				col[1] = 0;
 			}
 			if (_character->GetIsShrimpBlood())
 			{
 				col[2] = 1;
 			}
+			else
+			{
+				col[2] = 0;
+			}
 		}
-		//if (_character->GetIsGuavaJuiceBlood())
-		//{
-		//	row += 1;
-		//}
-		//if (_character->GetIsBananaAttack())
-		//{
-		//	row += 1;
-		//}
-		//if (_character->GetIsShrimpAttack())
-		//{
-		//	row += 1;
-		//}
 	}
 
 	void CharacterStatus::showData(int x, int y, int data)

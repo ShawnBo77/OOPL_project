@@ -11,7 +11,7 @@ namespace game_framework {
         PropShrimpBlood();
         ~PropShrimpBlood();
         void Initialize();
-        void effect(Character* character) override;
+        void effect(Character* character, bool flag) override;
     private:
 
     };
