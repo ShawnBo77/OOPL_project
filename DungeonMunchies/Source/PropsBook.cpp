@@ -149,6 +149,7 @@ namespace game_framework {
 		switch (Case) {
 		case mosquito_jump_p:
 			if (!(propStorage->getProp(mosquito_jump_p)->getPropFlag()) && sourceStorage->getSource(mosquito_jump_p)->getNum() >= 5 && _character->GetLightBulbNum() >= 0) {
+				CAudio::Instance()->Play(AUDIO_COOK, false);
 				sourceStorage->getSource(mosquito_jump_p)->consume(5);
 				propStorage->getProp(mosquito_jump_p)->setPropFlag(true);
 				propStorage->getProp(mosquito_jump_p)->effect(_character);
@@ -156,6 +157,7 @@ namespace game_framework {
 			break;
 		case shrimp_blood_p:
 			if (!(propStorage->getProp(shrimp_blood_p)->getPropFlag()) && sourceStorage->getSource(shrimp_blood_p)->getNum() >= 1 && _character->GetLightBulbNum() >= 50) {
+				CAudio::Instance()->Play(AUDIO_COOK, false);
 				sourceStorage->getSource(shrimp_blood_p)->consume(1);
 				propStorage->getProp(shrimp_blood_p)->setPropFlag(true);
 				propStorage->getProp(shrimp_blood_p)->effect(_character);
@@ -164,6 +166,7 @@ namespace game_framework {
 			break;
 		case grass_fast_p:
 			if (!(propStorage->getProp(grass_fast_p)->getPropFlag()) && sourceStorage->getSource(grass_fast_p)->getNum() >= 5 && _character->GetLightBulbNum() >= 40) {
+				CAudio::Instance()->Play(AUDIO_COOK, false);
 				sourceStorage->getSource(grass_fast_p)->consume(5);
 				propStorage->getProp(grass_fast_p)->setPropFlag(true);
 				propStorage->getProp(grass_fast_p)->effect(_character);
@@ -172,6 +175,7 @@ namespace game_framework {
 			break;
 		case banana_attack_p:
 			if (!(propStorage->getProp(banana_attack_p)->getPropFlag()) && sourceStorage->getSource(banana_attack_p)->getNum() >= 1 && _character->GetLightBulbNum() >= 60) {
+				CAudio::Instance()->Play(AUDIO_COOK, false);
 				sourceStorage->getSource(banana_attack_p)->consume(1);
 				propStorage->getProp(banana_attack_p)->setPropFlag(true);
 				propStorage->getProp(banana_attack_p)->effect(_character);
@@ -180,6 +184,7 @@ namespace game_framework {
 			break;
 		case shrimp_attack_p:
 			if (!(propStorage->getProp(shrimp_attack_p)->getPropFlag()) && sourceStorage->getSource(guava_juice_blood_p)->getNum() >= 1 && _character->GetLightBulbNum() >= 60) {
+				CAudio::Instance()->Play(AUDIO_COOK, false);
 				sourceStorage->getSource(shrimp_attack_p)->consume(1);
 				propStorage->getProp(shrimp_attack_p)->setPropFlag(true);
 				propStorage->getProp(shrimp_attack_p)->effect(_character);
@@ -188,6 +193,7 @@ namespace game_framework {
 			break;
 		case guava_juice_blood_p:
 			if (!(propStorage->getProp(guava_juice_blood_p)->getPropFlag()) && sourceStorage->getSource(guava_juice_blood_p)->getNum() >= 1 && _character->GetLightBulbNum() >= 50) {
+				CAudio::Instance()->Play(AUDIO_COOK, false);
 				sourceStorage->getSource(guava_juice_blood_p)->consume(1);
 				propStorage->getProp(guava_juice_blood_p)->setPropFlag(true);
 				propStorage->getProp(guava_juice_blood_p)->effect(_character);
@@ -197,6 +203,21 @@ namespace game_framework {
 		default:
 			break;
 		}
+	}
+
+	void PropsBook::LightBulbOnShow()
+	{
+		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+		CFont f, * fp;
+		f.CreatePointFont(235, "Times New Roman");	// 產生 font f; 160表示16 point的字
+		fp = pDC->SelectObject(&f);					// 選用 font f
+		pDC->SetBkMode(TRANSPARENT);
+		pDC->SetTextColor(RGB(145, 137, 125));
+		char position[100];								// Demo 數字對字串的轉換
+		sprintf(position, "%d", _character->GetLightBulbNum());
+		pDC->TextOut(228, 73, position);
+		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
 
 	void PropsBook::sourceNumShow(int sourceCase) {
@@ -285,5 +306,6 @@ namespace game_framework {
 		}
 		propsBookChoice.SetTopLeft(choicex, choicey);
 		propsBookChoice.ShowBitmap();
+		LightBulbOnShow();
     }
 }

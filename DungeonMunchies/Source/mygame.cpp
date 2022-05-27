@@ -442,6 +442,7 @@ namespace game_framework
 		bossMap.LoadBitmap();
 		propsBook.LoadBitmap();
 		characterStatus.LoadBitmap();
+		lightBulb.LoadBitmap(".\\res\\light_bulb.bmp", RGB(0, 0, 0));
 		gameComplete.LoadBitmap(".\\res\\game_complete.bmp");
 		for (unsigned i = 0; i < monsterS1.size(); i++)
 		{
@@ -463,6 +464,8 @@ namespace game_framework
 		{
 			monsterTree[i]->LoadBitmap();
 		}
+
+		CAudio::Instance()->Load(AUDIO_COOK, "sounds\\cook.mp3");
 
 		//
 		// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
@@ -714,6 +717,7 @@ namespace game_framework
 			{
 				monsterS1[i]->OnShow(&mapS1);
 			}
+			LightBulbOnShow();
 			break;
 		case stage_2:
 			mapS2.onShow();
@@ -722,6 +726,7 @@ namespace game_framework
 			{
 				monsterS2[i]->OnShow(&mapS2);
 			}
+			LightBulbOnShow();
 			break;
 		case stage_boss:
 			bossMap.onShow();
@@ -742,6 +747,7 @@ namespace game_framework
 			//{
 			//	monsterTree[i]->OnShow(&bossMap);
 			//}
+			LightBulbOnShow();
 			break;
 		case stage_props:
 			propsBook.onShow();
@@ -758,6 +764,23 @@ namespace game_framework
 			characterStatus.onShow();
 		}
 		ShowData();
+	}
+
+	void CGameStateRun::LightBulbOnShow()
+	{
+		lightBulb.SetTopLeft(18, 80);
+		lightBulb.ShowBitmap();
+		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+		CFont f, * fp;
+		f.CreatePointFont(200, "Times New Roman");	// 產生 font f; 160表示16 point的字
+		fp = pDC->SelectObject(&f);					// 選用 font f
+		pDC->SetBkMode(TRANSPARENT);
+		pDC->SetTextColor(RGB(255, 255, 255));
+		char position[100];								// Demo 數字對字串的轉換
+		sprintf(position, "x %d", character.GetLightBulbNum());
+		pDC->TextOut(57, 87, position);
+		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
 
 	void CGameStateRun::ShowData()

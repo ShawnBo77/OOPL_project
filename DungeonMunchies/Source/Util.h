@@ -24,6 +24,13 @@ const char KEY_SPACE = 0x20;
 const char KEY_CTRL = 0x11;
 const char KEY_TAB = 9;
 
+// 定義各種音效的編號
+enum AUDIO_ID
+{				
+	AUDIO_STARTMENU,
+	AUDIO_COOK
+};
+
 // 定義各關卡的編號
 enum Stage
 {

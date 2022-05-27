@@ -45,8 +45,6 @@ namespace game_framework
 		characterBlood[8].LoadBitmap(IDB_CHARACTERBLOOD09, RGB(255, 255, 255));
 		characterBlood[9].LoadBitmap(IDB_CHARACTERBLOOD10, RGB(255, 255, 255));
 
-		lightBulb.LoadBitmap(".\\res\\light_bulb.bmp", RGB(0, 0, 0));
-
 		standLeft.LoadBitmap(IDB_HEROLEFTSTAND_S, RGB(0, 0, 0));		//向左站
 		standRight.LoadBitmap(IDB_HERORIGHTSTAND_S, RGB(0, 0, 0));		//向右站
 
@@ -559,8 +557,7 @@ namespace game_framework
 				}
 			}
 		}
-		
-		LightBulbShow();
+
 		showData();
 	}
 
@@ -1284,23 +1281,6 @@ namespace game_framework
 	void Character::ConsumeLightBulb(int num)
 	{
 		lightBulbNum -= num;
-	}
-
-	void Character::LightBulbShow()
-	{
-		lightBulb.SetTopLeft(18, 80);
-		lightBulb.ShowBitmap();
-		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
-		CFont f, * fp;
-		f.CreatePointFont(200, "Times New Roman");	// 產生 font f; 160表示16 point的字
-		fp = pDC->SelectObject(&f);					// 選用 font f
-		pDC->SetBkMode(TRANSPARENT);
-		pDC->SetTextColor(RGB(255, 255, 255));
-		char position[100];								// Demo 數字對字串的轉換
-		sprintf(position, "x %d", lightBulbNum);
-		pDC->TextOut(57, 87, position);
-		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
-		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
 
 	void Character::restoreCurrentHp(int n)

@@ -62,11 +62,6 @@ namespace game_framework
 	// Constants
 	/////////////////////////////////////////////////////////////////////////////
 
-	enum AUDIO_ID
-	{				// 定義各種音效的編號
-		AUDIO_STARTMENU
-	};
-
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲開頭畫面物件
 	// 每個Member function的Implementation都要弄懂
@@ -116,6 +111,7 @@ namespace game_framework
 	protected:
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
+		void LightBulbOnShow();
 		void ShowData();
 		void monsterInitialize();
 	private:
@@ -127,14 +123,6 @@ namespace game_framework
 		MapS2 mapS2;
 		PropsBook		propsBook;
 		CharacterStatus characterStatus;
-		//const int		NUMBALLS;	// 球的總數
-		//CMovingBitmap	background;	// 背景圖
-		//CMovingBitmap	help;		// 說明圖
-		//CBall			*ball;		// 球的陣列
-		//CMovingBitmap	corner;		// 角落圖
-		//CEraser			eraser;		// 拍子
-		//CInteger		hits_left;	// 剩下的撞擊數
-		//CBouncingBall   bball;		// 反覆彈跳的球
 		Stage currentStage;
 		Stage lastStage;
 		bool characterStatusCall;
@@ -147,6 +135,7 @@ namespace game_framework
 		vector<Monster*> monsterTree;
 
 		CPoint mousePosition;
+		CMovingBitmap lightBulb;
 		CMovingBitmap gameComplete;
 		bool gameCompleteFlag;
 	};

@@ -35,6 +35,7 @@ namespace game_framework {
 		void cook();
 		void sourceNumShow(int sourceCase);
 		void onShow();
+		void LightBulbOnShow();
 	private:
 		int mx, my;
 		int choicex, choicey;
