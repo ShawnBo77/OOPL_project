@@ -90,6 +90,7 @@ namespace game_framework
 		instructionsPage01.LoadBitmap(".\\res\\instructions01.bmp");
 		instructionsPage02.LoadBitmap(".\\res\\instructions02.bmp");
 		instructionsPageC.LoadBitmap(".\\res\\instructions_c01.bmp");
+		whiteX.LoadBitmap(".\\res\\white_x.bmp", RGB(0, 0, 0));
 		arrowL.LoadBitmap(".\\res\\arrow_left.bmp", RGB(0, 0, 0));
 		arrowR.LoadBitmap(".\\res\\arrow_right.bmp", RGB(0, 0, 0));
 		CAudio::Instance()->Load(AUDIO_STARTMENU, "sounds\\start_menu_audio.mp3");
@@ -111,6 +112,7 @@ namespace game_framework
 		instructionsPage = instructions_page01;
 		record = 1;
 		isArrowLShow = isArrowRShow = false;
+		isMouseOnX = false;
 	}
 
 	void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -238,19 +240,55 @@ namespace game_framework
 				choice = 0;
 			}
 		}
-		if (stage == stage_instructions) {
+		else if (stage == stage_staff)
+		{
+			if (point.x >= 1306 && point.y <= 60)
+			{
+				if (!isMouseOnX)
+				{
+					CAudio::Instance()->Play(AUDIO_CHOOSE, false);
+				}
+				isMouseOnX = true;
+			}
+			else
+			{
+				isMouseOnX = false;
+			}
+		}
+		else if (stage == stage_instructions)
+		{
 			if (instructionsPage == instructions_page01 && point.x >= 1278 && point.x <= 1336 && point.y >= 350 && point.y <= 418)
 			{
+				if (!isArrowRShow)
+				{
+					CAudio::Instance()->Play(AUDIO_CHOOSE, false);
+				}
 				isArrowRShow = true;
 			}
 			else if (instructionsPage == instructions_page02 && point.x >= 30 && point.x <= 88 && point.y >= 350 && point.y <= 418)
 			{
+				if (!isArrowLShow)
+				{
+					CAudio::Instance()->Play(AUDIO_CHOOSE, false);
+				}
 				isArrowLShow = true;
 			}
 			else
 			{
 				isArrowLShow = false;
 				isArrowRShow = false;
+			}
+			if (point.x >= 1306 && point.y <= 60)
+			{
+				if (!isMouseOnX)
+				{
+					CAudio::Instance()->Play(AUDIO_CHOOSE, false);
+				}
+				isMouseOnX = true;
+			}
+			else
+			{
+				isMouseOnX = false;
 			}
 		}
 	}
@@ -300,6 +338,10 @@ namespace game_framework
 		{
 			staff.SetTopLeft(0, 0);
 			staff.ShowBitmap();
+			if (isMouseOnX) {
+				whiteX.SetTopLeft(1306, 0);
+				whiteX.ShowBitmap();
+			}
 		}
 		else if (stage == stage_instructions)
 		{
@@ -313,6 +355,11 @@ namespace game_framework
 			{
 				arrowR.SetTopLeft(1278, 350);
 				arrowR.ShowBitmap();
+			}
+			if (isMouseOnX)
+			{
+				whiteX.SetTopLeft(1306, 0);
+				whiteX.ShowBitmap();
 			}
 		}
 	}
@@ -494,7 +541,8 @@ namespace game_framework
 		{
 			GotoGameState(GAME_STATE_OVER);
 		}
-		for (int i = 0; i < (signed)monsterS7.size(); i++) {
+		for (int i = 0; i < (signed)monsterS7.size(); i++)
+		{
 			if (monsterS7[i]->GetBossDead())
 			{
 				gameCompleteFlag = true;

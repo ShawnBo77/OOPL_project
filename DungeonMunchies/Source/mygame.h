@@ -91,12 +91,14 @@ namespace game_framework
 		CMovingBitmap instructionsPage01;
 		CMovingBitmap instructionsPage02;
 		CMovingBitmap instructionsPageC;
+		CMovingBitmap whiteX;
 		CMovingBitmap arrowL;
 		CMovingBitmap arrowR;
 		int choice;
 		int lastChoice;
 		int yChoice;
 		bool onChoice;
+		bool isMouseOnX;
 		bool isArrowLShow;
 		bool isArrowRShow;
 	};
