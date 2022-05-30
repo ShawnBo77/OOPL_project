@@ -110,6 +110,7 @@ namespace game_framework
 		stage = stage_start_menu;
 		instructionsPage = instructions_page01;
 		record = 1;
+		isArrowLShow = isArrowRShow = false;
 	}
 
 	void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -191,6 +192,8 @@ namespace game_framework
 			if (point.x >= 1306 && point.y <= 60)
 			{
 				stage = stage_start_menu;
+				instructionsPage = instructions_page01;
+				record = 1;
 			}
 		}
 	}
