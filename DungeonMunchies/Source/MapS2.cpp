@@ -248,7 +248,7 @@ namespace game_framework
         }
         else
         {
-            setMonsterFloor(460);
+            setMonsterFloor(880);
         }
     }
 

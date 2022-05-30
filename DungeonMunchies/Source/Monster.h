@@ -38,6 +38,7 @@ namespace game_framework
 		/////////////////////////////////////////////////////////////////////////////
 		void SetXY(int x, int y);					// x, y座標
 		void SetRelativeMovement(int x);					// x, y座標
+		int GetRelativeMovementY(Map* m);					// x, y座標
 		int	GetBorder();
 		int GetHorizontalGap();				//之後可能可以刪除
 		void SetMovingDown(bool b);					//下
@@ -93,6 +94,7 @@ namespace game_framework
 		int _x, _y;
 		int init_x, init_y;
 		int currentFloor;
+		int init_sx, init_sy;
 		int hp;
 		BloodBar bloodBar;
 		int attackDamage;

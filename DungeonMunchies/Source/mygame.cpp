@@ -413,7 +413,7 @@ namespace game_framework
 				case stage_2:
 					for (unsigned i = 0; i < monsterS2.size(); i++)
 					{
-						monsterS2[i]->OnMove(&mapS1);
+						monsterS2[i]->OnMove(&mapS2);
 					}
 					character.OnMove(&mapS2, &monsterS2);
 					break;

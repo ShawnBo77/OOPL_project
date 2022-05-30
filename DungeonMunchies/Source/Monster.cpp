@@ -160,6 +160,11 @@ namespace game_framework
 		RelativeMovement += x;
 	}
 
+	int Monster::GetRelativeMovementY(Map* m)
+	{
+		return init_sy - m->getSY();
+	}
+
 	int Monster::GetBorder()
 	{
 		return BORDER;

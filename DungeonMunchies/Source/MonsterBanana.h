@@ -23,10 +23,12 @@ namespace game_framework
 		int  GetRightX();				// 右下角 x 座標
 		int  GetButtonY();				// 右下角 y 座標
 		void OnMove(Map* m) override;
+		Map* GetMap();
 	private:
 		CMovingBitmap bananaAlive;
 		CMovingBitmap bananaDead;
 		CMovingBitmap sourceBananaAttack;
+		Map* currentMap;
 	};
 }
 #endif 
