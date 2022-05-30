@@ -29,6 +29,10 @@ namespace game_framework
 		void showData();
 		void BloodShow();
 
+		/*map*/
+		//MapS1
+		void shouldShowMagnifier(Map* m);
+
 		int  GetLeftX();				// 左上角 x 座標
 		int  GetTopY();					// 左上角 y 座標
 		int  GetRightX();				// 右下角 x 座標
@@ -54,7 +58,7 @@ namespace game_framework
 		void SetMovingUp(bool flag);	        // 設定是否正在往上移動
 		void SetXY(int x, int y);		        // 設定左上角座標
 		void SetCanGoToNextMap(bool flag);		// 設定左上角座標
-		
+
 
 		void SetCurrentHp(int x);               // 設定目前血量
 		void SetIsInvincible(bool flag);         //設定是否為無敵狀態

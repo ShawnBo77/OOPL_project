@@ -49,7 +49,12 @@ namespace game_framework {
 
 		virtual void setPos(int x, int y, int n) = 0;
 		void setXY(int x, int y);
-	private:
+
+		void loadMagnifierBitmap();
+		void showMaginifier(int x, int y);
+		void setShowMaginifierFlag(bool flag);
+		bool getShowMaginifierFlag();
+	protected:
 		int sx, sy; //screen 的座標
 		int startX; //開始位置
 		int cyRelativeMovement;
@@ -58,9 +63,11 @@ namespace game_framework {
 		int monsterFloor;
 		int ceiling;
 		int endBoundary;
-		bool all_enemy_clear;
 		bool screenMoving;
 		bool portalOpen;
+
+		CMovingBitmap magnifier;
+		bool showMaginifierFlag;
 	};
 }
 #endif

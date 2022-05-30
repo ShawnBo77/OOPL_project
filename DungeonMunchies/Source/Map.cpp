@@ -109,6 +109,23 @@ namespace game_framework {
 		sx = x;
 		sy = y;
 	}
+	void Map::loadMagnifierBitmap()
+	{
+		magnifier.LoadBitmap(".\\res\\magnifier.bmp", RGB(0, 0, 0));
+	}
+	void Map::showMaginifier(int x, int y)
+	{
+		magnifier.SetTopLeft(x + getSX(), y + getSY());
+		magnifier.ShowBitmap();
+	}
+	void Map::setShowMaginifierFlag(bool flag)
+	{
+		showMaginifierFlag = flag;
+	}
+	bool Map::getShowMaginifierFlag()
+	{
+		return showMaginifierFlag;
+	}
 	void Map::setFloor(int y)
 	{
 		floor = y;

@@ -227,6 +227,8 @@ namespace game_framework
 			ResetPosition(m);
 		}
 
+		shouldShowMagnifier(m);
+
 		if (m->getMapName() == "MapS2")
 		{
 			m->setCharacterX(characterX);
@@ -568,6 +570,18 @@ namespace game_framework
 		characterX = m->getStartPosition();
 		characterY = 100;
 		velocity = 30;
+	}
+
+	void Character::shouldShowMagnifier(Map* m)
+	{
+		if (m->getMapName() == "MapS1" && characterX > 1135 && characterX < 1300)
+		{
+			m->setShowMaginifierFlag(true);
+		}
+		else
+		{
+			m->setShowMaginifierFlag(false);
+		}
 	}
 
 	/*Getter*/
@@ -1136,7 +1150,8 @@ namespace game_framework
 		{
 			ChangeSpeed(1.4);
 		}
-		else {
+		else
+		{
 			ChangeSpeed(0.72);
 		}
 	}
