@@ -87,10 +87,15 @@ namespace game_framework
 		startMenu.LoadBitmap(IDB_STARTMENU);
 		startMenuChoice.LoadBitmap(".\\res\\start_menu_choice.bmp", RGB(0, 0, 0));
 		staff.LoadBitmap(".\\res\\staff.bmp");
+		instructionsPage01.LoadBitmap(".\\res\\instructions01.bmp");
+		instructionsPage02.LoadBitmap(".\\res\\instructions02.bmp");
+		instructionsPageC.LoadBitmap(".\\res\\instructions_c01.bmp");
+		whiteX.LoadBitmap(".\\res\\white_x.bmp", RGB(0, 0, 0));
+		arrowL.LoadBitmap(".\\res\\arrow_left.bmp", RGB(0, 0, 0));
+		arrowR.LoadBitmap(".\\res\\arrow_right.bmp", RGB(0, 0, 0));
 		CAudio::Instance()->Load(AUDIO_STARTMENU, "sounds\\start_menu_audio.mp3");
 		CAudio::Instance()->Load(AUDIO_CHOOSE, "sounds\\choose.mp3");
 		CAudio::Instance()->Play(AUDIO_STARTMENU, true);
-		//logo.LoadBitmap(IDB_BACKGROUND);
 		//Sleep(300);				// 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
 		//
 		// 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
@@ -103,7 +108,11 @@ namespace game_framework
 		yChoice = 380;
 		choice = 0;
 		lastChoice = 0;
-		showStaff = false;
+		stage = stage_start_menu;
+		instructionsPage = instructions_page01;
+		record = 1;
+		isArrowLShow = isArrowRShow = false;
+		isMouseOnX = false;
 	}
 
 	void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -116,7 +125,7 @@ namespace game_framework
 
 	void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 	{
-		if (!showStaff)
+		if (stage == stage_start_menu)
 		{
 			if (choice == 1)
 			{
@@ -129,7 +138,11 @@ namespace game_framework
 			}
 			else if (choice == 3)
 			{
-				showStaff = true;
+				stage = stage_staff;
+			}
+			else if (choice == 4)
+			{
+				stage = stage_instructions;
 			}
 			if (point.x >= 0 && point.x <= 31 && point.y >= 735 && point.y <= 768)
 			{
@@ -144,18 +157,52 @@ namespace game_framework
 				ShellExecute(0, NULL, _T("https://discord.com/invite/8NyCnxN"), NULL, NULL, SW_NORMAL);
 			}
 		}
-		else
+		else if (stage == stage_staff)
 		{
 			if (point.x >= 1306 && point.y <= 60)
 			{
-				showStaff = false;
+				stage = stage_start_menu;
+			}
+		}
+		else if (stage == stage_instructions)
+		{
+			if (instructionsPage == instructions_page01 && point.x >= 1278 && point.x <= 1336 && point.y >= 350 && point.y <= 418)
+			{
+				instructionsPage = instructions_page02;
+				record = 2;
+			}
+			else if (instructionsPage == instructions_page02 && point.x >= 30 && point.x <= 88 && point.y >= 350 && point.y <= 418)
+			{
+				instructionsPage = instructions_page01;
+				record = 1;
+			}
+			if (!(instructionsPage == instructions_page_cheat) && point.x >= 380 && point.x <= 980 && point.y >= 50 && point.y <= 120)
+			{
+				instructionsPage = instructions_page_cheat;
+			}
+			else if (instructionsPage == instructions_page_cheat && point.x >= 555 && point.x <= 815 && point.y >= 50 && point.y <= 120)
+			{
+				if (record == 1)
+				{
+					instructionsPage = instructions_page01;
+				}
+				else
+				{
+					instructionsPage = instructions_page02;
+				}
+			}
+			if (point.x >= 1306 && point.y <= 60)
+			{
+				stage = stage_start_menu;
+				instructionsPage = instructions_page01;
+				record = 1;
 			}
 		}
 	}
 
 	void CGameStateInit::OnMouseMove(UINT nFlags, CPoint point)
 	{
-		if (!showStaff)
+		if (stage == stage_start_menu)
 		{
 			if (point.x > 603 && point.x < 770)
 			{
@@ -177,6 +224,12 @@ namespace game_framework
 					choice = 3;
 					onChoice = true;
 				}
+				else if (point.y > 635 && point.y < 701)
+				{
+					yChoice = 635;
+					choice = 4;
+					onChoice = true;
+				}
 				else
 				{
 					choice = 0;
@@ -185,6 +238,57 @@ namespace game_framework
 			else
 			{
 				choice = 0;
+			}
+		}
+		else if (stage == stage_staff)
+		{
+			if (point.x >= 1306 && point.y <= 60)
+			{
+				if (!isMouseOnX)
+				{
+					CAudio::Instance()->Play(AUDIO_CHOOSE, false);
+				}
+				isMouseOnX = true;
+			}
+			else
+			{
+				isMouseOnX = false;
+			}
+		}
+		else if (stage == stage_instructions)
+		{
+			if (instructionsPage == instructions_page01 && point.x >= 1278 && point.x <= 1336 && point.y >= 350 && point.y <= 418)
+			{
+				if (!isArrowRShow)
+				{
+					CAudio::Instance()->Play(AUDIO_CHOOSE, false);
+				}
+				isArrowRShow = true;
+			}
+			else if (instructionsPage == instructions_page02 && point.x >= 30 && point.x <= 88 && point.y >= 350 && point.y <= 418)
+			{
+				if (!isArrowLShow)
+				{
+					CAudio::Instance()->Play(AUDIO_CHOOSE, false);
+				}
+				isArrowLShow = true;
+			}
+			else
+			{
+				isArrowLShow = false;
+				isArrowRShow = false;
+			}
+			if (point.x >= 1306 && point.y <= 60)
+			{
+				if (!isMouseOnX)
+				{
+					CAudio::Instance()->Play(AUDIO_CHOOSE, false);
+				}
+				isMouseOnX = true;
+			}
+			else
+			{
+				isMouseOnX = false;
 			}
 		}
 	}
@@ -220,17 +324,62 @@ namespace game_framework
 		//pDC->TextOut(5,455,"Press Alt-F4 or ESC to Quit.");
 		//pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		//CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
-		startMenu.SetTopLeft(0, 0);
-		startMenu.ShowBitmap();
-		if (onChoice)
+		if (stage == stage_start_menu)
 		{
-			startMenuChoice.SetTopLeft(603, yChoice);
-			startMenuChoice.ShowBitmap();
+			startMenu.SetTopLeft(0, 0);
+			startMenu.ShowBitmap();
+			if (onChoice)
+			{
+				startMenuChoice.SetTopLeft(603, yChoice);
+				startMenuChoice.ShowBitmap();
+			}
 		}
-		if (showStaff)
+		else if (stage == stage_staff)
 		{
 			staff.SetTopLeft(0, 0);
 			staff.ShowBitmap();
+			if (isMouseOnX) {
+				whiteX.SetTopLeft(1306, 0);
+				whiteX.ShowBitmap();
+			}
+		}
+		else if (stage == stage_instructions)
+		{
+			instructionsPageShow();
+			if (isArrowLShow)
+			{
+				arrowL.SetTopLeft(30, 350);
+				arrowL.ShowBitmap();
+			}
+			if (isArrowRShow)
+			{
+				arrowR.SetTopLeft(1278, 350);
+				arrowR.ShowBitmap();
+			}
+			if (isMouseOnX)
+			{
+				whiteX.SetTopLeft(1306, 0);
+				whiteX.ShowBitmap();
+			}
+		}
+	}
+
+	void CGameStateInit::instructionsPageShow()
+	{
+		if (instructionsPage == instructions_page01)
+		{
+			instructionsPage01.SetTopLeft(0, 0);
+			instructionsPage01.ShowBitmap();
+		}
+		else if (instructionsPage == instructions_page02)
+		{
+			instructionsPage02.SetTopLeft(0, 0);
+			instructionsPage02.ShowBitmap();
+		}
+		else if (instructionsPage == instructions_page_cheat)
+		{
+			instructionsPageC.SetTopLeft(0, 0);
+			instructionsPageC.ShowBitmap();
 		}
 	}
 
@@ -317,13 +466,13 @@ namespace game_framework
 
 		monsterS2.push_back(new MonsterBanana(2650, 400, &character));
 
-		monsterS7.push_back(new MonsterTree(700, 400, &character));
-		monsterS7.push_back(new MonsterShrimp(600, 400, &character));
+		//monsterS7.push_back(new MonsterTree(700, 400, &character));
+		//monsterS7.push_back(new MonsterShrimp(600, 400, &character));
 		//monsterS7.push_back(new MonsterShrimp(850, 400, &character));
-		monsterS7.push_back(new MonsterCactus(700, 500, &character));
+		//monsterS7.push_back(new MonsterCactus(700, 500, &character));
 		//monsterS7.push_back(new MonsterTree(400, 400, &character));
-		monsterS7.push_back(new MonsterBanana(1000, 400, &character));
-		//monsterS7.push_back(new MonsterBoss(900, 280, &character));
+		//monsterS7.push_back(new MonsterBanana(1000, 400, &character));
+		monsterS7.push_back(new MonsterBoss(900, 280, &character));
 		//monsterS7.push_back(new MonsterCactus(700, 500, &character));
 
 		monsterShrimp.push_back(new MonsterShrimp(300, 400, &character));
@@ -392,58 +541,59 @@ namespace game_framework
 		{
 			GotoGameState(GAME_STATE_OVER);
 		}
-		if (monsterS7[0]->GetBossDead())
+		for (int i = 0; i < (signed)monsterS7.size(); i++)
 		{
-			gameCompleteFlag = true;
-			currentStage = stage_game_complete;
-		}
-		else
-		{
-			if (gamePause == false)
+			if (monsterS7[i]->GetBossDead())
 			{
-				switch (currentStage)
+				gameCompleteFlag = true;
+				currentStage = stage_game_complete;
+			}
+		}
+		if (currentStage != stage_game_complete && gamePause == false)
+		{
+			switch (currentStage)
+			{
+			case stage_1:
+				for (unsigned i = 0; i < monsterS1.size(); i++)
 				{
-				case stage_1:
-					for (unsigned i = 0; i < monsterS1.size(); i++)
-					{
-						monsterS1[i]->OnMove(&mapS1);
-					}
-					character.OnMove(&mapS1, &monsterS1);
-					break;
-				case stage_2:
-					for (unsigned i = 0; i < monsterS2.size(); i++)
-					{
-						monsterS2[i]->OnMove(&mapS2);
-					}
-					character.OnMove(&mapS2, &monsterS2);
-					break;
-				case stage_boss:
-					for (unsigned i = 0; i < monsterS7.size(); i++)
-					{
-						monsterS7[i]->OnMove(&bossMap);
-					}
-					//for (unsigned i = 0; i < monsterCactus.size(); i++)
-					//{
-					//	monsterCactus[i]->OnMove();
-					//}
-					//for (unsigned i = 0; i < monsterShrimp.size(); i++)
-					//{
-					//	monsterShrimp[i]->OnMove();
-					//}
-					//for (unsigned i = 0; i < monsterTree.size(); i++)
-					//{
-					//	monsterTree[i]->OnMove();
-					//}
-					character.OnMove(&bossMap, &monsterS7);
-					break;
-				default:
-					break;
+					monsterS1[i]->OnMove(&mapS1);
 				}
+				character.OnMove(&mapS1, &monsterS1);
+				break;
+			case stage_2:
+				for (unsigned i = 0; i < monsterS2.size(); i++)
+				{
+					monsterS2[i]->OnMove(&mapS2);
+				}
+				character.OnMove(&mapS2, &monsterS2);
+				break;
+			case stage_boss:
+				for (unsigned i = 0; i < monsterS7.size(); i++)
+				{
+					monsterS7[i]->OnMove(&bossMap);
+				}
+				//for (unsigned i = 0; i < monsterCactus.size(); i++)
+				//{
+				//	monsterCactus[i]->OnMove();
+				//}
+				//for (unsigned i = 0; i < monsterShrimp.size(); i++)
+				//{
+				//	monsterShrimp[i]->OnMove();
+				//}
+				//for (unsigned i = 0; i < monsterTree.size(); i++)
+				//{
+				//	monsterTree[i]->OnMove();
+				//}
+				character.OnMove(&bossMap, &monsterS7);
+				break;
+			default:
+				break;
 			}
-			if (isStageChanged) {
-				bgmPlayer();
-				isStageChanged = false;
-			}
+		}
+		if (isStageChanged)
+		{
+			bgmPlayer();
+			isStageChanged = false;
 		}
 	}
 
@@ -591,7 +741,27 @@ namespace game_framework
 				}
 				break;
 			case KEY_R:
-				character.SetCurrentHp(50);
+				character.restoreCurrentHp(50);
+				break;
+			case KEY_T:
+				character.addAttackDamage(10);
+				break;
+			case KEY_Y:
+				character.SetLightBulbNum(1000);
+				break;
+			case KEY_U:
+				character.SetAllSourceNumToHundred();
+				break;
+			case KEY_H:
+				currentStage = stage_boss;
+				isStageChanged = true;
+				for (int i = 0; i < (signed)monsterS7.size(); i++)
+				{
+					monsterS7[i]->SetCurrentHp(0);
+				}
+				break;
+			case KEY_G:
+				character.SetCurrentHp(0);
 				break;
 			case KEY_1:
 				monsterInitialize();
@@ -848,7 +1018,7 @@ namespace game_framework
 		pDC->SetTextColor(RGB(255, 255, 255));
 		char str[80];								// Demo 數字對字串的轉換
 		sprintf(str, "Please click \"GAME COMPLETE\" to close the game, or \"PLAY AGAIN\" to restart!");
-		pDC->TextOut(670, 730, str);
+		pDC->TextOut(665, 730, str);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}

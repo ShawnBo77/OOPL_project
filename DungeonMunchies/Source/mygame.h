@@ -80,16 +80,27 @@ namespace game_framework
 		void isChoiceChange();
 		void OnMove();
 		void OnShow();									// 顯示這個狀態的遊戲畫面
+		void instructionsPageShow();
 	private:
-		//CMovingBitmap logo;								// csie的logo
+		BeginningStage stage;
+		InstructionsPage instructionsPage;
+		int record; //1代表instructionsPage第一頁，2代表第二頁
 		CMovingBitmap startMenu;
 		CMovingBitmap startMenuChoice;
 		CMovingBitmap staff;
+		CMovingBitmap instructionsPage01;
+		CMovingBitmap instructionsPage02;
+		CMovingBitmap instructionsPageC;
+		CMovingBitmap whiteX;
+		CMovingBitmap arrowL;
+		CMovingBitmap arrowR;
 		int choice;
 		int lastChoice;
 		int yChoice;
 		bool onChoice;
-		bool showStaff;
+		bool isMouseOnX;
+		bool isArrowLShow;
+		bool isArrowRShow;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

@@ -729,7 +729,8 @@ namespace game_framework
 		if (((character->GetRightX() >= cMidX - 18 && character->GetRightX() <= cMidX + 20) || //¨¤¦â¥kÃä¸I¨ì¨ë
 			(character->GetLeftX() <= cMidX + 20 && character->GetLeftX() >= cMidX - 18) || //¨¤¦â¥ªÃä¸I¨ì¨ë
 			(character->GetLeftX() <= cMidX - 18 && character->GetRightX() >= cMidX + 20)) && //¨¤¦â¥ª¥k¾î¸ó¨ë
-			(character->GetButtonY() >= floor - 200 && character->GetButtonY() <= floor))
+			((character->GetButtonY() >= floor - 200 && character->GetButtonY() <= floor) ||
+			(character->GetTopY() >= floor - 200 && character->GetTopY() <= floor)))
 		{
 			if (!character->GetIsInvincible())
 			{

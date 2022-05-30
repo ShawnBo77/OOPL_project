@@ -206,14 +206,7 @@ namespace game_framework
 		shrimpAttack = false;
 		currentMap = NULL;
 		action = walk_a;
-		lightBulbNum = 1000;
-
-		sourceStorage->getSource(0)->setNum(5);
-		sourceStorage->getSource(1)->setNum(5);
-		sourceStorage->getSource(2)->setNum(5);
-		sourceStorage->getSource(3)->setNum(5);
-		sourceStorage->getSource(4)->setNum(15);
-		sourceStorage->getSource(5)->setNum(15);
+		lightBulbNum = 0;
 	}
 
 	void Character::OnMove(Map* m, vector<Monster*>* monsters)
@@ -226,6 +219,8 @@ namespace game_framework
 			SetMap(m);
 			ResetPosition(m);
 		}
+
+		shouldShowMagnifier(m);
 
 		if (m->getMapName() == "MapS2")
 		{
@@ -568,6 +563,18 @@ namespace game_framework
 		characterX = m->getStartPosition();
 		characterY = 100;
 		velocity = 30;
+	}
+
+	void Character::shouldShowMagnifier(Map* m)
+	{
+		if (m->getMapName() == "MapS1" && characterX > 1135 && characterX < 1300)
+		{
+			m->setShowMaginifierFlag(true);
+		}
+		else
+		{
+			m->setShowMaginifierFlag(false);
+		}
 	}
 
 	/*Getter*/
@@ -1136,7 +1143,8 @@ namespace game_framework
 		{
 			ChangeSpeed(1.4);
 		}
-		else {
+		else
+		{
 			ChangeSpeed(0.72);
 		}
 	}
@@ -1291,6 +1299,16 @@ namespace game_framework
 	void Character::ConsumeLightBulb(int num)
 	{
 		lightBulbNum -= num;
+	}
+
+	void Character::SetAllSourceNumToHundred()
+	{
+		sourceStorage->getSource(0)->setNum(100);
+		sourceStorage->getSource(1)->setNum(100);
+		sourceStorage->getSource(2)->setNum(100);
+		sourceStorage->getSource(3)->setNum(100);
+		sourceStorage->getSource(4)->setNum(100);
+		sourceStorage->getSource(5)->setNum(100);
 	}
 
 	void Character::restoreCurrentHp(int n)

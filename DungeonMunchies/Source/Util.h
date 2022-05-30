@@ -20,6 +20,11 @@ const char KEY_S = 0x53;
 const char KEY_D = 0x44;
 const char KEY_E = 69;
 const char KEY_R = 82;
+const char KEY_T = 84;
+const char KEY_Y = 89;
+const char KEY_U = 85;
+const char KEY_H = 72;
+const char KEY_G = 71;
 const char KEY_SPACE = 0x20;
 const char KEY_CTRL = 0x11;
 const char KEY_TAB = 9;
@@ -41,6 +46,20 @@ enum AUDIO_ID
 };
 
 // 定義各關卡的編號
+enum BeginningStage
+{
+	stage_start_menu,
+	stage_staff,
+	stage_instructions
+};
+
+enum InstructionsPage
+{
+	instructions_page01,
+	instructions_page02,
+	instructions_page_cheat
+};
+
 enum Stage
 {
 	stage_1,
