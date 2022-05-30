@@ -206,14 +206,7 @@ namespace game_framework
 		shrimpAttack = false;
 		currentMap = NULL;
 		action = walk_a;
-		lightBulbNum = 1000;
-
-		sourceStorage->getSource(0)->setNum(5);
-		sourceStorage->getSource(1)->setNum(5);
-		sourceStorage->getSource(2)->setNum(5);
-		sourceStorage->getSource(3)->setNum(5);
-		sourceStorage->getSource(4)->setNum(15);
-		sourceStorage->getSource(5)->setNum(15);
+		lightBulbNum = 0;
 	}
 
 	void Character::OnMove(Map* m, vector<Monster*>* monsters)
@@ -1306,6 +1299,16 @@ namespace game_framework
 	void Character::ConsumeLightBulb(int num)
 	{
 		lightBulbNum -= num;
+	}
+
+	void Character::SetAllSourceNumToHundred()
+	{
+		sourceStorage->getSource(0)->setNum(100);
+		sourceStorage->getSource(1)->setNum(100);
+		sourceStorage->getSource(2)->setNum(100);
+		sourceStorage->getSource(3)->setNum(100);
+		sourceStorage->getSource(4)->setNum(100);
+		sourceStorage->getSource(5)->setNum(100);
 	}
 
 	void Character::restoreCurrentHp(int n)

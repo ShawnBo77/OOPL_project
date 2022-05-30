@@ -691,7 +691,16 @@ namespace game_framework
 				}
 				break;
 			case KEY_R:
-				character.SetCurrentHp(50);
+				character.restoreCurrentHp(50);
+				break;
+			case KEY_T:
+				character.addAttackDamage(10);
+				break;
+			case KEY_Y:
+				character.SetLightBulbNum(1000);
+				break;
+			case KEY_U:
+				character.SetAllSourceNumToHundred();
 				break;
 			case KEY_1:
 				monsterInitialize();

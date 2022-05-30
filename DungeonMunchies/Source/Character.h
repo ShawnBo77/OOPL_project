@@ -133,6 +133,7 @@ namespace game_framework
 		int GetLightBulbNum();
 		void AddLightBulb(int num);
 		void ConsumeLightBulb(int num);
+		void SetAllSourceNumToHundred();
 
 	protected:
 		bool isAttackSuccessfullyL(int range, Monster* monster);
