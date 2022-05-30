@@ -41,6 +41,20 @@ enum AUDIO_ID
 };
 
 // 定義各關卡的編號
+enum BeginningStage
+{
+	stage_start_menu,
+	stage_staff,
+	stage_instructions
+};
+
+enum InstructionsPage
+{
+	instructions_page01,
+	instructions_page02,
+	instructions_page_cheat
+};
+
 enum Stage
 {
 	stage_1,
