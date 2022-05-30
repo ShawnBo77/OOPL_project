@@ -416,13 +416,13 @@ namespace game_framework
 
 		monsterS2.push_back(new MonsterBanana(2650, 400, &character));
 
-		monsterS7.push_back(new MonsterTree(700, 400, &character));
-		monsterS7.push_back(new MonsterShrimp(600, 400, &character));
+		//monsterS7.push_back(new MonsterTree(700, 400, &character));
+		//monsterS7.push_back(new MonsterShrimp(600, 400, &character));
 		//monsterS7.push_back(new MonsterShrimp(850, 400, &character));
-		monsterS7.push_back(new MonsterCactus(700, 500, &character));
+		//monsterS7.push_back(new MonsterCactus(700, 500, &character));
 		//monsterS7.push_back(new MonsterTree(400, 400, &character));
-		monsterS7.push_back(new MonsterBanana(1000, 400, &character));
-		//monsterS7.push_back(new MonsterBoss(900, 280, &character));
+		//monsterS7.push_back(new MonsterBanana(1000, 400, &character));
+		monsterS7.push_back(new MonsterBoss(900, 280, &character));
 		//monsterS7.push_back(new MonsterCactus(700, 500, &character));
 
 		monsterShrimp.push_back(new MonsterShrimp(300, 400, &character));
@@ -491,59 +491,58 @@ namespace game_framework
 		{
 			GotoGameState(GAME_STATE_OVER);
 		}
-		if (monsterS7[0]->GetBossDead())
-		{
-			gameCompleteFlag = true;
-			currentStage = stage_game_complete;
+		for (int i = 0; i < (signed)monsterS7.size(); i++) {
+			if (monsterS7[i]->GetBossDead())
+			{
+				gameCompleteFlag = true;
+				currentStage = stage_game_complete;
+			}
 		}
-		else
+		if (currentStage != stage_game_complete && gamePause == false)
 		{
-			if (gamePause == false)
+			switch (currentStage)
 			{
-				switch (currentStage)
+			case stage_1:
+				for (unsigned i = 0; i < monsterS1.size(); i++)
 				{
-				case stage_1:
-					for (unsigned i = 0; i < monsterS1.size(); i++)
-					{
-						monsterS1[i]->OnMove(&mapS1);
-					}
-					character.OnMove(&mapS1, &monsterS1);
-					break;
-				case stage_2:
-					for (unsigned i = 0; i < monsterS2.size(); i++)
-					{
-						monsterS2[i]->OnMove(&mapS1);
-					}
-					character.OnMove(&mapS2, &monsterS2);
-					break;
-				case stage_boss:
-					for (unsigned i = 0; i < monsterS7.size(); i++)
-					{
-						monsterS7[i]->OnMove(&bossMap);
-					}
-					//for (unsigned i = 0; i < monsterCactus.size(); i++)
-					//{
-					//	monsterCactus[i]->OnMove();
-					//}
-					//for (unsigned i = 0; i < monsterShrimp.size(); i++)
-					//{
-					//	monsterShrimp[i]->OnMove();
-					//}
-					//for (unsigned i = 0; i < monsterTree.size(); i++)
-					//{
-					//	monsterTree[i]->OnMove();
-					//}
-					character.OnMove(&bossMap, &monsterS7);
-					break;
-				default:
-					break;
+					monsterS1[i]->OnMove(&mapS1);
 				}
+				character.OnMove(&mapS1, &monsterS1);
+				break;
+			case stage_2:
+				for (unsigned i = 0; i < monsterS2.size(); i++)
+				{
+					monsterS2[i]->OnMove(&mapS1);
+				}
+				character.OnMove(&mapS2, &monsterS2);
+				break;
+			case stage_boss:
+				for (unsigned i = 0; i < monsterS7.size(); i++)
+				{
+					monsterS7[i]->OnMove(&bossMap);
+				}
+				//for (unsigned i = 0; i < monsterCactus.size(); i++)
+				//{
+				//	monsterCactus[i]->OnMove();
+				//}
+				//for (unsigned i = 0; i < monsterShrimp.size(); i++)
+				//{
+				//	monsterShrimp[i]->OnMove();
+				//}
+				//for (unsigned i = 0; i < monsterTree.size(); i++)
+				//{
+				//	monsterTree[i]->OnMove();
+				//}
+				character.OnMove(&bossMap, &monsterS7);
+				break;
+			default:
+				break;
 			}
-			if (isStageChanged)
-			{
-				bgmPlayer();
-				isStageChanged = false;
-			}
+		}
+		if (isStageChanged)
+		{
+			bgmPlayer();
+			isStageChanged = false;
 		}
 	}
 
@@ -701,6 +700,17 @@ namespace game_framework
 				break;
 			case KEY_U:
 				character.SetAllSourceNumToHundred();
+				break;
+			case KEY_H:
+				currentStage = stage_boss;
+				isStageChanged = true;
+				for (int i = 0; i < (signed)monsterS7.size(); i++)
+				{
+					monsterS7[i]->SetCurrentHp(0);
+				}
+				break;
+			case KEY_G:
+				character.SetCurrentHp(0);
 				break;
 			case KEY_1:
 				monsterInitialize();
@@ -957,7 +967,7 @@ namespace game_framework
 		pDC->SetTextColor(RGB(255, 255, 255));
 		char str[80];								// Demo 數字對字串的轉換
 		sprintf(str, "Please click \"GAME COMPLETE\" to close the game, or \"PLAY AGAIN\" to restart!");
-		pDC->TextOut(670, 730, str);
+		pDC->TextOut(665, 730, str);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
