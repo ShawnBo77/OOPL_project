@@ -15,6 +15,7 @@ namespace game_framework {
 		virtual bool isEmpty(int x, int y) const = 0;
 		virtual bool isPortal(int x, int y) const = 0;
 		virtual bool isBridge(int x, int y) const = 0;
+		virtual bool isCraftTable(int x, int y) const = 0;
 		void setSX(int x);
 		void setSY(int y);
 		int getSX();
@@ -27,7 +28,6 @@ namespace game_framework {
 		int getMonsterFloor();
 		int getCeiling();
 		int getEndBoundary();
-		bool getPortalOpen();
 		void setMapName(string name);
 		void setStartPosition(int x);									//角色起始位置
 		void setMonsterFloor(int y);
@@ -44,6 +44,11 @@ namespace game_framework {
 		void setCeiling(int y);
 		void setEndBoundary(int sx);
 		void setScreenMoving(bool flag);
+
+
+		bool getCraftTableOpen();
+		void setCraftTableOpen(bool flag);
+		bool getPortalOpen();
 		void setPortalOpen(bool flag);
 		
 
@@ -65,6 +70,7 @@ namespace game_framework {
 		int endBoundary;
 		bool screenMoving;
 		bool portalOpen;
+		bool craftTableOpen;
 
 		CMovingBitmap magnifier;
 		bool showMaginifierFlag;

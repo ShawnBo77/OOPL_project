@@ -76,6 +76,14 @@ namespace game_framework {
 			return endBoundary;
 		}
 	}
+	bool Map::getCraftTableOpen()
+	{
+		return craftTableOpen;
+	}
+	void Map::setCraftTableOpen(bool flag)
+	{
+		craftTableOpen = flag;
+	}
 	bool Map::getPortalOpen()
 	{
 		return portalOpen;

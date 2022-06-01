@@ -64,6 +64,10 @@ enum Stage
 {
 	stage_1,
 	stage_2,
+	stage_3,
+	stage_4,
+	stage_5,
+	stage_6,
 	stage_boss,
 	stage_props,
 	stage_game_complete

@@ -46,6 +46,10 @@
 #include "MapForBoss.h"
 #include "MapS1.h"
 #include "MapS2.h"
+#include "MapS3.h"
+//#include "MapS4.h"
+//#include "MapS5.h"
+//#include "MapS6.h"
 #include "Util.h"
 #include "PropsBook.h"
 #include "CharacterStatus.h"
@@ -137,6 +141,10 @@ namespace game_framework
 		MapForBoss		bossMap;
 		MapS1 mapS1;
 		MapS2 mapS2;
+		MapS3 mapS3;
+		//MapS4 mapS4;
+		//MapS5 mapS5;
+		//MapS6 mapS6;
 		PropsBook		propsBook;
 		CharacterStatus characterStatus;
 		Stage currentStage;
@@ -146,6 +154,10 @@ namespace game_framework
 		bool gamePause;
 		vector<Monster*> monsterS1;
 		vector<Monster*> monsterS2;
+		vector<Monster*> monsterS3;
+		vector<Monster*> monsterS4;
+		vector<Monster*> monsterS5;
+		vector<Monster*> monsterS6;
 		vector<Monster*> monsterS7;
 		vector<Monster*> monsterShrimp;
 		vector<Monster*> monsterTree;

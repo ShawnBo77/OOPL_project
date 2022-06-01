@@ -183,7 +183,7 @@ namespace game_framework
 		STEP_SIZE = 15;
 		BORDER = 5;
 		isMovingLeft = isMovingRight = isMovingUp = isRising = isRolling = false;
-		canGoToNextMap = false;
+		canGoToNextMap = canCraft = false;
 		maxHp = 80;
 		currentHp = 37;
 		rolling_time = 0;
@@ -222,7 +222,7 @@ namespace game_framework
 
 		shouldShowMagnifier(m);
 
-		if (m->getMapName() == "MapS2")
+		if (m->getMapName() == "MapS2" || m->getMapName() == "MapS3")
 		{
 			m->setCharacterX(characterX);
 			m->setCharacterY(characterY);
@@ -238,6 +238,17 @@ namespace game_framework
 		{
 			m->setPortalOpen(false);
 			SetCanGoToNextMap(false);
+		}
+
+		if (m->isCraftTable(GetLeftX() - BORDER, GetTopY()))
+		{
+			m->setCraftTableOpen(true);
+			SetCanCraft(true);
+		}
+		else
+		{
+			m->setCraftTableOpen(false);
+			SetCanCraft(false);
 		}
 
 		if (GetIsRolling())
@@ -701,6 +712,11 @@ namespace game_framework
 	bool Character::GetCanGoToNextMap()
 	{
 		return canGoToNextMap;
+	}
+
+	bool Character::GetCanCraft()
+	{
+		return canCraft;
 	}
 
 	/*Setter*/
@@ -1351,6 +1367,11 @@ namespace game_framework
 	void Character::SetCanGoToNextMap(bool flag)
 	{
 		canGoToNextMap = flag;
+	}
+
+	void Character::SetCanCraft(bool flag)
+	{
+		canCraft = flag;
 	}
 
 	void Character::showData()

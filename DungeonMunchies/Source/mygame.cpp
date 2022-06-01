@@ -489,6 +489,22 @@ namespace game_framework
 		{
 			delete* it_i;
 		}
+		for (vector<Monster*>::iterator it_i = monsterS3.begin(); it_i != monsterS3.end(); ++it_i)
+		{
+			delete* it_i;
+		}
+		for (vector<Monster*>::iterator it_i = monsterS4.begin(); it_i != monsterS4.end(); ++it_i)
+		{
+			delete* it_i;
+		}
+		for (vector<Monster*>::iterator it_i = monsterS5.begin(); it_i != monsterS5.end(); ++it_i)
+		{
+			delete* it_i;
+		}
+		for (vector<Monster*>::iterator it_i = monsterS6.begin(); it_i != monsterS6.end(); ++it_i)
+		{
+			delete* it_i;
+		}
 		for (vector<Monster*>::iterator it_i = monsterS7.begin(); it_i != monsterS7.end(); ++it_i)
 		{
 			delete* it_i;
@@ -509,6 +525,10 @@ namespace game_framework
 		character.Initialize();
 		mapS1.Initialize();
 		mapS2.Initialize();
+		mapS3.Initialize();
+		//mapS4.Initialize();
+		//mapS5.Initialize();
+		//mapS6.Initialize();
 		bossMap.Initialize();
 		propsBook.Initialize(&character);
 		characterStatus.Initialize(&character);
@@ -567,6 +587,34 @@ namespace game_framework
 				}
 				character.OnMove(&mapS2, &monsterS2);
 				break;
+			case stage_3:
+				for (unsigned i = 0; i < monsterS3.size(); i++)
+				{
+					monsterS3[i]->OnMove(&mapS3);
+				}
+				character.OnMove(&mapS3, &monsterS3);
+				break;
+			//case stage_4:
+			//	for (unsigned i = 0; i < monsterS4.size(); i++)
+			//	{
+			//		monsterS4[i]->OnMove(&mapS4);
+			//	}
+			//	character.OnMove(&mapS2, &monsterS4);
+			//	break;
+			//case stage_5:
+			//	for (unsigned i = 0; i < monsterS5.size(); i++)
+			//	{
+			//		monsterS5[i]->OnMove(&mapS5);
+			//	}
+			//	character.OnMove(&mapS5, &monsterS5);
+			//	break;
+			//case stage_6:
+			//	for (unsigned i = 0; i < monsterS6.size(); i++)
+			//	{
+			//		monsterS6[i]->OnMove(&mapS6);
+			//	}
+			//	character.OnMove(&mapS6, &monsterS6);
+			//	break;
 			case stage_boss:
 				for (unsigned i = 0; i < monsterS7.size(); i++)
 				{
@@ -616,6 +664,10 @@ namespace game_framework
 		//monster.LoadBitmap(IDB_MONSTER, RGB(255, 0, 255));
 		mapS1.LoadBitmap();
 		mapS2.LoadBitmap();
+		mapS3.LoadBitmap();
+		//mapS4.LoadBitmap();
+		//mapS5.LoadBitmap();
+		//mapS6.LoadBitmap();
 		bossMap.LoadBitmap();
 		propsBook.LoadBitmap();
 		characterStatus.LoadBitmap();
@@ -628,6 +680,22 @@ namespace game_framework
 		for (unsigned i = 0; i < monsterS2.size(); i++)
 		{
 			monsterS2[i]->LoadBitmap();
+		}
+		for (unsigned i = 0; i < monsterS3.size(); i++)
+		{
+			monsterS3[i]->LoadBitmap();
+		}
+		for (unsigned i = 0; i < monsterS4.size(); i++)
+		{
+			monsterS4[i]->LoadBitmap();
+		}
+		for (unsigned i = 0; i < monsterS5.size(); i++)
+		{
+			monsterS5[i]->LoadBitmap();
+		}
+		for (unsigned i = 0; i < monsterS6.size(); i++)
+		{
+			monsterS6[i]->LoadBitmap();
 		}
 		for (unsigned i = 0; i < monsterS7.size(); i++)
 		{
@@ -692,8 +760,13 @@ namespace game_framework
 						character.SetCanGoToNextMap(false);
 						break;
 					case stage_2:
+						mapS3.Initialize();
+						currentStage = stage_3;
+						isStageChanged = true;
+						character.SetCanGoToNextMap(false);
+						break;
+					case stage_3:
 						bossMap.Initialize();
-						monsterInitialize();
 						currentStage = stage_boss;
 						isStageChanged = true;
 						character.SetCanGoToNextMap(false);
@@ -714,7 +787,7 @@ namespace game_framework
 						characterStatusCall = true;
 					}
 				}
-				else
+				else if (character.GetCanCraft())
 				{
 					lastStage = currentStage;
 					currentStage = stage_props;
@@ -779,6 +852,38 @@ namespace game_framework
 				currentStage = stage_2;
 				isStageChanged = true;
 				break;
+			case KEY_3:
+				monsterInitialize();
+				gamePause = false;
+				characterStatusCall = false;
+				mapS3.Initialize();
+				currentStage = stage_3;
+				isStageChanged = true;
+				break;
+			//case KEY_4:
+			//	monsterInitialize();
+			//	gamePause = false;
+			//	characterStatusCall = false;
+			//	mapS2.Initialize();
+			//	currentStage = stage_2;
+			//	isStageChanged = true;
+			//	break;
+			//case KEY_5:
+			//	monsterInitialize();
+			//	gamePause = false;
+			//	characterStatusCall = false;
+			//	mapS2.Initialize();
+			//	currentStage = stage_2;
+			//	isStageChanged = true;
+			//	break;
+			//case KEY_6:
+			//	monsterInitialize();
+			//	gamePause = false;
+			//	characterStatusCall = false;
+			//	mapS2.Initialize();
+			//	currentStage = stage_2;
+			//	isStageChanged = true;
+			//	break;
 			case KEY_7:
 				monsterInitialize();
 				gamePause = false;
@@ -873,6 +978,22 @@ namespace game_framework
 				{
 					character.attack(&monsterS2);
 				}
+				else if (currentStage == stage_3)
+				{
+					character.attack(&monsterS3);
+				}
+				else if (currentStage == stage_4)
+				{
+					character.attack(&monsterS4);
+				}
+				else if (currentStage == stage_5)
+				{
+					character.attack(&monsterS5);
+				}
+				else if (currentStage == stage_6)
+				{
+					character.attack(&monsterS6);
+				}
 				else if (currentStage == stage_boss)
 				{
 					character.attack(&monsterS7);
@@ -938,6 +1059,42 @@ namespace game_framework
 			}
 			LightBulbOnShow();
 			break;
+		case stage_3:
+			mapS3.onShow();
+			character.OnShow();
+			for (unsigned i = 0; i < monsterS3.size(); i++)
+			{
+				monsterS3[i]->OnShow(&mapS3);
+			}
+			LightBulbOnShow();
+			break;
+		//case stage_4:
+		//	mapS4.onShow();
+		//	character.OnShow();
+		//	for (unsigned i = 0; i < monsterS4.size(); i++)
+		//	{
+		//		monsterS4[i]->OnShow(&mapS4);
+		//	}
+		//	LightBulbOnShow();
+		//	break;
+		//case stage_5:
+		//	mapS5.onShow();
+		//	character.OnShow();
+		//	for (unsigned i = 0; i < monsterS5.size(); i++)
+		//	{
+		//		monsterS5[i]->OnShow(&mapS5);
+		//	}
+		//	LightBulbOnShow();
+		//	break;
+		//case stage_6:
+		//	mapS6.onShow();
+		//	character.OnShow();
+		//	for (unsigned i = 0; i < monsterS6.size(); i++)
+		//	{
+		//		monsterS6[i]->OnShow(&mapS6);
+		//	}
+		//	LightBulbOnShow();
+		//	break;
 		case stage_boss:
 			bossMap.onShow();
 			character.OnShow();
@@ -1062,6 +1219,22 @@ namespace game_framework
 		for (unsigned i = 0; i < monsterS2.size(); i++)
 		{
 			monsterS2[i]->Initialize();
+		}
+		for (unsigned i = 0; i < monsterS3.size(); i++)
+		{
+			monsterS3[i]->Initialize();
+		}
+		for (unsigned i = 0; i < monsterS4.size(); i++)
+		{
+			monsterS4[i]->Initialize();
+		}
+		for (unsigned i = 0; i < monsterS5.size(); i++)
+		{
+			monsterS5[i]->Initialize();
+		}
+		for (unsigned i = 0; i < monsterS6.size(); i++)
+		{
+			monsterS6[i]->Initialize();
 		}
 		for (unsigned i = 0; i < monsterS7.size(); i++)
 		{

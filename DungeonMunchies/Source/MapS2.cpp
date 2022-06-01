@@ -166,6 +166,11 @@ namespace game_framework
         return false;
     }
 
+    bool MapS2::isCraftTable(int x, int y) const
+    {
+        return false;
+    }
+
     void MapS2::onShow()
     {
         map.SetTopLeft(getSX(), getSY());
