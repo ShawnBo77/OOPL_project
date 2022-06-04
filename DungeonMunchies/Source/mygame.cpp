@@ -1192,6 +1192,26 @@ namespace game_framework
 			stopAllBgm();
 			CAudio::Instance()->Play(AUDIO_MUSIC_02, true);
 		}
+		else if (currentStage == stage_3)
+		{
+			stopAllBgm();
+			CAudio::Instance()->Play(AUDIO_MUSIC_03, true);
+		}
+		else if (currentStage == stage_4)
+		{
+			stopAllBgm();
+			CAudio::Instance()->Play(AUDIO_MUSIC_04, true);
+		}
+		else if (currentStage == stage_5)
+		{
+			stopAllBgm();
+			CAudio::Instance()->Play(AUDIO_MUSIC_05, true);
+		}
+		else if (currentStage == stage_6)
+		{
+			stopAllBgm();
+			CAudio::Instance()->Play(AUDIO_MUSIC_06, true);
+		}
 		else if (currentStage == stage_boss)
 		{
 			stopAllBgm();
