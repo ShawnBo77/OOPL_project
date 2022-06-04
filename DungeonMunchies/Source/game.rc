@@ -408,6 +408,12 @@ IDB_EXIT                BITMAP                  "..\\res\\exit.bmp"
 
 IDB_PRESSE              BITMAP                  "..\\res\\pressE.bmp"
 
+IDB_TRASHCANCLOSED      BITMAP                  "..\\res\\trashCanClose.bmp"
+
+IDB_TRASHCANOPEN        BITMAP                  "..\\res\\trashCanOpen.bmp"
+
+IDB_CRAFTING            BITMAP                  "..\\res\\crafting.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -154,4 +154,12 @@ namespace game_framework {
 	{
 		portalOpen = flag;
 	}
+	bool Map::getTrashCanOpen()
+	{
+		return trashCanOpen;
+	}
+	void Map::setTrashCanOpen(bool flag)
+	{
+		trashCanOpen = flag;
+	}
 }

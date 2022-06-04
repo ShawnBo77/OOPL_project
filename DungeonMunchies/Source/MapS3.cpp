@@ -53,6 +53,13 @@ namespace game_framework
                 mapGrid_init[i][j] = 0;
             }
         }
+        for (int i = 152; i < 163; i++)
+        {
+            for (int j = 0; j < 70; j++)
+            {
+                mapGrid_init[i][j] = 5;
+            }
+        }
         for (int i = 190; i < 203; i++)
         {
             for (int j = 0; j < 70; j++)
@@ -95,6 +102,9 @@ namespace game_framework
         map.LoadBitmap(".\\res\\map03.bmp");
         exitBitmap.LoadBitmap(IDB_EXIT, RGB(0, 0, 0));
         pressEBitmap.LoadBitmap(IDB_PRESSE, RGB(0, 0, 0));
+        trashCanClosedBitmap.LoadBitmap(IDB_TRASHCANCLOSED, RGB(0, 0, 0));
+        trashCanOpenBitmap.LoadBitmap(IDB_TRASHCANOPEN, RGB(0, 0, 0));
+        craftingBitmap.LoadBitmap(IDB_CRAFTING, RGB(0, 0, 0));
     }
 
     void MapS3::Initialize()
@@ -107,6 +117,7 @@ namespace game_framework
         setCharacterYRelativeMovement(0);
         previousFloor = 0;
         targetSY = 0;
+        trashCanOpen = false;
         screenUp = screenDown = false;
     }
 
@@ -138,6 +149,11 @@ namespace game_framework
         return (blockProperty(x, y) == 4);
     }
 
+    bool MapS3::isTrashCan(int x, int y) const
+    {
+        return (blockProperty(x, y) == 5);
+    }
+
     int MapS3::blockProperty(int x, int y) const
     {
         int gridX = x / 20;
@@ -149,6 +165,17 @@ namespace game_framework
     {
         map.SetTopLeft(getSX(), getSY());
         map.ShowBitmap();
+        if (!getTrashCanOpen()) 
+        {
+            trashCanClosedBitmap.SetTopLeft(3025 + getSX(), getFloor() - 132);
+            trashCanClosedBitmap.ShowBitmap();
+        }
+        else
+        {
+            trashCanOpenBitmap.SetTopLeft(3025 + getSX(), getFloor() - 180);
+            trashCanOpenBitmap.ShowBitmap();
+        }
+        
         syMoving(targetSY);
 
         if (getPortalOpen())
@@ -160,6 +187,8 @@ namespace game_framework
         }
         if (getCraftTableOpen())
         {
+            craftingBitmap.SetTopLeft(3880 + getSX(), 280);
+            craftingBitmap.ShowBitmap();
             pressEBitmap.SetTopLeft(600, 680);
             pressEBitmap.ShowBitmap();
         }
@@ -222,17 +251,17 @@ namespace game_framework
     }
     void MapS3::monsterFloorChanging(int x)
     {
-        if (x < 1750)
+        if (x < 502)
         {
-            setMonsterFloor(640);
+            setMonsterFloor(610);
         }
-        else if (x < 2500)
+        else if (x < 1838)
         {
-            setMonsterFloor(560);
+            setMonsterFloor(485);
         }
         else
         {
-            setMonsterFloor(880);
+            setMonsterFloor(655);
         }
     }
 

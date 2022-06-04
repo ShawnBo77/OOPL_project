@@ -465,6 +465,7 @@
     <Image Include="RES\characterBlood09.bmp" />
     <Image Include="RES\characterBlood10.bmp" />
     <Image Include="res\characterBloodFrame.bmp" />
+    <Image Include="RES\crafting.bmp" />
     <Image Include="RES\exit.bmp" />
     <Image Include="res\g_left_jump.bmp" />
     <Image Include="res\g_left_stand.bmp" />
@@ -546,6 +547,8 @@
     <Image Include="res\thron_grow01.bmp" />
     <Image Include="res\thron_grow02.bmp" />
     <Image Include="res\thron_red.bmp" />
+    <Image Include="RES\trashCanClose.bmp" />
+    <Image Include="RES\trashCanOpen.bmp" />
     <Image Include="RES\walk01.bmp" />
     <Image Include="RES\walk02.bmp" />
     <Image Include="RES\walk03.bmp" />

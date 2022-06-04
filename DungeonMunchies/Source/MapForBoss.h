@@ -13,6 +13,7 @@ namespace game_framework {
         bool isPortal(int x, int y) const;
         bool isBridge(int x, int y) const;
         bool isCraftTable(int x, int y) const;
+        bool isTrashCan(int x, int y) const;
         void onShow();
         void setCharacterX(int x) override;
         void setCharacterY(int y) override;

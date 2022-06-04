@@ -9,13 +9,13 @@ namespace game_framework {
 	public:
 		Map(int x, int y);
 		string getMapName();
-		CMovingBitmap exitBitmap;
-		CMovingBitmap pressEBitmap;
+		
 		int getStartPosition();
 		virtual bool isEmpty(int x, int y) const = 0;
 		virtual bool isPortal(int x, int y) const = 0;
 		virtual bool isBridge(int x, int y) const = 0;
 		virtual bool isCraftTable(int x, int y) const = 0;
+		virtual bool isTrashCan(int x, int y) const = 0;
 		void setSX(int x);
 		void setSY(int y);
 		int getSX();
@@ -50,6 +50,8 @@ namespace game_framework {
 		void setCraftTableOpen(bool flag);
 		bool getPortalOpen();
 		void setPortalOpen(bool flag);
+		bool getTrashCanOpen();
+		void setTrashCanOpen(bool flag);
 		
 
 		virtual void setPos(int x, int y, int n) = 0;
@@ -60,6 +62,10 @@ namespace game_framework {
 		void setShowMaginifierFlag(bool flag);
 		bool getShowMaginifierFlag();
 	protected:
+		CMovingBitmap exitBitmap;
+		CMovingBitmap pressEBitmap;
+		CMovingBitmap trashCanOpenBitmap, trashCanClosedBitmap;
+		CMovingBitmap craftingBitmap;
 		int sx, sy; //screen 的座標
 		int startX; //開始位置
 		int cyRelativeMovement;
@@ -71,6 +77,7 @@ namespace game_framework {
 		bool screenMoving;
 		bool portalOpen;
 		bool craftTableOpen;
+		bool trashCanOpen;
 
 		CMovingBitmap magnifier;
 		bool showMaginifierFlag;

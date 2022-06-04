@@ -251,6 +251,12 @@ namespace game_framework
 			SetCanCraft(false);
 		}
 
+		if (m->isTrashCan(GetLeftX() - BORDER, GetTopY()) && !m->getTrashCanOpen())
+		{
+			m->setTrashCanOpen(true);
+			currentHp = maxHp;
+		}
+
 		if (GetIsRolling())
 		{
 			if (isMovingLeft)

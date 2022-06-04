@@ -810,5 +810,14 @@
     <Image Include="RES\pressE.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\trashCanClose.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\trashCanOpen.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\crafting.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
