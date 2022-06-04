@@ -159,8 +159,8 @@ namespace game_framework
 			_y = m->getMonsterFloor() - bananaAlive.Height() - 6;
 		}
 	}
-	Map* MonsterBanana::GetMap()
-	{
-		return currentMap;
-	}
+	//Map* MonsterBanana::GetMap()
+	//{
+	//	return currentMap;
+	//}
 }

@@ -118,9 +118,14 @@ namespace game_framework
 	void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
 		if (nChar == KEY_SPACE)
+		{
+			CAudio::Instance()->Stop(AUDIO_STARTMENU);
 			GotoGameState(GAME_STATE_RUN);						// 切換至GAME_STATE_RUN
-		else if (nChar == KEY_ESC)								// Demo 關閉遊戲的方法
+		}
+		else if (nChar == KEY_ESC) // 關閉遊戲
+		{  
 			PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// 關閉遊戲
+		}
 	}
 
 	void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
@@ -467,6 +472,11 @@ namespace game_framework
 
 		monsterS2.push_back(new MonsterBanana(2650, 400, &character));
 
+		monsterS3.push_back(new MonsterBanana(300, 400, &character));
+		monsterS3.push_back(new MonsterShrimp(1000, 400, &character));
+		monsterS3.push_back(new MonsterCactus(800, 400, &character));
+		monsterS3.push_back(new MonsterTree(2000, 400, &character));
+
 		//monsterS7.push_back(new MonsterTree(700, 400, &character));
 		//monsterS7.push_back(new MonsterShrimp(600, 400, &character));
 		//monsterS7.push_back(new MonsterShrimp(850, 400, &character));
@@ -475,9 +485,6 @@ namespace game_framework
 		//monsterS7.push_back(new MonsterBanana(1000, 400, &character));
 		monsterS7.push_back(new MonsterBoss(900, 280, &character));
 		//monsterS7.push_back(new MonsterCactus(700, 500, &character));
-
-		monsterShrimp.push_back(new MonsterShrimp(300, 400, &character));
-		monsterTree.push_back(new MonsterTree(400, 400, &character));
 	}
 
 	CGameStateRun::~CGameStateRun()
@@ -510,15 +517,6 @@ namespace game_framework
 		{
 			delete* it_i;
 		}
-		for (vector<Monster*>::iterator it_i = monsterShrimp.begin(); it_i != monsterShrimp.end(); ++it_i)
-		{
-			delete* it_i;
-		}
-		for (vector<Monster*>::iterator it_i = monsterTree.begin(); it_i != monsterTree.end(); ++it_i)
-		{
-			delete* it_i;
-		}
-		//delete [] ball;
 	}
 
 	void CGameStateRun::OnBeginState()
@@ -702,14 +700,6 @@ namespace game_framework
 		for (unsigned i = 0; i < monsterS7.size(); i++)
 		{
 			monsterS7[i]->LoadBitmap();
-		}
-		for (unsigned i = 0; i < monsterShrimp.size(); i++)
-		{
-			monsterShrimp[i]->LoadBitmap();
-		}
-		for (unsigned i = 0; i < monsterTree.size(); i++)
-		{
-			monsterTree[i]->LoadBitmap();
 		}
 
 		CAudio::Instance()->Load(AUDIO_COOK, "sounds\\cook.mp3");
@@ -1035,7 +1025,8 @@ namespace game_framework
 
 	void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 	{
-		if (!gamePause) {
+		if (!gamePause)
+		{
 			character.SetFacingDirection(point.x);					// 滑鼠位置改變角色方向
 			mousePosition = point;
 		}
@@ -1306,14 +1297,6 @@ namespace game_framework
 		for (unsigned i = 0; i < monsterS7.size(); i++)
 		{
 			monsterS7[i]->Initialize();
-		}
-		for (unsigned i = 0; i < monsterShrimp.size(); i++)
-		{
-			monsterShrimp[i]->Initialize();
-		}
-		for (unsigned i = 0; i < monsterTree.size(); i++)
-		{
-			monsterTree[i]->Initialize();
 		}
 	}
 }

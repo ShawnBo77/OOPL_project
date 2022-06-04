@@ -189,6 +189,7 @@
     <ClCompile Include="Source\MapS2.cpp" />
     <ClCompile Include="Source\MonsterBanana.cpp" />
     <ClCompile Include="Source\MapS3.cpp" />
+    <ClCompile Include="Source\MonsterMosquito.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -290,6 +291,7 @@
     <ClInclude Include="Source\MonsterBanana.h" />
     <ClInclude Include="Source\MapS2.h" />
     <ClInclude Include="Source\MapS3.h" />
+    <ClInclude Include="Source\MonsterMosquito.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc">

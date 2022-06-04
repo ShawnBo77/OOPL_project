@@ -267,6 +267,7 @@
     <ClCompile Include="Source\MapS3.cpp" />
     <ClCompile Include="Source\MonsterBanana.cpp" />
     <ClCompile Include="Source\MapS2.cpp" />
+    <ClCompile Include="Source\MonsterMosquito.cpp" />
     <ClCompile Include="Source\Timer.cpp" />
     <ClCompile Include="Source\MapS1.cpp" />
     <ClCompile Include="Source\Monster.cpp" />
@@ -340,6 +341,7 @@
     <ClInclude Include="Source\MapS3.h" />
     <ClInclude Include="Source\MonsterBanana.h" />
     <ClInclude Include="Source\MapS2.h" />
+    <ClInclude Include="Source\MonsterMosquito.h" />
     <ClInclude Include="Source\Timer.h" />
     <ClInclude Include="Source\MapS1.h" />
     <ClInclude Include="Source\Monster.h" />
