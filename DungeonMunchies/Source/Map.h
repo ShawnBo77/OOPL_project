@@ -61,6 +61,16 @@ namespace game_framework {
 		void showMaginifier(int x, int y);
 		void setShowMaginifierFlag(bool flag);
 		bool getShowMaginifierFlag();
+
+		void setCanShowMessage(bool flag);
+		bool getCanShowMessage();
+		void setMessageCounter(int n);
+		int getMessageCounter();
+		void setMessageCounterToNext();
+		void setMessageEndFlag(bool flag);
+		bool getMessageEndFlag();
+		void InitializeMessage();
+		virtual void messageOnShow();
 	protected:
 		CMovingBitmap exitBitmap;
 		CMovingBitmap pressEBitmap;
@@ -81,6 +91,11 @@ namespace game_framework {
 
 		CMovingBitmap magnifier;
 		bool showMaginifierFlag;
+
+		bool canShowMessage;
+		int messageCounter;
+		int messageSize;
+		bool messageEndFlag;
 	};
 }
 #endif

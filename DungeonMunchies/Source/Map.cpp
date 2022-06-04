@@ -7,7 +7,8 @@
 #include "Map.h"
 #include <vector>
 
-namespace game_framework {
+namespace game_framework
+{
 	/////////////////////////////////////////////////////////////////////////////
 // 這個class提供地圖構成
 /////////////////////////////////////////////////////////////////////////////
@@ -69,10 +70,12 @@ namespace game_framework {
 	}
 	int Map::getEndBoundary()
 	{
-		if (screenMoving == false) {
+		if (screenMoving == false)
+		{
 			return 10000000;
 		}
-		else {
+		else
+		{
 			return endBoundary;
 		}
 	}
@@ -134,6 +137,14 @@ namespace game_framework {
 	{
 		return showMaginifierFlag;
 	}
+	void Map::setCanShowMessage(bool flag)
+	{
+		canShowMessage = flag;
+	}
+	bool Map::getCanShowMessage()
+	{
+		return canShowMessage;
+	}
 	void Map::setFloor(int y)
 	{
 		floor = y;
@@ -162,4 +173,47 @@ namespace game_framework {
 	{
 		trashCanOpen = flag;
 	}
+
+
+	void Map::setMessageCounter(int n)
+	{
+		messageCounter = n;
+	}
+
+	int Map::getMessageCounter()
+	{
+		return messageCounter;
+	}
+
+	void Map::setMessageCounterToNext()
+	{
+		if (messageCounter != messageSize)
+		{
+			messageCounter += 1;
+		}
+		else
+		{
+			messageCounter = 1;
+		}
+	}
+
+	void Map::setMessageEndFlag(bool flag)
+	{
+		messageEndFlag = flag;
+	}
+
+	bool Map::getMessageEndFlag()
+	{
+		return messageEndFlag;
+	}
+	void Map::InitializeMessage()
+	{
+		messageCounter = 1;
+		messageEndFlag = false;
+	}
+
+	void Map::messageOnShow()
+	{
+	}
+
 }

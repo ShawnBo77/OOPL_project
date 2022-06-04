@@ -260,16 +260,6 @@ namespace game_framework
 		}
 	}
 
-	void MonsterShrimp::SetFacingLR(bool flag)
-	{
-		facingLR = flag;
-	}
-
-	bool MonsterShrimp::GetFacingLR()
-	{
-		return facingLR;
-	}
-
 	int MonsterShrimp::GetLeftX() //顯示的圖會往左邊靠(onShow調整的)
 	{
 		return _x;

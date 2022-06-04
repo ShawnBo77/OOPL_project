@@ -1,5 +1,5 @@
-#ifndef __MONSTERGRASS__
-#define __MONSTERGRASS__
+#ifndef __MONSTERCACTUS__
+#define __MONSTERCACTUS__
 
 namespace game_framework
 {

@@ -278,16 +278,6 @@ namespace game_framework
 		}
 	}
 
-	void MonsterTree::SetFacingLR(bool flag)
-	{
-		facingLR = flag;
-	}
-
-	bool MonsterTree::GetFacingLR()
-	{
-		return facingLR;
-	}
-
 	int MonsterTree::GetLeftX() //以物件本體為主(攻擊範圍不要算在裡面)
 	{
 		if (facingLR == 0) //left

@@ -18,8 +18,6 @@ namespace game_framework
 		void Initialize() override;
 		void OnShow(Map* m) override;
 		void OnMove(Map* m) override;
-		void SetFacingLR(bool flag);
-		bool GetFacingLR();
 		int  GetLeftX();				// 左上角 x 座標
 		int  GetTopY();					// 左上角 y 座標
 		int  GetRightX();				// 右下角 x 座標

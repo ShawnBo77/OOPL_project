@@ -587,10 +587,12 @@ namespace game_framework
 		if (m->getMapName() == "MapS1" && characterX > 1135 && characterX < 1300)
 		{
 			m->setShowMaginifierFlag(true);
+			m->setCanShowMessage(true);
 		}
 		else
 		{
 			m->setShowMaginifierFlag(false);
+			m->setCanShowMessage(false);
 		}
 	}
 
