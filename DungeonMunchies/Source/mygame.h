@@ -136,6 +136,7 @@ namespace game_framework
 		void gameCompleteNoteShow();
 		void bgmPlayer();
 		void stopAllBgm();
+		Map* GetCurrentMap();
 		//CMovingBitmap	monster;
 		Character		character;
 		MapForBoss		bossMap;
@@ -161,6 +162,9 @@ namespace game_framework
 		vector<Monster*> monsterS7;
 		vector<Monster*> monsterShrimp;
 		vector<Monster*> monsterTree;
+
+		bool messageShowFlag;
+
 
 		CPoint mousePosition;
 		CMovingBitmap lightBulb;

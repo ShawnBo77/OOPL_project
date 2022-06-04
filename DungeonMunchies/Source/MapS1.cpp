@@ -88,6 +88,14 @@ namespace game_framework
 		map.LoadBitmap(".\\res\\map01.bmp");
 		exitBitmap.LoadBitmap(IDB_EXIT, RGB(0, 0, 0));
 		pressEBitmap.LoadBitmap(IDB_PRESSE, RGB(0, 0, 0));
+		message01.LoadBitmap(".\\res\\message0101.bmp");
+		message02.LoadBitmap(".\\res\\message0102.bmp");
+		message03.LoadBitmap(".\\res\\message0103.bmp");
+		message04.LoadBitmap(".\\res\\message0104.bmp");
+		//messages.push_back(message01);
+		//messages.push_back(message02);
+		//messages.push_back(message03);
+		//messages.push_back(message04);
 		loadMagnifierBitmap();
 	}
 
@@ -97,6 +105,10 @@ namespace game_framework
 		setScreenMoving(true);
 		setMapName("MapS1");
 		setStartPosition(335);
+		canShowMessage = false;
+		messageCounter = 1;
+		messageSize = 4;
+		messageEndFlag = false;
 	}
 
 	void MapS1::setPos(int x, int y, int n)
@@ -243,5 +255,30 @@ namespace game_framework
 	int MapS1::screenY(int y)
 	{
 		return y + getSY();
+	}
+
+	void MapS1::messageOnShow()
+	{
+		if (messageCounter == 1)
+		{
+			message01.SetTopLeft(173, 535);
+			message01.ShowBitmap();
+		}
+		else if (messageCounter == 2)
+		{
+			message02.SetTopLeft(173, 535);
+			message02.ShowBitmap();
+		}
+		else if (messageCounter == 3)
+		{
+			message03.SetTopLeft(173, 535);
+			message03.ShowBitmap();
+		}
+		else if (messageCounter == 4)
+		{
+			message04.SetTopLeft(173, 535);
+			message04.ShowBitmap();
+			messageEndFlag = true;
+		}
 	}
 }

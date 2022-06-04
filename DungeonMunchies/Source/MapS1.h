@@ -24,6 +24,13 @@ namespace game_framework
 		void monsterFloorChanging(int x) override;
 		int screenX(int x) override;
 		int screenY(int y) override;
+
+		//void setMessageCounter(int n);
+		//int getMessageCounter();
+		//void setMessageCounterToNext();
+		//void setMessageEndFlag(bool flag);
+		//bool getMessageEndFlag();
+		void messageOnShow() override;
 	protected:
 		CMovingBitmap map;
 		int X, Y;
@@ -31,6 +38,15 @@ namespace game_framework
 		CMovingBitmap white, blue;
 		int gridW, gridH;
 		int characterX, characterY;
+
+		CMovingBitmap message01;
+		CMovingBitmap message02;
+		CMovingBitmap message03;
+		CMovingBitmap message04;
+		//vector <CMovingBitmap> messages;
+		//int messageCounter;
+		//int messageSize;
+		//bool messageEndFlag;
 	};
 }
 #endif
