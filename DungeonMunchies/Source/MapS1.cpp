@@ -179,11 +179,11 @@ namespace game_framework
 			showMaginifier(1615, 845);
 		}
 
-		if (getSX() > -1500)
+		if (getSX() > -1502)
 		{
 			setFloor(680);
 		}
-		else if (getSX() > -2060)
+		else if (getSX() > -2081)
 		{
 			setFloor(600);
 		}

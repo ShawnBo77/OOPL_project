@@ -923,17 +923,41 @@ namespace game_framework
 		const int BORDER = 5;
 		if (flag)
 		{
-			if (m->isEmpty(GetRightX() + ROLLING_SIZE * 3, GetTopY()) && m->isEmpty(GetRightX() + ROLLING_SIZE * 3, GetButtonY() - BORDER) && rolling_time >= 0)
+			if (rolling_time >= 0)
 			{
 				if (characterX <= 670)
 				{
 					for (int i = 0; i < 10; i++)
 					{
-						if (characterX + ROLLING_SIZE > 670 && characterX + ROLLING_SIZE < 670 + ROLLING_SIZE && GetMap()->mapScreenMoving() == true)
+						if (m->isEmpty(GetRightX() + ROLLING_SIZE, GetTopY()) && m->isEmpty(GetRightX() + ROLLING_SIZE, GetButtonY() - BORDER))
 						{
-							characterX = 670;
-						} 
-						else if (characterX >= 670)
+							if (characterX + ROLLING_SIZE > 670 && characterX + ROLLING_SIZE < 670 + ROLLING_SIZE && GetMap()->mapScreenMoving() == true)
+							{
+								characterX = 670;
+							}
+							else if (characterX >= 670)
+							{
+								characterX += ROLLING_SIZE;
+								if (GetMap()->mapScreenMoving() == true)
+								{
+									m->addSX(-ROLLING_SIZE);
+									monsterRelativeMove(monsters, -ROLLING_SIZE);
+								}
+							}
+							else
+							{
+								characterX += ROLLING_SIZE;
+							}
+						}
+						else
+							break;
+					}
+				}
+				else
+				{
+					for (int i = 0; i < 10; i++)
+					{
+						if (m->isEmpty(GetRightX() + ROLLING_SIZE, GetTopY()) && m->isEmpty(GetRightX() + ROLLING_SIZE, GetButtonY() - BORDER))
 						{
 							characterX += ROLLING_SIZE;
 							if (GetMap()->mapScreenMoving() == true)
@@ -943,21 +967,7 @@ namespace game_framework
 							}
 						}
 						else
-						{
-							characterX += ROLLING_SIZE;
-						}
-					}
-				}
-				else
-				{
-					for (int i = 0; i < 10; i++)
-					{
-						characterX += ROLLING_SIZE;
-						if (GetMap()->mapScreenMoving() == true)
-						{
-							m->addSX(-ROLLING_SIZE);
-							monsterRelativeMove(monsters, -ROLLING_SIZE);
-						}
+							break;
 					}
 				}
 				rolling_time--;
@@ -970,32 +980,40 @@ namespace game_framework
 		}
 		else
 		{
-			if (m->isEmpty(GetLeftX() - ROLLING_SIZE * 3, GetTopY()) && m->isEmpty(GetLeftX() - ROLLING_SIZE * 3, GetButtonY() - BORDER) && rolling_time >= 0)
+			if (rolling_time >= 0)
 			{
 				if (characterX <= 670 || GetMap()->mapScreenMoving() == false)
 				{
 					for (int i = 0; i < 10; i++)
 					{
-						characterX -= ROLLING_SIZE;
+						if (m->isEmpty(GetLeftX() - ROLLING_SIZE, GetTopY()) && m->isEmpty(GetLeftX() - ROLLING_SIZE, GetButtonY() - BORDER))
+							characterX -= ROLLING_SIZE;
+						else
+							break;
 					}
 				}
 				else
 				{
 					for (int i = 0; i < 10; i++)
 					{
-						if (characterX - ROLLING_SIZE < 670)
+						if (m->isEmpty(GetLeftX() - ROLLING_SIZE, GetTopY()) && m->isEmpty(GetLeftX() - ROLLING_SIZE, GetButtonY() - BORDER))
 						{
-							m->addSX(characterX - 670);
-							monsterRelativeMove(monsters, characterX - 670);
-							characterX = 670;
-							break;
+							if (characterX - ROLLING_SIZE < 670)
+							{
+								m->addSX(characterX - 670);
+								monsterRelativeMove(monsters, characterX - 670);
+								characterX = 670;
+								break;
+							}
+							else
+							{
+								characterX -= ROLLING_SIZE;
+								m->addSX(ROLLING_SIZE);
+								monsterRelativeMove(monsters, ROLLING_SIZE);
+							}
 						}
 						else
-						{
-							characterX -= ROLLING_SIZE;
-							m->addSX(ROLLING_SIZE);
-							monsterRelativeMove(monsters, ROLLING_SIZE);
-						}
+							break;
 					}
 				}
 				rolling_time--;

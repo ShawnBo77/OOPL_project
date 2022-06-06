@@ -268,7 +268,7 @@ namespace game_framework
         {
             setFloor(540);
         }
-        else if (characterX < 410)
+        else if (characterX < 400)
         {
             setFloor(680);
         }
@@ -289,7 +289,7 @@ namespace game_framework
         }
         else
         {
-            if (characterY > 612 || characterX>2280)
+            if (characterY > 612 || characterX > 2280)
             {
                 setFloor(880);
                 if (characterX > 1850 && characterX < 2280)
