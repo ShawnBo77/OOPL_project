@@ -207,11 +207,11 @@ namespace game_framework
 			else {
 				if (action == walk_a)
 				{
-					walkOnShow();
+					walkOnShow(m);
 				}
 				else if (action == hit_a)
 				{
-					hitOnShow();
+					hitOnShow(m);
 				}
 				else if (action == collide_a)
 				{
@@ -219,10 +219,10 @@ namespace game_framework
 				}
 				else if (action == thron_a)
 				{
-					thronBossOnShow();
+					thronBossOnShow(m);
 				}
 			}
-			bloodBar.setXY(_x, _y - 16);
+			bloodBar.setXY(_x + m->getXMovement(), _y + m->getYMovement() - 16);
 			bloodBar.showBloodBar(m, hp);
 			if (lossHpShowFlag)
 			{
@@ -233,7 +233,7 @@ namespace game_framework
 		else
 		{
 			if (!bossDead) {
-				deadOnShow();
+				deadOnShow(m);
 			}
 		}
 		//showData();
@@ -364,16 +364,16 @@ namespace game_framework
 		walkingRight.OnMove();
 	}
 
-	void MonsterBoss::walkOnShow()
+	void MonsterBoss::walkOnShow(Map *m)
 	{
 		if (facingLR == 0)
 		{
-			walkingLeft.SetTopLeft(_x, _y);
+			walkingLeft.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
 			walkingLeft.OnShow();
 		}
 		else
 		{
-			walkingRight.SetTopLeft(_x, _y);
+			walkingRight.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
 			walkingRight.OnShow();
 		}
 	}
@@ -432,24 +432,24 @@ namespace game_framework
 		}
 	}
 
-	void MonsterBoss::hitOnShow()
+	void MonsterBoss::hitOnShow(Map* m)
 	{
 		if (facingLR == 0)
 		{
 			if (hitLeft.GetCurrentBitmapNumber() == 2 || hitLeft.GetCurrentBitmapNumber() == 3 || hitLeft.GetCurrentBitmapNumber() == 4)
 			{
-				hitLeft.SetTopLeft(_x - 60, _y);
+				hitLeft.SetTopLeft(_x + m->getXMovement() - 60, _y + m->getYMovement());
 			}
 			else
 			{
-				hitLeft.SetTopLeft(_x, _y);
+				hitLeft.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
 			}
 			hitLeft.SetDelayCount(hitDelayCount);
 			hitLeft.OnShow();
 
 			if (hitLeft.GetCurrentBitmapNumber() == 3 || hitLeft.GetCurrentBitmapNumber() == 4)
 			{
-				hitLeftEffect.SetTopLeft(_x - 60 - 290, _y);
+				hitLeftEffect.SetTopLeft(_x + m->getXMovement() - 60 - 290, _y + m->getYMovement());
 				hitLeftEffect.SetDelayCount(hitDelayCount);
 				hitLeftEffect.OnShow();
 				hitJudge();
@@ -469,18 +469,18 @@ namespace game_framework
 		{
 			if (hitRight.GetCurrentBitmapNumber() == 2 || hitRight.GetCurrentBitmapNumber() == 3 || hitRight.GetCurrentBitmapNumber() == 4)
 			{
-				hitRight.SetTopLeft(_x + 60, _y);
+				hitRight.SetTopLeft(_x + m->getXMovement() + 60, _y + m->getYMovement());
 			}
 			else
 			{
-				hitRight.SetTopLeft(_x, _y);
+				hitRight.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
 			}
 			hitRight.SetDelayCount(hitDelayCount);
 			hitRight.OnShow();
 
 			if (hitRight.GetCurrentBitmapNumber() == 3 || hitRight.GetCurrentBitmapNumber() == 4)
 			{
-				hitRightEffect.SetTopLeft(_x + 60 - 130, _y);
+				hitRightEffect.SetTopLeft(_x + m->getXMovement() + 60 - 130, _y + m->getYMovement());
 				hitRightEffect.SetDelayCount(hitDelayCount);
 				hitRightEffect.OnShow();
 				hitJudge();
@@ -547,11 +547,11 @@ namespace game_framework
 		{
 			if (collideLeft.GetCurrentBitmapNumber() == 1)
 			{
-				collideLeft.SetTopLeft(_x - 20, _y);
+				collideLeft.SetTopLeft(_x + m->getXMovement() - 20, _y + m->getYMovement());
 			}
 			else
 			{
-				collideLeft.SetTopLeft(_x, _y);
+				collideLeft.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
 			}
 
 			if (collideLeft.GetCurrentBitmapNumber() == 2 || collideLeft.GetCurrentBitmapNumber() == 3)
@@ -572,11 +572,11 @@ namespace game_framework
 		{
 			if (collideRight.GetCurrentBitmapNumber() == 1)
 			{
-				collideRight.SetTopLeft(_x + 20, _y);
+				collideRight.SetTopLeft(_x + m->getXMovement() + 20, _y + m->getYMovement());
 			}
 			else
 			{
-				collideRight.SetTopLeft(_x, _y);
+				collideRight.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
 			}
 
 			if (collideRight.GetCurrentBitmapNumber() == 2 || collideRight.GetCurrentBitmapNumber() == 3)
@@ -664,15 +664,15 @@ namespace game_framework
 
 	}
 
-	void MonsterBoss::thronBossOnShow()
+	void MonsterBoss::thronBossOnShow(Map* m)
 	{
 		if (facingLR == 0)
 		{
-			thronLeft.SetTopLeft(_x, _y);
+			thronLeft.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
 			thronLeft.OnShow();
 			if (thronLeft.GetCurrentBitmapNumber() == 2)
 			{
-				thronOnShow();
+				thronOnShow(m);
 			}
 			if (thronLeft.IsFinalBitmap() && thronCount >= 3)
 			{
@@ -684,11 +684,11 @@ namespace game_framework
 		}
 		else
 		{
-			thronRight.SetTopLeft(_x, _y);
+			thronRight.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
 			thronRight.OnShow();
 			if (thronRight.GetCurrentBitmapNumber() == 2)
 			{
-				thronOnShow();
+				thronOnShow(m);
 			}
 			if (thronRight.IsFinalBitmap() && thronCount >= 3)
 			{
@@ -700,7 +700,7 @@ namespace game_framework
 		}
 	}
 
-	void MonsterBoss::thronOnShow()
+	void MonsterBoss::thronOnShow(Map* m)
 	{
 		if (thron.GetCurrentBitmapNumber() == 0)
 		{
@@ -709,11 +709,11 @@ namespace game_framework
 				SetCMidX();
 				thronExist = true;
 			}
-			thron.SetTopLeft(cMidX - 7, floor - 50);
+			thron.SetTopLeft(cMidX + m->getXMovement() - 7, floor + m->getYMovement() - 50);
 		}
 		else
 		{
-			thron.SetTopLeft(cMidX - 18, floor - 199);
+			thron.SetTopLeft(cMidX + m->getXMovement() - 18, floor + m->getYMovement() - 199);
 		}
 		if (thron.GetCurrentBitmapNumber() == 2)
 		{
@@ -757,11 +757,11 @@ namespace game_framework
 		}
 	}
 
-	void MonsterBoss::deadOnShow()
+	void MonsterBoss::deadOnShow(Map* m)
 	{
 		if (facingLR == 0)
 		{
-			deadLeft.SetTopLeft(_x, _y);
+			deadLeft.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
 			deadLeft.OnShow();
 
 			if (deadLeft.IsFinalBitmap())
@@ -772,7 +772,7 @@ namespace game_framework
 		}
 		else
 		{
-			deadRight.SetTopLeft(_x, _y);
+			deadRight.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
 			deadRight.OnShow();
 
 			if (deadRight.IsFinalBitmap())
