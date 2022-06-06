@@ -202,7 +202,7 @@ namespace game_framework
 		{
 			if (isAttacked && isSparkleEffectShow)
 			{
-				isAttackedEffectOnShow();
+				isAttackedEffectOnShow(m);
 			}
 			else {
 				if (action == walk_a)

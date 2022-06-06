@@ -51,7 +51,6 @@ namespace game_framework
 	{
 		_x = init_x;
 		_y = init_y;
-		RelativeMovement = 0;
 		hp = 50;
 		attackDamage = 5;
 		bloodBar.setFullHP(hp);
@@ -66,14 +65,14 @@ namespace game_framework
 		{
 			if (isAttacked && isSparkleEffectShow)
 			{
-				isAttackedEffectOnShow();
+				isAttackedEffectOnShow(m);
 			}
 			else
 			{
-				cactusAlive.SetTopLeft(_x + RelativeMovement, _y);
+				cactusAlive.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
 				cactusAlive.ShowBitmap();
 			}
-			bloodBar.setXY(GetLeftX() + RelativeMovement, GetTopY() - 16);
+			bloodBar.setXY(GetLeftX() + m->getXMovement(), GetTopY() + m->getYMovement() - 16);
 			bloodBar.showBloodBar(m, hp);
 			if (lossHpShowFlag)
 			{
@@ -83,11 +82,11 @@ namespace game_framework
 		}
 		else
 		{
-			cactusDead.SetTopLeft(_x + RelativeMovement, _y + (cactusAlive.Height() - cactusDead.Height()));
+			cactusDead.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement() + (cactusAlive.Height() - cactusDead.Height()));
 			cactusDead.ShowBitmap();
 			if (!hasGottenSource)
 			{
-				sourceGrassFast.SetTopLeft((_x + GetRightX()) / 2 + RelativeMovement, m->getMonsterFloor() - 64);
+				sourceGrassFast.SetTopLeft((_x + GetRightX()) / 2 + m->getXMovement(), m->getMonsterFloor() - 64 + m->getYMovement());
 				sourceGrassFast.ShowBitmap();
 			}
 		}

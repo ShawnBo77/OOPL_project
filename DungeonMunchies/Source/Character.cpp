@@ -281,14 +281,12 @@ namespace game_framework
 					if (characterX - STEP_SIZE < 670)
 					{
 						m->addSX(characterX - 670);
-						monsterRelativeMove(monsters, characterX - 670);
 						characterX = 670;
 					}
 					else
 					{
 						characterX -= STEP_SIZE;
 						m->addSX(STEP_SIZE);
-						monsterRelativeMove(monsters, STEP_SIZE);
 					}										//視角移動(王關不用)
 				}
 			}
@@ -312,7 +310,6 @@ namespace game_framework
 					if (GetMap()->mapScreenMoving() == true)
 					{
 						m->addSX(-STEP_SIZE);
-						monsterRelativeMove(monsters, -STEP_SIZE);
 					}
 				}
 			}
@@ -394,7 +391,6 @@ namespace game_framework
 						if (characterX > 670 && m->mapScreenMoving())
 						{
 							m->addSX(1);
-							monsterRelativeMove(monsters, 1);
 						}
 						characterX -= 1;
 					}
@@ -411,7 +407,6 @@ namespace game_framework
 						if (characterX > 670 && m->mapScreenMoving())
 						{
 							m->addSX(-1);
-							monsterRelativeMove(monsters, -1);
 						}
 
 						characterX += 1;
@@ -875,17 +870,6 @@ namespace game_framework
 		return false;
 	}
 
-	void Character::monsterRelativeMove(vector<Monster*>* monsters, int x)
-	{
-		if (!monsters == NULL)
-		{
-			for (unsigned int i = 0; i < monsters->size(); i++)
-			{
-				monsters->at(i)->SetRelativeMovement(x);
-			}
-		}
-	}
-
 	void Character::SetSpeed(int x)
 	{
 		STEP_SIZE = x;
@@ -941,7 +925,6 @@ namespace game_framework
 								if (GetMap()->mapScreenMoving() == true)
 								{
 									m->addSX(-ROLLING_SIZE);
-									monsterRelativeMove(monsters, -ROLLING_SIZE);
 								}
 							}
 							else
@@ -963,7 +946,6 @@ namespace game_framework
 							if (GetMap()->mapScreenMoving() == true)
 							{
 								m->addSX(-ROLLING_SIZE);
-								monsterRelativeMove(monsters, -ROLLING_SIZE);
 							}
 						}
 						else
@@ -1001,7 +983,6 @@ namespace game_framework
 							if (characterX - ROLLING_SIZE < 670)
 							{
 								m->addSX(characterX - 670);
-								monsterRelativeMove(monsters, characterX - 670);
 								characterX = 670;
 								break;
 							}
@@ -1009,7 +990,6 @@ namespace game_framework
 							{
 								characterX -= ROLLING_SIZE;
 								m->addSX(ROLLING_SIZE);
-								monsterRelativeMove(monsters, ROLLING_SIZE);
 							}
 						}
 						else

@@ -72,7 +72,6 @@ namespace game_framework
 	{
 		_x = init_x;
 		_y = init_y;
-		RelativeMovement = 0;
 		currentFloor = 0;
 		BORDER = 5;
 		HORIZONTAL_GAP = 0;
@@ -95,20 +94,21 @@ namespace game_framework
 		{
 			if (isAttacked && isSparkleEffectShow)
 			{
-				isAttackedEffectOnShow();
+				isAttackedEffectOnShow(m);
 			}
-			else {
+			else
+			{
 				if (facingLR == 0)
 				{
 					if (action == walk_a)
 					{
-						walkLeft.SetTopLeft(_x - 140 + RelativeMovement, _y); //讓圖片中怪物顯示靠向左
+						walkLeft.SetTopLeft(_x - 140 + m->getXMovement(), _y + m->getYMovement()); //讓圖片中怪物顯示靠向左
 						//walkLeft.SetDelayCount(3);
 						walkLeft.OnShow();
 					}
 					else
 					{
-						attackLeft.SetTopLeft(_x + RelativeMovement - 110, _y);
+						attackLeft.SetTopLeft(_x + m->getXMovement() - 110, _y + m->getYMovement());
 						attackLeft.SetDelayCount(3);
 						attackLeft.OnShow();
 						if (attackLeft.GetCurrentBitmapNumber() == 2)
@@ -126,12 +126,12 @@ namespace game_framework
 				{
 					if (action == walk_a)
 					{
-						walkRight.SetTopLeft(_x + RelativeMovement, _y);
+						walkRight.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
 						walkRight.OnShow();
 					}
 					else
 					{
-						attackRight.SetTopLeft(_x + RelativeMovement, _y);
+						attackRight.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
 						attackRight.SetDelayCount(3);
 						attackRight.OnShow();
 						if (attackRight.GetCurrentBitmapNumber() == 2)
@@ -146,7 +146,7 @@ namespace game_framework
 					}
 				}
 			}
-			bloodBar.setXY(GetLeftX() + RelativeMovement, GetTopY() - 16);
+			bloodBar.setXY(GetLeftX() + m->getXMovement(), GetTopY() + m->getYMovement() - 16);
 			bloodBar.showBloodBar(m, hp);
 			if (lossHpShowFlag)
 			{
@@ -158,24 +158,24 @@ namespace game_framework
 		{
 			if (facingLR == 0)
 			{
-				deadLeft.SetTopLeft(_x + RelativeMovement, _y);
+				deadLeft.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
 				deadLeft.ShowBitmap();
 			}
 			else
 			{
-				deadRight.SetTopLeft(_x + RelativeMovement, _y);
+				deadRight.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
 				deadRight.ShowBitmap();
 			}
 			if (!hasGottenSource)
 			{
 				if (randN == 0)
 				{
-					sourceShrimpAttack.SetTopLeft((_x + GetRightX()) / 2 + RelativeMovement, m->getMonsterFloor() - 64);
+					sourceShrimpAttack.SetTopLeft((_x + GetRightX()) / 2 + m->getXMovement(), m->getMonsterFloor() - 64 + m->getYMovement());
 					sourceShrimpAttack.ShowBitmap();
 				}
 				else
 				{
-					sourceShrimpBlood.SetTopLeft((_x + GetRightX()) / 2 + RelativeMovement, m->getMonsterFloor() - 64);
+					sourceShrimpBlood.SetTopLeft((_x + GetRightX()) / 2 + m->getXMovement(), m->getMonsterFloor() - 64 + m->getYMovement());
 					sourceShrimpBlood.ShowBitmap();
 				}
 			}

@@ -51,8 +51,6 @@ namespace game_framework
 	{
 		_x = init_x;
 		_y = init_y;
-		init_sy = 999;
-		RelativeMovement = 0;
 		hp = 50;
 		attackDamage = 5;
 		bloodBar.setFullHP(hp);
@@ -63,20 +61,18 @@ namespace game_framework
 
 	void MonsterBanana::OnShow(Map* m)
 	{
-		if (init_sy == 999)
-			init_sy = m->getSY();
 		if (isAlive())
 		{
 			if (isAttacked && isSparkleEffectShow)
 			{
-				isAttackedEffectOnShow();
+				isAttackedEffectOnShow(m);
 			}
 			else
 			{
-				bananaAlive.SetTopLeft(_x + RelativeMovement, _y - GetRelativeMovementY(m));
+				bananaAlive.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
 				bananaAlive.ShowBitmap();
 			}
-			bloodBar.setXY(GetLeftX() + RelativeMovement, GetTopY() - 16 - GetRelativeMovementY(m));
+			bloodBar.setXY(GetLeftX() + m->getXMovement(), GetTopY() - 16 + m->getYMovement());
 			bloodBar.showBloodBar(m, hp);
 			if (lossHpShowFlag)
 			{
@@ -86,11 +82,11 @@ namespace game_framework
 		}
 		if (!isAlive())
 		{
-			bananaDead.SetTopLeft(_x + RelativeMovement, _y + bananaAlive.Height() - bananaDead.Height() - GetRelativeMovementY(m));
+			bananaDead.SetTopLeft(_x + m->getXMovement(), _y + bananaAlive.Height() - bananaDead.Height() + m->getYMovement());
 			bananaDead.ShowBitmap();
 			if (!hasGottenSource)
 			{
-				sourceBananaAttack.SetTopLeft((_x + GetRightX()) / 2 + RelativeMovement, m->getMonsterFloor() - 64 - GetRelativeMovementY(m));
+				sourceBananaAttack.SetTopLeft((_x + GetRightX()) / 2 + m->getXMovement(), m->getMonsterFloor() - 64 + m->getYMovement());
 				sourceBananaAttack.ShowBitmap();
 			}
 		}
@@ -159,8 +155,4 @@ namespace game_framework
 			_y = m->getMonsterFloor() - bananaAlive.Height() - 6;
 		}
 	}
-	//Map* MonsterBanana::GetMap()
-	//{
-	//	return currentMap;
-	//}
 }

@@ -156,15 +156,15 @@ namespace game_framework
 		_y = y;
 	}
 
-	void Monster::SetRelativeMovement(int x)
-	{
-		RelativeMovement += x;
-	}
+	//void Monster::SetRelativeMovement(int x)
+	//{
+	//	RelativeMovement += x;
+	//}
 
-	int Monster::GetRelativeMovementY(Map* m)
-	{
-		return init_sy - m->getSY();
-	}
+	//int Monster::GetRelativeMovementY(Map* m)
+	//{
+	//	return init_sy - m->getSY();
+	//}
 
 	int Monster::GetBorder()
 	{
@@ -385,9 +385,9 @@ namespace game_framework
 		}
 	}
 
-	void Monster::isAttackedEffectOnShow()
+	void Monster::isAttackedEffectOnShow(Map *m)
 	{
-		black.SetTopLeft(_x + RelativeMovement, _y);
+		black.SetTopLeft(_x + m->getXMovement(), _y);
 		black.ShowBitmap();
 	}
 

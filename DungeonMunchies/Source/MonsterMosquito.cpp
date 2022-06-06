@@ -54,7 +54,6 @@ namespace game_framework
 		_x = init_x;
 		_y = init_y;
 		currentFloor = 0;
-		RelativeMovement = 0;
 		BORDER = 5;
 		HORIZONTAL_GAP = 0;
 		hp = 20;
@@ -77,15 +76,15 @@ namespace game_framework
 		if (isAlive())
 		{
 			if (GetTopY() < m->getCeiling()) //向上移動
-			{ 
+			{
 				_y -= STEP_SIZE;
 			}
 			if (m->isEmpty(GetRightX() + STEP_SIZE, GetTopY()) && m->isEmpty(GetRightX() + STEP_SIZE, GetButtonY())) //向右移動
-			{ 
+			{
 				_x += STEP_SIZE;
 			}
 			if (m->isEmpty(GetLeftX() - STEP_SIZE, GetTopY()) && m->isEmpty(GetLeftX() - STEP_SIZE, GetButtonY())) //向左移動
-			{ 
+			{
 				_x -= STEP_SIZE;
 			}
 			intersect();
@@ -111,7 +110,7 @@ namespace game_framework
 		{
 			if (isAttacked && isSparkleEffectShow)
 			{
-				isAttackedEffectOnShow();
+				isAttackedEffectOnShow(m);
 			}
 			else
 			{
@@ -126,7 +125,7 @@ namespace game_framework
 					faceRight.OnShow();
 				}
 			}
-			bloodBar.setXY(GetLeftX() + RelativeMovement, GetTopY() - 16);
+			bloodBar.setXY(GetLeftX() + m->getXMovement(), GetTopY() - 16);
 			bloodBar.showBloodBar(m, hp);
 			if (lossHpShowFlag)
 			{
@@ -138,7 +137,7 @@ namespace game_framework
 		{
 			if (!hasGottenSource)
 			{
-				sourceMosquitoJump.SetTopLeft((_x + GetRightX()) / 2 + RelativeMovement, m->getMonsterFloor() - 64);
+				sourceMosquitoJump.SetTopLeft((_x + GetRightX()) / 2 + m->getXMovement(), m->getMonsterFloor() - 64 - m->getYMovement());
 				sourceMosquitoJump.ShowBitmap();
 			}
 		}

@@ -37,8 +37,8 @@ namespace game_framework
 		// 設定Monster的座標的函式們												   //
 		/////////////////////////////////////////////////////////////////////////////
 		void SetXY(int x, int y);					// x, y座標
-		void SetRelativeMovement(int x);					// x, y座標
-		int GetRelativeMovementY(Map* m);					// x, y座標
+		//void SetRelativeMovement(int x);					// x, y座標
+		//int GetRelativeMovementY(Map* m);					// x, y座標
 		int	GetBorder();
 		int GetHorizontalGap();				//之後可能可以刪除
 		void SetMovingDown(bool b);					//下
@@ -80,7 +80,7 @@ namespace game_framework
 		void SetIsAttacked(bool flag);	// 設定是否受到攻擊
 		bool GetIsAttacked();    // 回傳是否受到攻擊
 		void isAttackedEffectCaculation();
-		void isAttackedEffectOnShow();
+		void isAttackedEffectOnShow(Map* m);
 
 		//結束
 		void SetBossDead(bool flag);
@@ -94,7 +94,6 @@ namespace game_framework
 		int _x, _y;
 		int init_x, init_y;
 		int currentFloor;
-		int init_sx, init_sy;
 		int hp;
 		BloodBar bloodBar;
 		int attackDamage;
@@ -105,7 +104,7 @@ namespace game_framework
 
 		Action action;
 		int STEP_SIZE;              // 移動速度
-		int RelativeMovement;              // 移動速度
+		//int RelativeMovement;              // 移動速度
 		int BORDER;				
 		int HORIZONTAL_GAP;
 		bool isMovingLeft;			// 是否正在往左移動

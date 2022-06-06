@@ -85,7 +85,6 @@ namespace game_framework
 		_x = init_x;
 		_y = init_y;
 		currentFloor = 0;
-		RelativeMovement = 0;
 		BORDER = 5;
 		HORIZONTAL_GAP = 0;
 		hp = 50;
@@ -106,7 +105,7 @@ namespace game_framework
 		{
 			if (isAttacked && isSparkleEffectShow)
 			{
-				isAttackedEffectOnShow();
+				isAttackedEffectOnShow(m);
 			}
 			else
 			{
@@ -114,18 +113,18 @@ namespace game_framework
 				{
 					if (action == sleep_a)
 					{
-						sleepLeft.SetTopLeft(_x + RelativeMovement, _y);
+						sleepLeft.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
 						sleepLeft.ShowBitmap();
 					}
 					else if (action == walk_a)
 					{
-						walkLeft.SetTopLeft(_x + RelativeMovement, _y); //讓圖片中怪物顯示靠向左
+						walkLeft.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement()); //讓圖片中怪物顯示靠向左
 						//walkLeft.SetDelayCount(3);
 						walkLeft.OnShow();
 					}
 					else
 					{
-						attackLeft.SetTopLeft(_x + RelativeMovement, _y);
+						attackLeft.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
 						attackLeft.SetDelayCount(3);
 						attackLeft.OnShow();
 						if (attackLeft.GetCurrentBitmapNumber() == 4)
@@ -143,17 +142,17 @@ namespace game_framework
 				{
 					if (action == sleep_a)
 					{
-						sleepRight.SetTopLeft(_x + RelativeMovement, _y);
+						sleepRight.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
 						sleepRight.ShowBitmap();
 					}
 					else if (action == walk_a)
 					{
-						walkRight.SetTopLeft(_x + RelativeMovement, _y);
+						walkRight.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
 						walkRight.OnShow();
 					}
 					else
 					{
-						attackRight.SetTopLeft(_x + RelativeMovement, _y);
+						attackRight.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
 						attackRight.SetDelayCount(3);
 						attackRight.OnShow();
 						if (attackRight.GetCurrentBitmapNumber() == 4)
@@ -168,7 +167,7 @@ namespace game_framework
 					}
 				}
 			}
-			bloodBar.setXY(_x + RelativeMovement, _y - 16);
+			bloodBar.setXY(GetLeftX() + m->getXMovement(), GetTopY() + m->getYMovement() - 16);
 			bloodBar.showBloodBar(m, hp);
 			if (lossHpShowFlag)
 			{
@@ -180,17 +179,17 @@ namespace game_framework
 		{
 			if (facingLR == 0)
 			{
-				deadLeft.SetTopLeft(_x + RelativeMovement, _y);
+				deadLeft.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
 				deadLeft.ShowBitmap();
 			}
 			else
 			{
-				deadRight.SetTopLeft(_x + RelativeMovement, _y);
+				deadRight.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
 				deadRight.ShowBitmap();
 			}
 			if (!hasGottenSource)
 			{
-				sourceGuavaJuiceBlood.SetTopLeft((_x + GetRightX()) / 2 + RelativeMovement, m->getMonsterFloor() - 64);
+				sourceGuavaJuiceBlood.SetTopLeft((_x + GetRightX()) / 2 + m->getXMovement(), m->getMonsterFloor() - 64 - m->getYMovement());
 				sourceGuavaJuiceBlood.ShowBitmap();
 			}
 		}

@@ -75,7 +75,6 @@ namespace game_framework
 		bool CanMovingLeft(Map* m, vector<Monster*>* monsters);
 		bool CanMovingRight(Map* m, vector<Monster*>* monsters);
 
-		void monsterRelativeMove(vector<Monster*>* monsters, int x);
 		//³t«×
 		void SetSpeed(int x);
 		int GetSpeed();
