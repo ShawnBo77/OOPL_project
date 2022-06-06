@@ -387,7 +387,7 @@ namespace game_framework
 
 	void Monster::isAttackedEffectOnShow(Map *m)
 	{
-		black.SetTopLeft(_x + m->getXMovement(), _y);
+		black.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
 		black.ShowBitmap();
 	}
 

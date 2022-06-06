@@ -28,7 +28,7 @@ namespace game_framework
 		/*走路*/
 		void walk(Map* m);
 		void walkOnMove();
-		void walkOnShow();
+		void walkOnShow(Map* m);
 		bool CanWalkL(Map* m);
 		bool CanWalkR(Map* m);
 		/*攻擊*/
@@ -37,7 +37,7 @@ namespace game_framework
 		//hit
 		void hitStart();
 		void hitOnMove();
-		void hitOnShow();
+		void hitOnShow(Map* m);
 		void hitJudge();
 		//collide
 		void collideStart();
@@ -48,13 +48,13 @@ namespace game_framework
 		//thron
 		void thronStart();
 		void thronBossOnMove();
-		void thronBossOnShow();
-		void thronOnShow();
+		void thronBossOnShow(Map* m);
+		void thronOnShow(Map* m);
 		void thronJudge();
 		void SetCMidX();
 		//dead
 		void deadOnMove();
-		void deadOnShow();
+		void deadOnShow(Map* m);
 		
 		CAnimation walkingRight;        // 向右行走動畫
 		CAnimation walkingLeft;         // 向左行走動畫
