@@ -81,93 +81,6 @@ namespace game_framework
 		vector<int> attackingRightAnimation = { IDB_HERORIGHTATTACK1_S, IDB_HERORIGHTATTACK2_S, IDB_HERORIGHTATTACK3_S, IDB_HERORIGHTATTACK4_S };
 		for (int i = 0; i < 4; i++)
 			rightAttacking.AddBitmap(attackingRightAnimation[i], RGB(0, 0, 0));
-
-		/*animation.AddBitmap(IDB_HERORIGHTROLL1, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_HERORIGHTROLL2, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_HERORIGHTROLL3, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_HERORIGHTROLL4, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_HERORIGHTROLL5, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_HERORIGHTROLL6, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_HERORIGHTROLL7, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_HERORIGHTROLL8, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_HEROLEFTSTAND_S, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_HEROLEFTROLL1, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_HEROLEFTROLL2, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_HEROLEFTROLL3, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_HEROLEFTROLL4, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_HEROLEFTROLL5, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_HEROLEFTROLL6, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_HEROLEFTROLL7, RGB(0, 0, 0));
-		animation.AddBitmap(IDB_HEROLEFTROLL8, RGB(0, 0, 0));*/
-		//
-		//animation.AddBitmap(IDB_BOSSRIGHTCOLLIDE1, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSRIGHTCOLLIDE2, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSRIGHTCOLLIDE3, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSRIGHTCOLLIDE4, RGB(0, 0, 0));
-
-		//animation.AddBitmap(IDB_BOSSRIGHTDEAD1, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSRIGHTDEAD2, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSRIGHTDEAD3, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSRIGHTDEAD4, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSRIGHTDEAD5, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSRIGHTDEAD6, RGB(0, 0, 0));
-
-		//animation.AddBitmap(IDB_BOSSRIGHTHIT1, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSRIGHTHIT2, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSRIGHTHIT3, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSRIGHTHIT4, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSRIGHTHIT5, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSRIGHTHIT6, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSRIGHTHITEFFECT4, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSRIGHTHITEFFECT5, RGB(0, 0, 0));
-		//
-		//animation.AddBitmap(IDB_BOSSRIGHTTHORN1, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSRIGHTTHORN2, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSRIGHTTHORN3, RGB(0, 0, 0));
-		//
-		//animation.AddBitmap(IDB_BOSSRIGHTWALK1, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSRIGHTWALK2, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSRIGHTWALK3, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSRIGHTWALK4, RGB(0, 0, 0));
-		//
-		//animation.AddBitmap(IDB_BOSSLEFTCOLLIDE1, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSLEFTCOLLIDE2, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSLEFTCOLLIDE3, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSLEFTCOLLIDE4, RGB(0, 0, 0));
-
-		//animation.AddBitmap(IDB_BOSSLEFTDEAD1, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSLEFTDEAD2, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSLEFTDEAD3, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSLEFTDEAD4, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSLEFTDEAD5, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSLEFTDEAD6, RGB(0, 0, 0));
-
-		//animation.AddBitmap(IDB_BOSSLEFTHIT1, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSLEFTHIT2, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSLEFTHIT3, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSLEFTHIT4, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSLEFTHIT5, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSLEFTHIT6, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSLEFTHITEFFECT4, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSLEFTHITEFFECT5, RGB(0, 0, 0));
-
-		//animation.AddBitmap(IDB_BOSSLEFTTHORN1, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSLEFTTHORN2, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSLEFTTHORN3, RGB(0, 0, 0));
-
-		//animation.AddBitmap(IDB_BOSSLEFTSTAND, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSLEFTWALK1, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSLEFTWALK2, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSLEFTWALK3, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_BOSSLEFTWALK4, RGB(0, 0, 0));
-
-		//animation.AddBitmap(IDB_THRONGROW1, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_THRONGROW2, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_THRONRED, RGB(0, 0, 0));
-		//
-		//animation.AddBitmap(IDB_CACTUSALIVE, RGB(0, 0, 0));
-		//animation.AddBitmap(IDB_CACTUSDEAD, RGB(0, 0, 0));
-		//
 	}
 
 	void Character::Initialize()
@@ -178,6 +91,7 @@ namespace game_framework
 		const int Y_POS = 80;													//角色起始Y軸
 		characterX = X_POS;
 		characterY = Y_POS;
+		hasSword = false;
 		yRelativeMovement = 0;
 		facingLR = 1;
 		STEP_SIZE = 15;
@@ -219,6 +133,11 @@ namespace game_framework
 			SetMap(m);
 			ResetPosition(m);
 		}
+
+		//if (hasSword)
+		//{
+		//	characterHasSword();
+		//}
 
 		shouldShowMagnifier(m);
 
@@ -314,7 +233,7 @@ namespace game_framework
 				}
 			}
 
-			if (GetIsMovingUp() && GetButtonY() >= m->getFloor() && velocity == 0)
+			if (GetIsMovingUp() && ((GetButtonY() >= m->getFloor() && velocity == 0) || GetButtonY() == monsterTop))
 			{
 				isRising = true;
 				velocity = 13;
@@ -358,9 +277,10 @@ namespace game_framework
 						{
 							monsterBorder = monsters->at(i)->GetBorder();
 
-							if (GetRightX() > monsters->at(i)->GetLeftX() && GetLeftX() < monsters->at(i)->GetRightX() && GetButtonY() + velocity * 3 >= monsters->at(i)->GetTopY() + monsterBorder && monsters->at(i)->isAlive())
+							if (GetRightX() > monsters->at(i)->GetLeftX() + monsterBorder && GetLeftX() < monsters->at(i)->GetRightX() - monsterBorder && GetButtonY() + velocity * 3 >= monsters->at(i)->GetTopY() + monsterBorder && monsters->at(i)->isAlive())
 							{
 								characterY = monsters->at(i)->GetTopY() + monsterBorder - 120;
+								monsterTop = monsters->at(i)->GetTopY() + monsterBorder;
 								isOnMonster = true;
 								break;
 							}
@@ -376,6 +296,7 @@ namespace game_framework
 				}
 				else
 				{
+					monsterTop = 0;
 					characterY = m->getFloor() - 120;			// 當y座標低於地板，更正為地板上
 					velocity = 0;
 					SetDoubleJump(DJtemp);
