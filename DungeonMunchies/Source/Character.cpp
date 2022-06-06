@@ -929,9 +929,18 @@ namespace game_framework
 				{
 					for (int i = 0; i < 10; i++)
 					{
-						if (characterX + ROLLING_SIZE > 670 && GetMap()->mapScreenMoving() == true)
+						if (characterX + ROLLING_SIZE > 670 && characterX + ROLLING_SIZE < 670 + ROLLING_SIZE && GetMap()->mapScreenMoving() == true)
 						{
 							characterX = 670;
+						} 
+						else if (characterX >= 670)
+						{
+							characterX += ROLLING_SIZE;
+							if (GetMap()->mapScreenMoving() == true)
+							{
+								m->addSX(-ROLLING_SIZE);
+								monsterRelativeMove(monsters, -ROLLING_SIZE);
+							}
 						}
 						else
 						{
