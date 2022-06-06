@@ -65,7 +65,7 @@ namespace game_framework
 		lightBulbInside = 20;
 		hasGottenLightBulb = false;
 		hasGottenSource = false;
-		flyCase = 1;
+		flyCase = 2;
 		shouldFlyCaseChange = false;
 	}
 
@@ -79,66 +79,55 @@ namespace game_framework
 		{
 			if (shouldFlyCaseChange)
 			{
+				flyTimer.Start();
 				flyCaseChanger();
 				shouldFlyCaseChange = false;
 			}
 			if (flyCase == 1)
 			{
-				for (int i = 0; i < 2; i++)
+				if (m->isEmpty(GetLeftX(), GetTopY()- STEP_SIZE) && m->isEmpty(GetRightX(), GetTopY() - STEP_SIZE)) //向上移動
 				{
-					if (m->isEmpty(GetLeftX(), GetTopY()- STEP_SIZE) && m->isEmpty(GetRightX(), GetTopY() - STEP_SIZE)) //向上移動
-					{
-						_y -= STEP_SIZE;
-					}
-					if (m->isEmpty(GetLeftX() - STEP_SIZE, GetTopY()) && m->isEmpty(GetLeftX() - STEP_SIZE, GetButtonY())) //向左移動
-					{
-						_x -= STEP_SIZE;
-					}
+					_y -= STEP_SIZE;
+				}
+				if (m->isEmpty(GetLeftX() - STEP_SIZE, GetTopY()) && m->isEmpty(GetLeftX() - STEP_SIZE, GetButtonY())) //向左移動
+				{
+					_x -= STEP_SIZE;
 				}
 			}
 			else if (flyCase == 2)
 			{
-				for (int i = 0; i < 3; i++)
+				if (m->isEmpty(GetLeftX(), GetButtonY() + STEP_SIZE)) //向下移動
 				{
-					if (GetButtonY() > m->getMonsterFloor()) //向下移動
-					{
-						_y += STEP_SIZE;
-					}
-					if (m->isEmpty(GetLeftX() - STEP_SIZE, GetTopY()) && m->isEmpty(GetLeftX() - STEP_SIZE, GetButtonY())) //向左移動
-					{
-						_x -= STEP_SIZE;
-					}
+					_y += STEP_SIZE;
+				}
+				if (m->isEmpty(GetLeftX() - STEP_SIZE, GetTopY()) && m->isEmpty(GetLeftX() - STEP_SIZE, GetButtonY())) //向左移動
+				{
+					_x -= STEP_SIZE;
 				}
 			}
 			else if (flyCase == 3)
 			{
-				for (int i = 0; i < 3; i++)
+				if (m->isEmpty(GetLeftX(), GetButtonY() + STEP_SIZE)) //向下移動
 				{
-					if (GetButtonY() > m->getMonsterFloor()) //向下移動
-					{
-						_y += STEP_SIZE;
-					}
-					if (m->isEmpty(GetRightX() + STEP_SIZE, GetTopY()) && m->isEmpty(GetRightX() + STEP_SIZE, GetButtonY())) //向右移動
-					{
-						_x += STEP_SIZE;
-					}
+					_y += STEP_SIZE;
+				}
+				if (m->isEmpty(GetRightX() + STEP_SIZE, GetTopY()) && m->isEmpty(GetRightX() + STEP_SIZE, GetButtonY())) //向右移動
+				{
+					_x += STEP_SIZE;
 				}
 			}
 			else if (flyCase == 4)
 			{
-				for (int i = 0; i < 2; i++)
+				if (GetTopY() < m->getCeiling()) //向上移動
 				{
-					if (GetTopY() < m->getCeiling()) //向上移動
-					{
-						_y -= STEP_SIZE;
-					}
-					if (m->isEmpty(GetRightX() + STEP_SIZE, GetTopY()) && m->isEmpty(GetRightX() + STEP_SIZE, GetButtonY())) //向右移動
-					{
-						_x += STEP_SIZE;
-					}
+					_y -= STEP_SIZE;
+				}
+				if (m->isEmpty(GetRightX() + STEP_SIZE, GetTopY()) && m->isEmpty(GetRightX() + STEP_SIZE, GetButtonY())) //向右移動
+				{
+					_x += STEP_SIZE;
 				}
 			}
-			flyTimer.CaculateTimeForTrue(&shouldFlyCaseChange, 2);
+			flyTimer.CaculateTimeForTrue(&shouldFlyCaseChange, 0.5);
 			intersect();
 			isAttackedEffectCaculation();
 		}
@@ -193,7 +182,7 @@ namespace game_framework
 				sourceMosquitoJump.ShowBitmap();
 			}
 		}
-		//showData();
+		showData();
 	}
 
 	void MonsterMosquito::showData()
@@ -205,8 +194,8 @@ namespace game_framework
 		pDC->SetBkColor(RGB(230, 220, 200));
 		pDC->SetTextColor(RGB(0, 0, 0));
 		char position[600];								// Demo 數字對字串的轉換
-		sprintf(position, "CactusLeftX:%d CactusRightX:%d CactusTopY:%d CactusButtonY:%d CactusHp: %d sparkleEffectTimer(%f, %f, %f)"
-			, GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), GetCurrentHp(), (double)sparkleEffectTimer.GetStartTime(), (double)sparkleEffectTimer.GetFinishTime(), (double)sparkleEffectTimer.GetTime());
+		sprintf(position, "MosquitoLeftX:%d MosquitoRightX:%d MosquitoTopY:%d MosquitoButtonY:%d CactusHp: %d flyTimer(%f, %f, %f)"
+			, GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), GetCurrentHp(), (double)flyTimer.GetStartTime(), (double)flyTimer.GetFinishTime(), (double)flyTimer.GetTime());
 		//sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
 		pDC->TextOut(200, 50, position);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
