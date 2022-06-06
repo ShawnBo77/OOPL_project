@@ -58,6 +58,7 @@ namespace game_framework {
     void MapForBoss::Initialize()
     {
         setXY(0, 0);
+        setInitialXY(0, 0);
         setScreenMoving(false);
         setMapName("MapForBoss");
         setStartPosition(80);

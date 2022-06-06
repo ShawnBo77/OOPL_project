@@ -116,6 +116,7 @@ namespace game_framework
     void MapS2::Initialize()
     {
         setXY(-100, -260);
+        setInitialXY(-100, -260);
         setScreenMoving(true);
         setMapName("MapS2");
         setCeiling(0);

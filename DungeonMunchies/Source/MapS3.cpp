@@ -110,6 +110,7 @@ namespace game_framework
     void MapS3::Initialize()
     {
         setXY(0, -260);
+        setInitialXY(0, -260);
         setScreenMoving(true);
         setMapName("MapS3");
         setCeiling(0);

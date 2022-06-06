@@ -56,6 +56,13 @@ namespace game_framework {
 
 		virtual void setPos(int x, int y, int n) = 0;
 		void setXY(int x, int y);
+		void setInitialX(int x);
+		int getInitialX();
+		void setInitialY(int y);
+		int getInitialY();
+		void setInitialXY(int x, int y);
+		int getXMovement();
+		int getYMovement();
 
 		void loadMagnifierBitmap();
 		void showMaginifier(int x, int y);
@@ -77,6 +84,7 @@ namespace game_framework {
 		CMovingBitmap trashCanOpenBitmap, trashCanClosedBitmap;
 		CMovingBitmap craftingBitmap;
 		int sx, sy; //screen 的座標
+		int initialX, initialY; //初始X、Y
 		int startX; //開始位置
 		int cyRelativeMovement;
 		string mapName;
