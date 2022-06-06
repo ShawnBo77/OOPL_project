@@ -36,8 +36,8 @@ namespace game_framework {
 		virtual void addSY(int n);
 		virtual int screenX(int x) { return 0; };
 		virtual int screenY(int y) { return 0; };
-		virtual void setCharacterX(int x) {};
-		virtual void setCharacterY(int y) {};
+		void setCharacterX(int x);
+		void setCharacterY(int y);
 		virtual void monsterFloorChanging(int x) {};
 		virtual void characterFloorChanging() {};
 		void setFloor(int y);
@@ -84,6 +84,7 @@ namespace game_framework {
 		CMovingBitmap trashCanOpenBitmap, trashCanClosedBitmap;
 		CMovingBitmap craftingBitmap;
 		int sx, sy; //screen 的座標
+		int characterX, characterY;
 		int initialX, initialY; //初始X、Y
 		int startX; //開始位置
 		int cyRelativeMovement;

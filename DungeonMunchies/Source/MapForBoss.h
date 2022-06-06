@@ -15,8 +15,6 @@ namespace game_framework {
         bool isCraftTable(int x, int y) const;
         bool isTrashCan(int x, int y) const;
         void onShow();
-        void setCharacterX(int x) override;
-        void setCharacterY(int y) override;
         void monsterFloorChanging(int x);
         int screenX(int x) override;
         int screenY(int y) override;
@@ -26,6 +24,5 @@ namespace game_framework {
         int mapGrid[40][18];
         CMovingBitmap white, blue;
         int gridW, gridH;
-        int characterX, characterY; 
     };
 }

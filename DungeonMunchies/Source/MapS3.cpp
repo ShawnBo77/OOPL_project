@@ -242,14 +242,6 @@ namespace game_framework
         }
     }
 
-    void MapS3::setCharacterX(int x)
-    {
-        characterX = x;
-    }
-    void MapS3::setCharacterY(int y)
-    {
-        characterY = y;
-    }
     void MapS3::monsterFloorChanging(int x)
     {
         if (x < 502)

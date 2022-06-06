@@ -115,6 +115,14 @@ namespace game_framework
 	{
 		sy += n;
 	}
+	void Map::setCharacterX(int x)
+	{
+		characterX = x;
+	}
+	void Map::setCharacterY(int y)
+	{
+		characterY = y;
+	}
 	void Map::setXY(int x, int y)
 	{
 		sx = x;

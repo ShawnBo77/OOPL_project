@@ -231,14 +231,7 @@ namespace game_framework
 		}
 	}
 
-	void MapS1::setCharacterX(int x)
-	{
-		characterX = x;
-	}
-	void MapS1::setCharacterY(int y)
-	{
-		characterY = y;
-	}
+	
 	void MapS1::monsterFloorChanging(int x)
 	{
 		if (x < 1750)

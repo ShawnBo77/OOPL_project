@@ -747,18 +747,21 @@ namespace game_framework
 					{
 					case stage_1:
 						mapS2.Initialize();
+						character.SetXY(mapS2.getStartPosition(), 100);
 						currentStage = stage_2;
 						isStageChanged = true;
 						character.SetCanGoToNextMap(false);
 						break;
 					case stage_2:
 						mapS3.Initialize();
+						character.SetXY(mapS3.getStartPosition(), 100);
 						currentStage = stage_3;
 						isStageChanged = true;
 						character.SetCanGoToNextMap(false);
 						break;
 					case stage_3:
 						bossMap.Initialize();
+						character.SetXY(bossMap.getStartPosition(), 100);
 						currentStage = stage_boss;
 						isStageChanged = true;
 						character.SetCanGoToNextMap(false);
@@ -838,6 +841,7 @@ namespace game_framework
 				gamePause = false;
 				characterStatusCall = false;
 				mapS1.Initialize();
+				character.SetXY(mapS1.getStartPosition(), 100);
 				currentStage = stage_1;
 				isStageChanged = true;
 				break;
@@ -846,6 +850,7 @@ namespace game_framework
 				gamePause = false;
 				characterStatusCall = false;
 				mapS2.Initialize();
+				character.SetXY(mapS2.getStartPosition(), 100);
 				currentStage = stage_2;
 				isStageChanged = true;
 				break;
@@ -854,6 +859,7 @@ namespace game_framework
 				gamePause = false;
 				characterStatusCall = false;
 				mapS3.Initialize();
+				character.SetXY(mapS3.getStartPosition(), 100);
 				currentStage = stage_3;
 				isStageChanged = true;
 				break;
@@ -886,6 +892,7 @@ namespace game_framework
 				gamePause = false;
 				characterStatusCall = false;
 				bossMap.Initialize();
+				character.SetXY(bossMap.getStartPosition(), 100);
 				currentStage = stage_boss;
 				isStageChanged = true;
 				/*if (currentStage == stage_boss)

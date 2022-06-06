@@ -21,8 +21,6 @@ namespace game_framework
 		bool isTrashCan(int x, int y) const;
 		void onShow();
 		void syMoving(int y);
-		void setCharacterX(int x) override;
-		void setCharacterY(int y) override;
 		void monsterFloorChanging(int x) override;
 		void characterFloorChanging() override;
 		int screenX(int x) override;
@@ -33,7 +31,7 @@ namespace game_framework
 		int mapGrid[400][70];
 		CMovingBitmap white, blue;
 		int gridW, gridH;
-		int characterX, characterY;
+		
 		int previousFloor;
 		int targetSY;
 		bool screenUp;

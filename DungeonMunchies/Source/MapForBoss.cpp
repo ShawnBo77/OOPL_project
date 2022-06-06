@@ -139,15 +139,6 @@ namespace game_framework {
         }
     }
 
-    void MapForBoss::setCharacterX(int x)
-    {
-        characterX = x;
-    }
-    void MapForBoss::setCharacterY(int y)
-    {
-        characterY = y;
-    }
-
     void MapForBoss::monsterFloorChanging(int x)
     {
         setMonsterFloor(600);
