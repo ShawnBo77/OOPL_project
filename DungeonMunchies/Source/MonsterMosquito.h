@@ -24,7 +24,12 @@ namespace game_framework
 		int  GetRightX();				// 右下角 x 座標
 		int  GetButtonY();				// 右下角 y 座標
 	private:
+		void flyCaseChanger();
+		void flyChange();
 		int velocity;
+		int flyCase;
+		bool shouldFlyCaseChange;
+		Timer flyTimer;
 		CAnimation faceLeft;
 		CAnimation faceRight;
 		CMovingBitmap sourceMosquitoJump;

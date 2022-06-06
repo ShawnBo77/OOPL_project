@@ -58,6 +58,7 @@
 #include "MonsterBanana.h"
 #include "MonsterShrimp.h"
 #include "MonsterTree.h"
+#include "MonsterMosquito.h"
 #include "MonsterBoss.h"
 
 namespace game_framework
