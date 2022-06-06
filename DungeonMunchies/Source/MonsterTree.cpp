@@ -189,7 +189,7 @@ namespace game_framework
 			}
 			if (!hasGottenSource)
 			{
-				sourceGuavaJuiceBlood.SetTopLeft((_x + GetRightX()) / 2 + m->getXMovement(), m->getMonsterFloor() - 64 - m->getYMovement());
+				sourceGuavaJuiceBlood.SetTopLeft((_x + GetRightX()) / 2 + m->getXMovement(), GetButtonY() - 64 - m->getYMovement());
 				sourceGuavaJuiceBlood.ShowBitmap();
 			}
 		}

@@ -170,12 +170,12 @@ namespace game_framework
 			{
 				if (randN == 0)
 				{
-					sourceShrimpAttack.SetTopLeft((_x + GetRightX()) / 2 + m->getXMovement(), m->getMonsterFloor() - 64 + m->getYMovement());
+					sourceShrimpAttack.SetTopLeft((_x + GetRightX()) / 2 + m->getXMovement(), GetButtonY() - 64 + m->getYMovement());
 					sourceShrimpAttack.ShowBitmap();
 				}
 				else
 				{
-					sourceShrimpBlood.SetTopLeft((_x + GetRightX()) / 2 + m->getXMovement(), m->getMonsterFloor() - 64 + m->getYMovement());
+					sourceShrimpBlood.SetTopLeft((_x + GetRightX()) / 2 + m->getXMovement(), GetButtonY() - 64 + m->getYMovement());
 					sourceShrimpBlood.ShowBitmap();
 				}
 			}

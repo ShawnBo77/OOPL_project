@@ -86,7 +86,7 @@ namespace game_framework
 			bananaDead.ShowBitmap();
 			if (!hasGottenSource)
 			{
-				sourceBananaAttack.SetTopLeft((_x + GetRightX()) / 2 + m->getXMovement(), m->getMonsterFloor() - 64 + m->getYMovement());
+				sourceBananaAttack.SetTopLeft((_x + GetRightX()) / 2 + m->getXMovement(), GetButtonY() - 64 + m->getYMovement());
 				sourceBananaAttack.ShowBitmap();
 			}
 		}
