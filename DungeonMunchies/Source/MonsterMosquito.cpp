@@ -130,7 +130,7 @@ namespace game_framework
 			bloodBar.showBloodBar(m, hp);
 			if (lossHpShowFlag)
 			{
-				lossHpShow();
+				lossHpShow(m);
 			}
 			lossHpTimer.CaculateTimeForFalse(&lossHpShowFlag, 0.5);
 		}

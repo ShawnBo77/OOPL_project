@@ -120,6 +120,35 @@ namespace game_framework
 		sx = x;
 		sy = y;
 	}
+	void Map::setInitialX(int x)
+	{
+		initialX = x;
+	}
+	int Map::getInitialX()
+	{
+		return initialX;
+	}
+	void Map::setInitialY(int y)
+	{
+		initialY = y;
+	}
+	int Map::getInitialY()
+	{
+		return initialY;
+	}
+	void Map::setInitialXY(int x, int y)
+	{
+		initialX = x;
+		initialY = y;
+	}
+	int Map::getXMovement()
+	{
+		return sx - initialX;
+	}
+	int Map::getYMovement()
+	{
+		return sy - initialY;
+	}
 	void Map::loadMagnifierBitmap()
 	{
 		magnifier.LoadBitmap(".\\res\\magnifier.bmp", RGB(0, 0, 0));

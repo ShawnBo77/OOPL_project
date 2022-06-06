@@ -68,7 +68,7 @@ namespace game_framework
 		void SetCurrentHp(int x);      // 設定目前血量
 		int GetCurrentHp();            // 取得目前血量
 		void lossCurrentHp(int x);
-		void lossHpShow();
+		void lossHpShow(Map* m);
 
 		//攻擊
 		void SetIsAttacking(bool flag);		    // 設定是否攻擊

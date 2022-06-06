@@ -102,6 +102,7 @@ namespace game_framework
 	void MapS1::Initialize()
 	{
 		setXY(-410, -320);
+		setInitialXY(-410, -320);
 		setScreenMoving(true);
 		setMapName("MapS1");
 		setStartPosition(335);

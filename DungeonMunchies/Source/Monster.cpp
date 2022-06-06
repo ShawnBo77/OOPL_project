@@ -284,7 +284,7 @@ namespace game_framework
 		isSparkleEffectTimerStart = true;
 	}
 
-	void Monster::lossHpShow()
+	void Monster::lossHpShow(Map* m)
 	{
 		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 		CFont f, * fp;
@@ -295,7 +295,7 @@ namespace game_framework
 		pDC->SetTextColor(RGB(255, 0, 0));
 		char position[500];								// Demo 數字對字串的轉換
 		sprintf(position, "%d", lossHp);
-		pDC->TextOut(GetRightX() + 10, GetTopY() + 10, position);
+		pDC->TextOut(GetRightX() + m->getXMovement() + 10, GetTopY() + m->getYMovement() + 10, position);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
