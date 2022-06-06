@@ -86,7 +86,7 @@ namespace game_framework
 			{
 				for (int i = 0; i < 2; i++)
 				{
-					if (GetTopY() < m->getCeiling()) //向上移動
+					if (m->isEmpty(GetLeftX(), GetTopY()- STEP_SIZE) && m->isEmpty(GetRightX(), GetTopY() - STEP_SIZE)) //向上移動
 					{
 						_y -= STEP_SIZE;
 					}
@@ -98,7 +98,7 @@ namespace game_framework
 			}
 			else if (flyCase == 2)
 			{
-				for (int i = 0; i < 2; i++)
+				for (int i = 0; i < 3; i++)
 				{
 					if (GetButtonY() > m->getMonsterFloor()) //向下移動
 					{
@@ -112,7 +112,7 @@ namespace game_framework
 			}
 			else if (flyCase == 3)
 			{
-				for (int i = 0; i < 2; i++)
+				for (int i = 0; i < 3; i++)
 				{
 					if (GetButtonY() > m->getMonsterFloor()) //向下移動
 					{
