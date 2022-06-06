@@ -189,7 +189,7 @@ namespace game_framework
 			}
 			if (!hasGottenSource)
 			{
-				sourceGuavaJuiceBlood.SetTopLeft((_x + GetRightX()) / 2 + m->getXMovement(), GetButtonY() - 64 - m->getYMovement());
+				sourceGuavaJuiceBlood.SetTopLeft((_x + GetRightX()) / 2 + m->getXMovement(), GetButtonY() - 64 + m->getYMovement());
 				sourceGuavaJuiceBlood.ShowBitmap();
 			}
 		}
@@ -203,7 +203,6 @@ namespace game_framework
 			m->monsterFloorChanging(GetLeftX());
 			if (m->getMonsterFloor() > currentFloor)
 			{
-
 				if (_y < m->getMonsterFloor() - 210)
 				{
 					_y += velocity * 2;

@@ -125,7 +125,7 @@ namespace game_framework
 					faceRight.OnShow();
 				}
 			}
-			bloodBar.setXY(GetLeftX() + m->getXMovement(), GetTopY() - 16);
+			bloodBar.setXY(GetLeftX() + m->getXMovement(), GetTopY() + m->getYMovement() - 16);
 			bloodBar.showBloodBar(m, hp);
 			if (lossHpShowFlag)
 			{
@@ -137,7 +137,7 @@ namespace game_framework
 		{
 			if (!hasGottenSource)
 			{
-				sourceMosquitoJump.SetTopLeft((_x + GetRightX()) / 2 + m->getXMovement(), m->getMonsterFloor() - 64 - m->getYMovement());
+				sourceMosquitoJump.SetTopLeft((_x + GetRightX()) / 2 + m->getXMovement(), m->getMonsterFloor() - 64 + m->getYMovement());
 				sourceMosquitoJump.ShowBitmap();
 			}
 		}
