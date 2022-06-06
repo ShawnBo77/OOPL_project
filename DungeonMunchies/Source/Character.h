@@ -70,6 +70,8 @@ namespace game_framework
 
 		bool isIntersect(int lX, int rX, int tY, int bY); //看物體是否和角色重疊
 
+		void characterHasSword();
+
 		/*行為*/
 		//判定是否可以左右移動
 		bool CanMovingLeft(Map* m, vector<Monster*>* monsters);
@@ -163,6 +165,7 @@ namespace game_framework
 		bool canCraft;
 		int STEP_SIZE;              // 移動速度
 		int BORDER;
+		int monsterTop;
 		bool isMovingDown;		    // 是否正在往下移動
 		bool isMovingLeft;			// 是否正在往左移動
 		bool isMovingRight;			// 是否正在往右移動
@@ -208,6 +211,8 @@ namespace game_framework
 		Timer ShrimpAttackTimer;
 		bool shrimpAttack;
 		bool isShrimpAttack;
+
+		bool hasSword;
 
 		int lightBulbNum;
 

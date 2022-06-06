@@ -39,6 +39,20 @@ namespace game_framework
                 mapGrid_init[i][j] = 0;
             }
         }
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 400; j++)
+            {
+                mapGrid_init[i][j] = 0;
+            }
+        }
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = 0; j < 70; j++)
+            {
+                mapGrid_init[i][j] = 0;
+            }
+        }
         for (int i = 27; i < 92; i++)
         {
             for (int j = 25; j < 70; j++)
