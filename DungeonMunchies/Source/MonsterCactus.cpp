@@ -86,7 +86,7 @@ namespace game_framework
 			cactusDead.ShowBitmap();
 			if (!hasGottenSource)
 			{
-				sourceGrassFast.SetTopLeft((_x + GetRightX()) / 2 + m->getXMovement(), m->getMonsterFloor() - 64 + m->getYMovement());
+				sourceGrassFast.SetTopLeft((_x + GetRightX()) / 2 + m->getXMovement(), GetButtonY() - 64 + m->getYMovement());
 				sourceGrassFast.ShowBitmap();
 			}
 		}
