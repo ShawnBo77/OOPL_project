@@ -711,6 +711,8 @@ namespace game_framework
 		CAudio::Instance()->Load(AUDIO_MUSIC_05, "sounds\\music05.mp3");
 		CAudio::Instance()->Load(AUDIO_MUSIC_06, "sounds\\music06.mp3");
 		CAudio::Instance()->Load(AUDIO_MUSIC_07, "sounds\\music07.mp3");
+		CAudio::Instance()->Load(AUDIO_RECYCLE_CAN, "sounds\\recycle_can.mp3");
+		CAudio::Instance()->Load(AUDIO_POT, "sounds\\pot.mp3");
 
 		//
 		// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%

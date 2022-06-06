@@ -150,8 +150,12 @@ namespace game_framework
 
 		if (m->isPortal(GetLeftX() - BORDER, GetTopY()))
 		{
-			m->setPortalOpen(true);
-			SetCanGoToNextMap(true);
+			if (!canGoToNextMap)
+			{
+				m->setPortalOpen(true);
+				SetCanGoToNextMap(true);
+
+			}
 		}
 		else
 		{
@@ -161,8 +165,12 @@ namespace game_framework
 
 		if (m->isCraftTable(GetLeftX() - BORDER, GetTopY()))
 		{
-			m->setCraftTableOpen(true);
-			SetCanCraft(true);
+			if (!canCraft)
+			{
+				CAudio::Instance()->Play(AUDIO_POT, false);
+				m->setCraftTableOpen(true);
+				SetCanCraft(true);
+			}
 		}
 		else
 		{
@@ -172,8 +180,11 @@ namespace game_framework
 
 		if (m->isTrashCan(GetLeftX() - BORDER, GetTopY()) && !m->getTrashCanOpen())
 		{
-			m->setTrashCanOpen(true);
-			currentHp = maxHp;
+			if (!m->getTrashCanOpen()) {
+				CAudio::Instance()->Play(AUDIO_RECYCLE_CAN, false);
+				m->setTrashCanOpen(true);
+				currentHp = maxHp;
+			}
 		}
 
 		if (GetIsRolling())

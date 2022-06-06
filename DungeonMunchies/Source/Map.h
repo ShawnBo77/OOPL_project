@@ -1,5 +1,6 @@
 #ifndef __MAPS_H__
 #define __MAPS_H__
+#include "Util.h"
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供地圖構成
