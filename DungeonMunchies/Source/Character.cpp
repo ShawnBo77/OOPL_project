@@ -729,7 +729,6 @@ namespace game_framework
 	bool Character::CanMovingLeft(Map* m, vector<Monster*>* monsters)
 	{
 		int monsterBorder;
-		int monsterHG;
 		if (GetIsMovingLeft())
 		{
 			if (m->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetTopY()) && m->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetButtonY() - BORDER))
@@ -743,12 +742,11 @@ namespace game_framework
 					for (unsigned int i = 0; i < monsters->size(); i++)
 					{
 						monsterBorder = monsters->at(i)->GetBorder();
-						monsterHG = monsters->at(i)->GetHorizontalGap();
 
-						if (GetLeftX() - STEP_SIZE - BORDER <= monsters->at(i)->GetLeftX() + monsterHG + monsterBorder || GetLeftX() - STEP_SIZE - BORDER >= monsters->at(i)->GetRightX() + monsterHG - monsterBorder)
+						if (GetLeftX() - STEP_SIZE - BORDER <= monsters->at(i)->GetLeftX() + monsterBorder || GetLeftX() - STEP_SIZE - BORDER >= monsters->at(i)->GetRightX() - monsterBorder)
 						{
 						}
-						else if (GetButtonY() - BORDER < monsters->at(i)->GetTopY() + monsterBorder)
+						else if (GetButtonY() - BORDER < monsters->at(i)->GetTopY() + monsterBorder || GetTopY() + BORDER > monsters->at(i)->GetButtonY() - monsterBorder)
 						{
 						}
 						else
@@ -767,7 +765,6 @@ namespace game_framework
 	bool Character::CanMovingRight(Map* m, vector<Monster*>* monsters)
 	{
 		int monsterBorder;
-		int monsterHG;
 		if (GetIsMovingRight())
 		{
 			if (m->isEmpty(GetRightX() + STEP_SIZE + BORDER, GetTopY()) && m->isEmpty(GetRightX() + STEP_SIZE + BORDER, GetButtonY() - BORDER))
@@ -781,12 +778,11 @@ namespace game_framework
 					for (unsigned int i = 0; i < monsters->size(); i++)
 					{
 						monsterBorder = monsters->at(i)->GetBorder();
-						monsterHG = monsters->at(i)->GetHorizontalGap();
 
-						if (GetRightX() + STEP_SIZE + BORDER >= monsters->at(i)->GetRightX() + monsterHG - monsterBorder || GetRightX() + STEP_SIZE + BORDER <= monsters->at(i)->GetLeftX() + monsterHG + monsterBorder)
+						if (GetRightX() + STEP_SIZE + BORDER >= monsters->at(i)->GetRightX() - monsterBorder || GetRightX() + STEP_SIZE + BORDER <= monsters->at(i)->GetLeftX() + monsterBorder)
 						{
 						}
-						else if (GetButtonY() - BORDER < monsters->at(i)->GetTopY() + monsterBorder)
+						else if (GetButtonY() - BORDER < monsters->at(i)->GetTopY() + monsterBorder || GetTopY() + BORDER > monsters->at(i)->GetButtonY() - monsterBorder)
 						{
 						}
 						else

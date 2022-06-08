@@ -74,6 +74,7 @@ namespace game_framework
 		if (!m == NULL)
 		{
 			m->monsterFloorChanging((GetLeftX() + GetRightX()) / 2);
+			currentFloor = m->getMonsterFloor();
 		}
 		if (isAlive())
 		{
@@ -158,7 +159,7 @@ namespace game_framework
 		{
 			if (!hasGottenSource)
 			{
-				sourceMosquitoJump.SetTopLeft((GetLeftX() + GetRightX()) / 2 + m->getXMovement(), GetButtonY() - 64 + m->getYMovement());
+				sourceMosquitoJump.SetTopLeft((GetLeftX() + GetRightX()) / 2 + m->getXMovement(), currentFloor - 64 + m->getYMovement());
 				sourceMosquitoJump.ShowBitmap();
 			}
 		}

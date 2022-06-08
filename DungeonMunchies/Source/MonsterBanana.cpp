@@ -51,6 +51,7 @@ namespace game_framework
 	{
 		_x = init_x;
 		_y = init_y;
+		currentFloor = 0;
 		hp = 50;
 		attackDamage = 5;
 		bloodBar.setFullHP(hp);
@@ -132,6 +133,12 @@ namespace game_framework
 
 	void MonsterBanana::OnMove(Map* m)
 	{
+		if (!m == NULL)
+		{
+			m->monsterFloorChanging(GetLeftX());
+			_y = m->getMonsterFloor() - bananaAlive.Height() - 6;
+			currentFloor = m->getMonsterFloor();
+		}
 		if (isAlive())
 		{
 			//intersect();
@@ -148,11 +155,6 @@ namespace game_framework
 			{
 				touchSource(m, banana_attack_p);
 			}
-		}
-		if (!m == NULL)
-		{
-			m->monsterFloorChanging(GetLeftX());
-			_y = m->getMonsterFloor() - bananaAlive.Height() - 6;
 		}
 	}
 }
