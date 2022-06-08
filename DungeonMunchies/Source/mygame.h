@@ -189,6 +189,7 @@ namespace game_framework
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		int counter;	// 倒數之計數器
+		bool isBgmPlayed;
 		CMovingBitmap gameOver;
 	};
 }

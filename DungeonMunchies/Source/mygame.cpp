@@ -123,7 +123,7 @@ namespace game_framework
 			GotoGameState(GAME_STATE_RUN);						// 切換至GAME_STATE_RUN
 		}
 		else if (nChar == KEY_ESC) // 關閉遊戲
-		{  
+		{
 			PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// 關閉遊戲
 		}
 	}
@@ -401,13 +401,22 @@ namespace game_framework
 	void CGameStateOver::OnMove()
 	{
 		counter--;
-		if (counter < 0)
+		if (counter < 0) {
+			CAudio::Instance()->Stop(AUDIO_LOSE);
+			CAudio::Instance()->Play(AUDIO_STARTMENU, true);
 			GotoGameState(GAME_STATE_INIT);
+		}
+		if (!isBgmPlayed)
+		{
+			CAudio::Instance()->Play(AUDIO_LOSE, true);
+			isBgmPlayed = true;
+		}
 	}
 
 	void CGameStateOver::OnBeginState()
 	{
 		counter = 30 * 5; // 5 seconds
+		isBgmPlayed = false;
 	}
 
 	void CGameStateOver::OnInit()
@@ -418,6 +427,7 @@ namespace game_framework
 		//
 		//ShowInitProgress(66);	// 接個前一個狀態的進度，此處進度視為66%
 		gameOver.LoadBitmap(".\\res\\game_over.bmp");
+		CAudio::Instance()->Load(AUDIO_LOSE, "sounds\\lose.mp3");
 		//
 		// 開始載入資料
 		//
@@ -436,6 +446,8 @@ namespace game_framework
 		}
 		if (point.x > 440 && point.x < 975 && point.y > 410 && point.y < 500)
 		{
+			CAudio::Instance()->Stop(AUDIO_LOSE);
+			CAudio::Instance()->Play(AUDIO_STARTMENU, true);
 			GotoGameState(GAME_STATE_INIT);
 		}
 	}
@@ -562,12 +574,16 @@ namespace game_framework
 		{
 			GotoGameState(GAME_STATE_OVER);
 		}
-		for (int i = 0; i < (signed)monsterS7.size(); i++)
+		if (currentStage != stage_game_complete)
 		{
-			if (monsterS7[i]->GetBossDead())
+			for (int i = 0; i < (signed)monsterS7.size(); i++)
 			{
-				gameCompleteFlag = true;
-				currentStage = stage_game_complete;
+				if (monsterS7[i]->GetBossDead())
+				{
+					gameCompleteFlag = true;
+					isStageChanged = true;
+					currentStage = stage_game_complete;
+				}
 			}
 		}
 		if (currentStage != stage_game_complete && gamePause == false)
@@ -712,6 +728,7 @@ namespace game_framework
 		CAudio::Instance()->Load(AUDIO_MUSIC_05, "sounds\\music05.mp3");
 		CAudio::Instance()->Load(AUDIO_MUSIC_06, "sounds\\music06.mp3");
 		CAudio::Instance()->Load(AUDIO_MUSIC_07, "sounds\\music07.mp3");
+		CAudio::Instance()->Load(AUDIO_VICTORY, "sounds\\victory.mp3");
 		CAudio::Instance()->Load(AUDIO_RECYCLE_CAN, "sounds\\recycle_can.mp3");
 		CAudio::Instance()->Load(AUDIO_POT, "sounds\\pot.mp3");
 
@@ -829,15 +846,17 @@ namespace game_framework
 				character.SetAllSourceNumToHundred();
 				break;
 			case KEY_H:
-				currentStage = stage_boss;
+				//currentStage = stage_boss;
+				//for (int i = 0; i < (signed)monsterS7.size(); i++)
+				//{
+				//	monsterS7[i]->SetCurrentHp(0);
+				//}
+				currentStage = stage_game_complete;
 				isStageChanged = true;
-				for (int i = 0; i < (signed)monsterS7.size(); i++)
-				{
-					monsterS7[i]->SetCurrentHp(0);
-				}
 				break;
 			case KEY_G:
 				character.SetCurrentHp(0);
+				stopAllBgm();
 				break;
 			case KEY_1:
 				monsterInitialize();
@@ -970,6 +989,8 @@ namespace game_framework
 			}
 			if (point.x > 840 && point.y > 215 && point.x < 1210 && point.y < 585)
 			{
+				CAudio::Instance()->Stop(AUDIO_VICTORY);
+				CAudio::Instance()->Play(AUDIO_STARTMENU, true);
 				GotoGameState(GAME_STATE_INIT);
 			}
 		}
@@ -1206,40 +1227,38 @@ namespace game_framework
 
 	void CGameStateRun::bgmPlayer()
 	{
+		stopAllBgm();
 		if (currentStage == stage_1)
 		{
-			stopAllBgm();
 			CAudio::Instance()->Play(AUDIO_MUSIC_01, true);
 		}
 		else if (currentStage == stage_2)
 		{
-			stopAllBgm();
 			CAudio::Instance()->Play(AUDIO_MUSIC_02, true);
 		}
 		else if (currentStage == stage_3)
 		{
-			stopAllBgm();
 			CAudio::Instance()->Play(AUDIO_MUSIC_03, true);
 		}
 		else if (currentStage == stage_4)
 		{
-			stopAllBgm();
 			CAudio::Instance()->Play(AUDIO_MUSIC_04, true);
 		}
 		else if (currentStage == stage_5)
 		{
-			stopAllBgm();
 			CAudio::Instance()->Play(AUDIO_MUSIC_05, true);
 		}
 		else if (currentStage == stage_6)
 		{
-			stopAllBgm();
 			CAudio::Instance()->Play(AUDIO_MUSIC_06, true);
 		}
 		else if (currentStage == stage_boss)
 		{
-			stopAllBgm();
 			CAudio::Instance()->Play(AUDIO_MUSIC_07, true);
+		}
+		else if (currentStage == stage_game_complete)
+		{
+			CAudio::Instance()->Play(AUDIO_VICTORY, true);
 		}
 	}
 
@@ -1252,6 +1271,7 @@ namespace game_framework
 		CAudio::Instance()->Stop(AUDIO_MUSIC_05);
 		CAudio::Instance()->Stop(AUDIO_MUSIC_06);
 		CAudio::Instance()->Stop(AUDIO_MUSIC_07);
+		CAudio::Instance()->Stop(AUDIO_VICTORY);
 	}
 
 	Map* CGameStateRun::GetCurrentMap()
