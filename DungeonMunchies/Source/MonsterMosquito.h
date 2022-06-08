@@ -24,6 +24,10 @@ namespace game_framework
 		int  GetRightX();				// 右下角 x 座標
 		int  GetButtonY();				// 右下角 y 座標
 	private:
+		void moveUp(Map* m);
+		void moveDown(Map* m);
+		void moveLeft(Map* m);
+		void moveRight(Map* m);
 		void flyCaseChanger();
 		void flyChange();
 		int velocity;

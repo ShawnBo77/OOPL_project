@@ -56,7 +56,7 @@ namespace game_framework
 		currentFloor = 0;
 		BORDER = 5;
 		HORIZONTAL_GAP = 0;
-		hp = 40;
+		hp = 20;
 		attackDamage = 5;
 		facingLR = 0;
 		bloodBar.setFullHP(hp);
@@ -83,53 +83,31 @@ namespace game_framework
 				flyCaseChanger();
 				shouldFlyCaseChange = false;
 			}
-			if (flyCase == 1)
+			if (flyCase == 1) // 左上
 			{
-				if (m->isEmpty(GetLeftX(), GetTopY()- STEP_SIZE) && m->isEmpty(GetRightX(), GetTopY() - STEP_SIZE)) //向上移動
-				{
-					_y -= STEP_SIZE;
-				}
-				if (m->isEmpty(GetLeftX() - STEP_SIZE, GetTopY()) && m->isEmpty(GetLeftX() - STEP_SIZE, GetButtonY())) //向左移動
-				{
-					_x -= STEP_SIZE;
-				}
+				moveUp(m);
+				moveLeft(m);
 			}
-			else if (flyCase == 2)
+			else if (flyCase == 2) // 左下
 			{
-				if (m->isEmpty(GetLeftX(), GetButtonY() + STEP_SIZE)) //向下移動
-				{
-					_y += STEP_SIZE;
-				}
-				if (m->isEmpty(GetLeftX() - STEP_SIZE, GetTopY()) && m->isEmpty(GetLeftX() - STEP_SIZE, GetButtonY())) //向左移動
-				{
-					_x -= STEP_SIZE;
-				}
+				moveDown(m);
+				moveLeft(m);
 			}
-			else if (flyCase == 3)
+			else if (flyCase == 3) // 右下
 			{
-				if (m->isEmpty(GetLeftX(), GetButtonY() + STEP_SIZE)) //向下移動
-				{
-					_y += STEP_SIZE;
-				}
-				if (m->isEmpty(GetRightX() + STEP_SIZE, GetTopY()) && m->isEmpty(GetRightX() + STEP_SIZE, GetButtonY())) //向右移動
-				{
-					_x += STEP_SIZE;
-				}
+				moveDown(m);
+				moveRight(m);
 			}
-			else if (flyCase == 4)
+			else if (flyCase == 4) // 右上
 			{
-				if (GetTopY() < m->getCeiling()) //向上移動
-				{
-					_y -= STEP_SIZE;
-				}
-				if (m->isEmpty(GetRightX() + STEP_SIZE, GetTopY()) && m->isEmpty(GetRightX() + STEP_SIZE, GetButtonY())) //向右移動
-				{
-					_x += STEP_SIZE;
-				}
+				moveUp(m);
+				moveRight(m);
 			}
-			flyTimer.CaculateTimeForTrue(&shouldFlyCaseChange, 0.5);
+			flyTimer.CaculateTimeForTrue(&shouldFlyCaseChange, 0.3);
 			intersect();
 			isAttackedEffectCaculation();
+			faceLeft.OnMove();
+			faceRight.OnMove();
 		}
 		else
 		{
@@ -158,11 +136,13 @@ namespace game_framework
 				if (facingLR == 0)
 				{
 					faceLeft.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
+					faceLeft.SetDelayCount(1);
 					faceLeft.OnShow();
 				}
 				else
 				{
 					faceRight.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
+					faceRight.SetDelayCount(1);
 					faceRight.OnShow();
 				}
 			}
@@ -220,6 +200,34 @@ namespace game_framework
 	int MonsterMosquito::GetButtonY()
 	{
 		return _y + 68;
+	}
+	void MonsterMosquito::moveUp(Map *m)
+	{
+		if (m->isEmpty(GetLeftX(), GetTopY() - STEP_SIZE) && m->isEmpty(GetRightX(), GetTopY() - STEP_SIZE)) //向上移動
+		{
+			_y -= STEP_SIZE;
+		}
+	}
+	void MonsterMosquito::moveDown(Map* m)
+	{
+		if (m->isEmpty(GetLeftX(), GetButtonY() + STEP_SIZE)) //向下移動
+		{
+			_y += STEP_SIZE;
+		}
+	}
+	void MonsterMosquito::moveLeft(Map* m)
+	{
+		if (m->isEmpty(GetLeftX() - STEP_SIZE, GetTopY()) && m->isEmpty(GetLeftX() - STEP_SIZE, GetButtonY())) //向左移動
+		{
+			_x -= STEP_SIZE;
+		}
+	}
+	void MonsterMosquito::moveRight(Map* m)
+	{
+		if (m->isEmpty(GetRightX() + STEP_SIZE, GetTopY()) && m->isEmpty(GetRightX() + STEP_SIZE, GetButtonY())) //向右移動
+		{
+			_x += STEP_SIZE;
+		}
 	}
 	void MonsterMosquito::flyCaseChanger()
 	{
