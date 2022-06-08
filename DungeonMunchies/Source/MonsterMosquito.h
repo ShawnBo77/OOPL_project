@@ -29,7 +29,6 @@ namespace game_framework
 		void moveLeft(Map* m);
 		void moveRight(Map* m);
 		void flyCaseChanger();
-		void flyChange();
 		int velocity;
 		int flyCase;
 		bool shouldFlyCaseChange;

@@ -158,7 +158,7 @@ namespace game_framework
 		{
 			if (!hasGottenSource)
 			{
-				sourceMosquitoJump.SetTopLeft((_x + GetRightX()) / 2 + m->getXMovement(), GetButtonY() - 64 + m->getYMovement());
+				sourceMosquitoJump.SetTopLeft((GetLeftX() + GetRightX()) / 2 + m->getXMovement(), GetButtonY() - 64 + m->getYMovement());
 				sourceMosquitoJump.ShowBitmap();
 			}
 		}

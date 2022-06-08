@@ -1298,7 +1298,9 @@ namespace game_framework
 			GetLeftX() <= lX && GetRightX() >= rX || //角色比東西寬
 			GetRightX() <= rX && GetLeftX() >= lX) && //東西比角色寬
 			((GetButtonY() >= tY && GetButtonY() <= bY) ||
-				(GetTopY() >= tY && GetTopY() <= bY)))
+				(GetTopY() >= tY && GetTopY() <= bY) ||
+				(GetTopY() >= tY && GetButtonY() <= bY) ||
+				(GetTopY() <= tY && GetButtonY() >= bY)))
 		{
 			return true;
 		}

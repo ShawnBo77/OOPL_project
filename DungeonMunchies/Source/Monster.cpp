@@ -437,7 +437,7 @@ namespace game_framework
 
 	void Monster::touchSource(Map* m, int sourceCase)
 	{
-		if (character->isIntersect((_x + GetRightX()) / 2, (_x + GetRightX()) / 2 + 64, m->getMonsterFloor() - 64, m->getMonsterFloor()))
+		if (character->isIntersect((GetLeftX() + GetRightX()) / 2, (GetLeftX() + GetRightX()) / 2 + 64, GetButtonY() - 64, GetButtonY()))
 		{
 			hasGottenSource = true;
 			character->GetSourceStorage()->add(sourceCase);
