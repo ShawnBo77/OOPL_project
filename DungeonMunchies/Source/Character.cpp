@@ -561,7 +561,7 @@ namespace game_framework
 			if (facingLR)
 				return characterX;
 			else
-				return characterX;
+				return characterX;//+ªZ¾¹¶ZÂ÷
 		}
 		else
 			return characterX;
@@ -577,9 +577,9 @@ namespace game_framework
 		if (characterStage == 1)
 		{
 			if (facingLR)
-				return characterX;
+				return characterX + characterW;
 			else
-				return characterX;
+				return characterX;//+bitmap¼e«×
 		}
 		else
 			return characterX + characterW;
