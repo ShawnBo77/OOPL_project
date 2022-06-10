@@ -37,6 +37,7 @@ namespace game_framework
 		int  GetTopY();					// 左上角 y 座標
 		int  GetRightX();				// 右下角 x 座標
 		int  GetButtonY();				// 右下角 y 座標
+		int  GetCharacterStage();				
 
 		void GetMovingDown();	        // 回傳是否正在往下移動
 		bool GetIsMovingLeft();	        // 回傳是否正在往左移動
@@ -70,7 +71,7 @@ namespace game_framework
 
 		bool isIntersect(int lX, int rX, int tY, int bY); //看物體是否和角色重疊
 
-		void characterHasSword();
+		void characterHasSword(bool flag);
 
 		/*行為*/
 		//判定是否可以左右移動

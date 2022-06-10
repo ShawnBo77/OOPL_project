@@ -176,7 +176,7 @@ namespace game_framework
 
 		if (m->getMapName() == "MapS2" || m->getMapName() == "MapS3")
 		{
-			m->setCharacterX(characterX);
+			m->setCharacterX(GetLeftX());
 			m->setCharacterY(characterY);
 			m->characterFloorChanging();
 		}
@@ -580,7 +580,7 @@ namespace game_framework
 			if (facingLR)
 				return characterX;
 			else
-				return characterX;//+ªZ¾¹¶ZÂ÷
+				return characterX + 50;//+ªZ¾¹¶ZÂ÷
 		}
 		else
 			return characterX;
@@ -598,7 +598,7 @@ namespace game_framework
 			if (facingLR)
 				return characterX + characterW;
 			else
-				return characterX;//+bitmap¼e«×
+				return characterX + 130;//+bitmap¼e«×
 		}
 		else
 			return characterX + characterW;
@@ -607,6 +607,11 @@ namespace game_framework
 	int Character::GetButtonY()
 	{
 		return characterY + characterH; // + animation.Height();
+	}
+
+	int Character::GetCharacterStage()
+	{
+		return characterStage;
 	}
 
 	Map* Character::GetMap()
@@ -1370,11 +1375,21 @@ namespace game_framework
 		return false;
 	}
 
-	void Character::characterHasSword()
+	void Character::characterHasSword(bool flag)
 	{
-		attackDamage = 25;
-		attackRange = 90;
-		characterStage = 1;
+		if (flag)
+		{
+			attackDamage = 25;
+			attackRange = 170;
+			characterStage = 1;
+		}
+		else
+		{
+			attackDamage = 10;
+			attackRange = 60;
+			characterStage = 0;
+		}
+		
 	}
 
 	void Character::SetXY(int x, int y)

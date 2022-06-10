@@ -19,6 +19,7 @@ const char KEY_A = 0x41;
 const char KEY_S = 0x53;
 const char KEY_D = 0x44;
 const char KEY_E = 69;
+const char KEY_Q = 81;
 const char KEY_R = 82;
 const char KEY_T = 84;
 const char KEY_Y = 89;

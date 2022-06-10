@@ -441,7 +441,7 @@ namespace game_framework
 		{
 			hasGottenSource = true;
 			if (sourceCase == green_sword_s) {
-				character->characterHasSword();
+				character->characterHasSword(true);
 			}
 			else {
 				character->GetSourceStorage()->add(sourceCase);

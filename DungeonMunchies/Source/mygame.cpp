@@ -834,6 +834,12 @@ namespace game_framework
 					}
 				}
 				break;
+			case KEY_Q:
+				if (character.GetCharacterStage() == 0)
+					character.characterHasSword(true);
+				else if (character.GetCharacterStage() == 1)
+					character.characterHasSword(false);
+				break;
 			case KEY_R:
 				character.restoreCurrentHp(50);
 				break;
