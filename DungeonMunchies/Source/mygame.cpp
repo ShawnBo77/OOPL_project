@@ -487,7 +487,8 @@ namespace game_framework
 		//monsterS3.push_back(new MonsterBanana(300, 400, &character));
 		monsterS3.push_back(new MonsterMosquito(900, 200, &character));
 		//monsterS3.push_back(new MonsterShrimp(1000, 400, &character));
-		//monsterS3.push_back(new MonsterCactus(800, 400, &character));
+		monsterS3.push_back(new MonsterCactusMutation(800, 400, &character));
+		//monsterS3.push_back(new MonsterCactus(1000, 400, &character));
 		//monsterS3.push_back(new MonsterTree(2000, 400, &character));
 
 		//monsterS7.push_back(new MonsterTree(700, 400, &character));

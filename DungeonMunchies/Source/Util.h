@@ -107,7 +107,8 @@ enum SourceCase
 	grass_fast_s,
 	banana_attack_s,
 	shrimp_attack_s,
-	guava_juice_blood_s
+	guava_juice_blood_s,
+	green_sword_s
 };
 
 #endif
