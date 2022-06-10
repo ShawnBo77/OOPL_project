@@ -130,7 +130,7 @@ namespace game_framework
 		const int Y_POS = 80;													//¨¤¦â°_©lY¶b
 		characterX = X_POS;
 		characterY = Y_POS;
-		characterStage = 1;
+		characterStage = 0;
 		facingLR = 1;
 		STEP_SIZE = 15;
 		BORDER = 5;
