@@ -17,7 +17,6 @@ namespace game_framework
 	{
 		sx = x;
 		sy = y;
-		cyRelativeMovement = 0;
 		portalOpen = false;
 	}
 	string Map::getMapName()
@@ -43,18 +42,6 @@ namespace game_framework
 	int Map::getSY()
 	{
 		return sy;
-	}
-	int Map::getCharacterYRelativeMovement()
-	{
-		return cyRelativeMovement;
-	}
-	void Map::setCharacterYRelativeMovement(int y)
-	{
-		cyRelativeMovement = y;
-	}
-	void Map::addCharacterYRelativeMovement(int y)
-	{
-		cyRelativeMovement += y;
 	}
 	bool Map::mapScreenMoving()
 	{

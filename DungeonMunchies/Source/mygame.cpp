@@ -1084,7 +1084,7 @@ namespace game_framework
 		{
 		case stage_1:
 			mapS1.onShow();
-			character.OnShow();
+			character.OnShow(&mapS1);
 			for (unsigned i = 0; i < monsterS1.size(); i++)
 			{
 				monsterS1[i]->OnShow(&mapS1);
@@ -1097,7 +1097,7 @@ namespace game_framework
 			break;
 		case stage_2:
 			mapS2.onShow();
-			character.OnShow();
+			character.OnShow(&mapS2);
 			for (unsigned i = 0; i < monsterS2.size(); i++)
 			{
 				monsterS2[i]->OnShow(&mapS2);
@@ -1106,7 +1106,7 @@ namespace game_framework
 			break;
 		case stage_3:
 			mapS3.onShow();
-			character.OnShow();
+			character.OnShow(&mapS3);
 			for (unsigned i = 0; i < monsterS3.size(); i++)
 			{
 				monsterS3[i]->OnShow(&mapS3);
@@ -1115,7 +1115,7 @@ namespace game_framework
 			break;
 			//case stage_4:
 			//	mapS4.onShow();
-			//	character.OnShow();
+			//	character.OnShow(&mapS4);
 			//	for (unsigned i = 0; i < monsterS4.size(); i++)
 			//	{
 			//		monsterS4[i]->OnShow(&mapS4);
@@ -1124,7 +1124,7 @@ namespace game_framework
 			//	break;
 			//case stage_5:
 			//	mapS5.onShow();
-			//	character.OnShow();
+			//	character.OnShow(&mapS5);
 			//	for (unsigned i = 0; i < monsterS5.size(); i++)
 			//	{
 			//		monsterS5[i]->OnShow(&mapS5);
@@ -1133,7 +1133,7 @@ namespace game_framework
 			//	break;
 			//case stage_6:
 			//	mapS6.onShow();
-			//	character.OnShow();
+			//	character.OnShow(&mapS6);
 			//	for (unsigned i = 0; i < monsterS6.size(); i++)
 			//	{
 			//		monsterS6[i]->OnShow(&mapS6);
@@ -1142,7 +1142,7 @@ namespace game_framework
 			//	break;
 		case stage_boss:
 			bossMap.onShow();
-			character.OnShow();
+			character.OnShow(&bossMap);
 			for (unsigned i = 0; i < monsterS7.size(); i++)
 			{
 				monsterS7[i]->OnShow(&bossMap);

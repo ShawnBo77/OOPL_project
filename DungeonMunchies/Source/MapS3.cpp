@@ -129,7 +129,6 @@ namespace game_framework
         setMapName("MapS3");
         setCeiling(0);
         setStartPosition(100);
-        setCharacterYRelativeMovement(0);
         previousFloor = 0;
         targetSY = 0;
         trashCanOpen = false;
@@ -215,13 +214,11 @@ namespace game_framework
         {
             if (getSY() - 20 > y)
             {
-                addCharacterYRelativeMovement(20);
                 addSY(-20);
             }
             else
             {
                 screenUp = false;
-                addCharacterYRelativeMovement(y - getSY());
                 addSY(getSY() - y);
             }
         }
@@ -230,13 +227,11 @@ namespace game_framework
         {
             if (getSY() - 20 > y)
             {
-                addCharacterYRelativeMovement(20);
                 addSY(-20);
             }
             else
             {
                 screenUp = false;
-                addCharacterYRelativeMovement(getSY() - y);
                 addSY(y - getSY());
             }
         }
@@ -244,13 +239,11 @@ namespace game_framework
         {
             if (getSY() + 20 < y)
             {
-                addCharacterYRelativeMovement(-20);
                 addSY(20);
             }
             else
             {
                 screenDown = false;
-                addCharacterYRelativeMovement(getSY() - y);
                 addSY(y - getSY());
             }
         }

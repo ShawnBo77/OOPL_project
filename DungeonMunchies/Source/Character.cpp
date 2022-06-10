@@ -45,26 +45,27 @@ namespace game_framework
 		characterBlood[8].LoadBitmap(IDB_CHARACTERBLOOD09, RGB(255, 255, 255));
 		characterBlood[9].LoadBitmap(IDB_CHARACTERBLOOD10, RGB(255, 255, 255));
 
-		standLeft.LoadBitmap(IDB_HEROLEFTSTAND_S, RGB(0, 0, 0));		//向左站
-		standRight.LoadBitmap(IDB_HERORIGHTSTAND_S, RGB(0, 0, 0));		//向右站
+		standLeft[0].LoadBitmap(IDB_HEROLEFTSTAND_S, RGB(0, 0, 0));		//向左站
+		standRight[0].LoadBitmap(IDB_HERORIGHTSTAND_S, RGB(0, 0, 0));		//向右站
 
 		//向左走動畫
-		vector<int> walkingLeftAnimation = { IDB_HEROLEFTWALK1_S, IDB_HEROLEFTWALK2_S, IDB_HEROLEFTWALK3_S };
+		vector<int> walkingLeftAnimation_S = { IDB_HEROLEFTWALK1_S, IDB_HEROLEFTWALK2_S, IDB_HEROLEFTWALK3_S };
 		for (int i = 0; i < 3; i++)	// 載入動畫
-			walkingLeft.AddBitmap(walkingLeftAnimation[i], RGB(0, 0, 0));
+			walkingLeft[0].AddBitmap(walkingLeftAnimation_S[i], RGB(0, 0, 0));
 
 		//向右走動畫
-		vector<int> walkingRightAnimation = { IDB_HERORIGHTWALK1_S, IDB_HERORIGHTWALK2_S, IDB_HERORIGHTWALK3_S };
+		vector<int> walkingRightAnimation_S = { IDB_HERORIGHTWALK1_S, IDB_HERORIGHTWALK2_S, IDB_HERORIGHTWALK3_S };
 		for (int i = 0; i < 3; i++)	// 載入動畫
-			walkingRight.AddBitmap(walkingRightAnimation[i], RGB(0, 0, 0));
+			walkingRight[0].AddBitmap(walkingRightAnimation_S[i], RGB(0, 0, 0));
+		
 
-		leftJump.AddBitmap(IDB_HEROLEFTJUMP_S, RGB(0, 0, 0));
+		leftJump[0].AddBitmap(IDB_HEROLEFTJUMP_S, RGB(0, 0, 0));
 		for (int i = 0; i < 3; i++)
-			leftJump.AddBitmap(IDB_HEROLEFTSTAND_S, RGB(0, 0, 0));
+			leftJump[0].AddBitmap(IDB_HEROLEFTSTAND_S, RGB(0, 0, 0));
 
-		rightJump.AddBitmap(IDB_HERORIGHTJUMP_S, RGB(0, 0, 0));
+		rightJump[0].AddBitmap(IDB_HERORIGHTJUMP_S, RGB(0, 0, 0));
 		for (int i = 0; i < 3; i++)
-			rightJump.AddBitmap(IDB_HERORIGHTSTAND_S, RGB(0, 0, 0));
+			rightJump[0].AddBitmap(IDB_HERORIGHTSTAND_S, RGB(0, 0, 0));
 
 		vector<int> rollingLeftAnimation = { IDB_HEROLEFTROLL1, IDB_HEROLEFTROLL2, IDB_HEROLEFTROLL3, IDB_HEROLEFTROLL4, IDB_HEROLEFTROLL5, IDB_HEROLEFTROLL6, IDB_HEROLEFTROLL7, IDB_HEROLEFTROLL8 };
 		for (int i = 0; i < 8; i++)
@@ -74,13 +75,45 @@ namespace game_framework
 		for (int i = 0; i < 8; i++)
 			rightRolling.AddBitmap(rollingRightAnimation[i], RGB(0, 0, 0));
 
-		vector<int> attackingLeftAnimation = { IDB_HEROLEFTATTACK1_S, IDB_HEROLEFTATTACK2_S, IDB_HEROLEFTATTACK3_S, IDB_HEROLEFTATTACK4_S };
+		vector<int> attackingLeftAnimation_S = { IDB_HEROLEFTATTACK1_S, IDB_HEROLEFTATTACK2_S, IDB_HEROLEFTATTACK3_S, IDB_HEROLEFTATTACK4_S };
 		for (int i = 0; i < 4; i++)
-			leftAttacking.AddBitmap(attackingLeftAnimation[i], RGB(0, 0, 0));
+			leftAttacking[0].AddBitmap(attackingLeftAnimation_S[i], RGB(0, 0, 0));
 
-		vector<int> attackingRightAnimation = { IDB_HERORIGHTATTACK1_S, IDB_HERORIGHTATTACK2_S, IDB_HERORIGHTATTACK3_S, IDB_HERORIGHTATTACK4_S };
+		vector<int> attackingRightAnimation_S = { IDB_HERORIGHTATTACK1_S, IDB_HERORIGHTATTACK2_S, IDB_HERORIGHTATTACK3_S, IDB_HERORIGHTATTACK4_S };
 		for (int i = 0; i < 4; i++)
-			rightAttacking.AddBitmap(attackingRightAnimation[i], RGB(0, 0, 0));
+			rightAttacking[0].AddBitmap(attackingRightAnimation_S[i], RGB(0, 0, 0));
+
+		//has sword
+
+		standLeft[1].LoadBitmap(IDB_HEROLEFTSTAND_G, RGB(0, 0, 0));		//向左站
+		standRight[1].LoadBitmap(IDB_HERORIGHTSTAND_G, RGB(0, 0, 0));		//向右站
+
+		//向左走動畫
+		vector<int> walkingLeftAnimation_G = { IDB_HEROLEFTWALK1_G, IDB_HEROLEFTWALK2_G, IDB_HEROLEFTWALK3_G };
+		for (int i = 0; i < 3; i++)	// 載入動畫
+			walkingLeft[1].AddBitmap(walkingLeftAnimation_G[i], RGB(0, 0, 0));
+
+		//向右走動畫
+		vector<int> walkingRightAnimation_G = { IDB_HERORIGHTWALK1_G, IDB_HERORIGHTWALK2_G, IDB_HERORIGHTWALK3_G };
+		for (int i = 0; i < 3; i++)	// 載入動畫
+			walkingRight[1].AddBitmap(walkingRightAnimation_G[i], RGB(0, 0, 0));
+
+
+		leftJump[1].AddBitmap(IDB_HEROLEFTJUMP_G, RGB(0, 0, 0));
+		for (int i = 0; i < 3; i++)
+			leftJump[1].AddBitmap(IDB_HEROLEFTSTAND_G, RGB(0, 0, 0));
+
+		rightJump[1].AddBitmap(IDB_HERORIGHTJUMP_G, RGB(0, 0, 0));
+		for (int i = 0; i < 3; i++)
+			rightJump[1].AddBitmap(IDB_HERORIGHTSTAND_G, RGB(0, 0, 0));
+
+		//vector<int> attackingLeftAnimation = { IDB_HEROLEFTATTACK1_S, IDB_HEROLEFTATTACK2_S, IDB_HEROLEFTATTACK3_S, IDB_HEROLEFTATTACK4_S };
+		//for (int i = 0; i < 4; i++)
+		//	leftAttacking.AddBitmap(attackingLeftAnimation[i], RGB(0, 0, 0));
+
+		//vector<int> attackingRightAnimation = { IDB_HERORIGHTATTACK1_S, IDB_HERORIGHTATTACK2_S, IDB_HERORIGHTATTACK3_S, IDB_HERORIGHTATTACK4_S };
+		//for (int i = 0; i < 4; i++)
+		//	rightAttacking.AddBitmap(attackingRightAnimation[i], RGB(0, 0, 0));
 	}
 
 	void Character::Initialize()
@@ -91,15 +124,14 @@ namespace game_framework
 		const int Y_POS = 80;													//角色起始Y軸
 		characterX = X_POS;
 		characterY = Y_POS;
-		hasSword = false;
-		yRelativeMovement = 0;
+		characterStage = 0;
 		facingLR = 1;
 		STEP_SIZE = 15;
 		BORDER = 5;
 		isMovingLeft = isMovingRight = isMovingUp = isRising = isRolling = false;
 		canGoToNextMap = canCraft = false;
 		maxHp = 80;
-		currentHp = 37;
+		currentHp = 80;
 		rolling_time = 0;
 		isAttacking = false;
 		attackDamage = 10;
@@ -374,14 +406,17 @@ namespace game_framework
 
 		isAttackedEffectCaculation();
 
-		walkingLeft.OnMove();
-		walkingRight.OnMove();
+		for (int i = 0; i < 2; i++)
+		{
+			walkingLeft[i].OnMove();
+			walkingRight[i].OnMove();
+			leftJump[i].OnMove();
+			rightJump[i].OnMove();
+		}
 
 		leftRolling.OnMove();
 		rightRolling.OnMove();
-
-		leftJump.OnMove();
-		rightJump.OnMove();
+		
 
 		if (isAttacking)
 		{
@@ -389,17 +424,12 @@ namespace game_framework
 		}
 	}
 
-	void Character::OnShow()
+	void Character::OnShow(Map* m)
 	{
 		//animation.SetTopLeft(500, 350);
 		//animation.OnShow();
 		BloodShow();
-		yRelativeMovement = 0;
-		if (GetMap() != NULL)
-		{
-			yRelativeMovement = GetMap()->getCharacterYRelativeMovement();
-		}
-		if (characterX < 670 || GetMap() == NULL || GetMap()->mapScreenMoving() == false)
+		if (characterX < 670 || m == NULL || m->mapScreenMoving() == false)
 		{
 			screenCX = characterX;
 		}
@@ -417,7 +447,7 @@ namespace game_framework
 			{
 				if (isRolling)//action == roll_a)
 				{
-					leftRolling.SetTopLeft(screenCX - 5, characterY + 10 - yRelativeMovement);
+					leftRolling.SetTopLeft(screenCX - 5, characterY + 10 + m->getYMovement());
 					leftRolling.OnShow();
 					leftRolling.SetDelayCount(1);
 					if (leftRolling.IsFinalBitmap())
@@ -428,38 +458,38 @@ namespace game_framework
 				}
 				else if (isAttacking)//action == attack_a) //attack
 				{
-					leftAttacking.SetTopLeft(screenCX - 30, characterY - yRelativeMovement);
-					leftAttacking.SetDelayCount(1);
-					leftAttacking.OnShow();
-					if (leftAttacking.IsFinalBitmap())
+					leftAttacking[0].SetTopLeft(screenCX - 30, characterY + m->getYMovement());
+					leftAttacking[0].SetDelayCount(1);
+					leftAttacking[0].OnShow();
+					if (leftAttacking[0].IsFinalBitmap())
 					{
 						isAttacking = false;
 						action = walk_a;
-						leftAttacking.Reset();
+						leftAttacking[0].Reset();
 					}
 				}
 				else if (GetIsRising() == true)
 				{
-					leftJump.SetTopLeft(screenCX, characterY - yRelativeMovement);
-					leftJump.OnShow();
-					leftJump.SetDelayCount(3);
+					leftJump[characterStage].SetTopLeft(screenCX, characterY + m->getYMovement());
+					leftJump[characterStage].OnShow();
+					leftJump[characterStage].SetDelayCount(3);
 				}
 				else if ((GetIsMovingLeft() == true || GetIsMovingRight() == true) && GetIsOnTheFloor() == true)
 				{
-					walkingLeft.SetTopLeft(screenCX, characterY - yRelativeMovement);
-					walkingLeft.OnShow();
+					walkingLeft[characterStage].SetTopLeft(screenCX, characterY + m->getYMovement());
+					walkingLeft[characterStage].OnShow();
 				}
 				else
 				{
-					standLeft.SetTopLeft(screenCX, characterY - yRelativeMovement);
-					standLeft.ShowBitmap();
+					standLeft[characterStage].SetTopLeft(screenCX, characterY + m->getYMovement());
+					standLeft[characterStage].ShowBitmap();
 				}
 			}
 			else
 			{
 				if (isRolling)//action == roll_a)
 				{
-					rightRolling.SetTopLeft(screenCX - 5, characterY + 10 - yRelativeMovement);
+					rightRolling.SetTopLeft(screenCX - 5, characterY + 10 + m->getYMovement());
 					rightRolling.OnShow();
 					rightRolling.SetDelayCount(1);
 					if (rightRolling.IsFinalBitmap())
@@ -470,31 +500,31 @@ namespace game_framework
 				}
 				else if (isAttacking)//action == attack_a)
 				{
-					rightAttacking.SetTopLeft(screenCX + 30, characterY - yRelativeMovement);
-					rightAttacking.SetDelayCount(1);
-					rightAttacking.OnShow();
-					if (rightAttacking.IsFinalBitmap())
+					rightAttacking[0].SetTopLeft(screenCX + 30, characterY + m->getYMovement());
+					rightAttacking[0].SetDelayCount(1);
+					rightAttacking[0].OnShow();
+					if (rightAttacking[0].IsFinalBitmap())
 					{
 						isAttacking = false;
 						action = walk_a;
-						rightAttacking.Reset();
+						rightAttacking[0].Reset();
 					}
 				}
 				else if (GetIsRising() == true)
 				{
-					rightJump.SetTopLeft(screenCX, characterY - yRelativeMovement);
-					rightJump.OnShow();
-					rightJump.SetDelayCount(3);
+					rightJump[characterStage].SetTopLeft(screenCX, characterY + m->getYMovement());
+					rightJump[characterStage].OnShow();
+					rightJump[characterStage].SetDelayCount(3);
 				}
 				else if ((GetIsMovingLeft() == true || GetIsMovingRight() == true) && GetIsOnTheFloor() == true)
 				{
-					walkingRight.SetTopLeft(screenCX, characterY - yRelativeMovement);
-					walkingRight.OnShow();
+					walkingRight[characterStage].SetTopLeft(screenCX, characterY + m->getYMovement());
+					walkingRight[characterStage].OnShow();
 				}
 				else
 				{
-					standRight.SetTopLeft(screenCX, characterY - yRelativeMovement);
-					standRight.ShowBitmap();
+					standRight[characterStage].SetTopLeft(screenCX, characterY + m->getYMovement());
+					standRight[characterStage].ShowBitmap();
 				}
 			}
 		}
@@ -526,7 +556,15 @@ namespace game_framework
 	/*Getter*/
 	int Character::GetLeftX()
 	{
-		return characterX;
+		if (characterStage == 1)
+		{
+			if (facingLR)
+				return characterX;
+			else
+				return characterX;
+		}
+		else
+			return characterX;
 	}
 
 	int Character::GetTopY()
@@ -536,7 +574,15 @@ namespace game_framework
 
 	int Character::GetRightX()
 	{
-		return characterX + characterW; // + animation.Width();
+		if (characterStage == 1)
+		{
+			if (facingLR)
+				return characterX;
+			else
+				return characterX;
+		}
+		else
+			return characterX + characterW;
 	}
 
 	int Character::GetButtonY()
@@ -621,7 +667,7 @@ namespace game_framework
 
 	void Character::isAttackedEffectOnShow()
 	{
-		black.SetTopLeft(screenCX, characterY - yRelativeMovement);
+		black.SetTopLeft(screenCX, characterY - GetMap()->getYMovement());
 		black.ShowBitmap();
 	}
 
@@ -1025,11 +1071,13 @@ namespace game_framework
 	{
 		if (facingLR == 0)
 		{
-			leftAttacking.OnMove();
+			leftAttacking[0].OnMove();
+			//leftAttacking[1].OnMove();
 		}
 		else
 		{
-			rightAttacking.OnMove();
+			rightAttacking[0].OnMove();
+			//rightAttacking[1].OnMove();
 		}
 	}
 
@@ -1301,6 +1349,13 @@ namespace game_framework
 			return true;
 		}
 		return false;
+	}
+
+	void Character::characterHasSword()
+	{
+		attackDamage = 25;
+		attackRange = 90;
+		characterStage = 1;
 	}
 
 	void Character::SetXY(int x, int y)

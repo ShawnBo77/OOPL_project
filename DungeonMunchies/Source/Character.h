@@ -24,7 +24,7 @@ namespace game_framework
 		void Initialize();				// 設定初始值
 		void LoadBitmap();				// 載入圖形
 		void OnMove(Map* m, vector<Monster*>* monsters);		    // 移動
-		void OnShow();			        // 將圖形貼到畫面
+		void OnShow(Map* m);			        // 將圖形貼到畫面
 		void ResetPosition(Map* m);			// 地圖切換時，重置位置
 		void showData();
 		void BloodShow();
@@ -141,24 +141,23 @@ namespace game_framework
 	protected:
 		bool isAttackSuccessfullyL(int range, Monster* monster);
 		bool isAttackSuccessfullyR(int range, Monster* monster);
-		CMovingBitmap standLeft;	    // 站立面向左
-		CMovingBitmap standRight;	    // 站立面向右
 		CMovingBitmap bloodFrame;	    // 角色血量框
 		CMovingBitmap characterBlood[10];   // 角色血量
-		CAnimation walkingLeft;         // 向左行走動畫
-		CAnimation walkingRight;        // 向右行走動畫
-		CAnimation leftJump;            // 左跳動畫
-		CAnimation rightJump;           // 右跳動畫
 		CAnimation leftRolling;         // 左滾動畫
 		CAnimation rightRolling;        // 右滾動畫
-		CAnimation leftAttacking;       // 向左攻擊動畫
-		CAnimation rightAttacking;      // 向右攻擊動畫
+		CMovingBitmap standLeft[2];
+		CMovingBitmap standRight[2];
+		CAnimation walkingLeft[2];
+		CAnimation walkingRight[2];
+		CAnimation leftJump[2];
+		CAnimation rightJump[2];
+		CAnimation leftAttacking[2];
+		CAnimation rightAttacking[2];
 		//CAnimation animation;           // for test
 		Map* currentMap;
 
 		int characterX, characterY;
 		int screenCX, screenCY;
-		int yRelativeMovement;
 		int characterW, characterH;
 		bool mapScreenCanMoving;
 		bool canGoToNextMap;
@@ -212,7 +211,7 @@ namespace game_framework
 		bool shrimpAttack;
 		bool isShrimpAttack;
 
-		bool hasSword;
+		int characterStage;
 
 		int lightBulbNum;
 
