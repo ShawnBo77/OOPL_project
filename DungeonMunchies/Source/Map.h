@@ -17,6 +17,7 @@ namespace game_framework {
 		virtual bool isBridge(int x, int y) const = 0;
 		virtual bool isCraftTable(int x, int y) const = 0;
 		virtual bool isTrashCan(int x, int y) const = 0;
+		virtual bool isGetHurtPlace(int x, int y) const = 0;
 		void setSX(int x);
 		void setSY(int y);
 		int getSX();

@@ -168,6 +168,11 @@ namespace game_framework
         return (blockProperty(x, y) == 5);
     }
 
+    bool MapS3::isGetHurtPlace(int x, int y) const
+    {
+        return false;
+    }
+
     int MapS3::blockProperty(int x, int y) const
     {
         int gridX = x / 20;

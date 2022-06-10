@@ -114,6 +114,11 @@ namespace game_framework {
         return false;
     }
 
+    bool MapForBoss::isGetHurtPlace(int x, int y) const
+    {
+        return false;
+    }
+
     void MapForBoss::onShow() {
         map.SetTopLeft(getSX(), getSY()+20);
         map.ShowBitmap();

@@ -14,6 +14,7 @@ namespace game_framework {
         bool isBridge(int x, int y) const;
         bool isCraftTable(int x, int y) const;
         bool isTrashCan(int x, int y) const;
+        bool isGetHurtPlace(int x, int y) const;
         void onShow();
         void monsterFloorChanging(int x);
         int screenX(int x) override;

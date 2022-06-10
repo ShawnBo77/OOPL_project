@@ -40,9 +40,9 @@ namespace game_framework
             }
         }
 
-        for (int i = 13; i < 26; i++)
+        for (int i = 11; i < 26; i++)
         {
-            mapGrid_init[i][33] = 4;
+            mapGrid_init[i][28] = 6;
         }
 
         for (int i = 42; i < 77; i++)
@@ -173,6 +173,17 @@ namespace game_framework
 
     bool MapS2::isTrashCan(int x, int y) const
     {
+        return false;
+    }
+
+    bool MapS2::isGetHurtPlace(int x, int y) const
+    {
+        int gridX = x / 20;
+        int gridY = y / 20;
+        if (mapGrid[gridX][gridY] == 6)
+        {
+            return true;
+        }
         return false;
     }
 

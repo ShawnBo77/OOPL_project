@@ -19,6 +19,7 @@ namespace game_framework
 		bool isBridge(int x, int y) const;
 		bool isCraftTable(int x, int y) const;
 		bool isTrashCan(int x, int y) const;
+		bool isGetHurtPlace(int x, int y) const;
 		int blockProperty(int x, int y) const;
 		void onShow();
 		void syMoving(int y);

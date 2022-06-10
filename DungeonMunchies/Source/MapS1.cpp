@@ -162,6 +162,11 @@ namespace game_framework
 		return false;
 	}
 
+	bool MapS1::isGetHurtPlace(int x, int y) const
+	{
+		return false;
+	}
+
 	void MapS1::onShow()
 	{
 		map.SetTopLeft(getSX(), getSY());
