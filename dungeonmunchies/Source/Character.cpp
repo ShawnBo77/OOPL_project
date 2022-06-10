@@ -172,11 +172,6 @@ namespace game_framework
 			ResetPosition(m);
 		}
 
-		//if (hasSword)
-		//{
-		//	characterHasSword();
-		//}
-
 		shouldShowMagnifier(m);
 
 		if (m->getMapName() == "MapS2" || m->getMapName() == "MapS3")
@@ -240,7 +235,6 @@ namespace game_framework
 					isAttackedFromRight = true;
 					isAttackedFromButton = true;
 				}
-
 			}
 		}
 
