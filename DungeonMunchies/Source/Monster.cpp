@@ -440,7 +440,12 @@ namespace game_framework
 		if (character->isIntersect((GetLeftX() + GetRightX()) / 2, (GetLeftX() + GetRightX()) / 2 + 64, currentFloor - 64, currentFloor))
 		{
 			hasGottenSource = true;
-			character->GetSourceStorage()->add(sourceCase);
+			if (sourceCase == green_sword_s) {
+				character->characterHasSword();
+			}
+			else {
+				character->GetSourceStorage()->add(sourceCase);
+			}
 		}
 	}
 }
