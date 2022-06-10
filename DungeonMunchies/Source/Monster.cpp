@@ -29,6 +29,7 @@ namespace game_framework
 		init_x = x;
 		init_y = y;
 		hp = enemyHp;
+		bloodBar.setFullHP(hp);
 		attackDamage = ATK;
 		isAttacking = false;
 		isIntersect = false;

@@ -485,10 +485,22 @@ namespace game_framework
 		monsterS2.push_back(new MonsterBanana(2650, 400, &character));
 
 		//monsterS3.push_back(new MonsterBanana(300, 400, &character));
-		monsterS3.push_back(new MonsterMosquito(900, 200, &character));
-		//monsterS3.push_back(new MonsterShrimp(1000, 400, &character));
-		monsterS3.push_back(new MonsterCactusMutation(800, 400, &character));
+		monsterS3.push_back(new MonsterMosquito(550, 170, &character));
+		monsterS3.push_back(new MonsterMosquito(610, 210, &character));
+		monsterS3.push_back(new MonsterMosquito(660, 150, &character));
+		monsterS3.push_back(new MonsterMosquito(730, 200, &character));
+		monsterS3.push_back(new MonsterMosquito(800, 200, &character));
+		monsterS3.push_back(new MonsterMosquito(900, 180, &character));
+		monsterS3.push_back(new MonsterMosquito(980, 230, &character));
+		monsterS3.push_back(new MonsterMosquito(1020, 190, &character));
+
+		//monsterS3.push_back(new MonsterCactus(1275, 400, &character));
+		//monsterS3.push_back(new MonsterCactus(1355, 400, &character));
+		//monsterS3.push_back(new MonsterCactusMutation(1435, 400, &character));
+		//monsterS3.push_back(new MonsterCactus(1515, 400, &character));
+		//monsterS3.push_back(new MonsterCactus(1595, 400, &character));
 		//monsterS3.push_back(new MonsterCactus(1000, 400, &character));
+		
 		//monsterS3.push_back(new MonsterTree(2000, 400, &character));
 
 		//monsterS7.push_back(new MonsterTree(700, 400, &character));
