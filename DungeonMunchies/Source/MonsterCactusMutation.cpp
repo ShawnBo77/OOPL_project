@@ -52,7 +52,7 @@ namespace game_framework
 		_x = init_x;
 		_y = init_y;
 		currentFloor = 0;
-		hp = 50;
+		hp = 100;
 		attackDamage = 5;
 		bloodBar.setFullHP(hp);
 		hasGottenSource = false;
@@ -91,7 +91,7 @@ namespace game_framework
 				sourceGreenSword.ShowBitmap();
 			}
 		}
-		//showData();
+		showData();
 	}
 
 	void MonsterCactusMutation::showData()
@@ -103,8 +103,8 @@ namespace game_framework
 		pDC->SetBkColor(RGB(230, 220, 200));
 		pDC->SetTextColor(RGB(0, 0, 0));
 		char position[600];								// Demo 數字對字串的轉換
-		sprintf(position, "CactusLeftX:%d CactusRightX:%d CactusTopY:%d CactusButtonY:%d CactusHp: %d sparkleEffectTimer(%f, %f, %f)"
-			, GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), GetCurrentHp(), (double)sparkleEffectTimer.GetStartTime(), (double)sparkleEffectTimer.GetFinishTime(), (double)sparkleEffectTimer.GetTime());
+		sprintf(position, "CactusLeftX:%d CactusRightX:%d CactusTopY:%d CactusButtonY:%d CactusHp: %d CactusFullHp: %d"
+			, GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), GetCurrentHp(), bloodBar.getFullHP());
 		//sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
 		pDC->TextOut(200, 50, position);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)

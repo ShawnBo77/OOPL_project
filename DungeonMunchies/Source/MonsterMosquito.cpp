@@ -57,7 +57,7 @@ namespace game_framework
 		BORDER = 5;
 		HORIZONTAL_GAP = 0;
 		hp = 20;
-		attackDamage = 5;
+		attackDamage = 3;
 		facingLR = 0;
 		bloodBar.setFullHP(hp);
 		STEP_SIZE = 5;
@@ -104,7 +104,7 @@ namespace game_framework
 				moveUp(m);
 				moveRight(m);
 			}
-			flyTimer.CaculateTimeForTrue(&shouldFlyCaseChange, 0.3);
+			flyTimer.CaculateTimeForTrue(&shouldFlyCaseChange, (rand() % 200) / 100);
 			intersect();
 			isAttackedEffectCaculation();
 			faceLeft.OnMove();
@@ -163,7 +163,7 @@ namespace game_framework
 				sourceMosquitoJump.ShowBitmap();
 			}
 		}
-		showData();
+		//showData();
 	}
 
 	void MonsterMosquito::showData()
@@ -175,7 +175,7 @@ namespace game_framework
 		pDC->SetBkColor(RGB(230, 220, 200));
 		pDC->SetTextColor(RGB(0, 0, 0));
 		char position[600];								// Demo 數字對字串的轉換
-		sprintf(position, "MosquitoLeftX:%d MosquitoRightX:%d MosquitoTopY:%d MosquitoButtonY:%d CactusHp: %d flyTimer(%f, %f, %f)"
+		sprintf(position, "MosquitoLeftX:%d MosquitoRightX:%d MosquitoTopY:%d MosquitoButtonY:%d MosquitoHp: %d flyTimer(%f, %f, %f)"
 			, GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), GetCurrentHp(), (double)flyTimer.GetStartTime(), (double)flyTimer.GetFinishTime(), (double)flyTimer.GetTime());
 		//sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
 		pDC->TextOut(200, 50, position);
@@ -202,7 +202,7 @@ namespace game_framework
 	{
 		return _y + 68;
 	}
-	void MonsterMosquito::moveUp(Map *m)
+	void MonsterMosquito::moveUp(Map* m)
 	{
 		if (m->isEmpty(GetLeftX(), GetTopY() - STEP_SIZE) && m->isEmpty(GetRightX(), GetTopY() - STEP_SIZE)) //向上移動
 		{
