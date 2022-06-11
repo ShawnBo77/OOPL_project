@@ -144,7 +144,7 @@ namespace game_framework
 		attackRange = 60;
 		isAttackedFromRight = false;
 		isAttackedFromLeft = false;
-		isAttackedFromButton = false;
+		isAttackedFromBottom = false;
 		isAttacked = false;
 		isSparkleEffectTimerStart = false;
 		isSparkleEffectShow = false;
@@ -229,12 +229,12 @@ namespace game_framework
 				if (rand() % 2)
 				{
 					isAttackedFromLeft = true;
-					isAttackedFromButton = true;
+					isAttackedFromBottom = true;
 				}
 				else
 				{
 					isAttackedFromRight = true;
-					isAttackedFromButton = true;
+					isAttackedFromBottom = true;
 				}
 			}
 		}
@@ -296,7 +296,7 @@ namespace game_framework
 				}
 			}
 
-			if (GetIsMovingUp() && ((GetButtonY() >= m->getFloor() && velocity == 0) || GetButtonY() == monsterTop))
+			if (GetIsMovingUp() && ((GetBottomY() >= m->getFloor() && velocity == 0) || GetBottomY() == monsterTop))
 			{
 				isRising = true;
 				velocity = 13;
@@ -332,7 +332,7 @@ namespace game_framework
 			}
 			else										// 下降狀態
 			{
-				if (GetButtonY() < m->getFloor())				// 當y座標還沒碰到地板
+				if (GetBottomY() < m->getFloor())				// 當y座標還沒碰到地板
 				{
 					if (characterY + velocity * 3 < m->getFloor() - 120)
 					{
@@ -340,7 +340,7 @@ namespace game_framework
 						{
 							monsterBorder = monsters->at(i)->GetBorder();
 
-							if (GetRightX() > monsters->at(i)->GetLeftX() + monsterBorder && GetLeftX() < monsters->at(i)->GetRightX() - monsterBorder && GetButtonY() + velocity * 3 >= monsters->at(i)->GetTopY() + monsterBorder && monsters->at(i)->isAlive())
+							if (GetRightX() > monsters->at(i)->GetLeftX() + monsterBorder && GetLeftX() < monsters->at(i)->GetRightX() - monsterBorder && GetBottomY() + velocity * 3 >= monsters->at(i)->GetTopY() + monsterBorder && monsters->at(i)->isAlive())
 							{
 								if (characterY <= monsters->at(i)->GetTopY() + monsterBorder - 100 && monsters->at(i)->GetCanStandOn())
 								{
@@ -373,7 +373,7 @@ namespace game_framework
 			{
 				for (int i = 0; i < 50; i++)
 				{
-					if (m->isEmpty(GetLeftX() - 1 - BORDER, GetTopY()) && m->isEmpty(GetLeftX() - 1 - BORDER, GetButtonY() - BORDER))
+					if (m->isEmpty(GetLeftX() - 1 - BORDER, GetTopY()) && m->isEmpty(GetLeftX() - 1 - BORDER, GetBottomY() - BORDER))
 					{
 						if (characterX > 670 && m->mapScreenMoving())
 						{
@@ -389,7 +389,7 @@ namespace game_framework
 			{
 				for (int i = 0; i < 50; i++)
 				{
-					if (m->isEmpty(GetRightX() + 1 + BORDER, GetTopY()) && m->isEmpty(GetRightX() + 1 + BORDER, GetButtonY() - BORDER))
+					if (m->isEmpty(GetRightX() + 1 + BORDER, GetTopY()) && m->isEmpty(GetRightX() + 1 + BORDER, GetBottomY() - BORDER))
 					{
 						if (characterX > 670 && m->mapScreenMoving())
 						{
@@ -402,13 +402,13 @@ namespace game_framework
 				isAttackedFromLeft = false;
 			}
 
-			if (isAttackedFromButton)
+			if (isAttackedFromBottom)
 			{
 				for (int i = 0; i < 50; i++)
 				{
 					characterY -= 1;
 				}
-				isAttackedFromButton = false;
+				isAttackedFromBottom = false;
 			}
 		}
 
@@ -606,7 +606,7 @@ namespace game_framework
 			return characterX + characterW;
 	}
 
-	int Character::GetButtonY()
+	int Character::GetBottomY()
 	{
 		return characterY + characterH; // + animation.Height();
 	}
@@ -661,9 +661,9 @@ namespace game_framework
 		return isAttackedFromLeft;
 	}
 
-	bool Character::GetIsAttackedFromButton()
+	bool Character::GetIsAttackedFromBottom()
 	{
-		return isAttackedFromButton;
+		return isAttackedFromBottom;
 	}
 
 	void Character::isAttackedEffectCaculation()
@@ -699,7 +699,7 @@ namespace game_framework
 
 	bool Character::GetIsOnTheFloor()
 	{
-		if (GetButtonY() == GetMap()->getFloor())
+		if (GetBottomY() == GetMap()->getFloor())
 		{
 			isOnTheFloor = true;
 		}
@@ -734,7 +734,7 @@ namespace game_framework
 
 	void Character::SetMovingDown()
 	{
-		if (GetMap()->isBridge(characterX - BORDER, GetButtonY()))
+		if (GetMap()->isBridge(characterX - BORDER, GetBottomY()))
 			characterY += 5;
 	}
 
@@ -781,9 +781,9 @@ namespace game_framework
 		isAttackedFromLeft = flag;
 	}
 
-	void Character::SetIsAttackedFromButton(bool flag)
+	void Character::SetIsAttackedFromBottom(bool flag)
 	{
-		isAttackedFromButton = flag;
+		isAttackedFromBottom = flag;
 	}
 
 	void Character::SetCurrentHp(int x)
@@ -803,7 +803,7 @@ namespace game_framework
 		int monsterBorder;
 		if (GetIsMovingLeft())
 		{
-			if (m->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetTopY()) && m->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetButtonY() - BORDER))
+			if (m->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetTopY()) && m->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetBottomY() - BORDER))
 			{
 				if (monsters == NULL)
 				{
@@ -818,7 +818,7 @@ namespace game_framework
 						if (GetLeftX() - STEP_SIZE - BORDER <= monsters->at(i)->GetLeftX() + monsterBorder || GetLeftX() - STEP_SIZE - BORDER >= monsters->at(i)->GetRightX() - monsterBorder)
 						{
 						}
-						else if (GetButtonY() - BORDER < monsters->at(i)->GetTopY() + monsterBorder || GetTopY() + BORDER > monsters->at(i)->GetButtonY() - monsterBorder)
+						else if (GetBottomY() - BORDER < monsters->at(i)->GetTopY() + monsterBorder || GetTopY() + BORDER > monsters->at(i)->GetBottomY() - monsterBorder)
 						{
 						}
 						else
@@ -839,7 +839,7 @@ namespace game_framework
 		int monsterBorder;
 		if (GetIsMovingRight())
 		{
-			if (m->isEmpty(GetRightX() + STEP_SIZE + BORDER, GetTopY()) && m->isEmpty(GetRightX() + STEP_SIZE + BORDER, GetButtonY() - BORDER))
+			if (m->isEmpty(GetRightX() + STEP_SIZE + BORDER, GetTopY()) && m->isEmpty(GetRightX() + STEP_SIZE + BORDER, GetBottomY() - BORDER))
 			{
 				if (monsters == NULL)
 				{
@@ -854,7 +854,7 @@ namespace game_framework
 						if (GetRightX() + STEP_SIZE + BORDER >= monsters->at(i)->GetRightX() - monsterBorder || GetRightX() + STEP_SIZE + BORDER <= monsters->at(i)->GetLeftX() + monsterBorder)
 						{
 						}
-						else if (GetButtonY() - BORDER < monsters->at(i)->GetTopY() + monsterBorder || GetTopY() + BORDER > monsters->at(i)->GetButtonY() - monsterBorder)
+						else if (GetBottomY() - BORDER < monsters->at(i)->GetTopY() + monsterBorder || GetTopY() + BORDER > monsters->at(i)->GetBottomY() - monsterBorder)
 						{
 						}
 						else
@@ -913,7 +913,7 @@ namespace game_framework
 				{
 					for (int i = 0; i < 10; i++)
 					{
-						if (m->isEmpty(GetRightX() + ROLLING_SIZE, GetTopY()) && m->isEmpty(GetRightX() + ROLLING_SIZE, GetButtonY() - BORDER))
+						if (m->isEmpty(GetRightX() + ROLLING_SIZE, GetTopY()) && m->isEmpty(GetRightX() + ROLLING_SIZE, GetBottomY() - BORDER))
 						{
 							if (characterX + ROLLING_SIZE > 670 && characterX + ROLLING_SIZE < 670 + ROLLING_SIZE && GetMap()->mapScreenMoving() == true)
 							{
@@ -940,7 +940,7 @@ namespace game_framework
 				{
 					for (int i = 0; i < 10; i++)
 					{
-						if (m->isEmpty(GetRightX() + ROLLING_SIZE, GetTopY()) && m->isEmpty(GetRightX() + ROLLING_SIZE, GetButtonY() - BORDER))
+						if (m->isEmpty(GetRightX() + ROLLING_SIZE, GetTopY()) && m->isEmpty(GetRightX() + ROLLING_SIZE, GetBottomY() - BORDER))
 						{
 							characterX += ROLLING_SIZE;
 							if (GetMap()->mapScreenMoving() == true)
@@ -968,7 +968,7 @@ namespace game_framework
 				{
 					for (int i = 0; i < 10; i++)
 					{
-						if (m->isEmpty(GetLeftX() - ROLLING_SIZE, GetTopY()) && m->isEmpty(GetLeftX() - ROLLING_SIZE, GetButtonY() - BORDER))
+						if (m->isEmpty(GetLeftX() - ROLLING_SIZE, GetTopY()) && m->isEmpty(GetLeftX() - ROLLING_SIZE, GetBottomY() - BORDER))
 							characterX -= ROLLING_SIZE;
 						else
 							break;
@@ -978,7 +978,7 @@ namespace game_framework
 				{
 					for (int i = 0; i < 10; i++)
 					{
-						if (m->isEmpty(GetLeftX() - ROLLING_SIZE, GetTopY()) && m->isEmpty(GetLeftX() - ROLLING_SIZE, GetButtonY() - BORDER))
+						if (m->isEmpty(GetLeftX() - ROLLING_SIZE, GetTopY()) && m->isEmpty(GetLeftX() - ROLLING_SIZE, GetBottomY() - BORDER))
 						{
 							if (characterX - ROLLING_SIZE < 670)
 							{
@@ -1112,9 +1112,9 @@ namespace game_framework
 		if (((monster->GetRightX() >= GetLeftX() - range && monster->GetRightX() <= GetLeftX()) ||
 			(monster->GetLeftX() >= GetLeftX() - range && monster->GetLeftX() <= GetLeftX()) ||
 			(monster->GetLeftX() <= GetLeftX() - range && monster->GetRightX() >= GetLeftX()))
-			&& ((monster->GetButtonY() >= GetTopY() && monster->GetButtonY() <= GetButtonY()) ||
-				(monster->GetTopY() >= GetTopY() && monster->GetTopY() <= GetButtonY()) ||
-				(monster->GetTopY() <= GetTopY() && monster->GetButtonY() >= GetButtonY())))
+			&& ((monster->GetBottomY() >= GetTopY() && monster->GetBottomY() <= GetBottomY()) ||
+				(monster->GetTopY() >= GetTopY() && monster->GetTopY() <= GetBottomY()) ||
+				(monster->GetTopY() <= GetTopY() && monster->GetBottomY() >= GetBottomY())))
 		{
 			return true;
 		}
@@ -1129,9 +1129,9 @@ namespace game_framework
 		if (((monster->GetLeftX() <= GetRightX() + range && monster->GetLeftX() >= GetRightX()) ||
 			(monster->GetRightX() <= GetRightX() + range && monster->GetRightX() >= GetRightX()) ||
 			(monster->GetLeftX() <= GetRightX() && monster->GetRightX() >= GetRightX() + range))
-			&& ((monster->GetButtonY() >= GetTopY() && monster->GetButtonY() <= GetButtonY()) ||
-				(monster->GetTopY() >= GetTopY() && monster->GetTopY() <= GetButtonY()) ||
-				(monster->GetButtonY() >= GetButtonY() && monster->GetTopY() <= GetTopY())))
+			&& ((monster->GetBottomY() >= GetTopY() && monster->GetBottomY() <= GetBottomY()) ||
+				(monster->GetTopY() >= GetTopY() && monster->GetTopY() <= GetBottomY()) ||
+				(monster->GetBottomY() >= GetBottomY() && monster->GetTopY() <= GetTopY())))
 		{
 			return true;
 		}
@@ -1367,10 +1367,10 @@ namespace game_framework
 			GetLeftX() <= rX && GetLeftX() >= lX ||
 			GetLeftX() <= lX && GetRightX() >= rX || //角色比東西寬
 			GetRightX() <= rX && GetLeftX() >= lX) && //東西比角色寬
-			((GetButtonY() >= tY && GetButtonY() <= bY) ||
+			((GetBottomY() >= tY && GetBottomY() <= bY) ||
 				(GetTopY() >= tY && GetTopY() <= bY) ||
-				(GetTopY() >= tY && GetButtonY() <= bY) ||
-				(GetTopY() <= tY && GetButtonY() >= bY)))
+				(GetTopY() >= tY && GetBottomY() <= bY) ||
+				(GetTopY() <= tY && GetBottomY() >= bY)))
 		{
 			return true;
 		}
@@ -1431,8 +1431,8 @@ namespace game_framework
 		pDC2->SetBkColor(RGB(230, 220, 200));
 		pDC2->SetTextColor(RGB(0, 0, 0));
 		char position[500];								// Demo 數字對字串的轉換
-		sprintf(position, "CharacterLeftX:%d CharacterRightX:%d CharacterTopY:%d CharacterButtonY:%d CharacterAttack:%d ScreenX: %d ScreenY: %d"
-			, GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), attackDamage, (currentMap == NULL) ? 0 : currentMap->getSX(), (currentMap == NULL) ? 0 : currentMap->getSY());
+		sprintf(position, "CharacterLeftX:%d CharacterRightX:%d CharacterTopY:%d CharacterBottomY:%d CharacterAttack:%d ScreenX: %d ScreenY: %d"
+			, GetLeftX(), GetRightX(), GetTopY(), GetBottomY(), attackDamage, (currentMap == NULL) ? 0 : currentMap->getSX(), (currentMap == NULL) ? 0 : currentMap->getSY());
 		pDC2->TextOut(200, 120, position);
 		pDC2->SelectObject(f2p);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
