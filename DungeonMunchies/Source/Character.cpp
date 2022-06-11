@@ -213,7 +213,8 @@ namespace game_framework
 
 		if (m->isTrashCan(GetLeftX() - BORDER, GetTopY()) && !m->getTrashCanOpen())
 		{
-			if (!m->getTrashCanOpen()) {
+			if (!m->getTrashCanOpen())
+			{
 				CAudio::Instance()->Play(AUDIO_RECYCLE_CAN, false);
 				m->setTrashCanOpen(true);
 				currentHp = maxHp;
@@ -563,12 +564,18 @@ namespace game_framework
 		if (m->getMapName() == "MapS1" && characterX > 1135 && characterX < 1300)
 		{
 			m->setShowMaginifierFlag(true);
-			m->setCanShowMessage(true);
+			m->setCanShowMessage(true, 0);
+		}
+		else if (m->getMapName() == "MapS3" && characterX > 3280 && characterX < 3500)
+		{
+			m->setShowMessageIconFlag(true);
+			m->setCanShowMessage(true, 0);
 		}
 		else
 		{
 			m->setShowMaginifierFlag(false);
-			m->setCanShowMessage(false);
+			m->setShowMessageIconFlag(false);
+			m->setCanShowMessage(false, 0);
 		}
 	}
 
@@ -1389,7 +1396,7 @@ namespace game_framework
 			attackRange = 60;
 			characterStage = 0;
 		}
-		
+
 	}
 
 	void Character::SetXY(int x, int y)
