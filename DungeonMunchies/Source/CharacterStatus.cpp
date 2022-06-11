@@ -31,6 +31,7 @@ namespace game_framework
 	void CharacterStatus::Initialize(Character* character)
 	{
 		_character = character;
+		_stage = stage_1;
 		row = 0;
 		col[3] = { 0 };
 		haveFirstLine = false;
@@ -50,6 +51,7 @@ namespace game_framework
 		showAttackRange();
 		showSpeed();
 		showEffect();
+		showStage();
 	}
 
 	void CharacterStatus::showhp()
@@ -190,6 +192,59 @@ namespace game_framework
 		char position[500];								// Demo 數字對字串的轉換
 		sprintf(position, "%d / %d", data1, data2);
 		pDC->TextOut(x, y, position);
+		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+	}
+
+	void CharacterStatus::setStage(Stage stage)
+	{
+		_stage = stage;
+	}
+
+	Stage CharacterStatus::getStage()
+	{
+		return _stage;
+	}
+
+	void CharacterStatus::showStage()
+	{
+		if (_stage == stage_1)
+		{
+			cstage = "第一關";
+		}
+		else if (_stage == stage_2)
+		{
+			cstage = "第二關";
+		}
+		else if (_stage == stage_3)
+		{
+			cstage = "第三關";
+		}
+		else if (_stage == stage_4)
+		{
+			cstage = "第四關";
+		}
+		else if (_stage == stage_5)
+		{
+			cstage = "第五關";
+		}
+		else if (_stage == stage_6)
+		{
+			cstage = "第六關";
+		}
+		else if (_stage == stage_boss)
+		{
+			cstage = "王關";
+		}
+		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+		CFont f, * fp;
+		f.CreatePointFont(240, "標楷體");	// 產生 font f; 160表示16 point的字
+		fp = pDC->SelectObject(&f);					// 選用 font f
+		pDC->SetBkColor(RGB(0, 0, 0));
+		pDC->SetTextColor(RGB(255, 255, 255));
+		char position[500];								// Demo 數字對字串的轉換
+		sprintf(position, "%s", cstage);
+		pDC->TextOut(478, 150, position);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}

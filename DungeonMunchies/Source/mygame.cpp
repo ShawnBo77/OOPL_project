@@ -672,6 +672,7 @@ namespace game_framework
 		if (isStageChanged)
 		{
 			bgmPlayer();
+			characterStatus.setStage(currentStage);
 			isStageChanged = false;
 		}
 	}
