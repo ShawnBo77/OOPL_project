@@ -802,6 +802,18 @@ namespace game_framework
 						break;
 					}
 				}
+				else if (currentStage == stage_props)
+				{
+					currentStage = lastStage;
+					if (!haveCalledCharacterStatus)
+					{
+						gamePause = false;
+					}
+					else
+					{
+						characterStatusCall = true;
+					}
+				}
 				else if (character.GetCanCraft())
 				{
 					lastStage = currentStage;
@@ -814,18 +826,6 @@ namespace game_framework
 				{
 					gamePause = true;
 					messageShowFlag = true;
-				}
-				else if (currentStage == stage_props)
-				{
-					currentStage = lastStage;
-					if (!haveCalledCharacterStatus)
-					{
-						gamePause = false;
-					}
-					else
-					{
-						characterStatusCall = true;
-					}
 				}
 			}
 			if (nChar == KEY_TAB)
