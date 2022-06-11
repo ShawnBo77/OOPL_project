@@ -119,6 +119,14 @@ namespace game_framework
         trashCanClosedBitmap.LoadBitmap(IDB_TRASHCANCLOSED, RGB(0, 0, 0));
         trashCanOpenBitmap.LoadBitmap(IDB_TRASHCANOPEN, RGB(0, 0, 0));
         craftingBitmap.LoadBitmap(IDB_CRAFTING, RGB(0, 0, 0));
+        loadMagnifierBitmap();
+        loadMessageIconBitmap();
+        message01.LoadBitmap(".\\res\\message0201.bmp", RGB(0, 0, 0));
+        message02.LoadBitmap(".\\res\\message0202.bmp", RGB(0, 0, 0));
+        message03.LoadBitmap(".\\res\\message0203.bmp", RGB(0, 0, 0));
+        message04.LoadBitmap(".\\res\\message0204.bmp", RGB(0, 0, 0));
+        message05.LoadBitmap(".\\res\\message0205.bmp", RGB(0, 0, 0));
+        message06.LoadBitmap(".\\res\\message0206.bmp", RGB(0, 0, 0));
     }
 
     void MapS3::Initialize()
@@ -133,6 +141,14 @@ namespace game_framework
         targetSY = 0;
         trashCanOpen = false;
         screenUp = screenDown = false;
+        messageCode = 0;
+        //isMessageShowing = false;
+        showMaginifierFlag = false;
+        showMessageIconFlag = false;
+        canShowMessage = false;
+        messageCounter = 1;
+        messageSize = 6;
+        messageEndFlag = false;
     }
 
     void MapS3::setPos(int x, int y, int n)
@@ -196,6 +212,11 @@ namespace game_framework
         }
         
         syMoving(targetSY);
+
+        if (getShowMessageIconFlag())
+        {
+            showMessageIcon(3410, 705);
+        }
 
         if (getPortalOpen())
         {
@@ -310,5 +331,40 @@ namespace game_framework
     int MapS3::screenY(int y)
     {
         return y + getSY();
+    }
+    void MapS3::messageOnShow()
+    {
+        int mX = 136, mY = 201;
+        if (messageCounter == 1)
+        {
+            message01.SetTopLeft(mX, mY);
+            message01.ShowBitmap();
+        }
+        else if (messageCounter == 2)
+        {
+            message02.SetTopLeft(mX, mY);
+            message02.ShowBitmap();
+        }
+        else if (messageCounter == 3)
+        {
+            message03.SetTopLeft(mX, mY);
+            message03.ShowBitmap();
+        }
+        else if (messageCounter == 4)
+        {
+            message04.SetTopLeft(mX, mY);
+            message04.ShowBitmap();
+        }
+        else if (messageCounter == 5)
+        {
+            message05.SetTopLeft(mX, mY);
+            message05.ShowBitmap();
+        }
+        else if (messageCounter == 6)
+        {
+            message06.SetTopLeft(mX, mY);
+            message06.ShowBitmap();
+            messageEndFlag = true;
+        }
     }
 }

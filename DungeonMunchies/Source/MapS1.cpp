@@ -97,6 +97,7 @@ namespace game_framework
 		//messages.push_back(message03);
 		//messages.push_back(message04);
 		loadMagnifierBitmap();
+		loadMessageIconBitmap();
 	}
 
 	void MapS1::Initialize()
@@ -106,7 +107,11 @@ namespace game_framework
 		setScreenMoving(true);
 		setMapName("MapS1");
 		setStartPosition(335);
+		messageCode = 0;
 		canShowMessage = false;
+		showMaginifierFlag = false;
+		//isMessageShowing = false;
+		showMessageIconFlag = false;
 		messageCounter = 1;
 		messageSize = 4;
 		messageEndFlag = false;

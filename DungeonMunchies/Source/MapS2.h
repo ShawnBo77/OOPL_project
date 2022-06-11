@@ -39,4 +39,4 @@ namespace game_framework
 		bool screenDown;
 	};
 }
-#endif#pragma once
+#endif

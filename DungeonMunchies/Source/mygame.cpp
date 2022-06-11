@@ -1132,6 +1132,10 @@ namespace game_framework
 			{
 				monsterS3[i]->OnShow(&mapS3);
 			}
+			if (messageShowFlag)
+			{
+				mapS3.messageOnShow();
+			}
 			LightBulbOnShow();
 			break;
 			//case stage_4:
