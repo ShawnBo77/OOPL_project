@@ -63,13 +63,22 @@ namespace game_framework {
 		int getXMovement();
 		int getYMovement();
 
+		/*訊息相關函式*/
+		//放大鏡
 		void loadMagnifierBitmap();
 		void showMaginifier(int x, int y);
 		void setShowMaginifierFlag(bool flag);
 		bool getShowMaginifierFlag();
-
-		void setCanShowMessage(bool flag);
+		//訊息圖示
+		void loadMessageIconBitmap();
+		void showMessageIcon(int x, int y);
+		void setShowMessageIconFlag(bool flag);
+		bool getShowMessageIconFlag();
+		//訊息
+		void setCanShowMessage(bool flag, int code);
 		bool getCanShowMessage();
+		//void setIsMessageShowing(bool flag);
+		//bool getIsMessageShowing();
 		void setMessageCounter(int n);
 		int getMessageCounter();
 		void setMessageCounterToNext();
@@ -99,8 +108,12 @@ namespace game_framework {
 
 		CMovingBitmap magnifier;
 		bool showMaginifierFlag;
+		CMovingBitmap messageIcon;
+		bool showMessageIconFlag;
 
+		int messageCode;
 		bool canShowMessage;
+		//bool isMessageShowing;
 		int messageCounter;
 		int messageSize;
 		bool messageEndFlag;

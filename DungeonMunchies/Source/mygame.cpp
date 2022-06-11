@@ -401,7 +401,8 @@ namespace game_framework
 	void CGameStateOver::OnMove()
 	{
 		counter--;
-		if (counter < 0) {
+		if (counter < 0)
+		{
 			CAudio::Instance()->Stop(AUDIO_LOSE);
 			CAudio::Instance()->Play(AUDIO_STARTMENU, true);
 			GotoGameState(GAME_STATE_INIT);
@@ -500,7 +501,7 @@ namespace game_framework
 		//monsterS3.push_back(new MonsterCactus(1515, 400, &character));
 		//monsterS3.push_back(new MonsterCactus(1595, 400, &character));
 		//monsterS3.push_back(new MonsterCactus(1000, 400, &character));
-		
+
 		//monsterS3.push_back(new MonsterTree(2000, 400, &character));
 
 		//monsterS7.push_back(new MonsterTree(700, 400, &character));
@@ -756,25 +757,21 @@ namespace game_framework
 	{
 		if (!gameCompleteFlag)
 		{
-			switch (nChar)
+			if (!gamePause)
 			{
-			case KEY_A:
-				character.SetMovingLeft(true);
-				break;
-			case KEY_D:
-				character.SetMovingRight(true);
-				break;
-			case KEY_W:
-			case KEY_SPACE:
-				character.SetMovingUp(true);
-				break;
-			case KEY_S:
-				character.SetMovingDown();
-				break;
-			case KEY_CTRL:
-				character.SetRolling(true);
-				break;
-			case KEY_E:
+				if (nChar == KEY_A)
+					character.SetMovingLeft(true);
+				else if (nChar == KEY_D)
+					character.SetMovingRight(true);
+				else if (nChar == KEY_W || nChar == KEY_SPACE)
+					character.SetMovingUp(true);
+				else if (nChar == KEY_S)
+					character.SetMovingDown();
+				else if (nChar == KEY_CTRL)
+					character.SetRolling(true);
+			}
+			if (nChar == KEY_E)
+			{
 				if (character.GetCanGoToNextMap())
 				{
 					monsterInitialize();
@@ -805,18 +802,6 @@ namespace game_framework
 						break;
 					}
 				}
-				else if (currentStage == stage_props)
-				{
-					currentStage = lastStage;
-					if (!haveCalledCharacterStatus)
-					{
-						gamePause = false;
-					}
-					else
-					{
-						characterStatusCall = true;
-					}
-				}
 				else if (character.GetCanCraft())
 				{
 					lastStage = currentStage;
@@ -830,8 +815,21 @@ namespace game_framework
 					gamePause = true;
 					messageShowFlag = true;
 				}
-				break;
-			case KEY_TAB:
+				else if (currentStage == stage_props)
+				{
+					currentStage = lastStage;
+					if (!haveCalledCharacterStatus)
+					{
+						gamePause = false;
+					}
+					else
+					{
+						characterStatusCall = true;
+					}
+				}
+			}
+			if (nChar == KEY_TAB)
+			{
 				if (characterStatusCall == true)
 				{
 					characterStatusCall = false;
@@ -847,26 +845,24 @@ namespace game_framework
 						gamePause = true;
 					}
 				}
-				break;
-			case KEY_Q:
+			}
+			if (nChar == KEY_Q)
+			{
 				if (character.GetCharacterStage() == 0)
 					character.characterHasSword(true);
 				else if (character.GetCharacterStage() == 1)
 					character.characterHasSword(false);
-				break;
-			case KEY_R:
+			}
+			if (nChar == KEY_R)
 				character.restoreCurrentHp(50);
-				break;
-			case KEY_T:
+			if (nChar == KEY_T)
 				character.addAttackDamage(10);
-				break;
-			case KEY_Y:
+			if (nChar == KEY_Y)
 				character.SetLightBulbNum(1000);
-				break;
-			case KEY_U:
+			if (nChar == KEY_U)
 				character.SetAllSourceNumToHundred();
-				break;
-			case KEY_H:
+			if (nChar == KEY_H)
+			{
 				//currentStage = stage_boss;
 				//for (int i = 0; i < (signed)monsterS7.size(); i++)
 				//{
@@ -874,12 +870,15 @@ namespace game_framework
 				//}
 				currentStage = stage_game_complete;
 				isStageChanged = true;
-				break;
-			case KEY_G:
+			}
+			if (nChar == KEY_G)
+			{
 				character.SetCurrentHp(0);
 				stopAllBgm();
-				break;
-			case KEY_1:
+
+			}
+			if (nChar == KEY_1)
+			{
 				monsterInitialize();
 				gamePause = false;
 				characterStatusCall = false;
@@ -887,8 +886,9 @@ namespace game_framework
 				character.SetXY(mapS1.getStartPosition(), 100);
 				currentStage = stage_1;
 				isStageChanged = true;
-				break;
-			case KEY_2:
+			}
+			if (nChar == KEY_2)
+			{
 				monsterInitialize();
 				gamePause = false;
 				characterStatusCall = false;
@@ -896,8 +896,9 @@ namespace game_framework
 				character.SetXY(mapS2.getStartPosition(), 100);
 				currentStage = stage_2;
 				isStageChanged = true;
-				break;
-			case KEY_3:
+			}
+			if (nChar == KEY_3)
+			{
 				monsterInitialize();
 				gamePause = false;
 				characterStatusCall = false;
@@ -905,32 +906,33 @@ namespace game_framework
 				character.SetXY(mapS3.getStartPosition(), 100);
 				currentStage = stage_3;
 				isStageChanged = true;
-				break;
-				//case KEY_4:
-				//	monsterInitialize();
-				//	gamePause = false;
-				//	characterStatusCall = false;
-				//	mapS2.Initialize();
-				//	currentStage = stage_2;
-				//	isStageChanged = true;
-				//	break;
-				//case KEY_5:
-				//	monsterInitialize();
-				//	gamePause = false;
-				//	characterStatusCall = false;
-				//	mapS2.Initialize();
-				//	currentStage = stage_2;
-				//	isStageChanged = true;
-				//	break;
-				//case KEY_6:
-				//	monsterInitialize();
-				//	gamePause = false;
-				//	characterStatusCall = false;
-				//	mapS2.Initialize();
-				//	currentStage = stage_2;
-				//	isStageChanged = true;
-				//	break;
-			case KEY_7:
+			}
+			//if (nChar == KEY_4){
+			//	monsterInitialize();
+			//	gamePause = false;
+			//	characterStatusCall = false;
+			//	mapS2.Initialize();
+			//	currentStage = stage_2;
+			//	isStageChanged = true;
+			// }
+			//if (nChar == KEY_5){
+			//	monsterInitialize();
+			//	gamePause = false;
+			//	characterStatusCall = false;
+			//	mapS2.Initialize();
+			//	currentStage = stage_2;
+			//	isStageChanged = true;
+			// }
+			//if (nChar == KEY_6){
+			//	monsterInitialize();
+			//	gamePause = false;
+			//	characterStatusCall = false;
+			//	mapS2.Initialize();
+			//	currentStage = stage_2;
+			//	isStageChanged = true;
+			// }
+			if (nChar == KEY_7)
+			{
 				monsterInitialize();
 				gamePause = false;
 				characterStatusCall = false;
@@ -938,46 +940,22 @@ namespace game_framework
 				character.SetXY(bossMap.getStartPosition(), 100);
 				currentStage = stage_boss;
 				isStageChanged = true;
-				/*if (currentStage == stage_boss)
-				{
-					currentStage = lastStage;
-				}
-				else
-				{
-					if (currentStage != stage_props)
-					{
-						lastStage = currentStage;
-					}
-					bossMap.Initialize();
-					currentStage = stage_boss;
-				}*/
-				break;
-			case KEY_ESC:
+			}
+			if (nChar == KEY_ESC)
+			{
 				PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);
-				break;
-			default:
-				break;
 			}
 		}
 	}
 
 	void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
-		switch (nChar)
-		{
-		case KEY_A:
+		if (nChar == KEY_A)
 			character.SetMovingLeft(false);
-			break;
-		case KEY_D:
+		if (nChar == KEY_D)
 			character.SetMovingRight(false);
-			break;
-		case KEY_W:
-		case KEY_SPACE:
+		if (nChar == KEY_W || nChar == KEY_SPACE)
 			character.SetMovingUp(false);
-			break;
-		default:
-			break;
-		}
 	}
 
 	void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
@@ -1131,6 +1109,10 @@ namespace game_framework
 			for (unsigned i = 0; i < monsterS3.size(); i++)
 			{
 				monsterS3[i]->OnShow(&mapS3);
+			}
+			if (messageShowFlag)
+			{
+				mapS3.messageOnShow();
 			}
 			LightBulbOnShow();
 			break;

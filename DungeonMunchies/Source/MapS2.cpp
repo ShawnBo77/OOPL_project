@@ -112,6 +112,8 @@ namespace game_framework
         map.LoadBitmap(".\\res\\map02.bmp");
         exitBitmap.LoadBitmap(IDB_EXIT, RGB(0, 0, 0));
         pressEBitmap.LoadBitmap(IDB_PRESSE, RGB(0, 0, 0));
+        loadMagnifierBitmap();
+        loadMessageIconBitmap();
     }
 
     void MapS2::Initialize()
@@ -125,6 +127,8 @@ namespace game_framework
         previousFloor = 0;
         targetSY = 0;
         screenUp = screenDown = false;
+        messageCode = 0;
+        //isMessageShowing = false;
     }
 
     void MapS2::setPos(int x, int y, int n)

@@ -27,6 +27,8 @@ namespace game_framework
 		void characterFloorChanging() override;
 		int screenX(int x) override;
 		int screenY(int y) override;
+
+		void messageOnShow() override;
 	protected:
 		CMovingBitmap map;
 		int X, Y;
@@ -37,6 +39,13 @@ namespace game_framework
 		int targetSY;
 		bool screenUp;
 		bool screenDown;
+
+		CMovingBitmap message01;
+		CMovingBitmap message02;
+		CMovingBitmap message03;
+		CMovingBitmap message04;
+		CMovingBitmap message05;
+		CMovingBitmap message06;
 	};
 }
 #endif

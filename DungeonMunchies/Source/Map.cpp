@@ -161,14 +161,41 @@ namespace game_framework
 	{
 		return showMaginifierFlag;
 	}
-	void Map::setCanShowMessage(bool flag)
+	void Map::loadMessageIconBitmap()
+	{
+		messageIcon.LoadBitmap(".\\res\\message_icon.bmp", RGB(0, 0, 0));
+	}
+	void Map::showMessageIcon(int x, int y)
+	{
+		messageIcon.SetTopLeft(x + getSX(), y + getSY());
+		messageIcon.ShowBitmap();
+	}
+	void Map::setShowMessageIconFlag(bool flag)
+	{
+		showMessageIconFlag = flag;
+	}
+	bool Map::getShowMessageIconFlag()
+	{
+		return showMessageIconFlag;
+	}
+
+	void Map::setCanShowMessage(bool flag, int code)
 	{
 		canShowMessage = flag;
+		messageCode = code;
 	}
 	bool Map::getCanShowMessage()
 	{
 		return canShowMessage;
 	}
+	//void Map::setIsMessageShowing(bool flag)
+	//{
+	//	isMessageShowing = flag;
+	//}
+	//bool Map::getIsMessageShowing()
+	//{
+	//	return isMessageShowing;
+	//}
 	void Map::setFloor(int y)
 	{
 		floor = y;
