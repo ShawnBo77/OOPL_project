@@ -40,7 +40,7 @@ namespace game_framework
 		//void SetRelativeMovement(int x);					// x, y座標
 		//int GetRelativeMovementY(Map* m);					// x, y座標
 		int	GetBorder();
-		int GetHorizontalGap();				//之後可能可以刪除
+		bool	GetCanStandOn();
 		void SetMovingDown(bool b);					//下
 		bool GetIsMovingDown();           // 回傳是否正在往上移動
 		void SetMovingUp(bool b);					//上
@@ -101,12 +101,12 @@ namespace game_framework
 		bool hasGottenSource; //看素材是否已被取得
 		int lightBulbInside;
 		bool hasGottenLightBulb;
+		bool canStandOn;
 
 		Action action;
 		int STEP_SIZE;              // 移動速度
 		//int RelativeMovement;              // 移動速度
-		int BORDER;				
-		int HORIZONTAL_GAP;
+		int BORDER;	
 		bool isMovingLeft;			// 是否正在往左移動
 		bool isMovingRight;			// 是否正在往右移動
 		bool isMovingDown;

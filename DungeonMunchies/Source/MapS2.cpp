@@ -52,6 +52,7 @@ namespace game_framework
                 mapGrid_init[i][j] = 0;
             }
         }
+        mapGrid_init[42][14] = 0;
 
         for (int i = 27; i < 77; i++)
         {
@@ -61,7 +62,7 @@ namespace game_framework
             }
         }
 
-        for (int i = 94; i < 114; i++)
+        for (int i = 95; i < 114; i++)
         {
             for (int j = 12; j < 37; j++)
             {
@@ -69,7 +70,7 @@ namespace game_framework
             }
         }
 
-        for (int i = 77; i < 93; i++)
+        for (int i = 77; i < 94; i++)
         {  
             mapGrid_init[i][29] = 3;
             mapGrid_init[i][36] = 3;
@@ -261,25 +262,25 @@ namespace game_framework
 
     void MapS2::characterFloorChanging()
     {
-        if (characterX < 218)
+        if (characterX < 258)
         {
             setFloor(540);
         }
-        else if (characterX < 400)
+        else if (characterX < 440)
         {
             setFloor(680);
         }
-        else if (characterX < 500)
+        else if (characterX < 520)
         {
             if (characterY > 382)
                 setFloor(680);
             else
                 setFloor(500);
         }
-        else if (characterX < 1538)
+        else if (characterX < 1578)
         {
             setFloor(440);
-            if (getSX() < -205)
+            if (characterX > 779)
                 setCeiling(265);
             else 
                 setCeiling(0);
@@ -289,7 +290,7 @@ namespace game_framework
             if (characterY > 612 || characterX > 2280)
             {
                 setFloor(880);
-                if (characterX > 1850 && characterX < 2280)
+                if (characterX > 1850 && characterX < 2285)
                     setCeiling(740);
                 else
                     setCeiling(470);

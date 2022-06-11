@@ -172,9 +172,9 @@ namespace game_framework
 		return BORDER;
 	}
 
-	int Monster::GetHorizontalGap()
+	bool Monster::GetCanStandOn()
 	{
-		return HORIZONTAL_GAP;
+		return canStandOn;
 	}
 
 	void Monster::SetMovingDown(bool b)

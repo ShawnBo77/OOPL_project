@@ -28,6 +28,7 @@ namespace game_framework
 		void ResetPosition(Map* m);			// 地圖切換時，重置位置
 		void showData();
 		void BloodShow();
+		void ScreenCXY(Map* m);
 
 		/*map*/
 		//MapS1

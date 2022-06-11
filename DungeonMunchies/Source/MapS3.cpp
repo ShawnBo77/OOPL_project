@@ -53,7 +53,7 @@ namespace game_framework
                 mapGrid_init[i][j] = 0;
             }
         }
-        for (int i = 27; i < 92; i++)
+        for (int i = 27; i < 91; i++)
         {
             for (int j = 25; j < 70; j++)
             {
@@ -260,7 +260,7 @@ namespace game_framework
         {
             setMonsterFloor(610);
         }
-        else if (x < 1838)
+        else if (x < 1840)
         {
             setMonsterFloor(485);
         }

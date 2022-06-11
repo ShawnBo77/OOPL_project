@@ -25,13 +25,11 @@ namespace game_framework
 		hp = 50;
 		attackDamage = 5;
 		BORDER = 20;
-		HORIZONTAL_GAP = 0;
 	}
 
 	MonsterCactusMutation::MonsterCactusMutation(int x, int y, Character* c) : Monster(x, y, 50, 5, c)
 	{
 		BORDER = 20;
-		HORIZONTAL_GAP = 0;
 	}
 
 	MonsterCactusMutation::~MonsterCactusMutation()

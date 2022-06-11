@@ -25,13 +25,11 @@ namespace game_framework
 		hp = 50;
 		attackDamage = 0;
 		BORDER = 20;
-		HORIZONTAL_GAP = 0;
 	}
 
 	MonsterBanana::MonsterBanana(int x, int y, Character* c) : Monster(x, y, 20, 5, c)
 	{
 		BORDER = 20;
-		HORIZONTAL_GAP = 0;
 	}
 
 	MonsterBanana::~MonsterBanana()
@@ -58,6 +56,7 @@ namespace game_framework
 		hasGottenSource = false;
 		lightBulbInside = 60;
 		hasGottenLightBulb = false;
+		canStandOn = true;
 	}
 
 	void MonsterBanana::OnShow(Map* m)

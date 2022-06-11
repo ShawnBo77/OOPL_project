@@ -140,7 +140,7 @@ namespace game_framework
 		floor = 595;
 		thronExist = false;
 		thronCountFlag = false;
-
+		canStandOn = true;
 		bossDead = false;
 	}
 

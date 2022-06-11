@@ -176,7 +176,7 @@ namespace game_framework
 
 		if (m->getMapName() == "MapS2" || m->getMapName() == "MapS3")
 		{
-			m->setCharacterX(GetLeftX());
+			m->setCharacterX((GetLeftX()+GetRightX())/2);
 			m->setCharacterY(characterY);
 			m->characterFloorChanging();
 		}
@@ -341,9 +341,12 @@ namespace game_framework
 
 							if (GetRightX() > monsters->at(i)->GetLeftX() + monsterBorder && GetLeftX() < monsters->at(i)->GetRightX() - monsterBorder && GetButtonY() + velocity * 3 >= monsters->at(i)->GetTopY() + monsterBorder && monsters->at(i)->isAlive())
 							{
-								characterY = monsters->at(i)->GetTopY() + monsterBorder - 120;
-								monsterTop = monsters->at(i)->GetTopY() + monsterBorder;
-								isOnMonster = true;
+								if (characterY <= monsters->at(i)->GetTopY() + monsterBorder - 100 && monsters->at(i)->GetCanStandOn())
+								{
+									characterY = monsters->at(i)->GetTopY() + monsterBorder - 120;
+									monsterTop = monsters->at(i)->GetTopY() + monsterBorder;
+									isOnMonster = true;
+								}
 								break;
 							}
 						}
@@ -445,17 +448,9 @@ namespace game_framework
 
 	void Character::OnShow(Map* m)
 	{
-		//animation.SetTopLeft(500, 350);
-		//animation.OnShow();
 		BloodShow();
-		if (characterX < 670 || m == NULL || m->mapScreenMoving() == false)
-		{
-			screenCX = characterX;
-		}
-		else
-		{
-			screenCX = 670;
-		}
+		ScreenCXY(m);
+		
 		if (isAttacked && isSparkleEffectShow)
 		{
 			isAttackedEffectOnShow();
@@ -477,7 +472,7 @@ namespace game_framework
 				}
 				else if (isAttacking)//action == attack_a) //attack
 				{
-					leftAttacking[characterStage].SetTopLeft(screenCX - 30, characterY + m->getYMovement());
+					leftAttacking[characterStage].SetTopLeft(screenCX - 30, screenCY + m->getYMovement());
 					leftAttacking[characterStage].SetDelayCount(1);
 					leftAttacking[characterStage].OnShow();
 					if (leftAttacking[characterStage].IsFinalBitmap())
@@ -519,7 +514,7 @@ namespace game_framework
 				}
 				else if (isAttacking)//action == attack_a)
 				{
-					rightAttacking[characterStage].SetTopLeft(screenCX + 30, characterY + m->getYMovement());
+					rightAttacking[characterStage].SetTopLeft(screenCX + 30, screenCY + m->getYMovement());
 					rightAttacking[characterStage].SetDelayCount(1);
 					rightAttacking[characterStage].OnShow();
 					if (rightAttacking[characterStage].IsFinalBitmap())
@@ -575,14 +570,14 @@ namespace game_framework
 	/*Getter*/
 	int Character::GetLeftX()
 	{
-		if (characterStage == 1)
-		{
-			if (facingLR)
-				return characterX;
-			else
-				return characterX + 50;//+ªZ¾¹¶ZÂ÷
-		}
-		else
+		//if (characterStage == 1)
+		//{
+		//	if (facingLR)
+		//		return characterX;
+		//	else
+		//		return characterX + 40;//+ªZ¾¹¶ZÂ÷
+		//}
+		//else
 			return characterX;
 	}
 
@@ -593,14 +588,14 @@ namespace game_framework
 
 	int Character::GetRightX()
 	{
-		if (characterStage == 1)
-		{
-			if (facingLR)
-				return characterX + characterW;
-			else
-				return characterX + 130;//+bitmap¼e«×
-		}
-		else
+		//if (characterStage == 1)
+		//{
+		//	if (facingLR)
+		//		return characterX + characterW;
+		//	else
+		//		return characterX + 120;//+bitmap¼e«×
+		//}
+		//else
 			return characterX + characterW;
 	}
 
@@ -1514,6 +1509,45 @@ namespace game_framework
 		{
 			characterBlood[0].SetTopLeft(fullHeartNum * 70, 0);
 			characterBlood[0].ShowBitmap();
+		}
+	}
+	void Character::ScreenCXY(Map* m)
+	{
+		int bmpBorderX = 0;
+		int bmpBorderY = 0;
+
+		if (characterStage == 1)
+		{
+			if (facingLR)
+			{
+				if (isAttacking)
+				{
+					bmpBorderX = 105;
+					bmpBorderY = 105;
+				}
+				else
+					bmpBorderX = 25;
+			}	
+			else
+			{
+				if (isAttacking)
+				{
+					bmpBorderX = 155;
+					bmpBorderY = 105;
+				}
+				else
+					bmpBorderX = 35;
+			}
+		}
+
+		screenCY = characterY - bmpBorderY;
+		if (characterX < 670 || m == NULL || m->mapScreenMoving() == false)
+		{
+			screenCX = characterX - bmpBorderX;
+		}
+		else
+		{
+			screenCX = 670 - bmpBorderX;
 		}
 	}
 }

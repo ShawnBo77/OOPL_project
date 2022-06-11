@@ -25,13 +25,11 @@ namespace game_framework
 		hp = 50;
 		attackDamage = 5;
 		BORDER = 20;
-		HORIZONTAL_GAP = 0;
 	}
 
 	MonsterMosquito::MonsterMosquito(int x, int y, Character* c) : Monster(x, y, 50, 5, c)
 	{
 		BORDER = 20;
-		HORIZONTAL_GAP = 0;
 	}
 
 	MonsterMosquito::~MonsterMosquito()
@@ -55,7 +53,6 @@ namespace game_framework
 		_y = init_y;
 		currentFloor = 0;
 		BORDER = 5;
-		HORIZONTAL_GAP = 0;
 		hp = 20;
 		attackDamage = 3;
 		facingLR = 0;
@@ -67,6 +64,7 @@ namespace game_framework
 		hasGottenSource = false;
 		flyCase = 2;
 		shouldFlyCaseChange = false;
+		canStandOn = false;
 	}
 
 	void MonsterMosquito::OnMove(Map* m)

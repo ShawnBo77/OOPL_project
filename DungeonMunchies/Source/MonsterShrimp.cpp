@@ -74,7 +74,6 @@ namespace game_framework
 		_y = init_y;
 		currentFloor = 0;
 		BORDER = 5;
-		HORIZONTAL_GAP = 0;
 		hp = 50;
 		bloodBar.setFullHP(hp);
 		attackDamage = 5;
@@ -86,6 +85,7 @@ namespace game_framework
 		lightBulbInside = 30;
 		hasGottenLightBulb = false;
 		srand((unsigned int)time(NULL));
+		canStandOn = true;
 	}
 
 	void MonsterShrimp::OnShow(Map* m)
