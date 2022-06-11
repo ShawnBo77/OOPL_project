@@ -173,8 +173,8 @@ namespace game_framework
 		pDC->SetBkColor(RGB(230, 220, 200));
 		pDC->SetTextColor(RGB(0, 0, 0));
 		char position[600];								// Demo 數字對字串的轉換
-		sprintf(position, "MosquitoLeftX:%d MosquitoRightX:%d MosquitoTopY:%d MosquitoButtonY:%d MosquitoHp: %d flyTimer(%f, %f, %f)"
-			, GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), GetCurrentHp(), (double)flyTimer.GetStartTime(), (double)flyTimer.GetFinishTime(), (double)flyTimer.GetTime());
+		sprintf(position, "MosquitoLeftX:%d MosquitoRightX:%d MosquitoTopY:%d MosquitoBottomY:%d MosquitoHp: %d flyTimer(%f, %f, %f)"
+			, GetLeftX(), GetRightX(), GetTopY(), GetBottomY(), GetCurrentHp(), (double)flyTimer.GetStartTime(), (double)flyTimer.GetFinishTime(), (double)flyTimer.GetTime());
 		//sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
 		pDC->TextOut(200, 50, position);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
@@ -196,7 +196,7 @@ namespace game_framework
 		return _x + 80;
 	}
 
-	int MonsterMosquito::GetButtonY()
+	int MonsterMosquito::GetBottomY()
 	{
 		return _y + 68;
 	}
@@ -209,21 +209,21 @@ namespace game_framework
 	}
 	void MonsterMosquito::moveDown(Map* m)
 	{
-		if (m->isEmpty(GetLeftX(), GetButtonY() + STEP_SIZE)) //向下移動
+		if (m->isEmpty(GetLeftX(), GetBottomY() + STEP_SIZE)) //向下移動
 		{
 			_y += STEP_SIZE;
 		}
 	}
 	void MonsterMosquito::moveLeft(Map* m)
 	{
-		if (m->isEmpty(GetLeftX() - STEP_SIZE, GetTopY()) && m->isEmpty(GetLeftX() - STEP_SIZE, GetButtonY())) //向左移動
+		if (m->isEmpty(GetLeftX() - STEP_SIZE, GetTopY()) && m->isEmpty(GetLeftX() - STEP_SIZE, GetBottomY())) //向左移動
 		{
 			_x -= STEP_SIZE;
 		}
 	}
 	void MonsterMosquito::moveRight(Map* m)
 	{
-		if (m->isEmpty(GetRightX() + STEP_SIZE, GetTopY()) && m->isEmpty(GetRightX() + STEP_SIZE, GetButtonY())) //向右移動
+		if (m->isEmpty(GetRightX() + STEP_SIZE, GetTopY()) && m->isEmpty(GetRightX() + STEP_SIZE, GetBottomY())) //向右移動
 		{
 			_x += STEP_SIZE;
 		}

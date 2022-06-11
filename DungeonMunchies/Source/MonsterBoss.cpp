@@ -252,8 +252,8 @@ namespace game_framework
 		pDC->SetBkColor(RGB(230, 220, 200));
 		pDC->SetTextColor(RGB(0, 0, 0));
 		char position[500];								// Demo 數字對字串的轉換
-		sprintf(position, "BossLeftX:%d BossRightX:%d BossTopY:%d BossButtonY:%d hitTimer:(%d, %d) distanceToCharacter:%d hpProportion:%f",
-			GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), hitCDTimer.GetStartTime(), hitCDTimer.GetFinishTime(), distanceToCharacter(), hpProportion());
+		sprintf(position, "BossLeftX:%d BossRightX:%d BossTopY:%d BossBottomY:%d hitTimer:(%d, %d) distanceToCharacter:%d hpProportion:%f",
+			GetLeftX(), GetRightX(), GetTopY(), GetBottomY(), hitCDTimer.GetStartTime(), hitCDTimer.GetFinishTime(), distanceToCharacter(), hpProportion());
 		pDC->TextOut(200, 100, position);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
@@ -339,7 +339,7 @@ namespace game_framework
 		}
 	}
 
-	int MonsterBoss::GetButtonY()
+	int MonsterBoss::GetBottomY()
 	{
 		return _y + walkingLeft.Height();
 	}
@@ -384,7 +384,7 @@ namespace game_framework
 
 	bool MonsterBoss::CanWalkL(Map* m)
 	{
-		if (m->isEmpty(_x - STEP_SIZE, GetTopY()) && !character->isIntersect(GetLeftX() - STEP_SIZE, GetRightX() - STEP_SIZE, GetTopY(), GetButtonY()))
+		if (m->isEmpty(_x - STEP_SIZE, GetTopY()) && !character->isIntersect(GetLeftX() - STEP_SIZE, GetRightX() - STEP_SIZE, GetTopY(), GetBottomY()))
 		{
 			return true;
 		}
@@ -393,7 +393,7 @@ namespace game_framework
 
 	bool MonsterBoss::CanWalkR(Map* m)
 	{
-		if (m->isEmpty(_x - STEP_SIZE, GetTopY()) && !character->isIntersect(GetLeftX() + STEP_SIZE, GetRightX() + STEP_SIZE, GetTopY(), GetButtonY()))
+		if (m->isEmpty(_x - STEP_SIZE, GetTopY()) && !character->isIntersect(GetLeftX() + STEP_SIZE, GetRightX() + STEP_SIZE, GetTopY(), GetBottomY()))
 		{
 			return true;
 		}
@@ -512,13 +512,13 @@ namespace game_framework
 				if (isAttackSuccessfullyL(435))
 				{
 					character->SetIsAttackedFromRight(true);
-					character->SetIsAttackedFromButton(true);
+					character->SetIsAttackedFromBottom(true);
 					character->lossCurrentHp(hitDamage);
 				}
 				if (isAttackSuccessfullyR(135))
 				{
 					character->SetIsAttackedFromLeft(true);
-					character->SetIsAttackedFromButton(true);
+					character->SetIsAttackedFromBottom(true);
 					character->lossCurrentHp(hitDamage);
 				}
 			}
@@ -527,13 +527,13 @@ namespace game_framework
 				if (isAttackSuccessfullyR(435))
 				{
 					character->SetIsAttackedFromLeft(true);
-					character->SetIsAttackedFromButton(true);
+					character->SetIsAttackedFromBottom(true);
 					character->lossCurrentHp(hitDamage);
 				}
 				if (isAttackSuccessfullyL(135))
 				{
 					character->SetIsAttackedFromRight(true);
-					character->SetIsAttackedFromButton(true);
+					character->SetIsAttackedFromBottom(true);
 					character->lossCurrentHp(hitDamage);
 				}
 			}
@@ -622,7 +622,7 @@ namespace game_framework
 		{
 			for (int i = 0; i < rushDistance; i++)
 			{
-				if (m->isEmpty(_x - rushStepSize, GetTopY())/* && m->isEmpty(_x - STEP_SIZE, GetButtonY())*/)
+				if (m->isEmpty(_x - rushStepSize, GetTopY())/* && m->isEmpty(_x - STEP_SIZE, GetBottomY())*/)
 				{
 					_x -= rushStepSize;
 				}
@@ -636,7 +636,7 @@ namespace game_framework
 		{
 			for (int i = 0; i < rushDistance; i++)
 			{
-				if (m->isEmpty(_x + rushStepSize, GetTopY())/* && m->isEmpty(_x + STEP_SIZE, GetButtonY())*/)
+				if (m->isEmpty(_x + rushStepSize, GetTopY())/* && m->isEmpty(_x + STEP_SIZE, GetBottomY())*/)
 				{
 					_x += rushStepSize;
 				}
@@ -753,12 +753,12 @@ namespace game_framework
 		if (((character->GetRightX() >= cMidX - 18 && character->GetRightX() <= cMidX + 20) || //角色右邊碰到刺
 			(character->GetLeftX() <= cMidX + 20 && character->GetLeftX() >= cMidX - 18) || //角色左邊碰到刺
 			(character->GetLeftX() <= cMidX - 18 && character->GetRightX() >= cMidX + 20)) && //角色左右橫跨刺
-			((character->GetButtonY() >= floor - 200 && character->GetButtonY() <= floor) ||
+			((character->GetBottomY() >= floor - 200 && character->GetBottomY() <= floor) ||
 				(character->GetTopY() >= floor - 200 && character->GetTopY() <= floor)))
 		{
 			if (!character->GetIsInvincible())
 			{
-				character->SetIsAttackedFromButton(true);
+				character->SetIsAttackedFromBottom(true);
 				character->lossCurrentHp(thronDamage);
 			}
 		}

@@ -170,12 +170,12 @@ namespace game_framework
 			{
 				if (randN == 0)
 				{
-					sourceShrimpAttack.SetTopLeft((GetLeftX() + GetRightX()) / 2 + m->getXMovement(), GetButtonY() - 64 + m->getYMovement());
+					sourceShrimpAttack.SetTopLeft((GetLeftX() + GetRightX()) / 2 + m->getXMovement(), GetBottomY() - 64 + m->getYMovement());
 					sourceShrimpAttack.ShowBitmap();
 				}
 				else
 				{
-					sourceShrimpBlood.SetTopLeft((GetLeftX() + GetRightX()) / 2 + m->getXMovement(), GetButtonY() - 64 + m->getYMovement());
+					sourceShrimpBlood.SetTopLeft((GetLeftX() + GetRightX()) / 2 + m->getXMovement(), GetBottomY() - 64 + m->getYMovement());
 					sourceShrimpBlood.ShowBitmap();
 				}
 			}
@@ -218,11 +218,11 @@ namespace game_framework
 			}
 			else if (distanceToCharacter() < 280 && action == walk_a)
 			{
-				if (characterDirectionLR == 0 && (GetLeftX() - STEP_SIZE + BORDER) >= character->GetRightX() && m->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetButtonY() - BORDER))
+				if (characterDirectionLR == 0 && (GetLeftX() - STEP_SIZE + BORDER) >= character->GetRightX() && m->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetBottomY() - BORDER))
 				{
 					_x -= STEP_SIZE;
 				}
-				else if (characterDirectionLR == 1 && (GetRightX() + STEP_SIZE - BORDER) <= character->GetLeftX() && m->isEmpty(GetRightX() + STEP_SIZE + BORDER, GetButtonY() - BORDER))
+				else if (characterDirectionLR == 1 && (GetRightX() + STEP_SIZE - BORDER) <= character->GetLeftX() && m->isEmpty(GetRightX() + STEP_SIZE + BORDER, GetBottomY() - BORDER))
 				{
 					_x += STEP_SIZE;
 				}
@@ -289,7 +289,7 @@ namespace game_framework
 		}
 	}
 
-	int MonsterShrimp::GetButtonY()
+	int MonsterShrimp::GetBottomY()
 	{
 		return _y + walkLeft.Height();
 	}
@@ -299,7 +299,7 @@ namespace game_framework
 		int CharacterLeftX = character->GetLeftX();
 		int CharacterRightX = character->GetRightX();
 		int CharacterTopY = character->GetTopY();
-		int CharacterButtonY = character->GetButtonY();
+		int CharacterBottomY = character->GetBottomY();
 		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 		CFont f, * fp;
 		f.CreatePointFont(120, "Times New Roman");	// 產生 font f; 160表示16 point的字
@@ -307,8 +307,8 @@ namespace game_framework
 		pDC->SetBkColor(RGB(230, 220, 200));
 		pDC->SetTextColor(RGB(0, 0, 0));
 		char position[500];								// Demo 數字對字串的轉換
-		sprintf(position, "ShrimpLeftX:%d ShrimpRightX:%d ShrimpTopY:%d ShrimpButtonY:%d ShrimpHp:%d"
-			, GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), GetCurrentHp());
+		sprintf(position, "ShrimpLeftX:%d ShrimpRightX:%d ShrimpTopY:%d ShrimpBottomY:%d ShrimpHp:%d"
+			, GetLeftX(), GetRightX(), GetTopY(), GetBottomY(), GetCurrentHp());
 		//sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
 		pDC->TextOut(200, 80, position);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)

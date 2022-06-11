@@ -37,7 +37,7 @@ namespace game_framework
 		int  GetLeftX();				// 左上角 x 座標
 		int  GetTopY();					// 左上角 y 座標
 		int  GetRightX();				// 右下角 x 座標
-		int  GetButtonY();				// 右下角 y 座標
+		int  GetBottomY();				// 右下角 y 座標
 		int  GetCharacterStage();				
 
 		void GetMovingDown();	        // 回傳是否正在往下移動
@@ -101,8 +101,8 @@ namespace game_framework
 		bool GetIsAttackedFromRight();    // 回傳攻擊是否來自右方
 		void SetIsAttackedFromLeft(bool flag);	// 設定攻擊是否來自左方
 		bool GetIsAttackedFromLeft();	    // 回傳攻擊是否來自左方
-		void SetIsAttackedFromButton(bool flag);	// 設定攻擊是否來自下方
-		bool GetIsAttackedFromButton();	// 回傳攻擊是否來自下方
+		void SetIsAttackedFromBottom(bool flag);	// 設定攻擊是否來自下方
+		bool GetIsAttackedFromBottom();	// 回傳攻擊是否來自下方
 		void isAttackedEffectCaculation();
 		void isAttackedEffectOnShow();
 
@@ -179,7 +179,7 @@ namespace game_framework
 		int attackRange;
 		bool isAttackedFromRight;
 		bool isAttackedFromLeft;
-		bool isAttackedFromButton;
+		bool isAttackedFromBottom;
 		Timer isAttackedTimer;
 		bool isAttacked;			// 是否受到攻擊
 		Timer sparkleEffectTimer;
