@@ -51,6 +51,7 @@ namespace game_framework
 		void thronBossOnShow(Map* m);
 		void thronOnShow(Map* m);
 		void thronJudge();
+		bool thronCountFlag;
 		void SetCMidX();
 		//dead
 		void deadOnMove();
@@ -85,6 +86,7 @@ namespace game_framework
 		int thronCount;
 		int cMidX, floor;
 		bool thronExist;
+		int thronDelayCount;
 	};
 }
 #endif

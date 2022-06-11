@@ -119,7 +119,7 @@ namespace game_framework
 	{
 		_x = init_x;
 		_y = init_y;
-		hp = 50;
+		hp = 1000;
 		bloodBar.setFullHP(hp);
 		action = walk_a;
 		BORDER = 5;
@@ -135,9 +135,11 @@ namespace game_framework
 		rushStepSize = 3;
 		thronDamage = 10;
 		thronCount = 0;
+		thronDelayCount = 4;
 		cMidX = 0;
 		floor = 595;
 		thronExist = false;
+		thronCountFlag = false;
 
 		bossDead = false;
 	}
@@ -204,7 +206,8 @@ namespace game_framework
 			{
 				isAttackedEffectOnShow(m);
 			}
-			else {
+			else
+			{
 				if (action == walk_a)
 				{
 					walkOnShow(m);
@@ -232,7 +235,8 @@ namespace game_framework
 		}
 		else
 		{
-			if (!bossDead) {
+			if (!bossDead)
+			{
 				deadOnShow(m);
 			}
 		}
@@ -364,7 +368,7 @@ namespace game_framework
 		walkingRight.OnMove();
 	}
 
-	void MonsterBoss::walkOnShow(Map *m)
+	void MonsterBoss::walkOnShow(Map* m)
 	{
 		if (facingLR == 0)
 		{
@@ -511,12 +515,24 @@ namespace game_framework
 					character->SetIsAttackedFromButton(true);
 					character->lossCurrentHp(hitDamage);
 				}
+				if (isAttackSuccessfullyR(135))
+				{
+					character->SetIsAttackedFromLeft(true);
+					character->SetIsAttackedFromButton(true);
+					character->lossCurrentHp(hitDamage);
+				}
 			}
 			else
 			{
 				if (isAttackSuccessfullyR(435))
 				{
 					character->SetIsAttackedFromLeft(true);
+					character->SetIsAttackedFromButton(true);
+					character->lossCurrentHp(hitDamage);
+				}
+				if (isAttackSuccessfullyL(135))
+				{
+					character->SetIsAttackedFromRight(true);
 					character->SetIsAttackedFromButton(true);
 					character->lossCurrentHp(hitDamage);
 				}
@@ -669,6 +685,7 @@ namespace game_framework
 		if (facingLR == 0)
 		{
 			thronLeft.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
+			//thronLeft.SetDelayCount(thronDelayCount);
 			thronLeft.OnShow();
 			if (thronLeft.GetCurrentBitmapNumber() == 2)
 			{
@@ -685,6 +702,7 @@ namespace game_framework
 		else
 		{
 			thronRight.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
+			//thronRight.SetDelayCount(thronDelayCount);
 			thronRight.OnShow();
 			if (thronRight.GetCurrentBitmapNumber() == 2)
 			{
@@ -702,8 +720,10 @@ namespace game_framework
 
 	void MonsterBoss::thronOnShow(Map* m)
 	{
+		thron.SetDelayCount(thronDelayCount);
 		if (thron.GetCurrentBitmapNumber() == 0)
 		{
+			thronCountFlag = false;
 			if (!thronExist)
 			{
 				SetCMidX();
@@ -718,7 +738,11 @@ namespace game_framework
 		if (thron.GetCurrentBitmapNumber() == 2)
 		{
 			thronJudge();
-			thronCount += 1;
+			if (!thronCountFlag)
+			{
+				thronCount += 1;
+				thronCountFlag = true;
+			}
 			thronExist = false;
 		}
 		thron.OnShow();
@@ -730,7 +754,7 @@ namespace game_framework
 			(character->GetLeftX() <= cMidX + 20 && character->GetLeftX() >= cMidX - 18) || //¨¤¦â¥ªÃä¸I¨ì¨ë
 			(character->GetLeftX() <= cMidX - 18 && character->GetRightX() >= cMidX + 20)) && //¨¤¦â¥ª¥k¾î¸ó¨ë
 			((character->GetButtonY() >= floor - 200 && character->GetButtonY() <= floor) ||
-			(character->GetTopY() >= floor - 200 && character->GetTopY() <= floor)))
+				(character->GetTopY() >= floor - 200 && character->GetTopY() <= floor)))
 		{
 			if (!character->GetIsInvincible())
 			{

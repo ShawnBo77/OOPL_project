@@ -585,6 +585,7 @@ namespace game_framework
 
 		if (character.GetCurrentHp() <= 0)
 		{
+			stopAllBgm();
 			GotoGameState(GAME_STATE_OVER);
 		}
 		if (currentStage != stage_game_complete)
