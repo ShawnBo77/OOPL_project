@@ -85,6 +85,8 @@ namespace game_framework
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 		void instructionsPageShow();
 	private:
+		bool isMouseOnArrowR(CPoint point);
+		bool isMouseOnArrowL(CPoint point);
 		BeginningStage stage;
 		InstructionsPage instructionsPage;
 		int record; //1代表instructionsPage第一頁，2代表第二頁
@@ -93,6 +95,7 @@ namespace game_framework
 		CMovingBitmap staff;
 		CMovingBitmap instructionsPage01;
 		CMovingBitmap instructionsPage02;
+		CMovingBitmap instructionsPage03;
 		CMovingBitmap instructionsPageC;
 		CMovingBitmap whiteX;
 		CMovingBitmap arrowL;

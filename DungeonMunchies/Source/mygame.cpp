@@ -89,6 +89,7 @@ namespace game_framework
 		staff.LoadBitmap(".\\res\\staff.bmp");
 		instructionsPage01.LoadBitmap(".\\res\\instructions01.bmp");
 		instructionsPage02.LoadBitmap(".\\res\\instructions02.bmp");
+		instructionsPage03.LoadBitmap(".\\res\\instructions03.bmp");
 		instructionsPageC.LoadBitmap(".\\res\\instructions_c01.bmp");
 		whiteX.LoadBitmap(".\\res\\white_x.bmp", RGB(0, 0, 0));
 		arrowL.LoadBitmap(".\\res\\arrow_left.bmp", RGB(0, 0, 0));
@@ -171,15 +172,25 @@ namespace game_framework
 		}
 		else if (stage == stage_instructions)
 		{
-			if (instructionsPage == instructions_page01 && point.x >= 1278 && point.x <= 1336 && point.y >= 350 && point.y <= 418)
+			if (instructionsPage == instructions_page01 && isMouseOnArrowR(point))
 			{
 				instructionsPage = instructions_page02;
 				record = 2;
 			}
-			else if (instructionsPage == instructions_page02 && point.x >= 30 && point.x <= 88 && point.y >= 350 && point.y <= 418)
+			else if (instructionsPage == instructions_page02 && isMouseOnArrowL(point))
 			{
 				instructionsPage = instructions_page01;
 				record = 1;
+			}
+			else if (instructionsPage == instructions_page02 && isMouseOnArrowR(point))
+			{
+				instructionsPage = instructions_page03;
+				record = 3;
+			}
+			else if (instructionsPage == instructions_page03 && isMouseOnArrowL(point))
+			{
+				instructionsPage = instructions_page02;
+				record = 2;
 			}
 			if (!(instructionsPage == instructions_page_cheat) && point.x >= 380 && point.x <= 980 && point.y >= 50 && point.y <= 120)
 			{
@@ -190,6 +201,10 @@ namespace game_framework
 				if (record == 1)
 				{
 					instructionsPage = instructions_page01;
+				}
+				else if (record == 2)
+				{
+					instructionsPage = instructions_page02;
 				}
 				else
 				{
@@ -262,7 +277,7 @@ namespace game_framework
 		}
 		else if (stage == stage_instructions)
 		{
-			if (instructionsPage == instructions_page01 && point.x >= 1278 && point.x <= 1336 && point.y >= 350 && point.y <= 418)
+			if (instructionsPage == instructions_page01 && isMouseOnArrowR(point))
 			{
 				if (!isArrowRShow)
 				{
@@ -270,7 +285,23 @@ namespace game_framework
 				}
 				isArrowRShow = true;
 			}
-			else if (instructionsPage == instructions_page02 && point.x >= 30 && point.x <= 88 && point.y >= 350 && point.y <= 418)
+			else if (instructionsPage == instructions_page02 && isMouseOnArrowL(point))
+			{
+				if (!isArrowLShow)
+				{
+					CAudio::Instance()->Play(AUDIO_CHOOSE, false);
+				}
+				isArrowLShow = true;
+			}
+			else if (instructionsPage == instructions_page02 && isMouseOnArrowR(point))
+			{
+				if (!isArrowRShow)
+				{
+					CAudio::Instance()->Play(AUDIO_CHOOSE, false);
+				}
+				isArrowRShow = true;
+			}
+			else if (instructionsPage == instructions_page03 && isMouseOnArrowL(point))
 			{
 				if (!isArrowLShow)
 				{
@@ -382,11 +413,34 @@ namespace game_framework
 			instructionsPage02.SetTopLeft(0, 0);
 			instructionsPage02.ShowBitmap();
 		}
+		else if (instructionsPage == instructions_page03)
+		{
+			instructionsPage03.SetTopLeft(0, 0);
+			instructionsPage03.ShowBitmap();
+		}
 		else if (instructionsPage == instructions_page_cheat)
 		{
 			instructionsPageC.SetTopLeft(0, 0);
 			instructionsPageC.ShowBitmap();
 		}
+	}
+
+	bool CGameStateInit::isMouseOnArrowR(CPoint point)
+	{
+		if (point.x >= 1278 && point.x <= 1336 && point.y >= 350 && point.y <= 418)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	bool CGameStateInit::isMouseOnArrowL(CPoint point)
+	{
+		if (point.x >= 30 && point.x <= 88 && point.y >= 350 && point.y <= 418)
+		{
+			return true;
+		}
+		return false;
 	}
 
 	/////////////////////////////////////////////////////////////////////////////
