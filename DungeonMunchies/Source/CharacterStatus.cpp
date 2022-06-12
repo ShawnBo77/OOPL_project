@@ -5,7 +5,6 @@
 #include "audio.h"
 #include "gamelib.h"
 #include <vector>
-#include "Util.h"
 #include "Character.h"
 #include "CharacterStatus.h"
 
