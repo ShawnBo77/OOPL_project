@@ -56,7 +56,7 @@ namespace game_framework
 	void Timer::CaculateTimeForFalse(bool* b, double time)
 	{
 		Finish();
-		if (GetTime() > time * CLOCKS_PER_SEC)
+		if (GetTime() >= time * CLOCKS_PER_SEC)
 		{
 			*b = false;
 		}
@@ -64,7 +64,7 @@ namespace game_framework
 	void Timer::CaculateTimeForTrue(bool* b, double time)
 	{
 		Finish();
-		if (GetTime() > time * CLOCKS_PER_SEC)
+		if (GetTime() >= time * CLOCKS_PER_SEC)
 		{
 			*b = true;
 		}
