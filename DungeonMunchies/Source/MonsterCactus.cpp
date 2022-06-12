@@ -86,7 +86,7 @@ namespace game_framework
 			cactusDead.ShowBitmap();
 			if (!hasGottenSource)
 			{
-				sourceGrassFast.SetTopLeft((GetLeftX() + GetRightX()) / 2 + m->getXMovement(), GetButtonY() - 64 + m->getYMovement());
+				sourceGrassFast.SetTopLeft((GetLeftX() + GetRightX()) / 2 + m->getXMovement(), GetBottomY() - 64 + m->getYMovement());
 				sourceGrassFast.ShowBitmap();
 			}
 		}
@@ -102,8 +102,8 @@ namespace game_framework
 		pDC->SetBkColor(RGB(230, 220, 200));
 		pDC->SetTextColor(RGB(0, 0, 0));
 		char position[600];								// Demo 數字對字串的轉換
-		sprintf(position, "CactusLeftX:%d CactusRightX:%d CactusTopY:%d CactusButtonY:%d CactusHp: %d sparkleEffectTimer(%f, %f, %f)"
-			, GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), GetCurrentHp(), (double)sparkleEffectTimer.GetStartTime(), (double)sparkleEffectTimer.GetFinishTime(), (double)sparkleEffectTimer.GetTime());
+		sprintf(position, "CactusLeftX:%d CactusRightX:%d CactusTopY:%d CactusBottomY:%d CactusHp: %d sparkleEffectTimer(%f, %f, %f)"
+			, GetLeftX(), GetRightX(), GetTopY(), GetBottomY(), GetCurrentHp(), (double)sparkleEffectTimer.GetStartTime(), (double)sparkleEffectTimer.GetFinishTime(), (double)sparkleEffectTimer.GetTime());
 		//sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
 		pDC->TextOut(200, 50, position);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
@@ -125,7 +125,7 @@ namespace game_framework
 		return _x + cactusAlive.Width();
 	}
 
-	int MonsterCactus::GetButtonY()
+	int MonsterCactus::GetBottomY()
 	{
 		return _y + cactusAlive.Height();
 	}

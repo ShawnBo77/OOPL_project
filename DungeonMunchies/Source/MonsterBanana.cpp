@@ -86,7 +86,7 @@ namespace game_framework
 			bananaDead.ShowBitmap();
 			if (!hasGottenSource)
 			{
-				sourceBananaAttack.SetTopLeft((GetLeftX() + GetRightX()) / 2 + m->getXMovement(), GetButtonY() - 64 + m->getYMovement());
+				sourceBananaAttack.SetTopLeft((GetLeftX() + GetRightX()) / 2 + m->getXMovement(), GetBottomY() - 64 + m->getYMovement());
 				sourceBananaAttack.ShowBitmap();
 			}
 		}
@@ -102,8 +102,8 @@ namespace game_framework
 		pDC->SetBkColor(RGB(230, 220, 200));
 		pDC->SetTextColor(RGB(0, 0, 0));
 		char position[500];								// Demo 數字對字串的轉換
-		sprintf(position, "BananaLeftX:%d BananaRightX:%d BananaTopY:%d BananaButtonY:%d BananaHp: %d"
-			, GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), GetCurrentHp());
+		sprintf(position, "BananaLeftX:%d BananaRightX:%d BananaTopY:%d BananaBottomY:%d BananaHp: %d"
+			, GetLeftX(), GetRightX(), GetTopY(), GetBottomY(), GetCurrentHp());
 		//sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
 		pDC->TextOut(200, 50, position);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
@@ -125,7 +125,7 @@ namespace game_framework
 		return _x + bananaAlive.Width();
 	}
 
-	int MonsterBanana::GetButtonY()
+	int MonsterBanana::GetBottomY()
 	{
 		return _y + bananaAlive.Height();
 	}

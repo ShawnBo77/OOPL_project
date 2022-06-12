@@ -62,6 +62,7 @@ enum InstructionsPage
 {
 	instructions_page01,
 	instructions_page02,
+	instructions_page03,
 	instructions_page_cheat
 };
 

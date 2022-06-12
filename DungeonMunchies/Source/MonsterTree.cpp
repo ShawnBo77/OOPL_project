@@ -189,7 +189,7 @@ namespace game_framework
 			}
 			if (!hasGottenSource)
 			{
-				sourceGuavaJuiceBlood.SetTopLeft((GetLeftX() + GetRightX()) / 2 + m->getXMovement(), GetButtonY() - 64 + m->getYMovement());
+				sourceGuavaJuiceBlood.SetTopLeft((GetLeftX() + GetRightX()) / 2 + m->getXMovement(), GetBottomY() - 64 + m->getYMovement());
 				sourceGuavaJuiceBlood.ShowBitmap();
 			}
 		}
@@ -238,11 +238,11 @@ namespace game_framework
 			}
 			else if (distanceToCharacter() < 280 && action == walk_a)
 			{
-				if (characterDirectionLR == 0 && (GetLeftX() - STEP_SIZE + BORDER) >= character->GetRightX() && m->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetButtonY()))
+				if (characterDirectionLR == 0 && (GetLeftX() - STEP_SIZE + BORDER) >= character->GetRightX() && m->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetBottomY()))
 				{
 					_x -= STEP_SIZE;
 				}
-				else if (characterDirectionLR == 1 && (GetRightX() + STEP_SIZE - BORDER - 5) <= character->GetLeftX() && m->isEmpty(GetRightX() + STEP_SIZE + BORDER, GetButtonY()))
+				else if (characterDirectionLR == 1 && (GetRightX() + STEP_SIZE - BORDER - 5) <= character->GetLeftX() && m->isEmpty(GetRightX() + STEP_SIZE + BORDER, GetBottomY()))
 				{
 					_x += STEP_SIZE;
 				}
@@ -312,7 +312,7 @@ namespace game_framework
 		}
 	}
 
-	int MonsterTree::GetButtonY()
+	int MonsterTree::GetBottomY()
 	{
 		return _y + walkLeft.Height();
 	}
@@ -334,7 +334,7 @@ namespace game_framework
 		int CharacterLeftX = character->GetLeftX();
 		int CharacterRightX = character->GetRightX();
 		int CharacterTopY = character->GetTopY();
-		int CharacterButtonY = character->GetButtonY();
+		int CharacterBottomY = character->GetBottomY();
 		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 		CFont f, * fp;
 		f.CreatePointFont(120, "Times New Roman");	// 產生 font f; 160表示16 point的字
@@ -342,8 +342,8 @@ namespace game_framework
 		pDC->SetBkColor(RGB(230, 220, 200));
 		pDC->SetTextColor(RGB(0, 0, 0));
 		char position[500];								// Demo 數字對字串的轉換
-		sprintf(position, "TreeLeftX:%d TreeRightX:%d TreeTopY:%d TreeButtonY:%d TreeHp:%d"
-			, GetLeftX(), GetRightX(), GetTopY(), GetButtonY(), GetCurrentHp());
+		sprintf(position, "TreeLeftX:%d TreeRightX:%d TreeTopY:%d TreeBottomY:%d TreeHp:%d"
+			, GetLeftX(), GetRightX(), GetTopY(), GetBottomY(), GetCurrentHp());
 		//sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
 		pDC->TextOut(200, 100, position);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)

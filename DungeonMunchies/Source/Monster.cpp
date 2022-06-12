@@ -56,7 +56,7 @@ namespace game_framework
 		if (isAlive())
 		{
 			if (character->GetRightX() >= GetLeftX() && character->GetRightX() <= GetRightX()
-				&& character->GetButtonY() >= GetTopY() && character->GetButtonY() <= GetButtonY())
+				&& character->GetBottomY() >= GetTopY() && character->GetBottomY() <= GetBottomY())
 			{ //角色右方碰到怪物
 				isIntersect = true;
 				if (!character->GetIsInvincible())
@@ -65,7 +65,7 @@ namespace game_framework
 				}
 			}
 			if (character->GetLeftX() <= GetRightX() && character->GetLeftX() >= GetLeftX()
-				&& character->GetButtonY() >= GetTopY() && character->GetButtonY() <= GetButtonY())
+				&& character->GetBottomY() >= GetTopY() && character->GetBottomY() <= GetBottomY())
 			{ //角色左方碰到怪物
 				isIntersect = true;
 				if (!character->GetIsInvincible())
@@ -77,13 +77,13 @@ namespace game_framework
 				character->GetLeftX() <= GetRightX() && character->GetLeftX() >= GetLeftX() ||
 				character->GetLeftX() <= GetLeftX() && character->GetRightX() >= GetRightX() || //角色比怪物寬
 				character->GetRightX() <= GetRightX() && character->GetLeftX() >= GetLeftX()) && //怪物比角色寬
-				((character->GetButtonY() >= GetTopY() && character->GetButtonY() <= GetButtonY()) || //角色下方碰到怪物
-				(character->GetTopY() >= GetTopY() && character->GetTopY() <= GetButtonY())))
+				((character->GetBottomY() >= GetTopY() && character->GetBottomY() <= GetBottomY()) || //角色下方碰到怪物
+				(character->GetTopY() >= GetTopY() && character->GetTopY() <= GetBottomY())))
 			{ 
 				isIntersect = true;
 				if (!character->GetIsInvincible())
 				{
-					character->SetIsAttackedFromButton(true);
+					character->SetIsAttackedFromBottom(true);
 				}
 			}
 			if (isIntersect && !character->GetIsInvincible())
@@ -115,9 +115,9 @@ namespace game_framework
 	{
 		int cX, cY, mX, mY;
 		cX = (character->GetLeftX() + character->GetRightX()) / 2;
-		cY = (character->GetButtonY() + character->GetTopY()) / 2;
+		cY = (character->GetBottomY() + character->GetTopY()) / 2;
 		mX = (_x + GetRightX()) / 2;
-		mY = (_y + GetButtonY()) / 2;
+		mY = (_y + GetBottomY()) / 2;
 		if (cX < mX)
 		{
 			characterDirectionLR = 0; //角色在怪物左邊
@@ -407,9 +407,9 @@ namespace game_framework
 		if (((character->GetRightX() >= GetLeftX() - range && character->GetRightX() <= GetLeftX()) ||
 			(character->GetLeftX() >= GetLeftX() - range && character->GetLeftX() <= GetLeftX()) ||
 			(character->GetLeftX() <= GetLeftX() - range && character->GetRightX() >= GetRightX()))
-			&& ((character->GetButtonY() >= GetTopY() && character->GetButtonY() <= GetButtonY()) ||
-				(character->GetTopY() >= GetTopY() && character->GetTopY() <= GetButtonY()) ||
-				(character->GetTopY() <= GetTopY() && character->GetButtonY() >= GetButtonY())))
+			&& ((character->GetBottomY() >= GetTopY() && character->GetBottomY() <= GetBottomY()) ||
+				(character->GetTopY() >= GetTopY() && character->GetTopY() <= GetBottomY()) ||
+				(character->GetTopY() <= GetTopY() && character->GetBottomY() >= GetBottomY())))
 		{
 			return true;
 		}
@@ -424,9 +424,9 @@ namespace game_framework
 		if (((character->GetLeftX() <= GetRightX() + range && character->GetLeftX() >= GetRightX()) ||
 			(character->GetRightX() <= GetRightX() + range && character->GetRightX() >= GetRightX()) ||
 			(character->GetLeftX() <= GetRightX() && character->GetRightX() >= GetRightX() + range))
-			&& ((character->GetButtonY() >= GetTopY() && character->GetButtonY() <= GetButtonY()) ||
-				(character->GetTopY() >= GetTopY() && character->GetTopY() <= GetButtonY()) ||
-				(character->GetButtonY() >= GetButtonY() && character->GetTopY() <= GetTopY())))
+			&& ((character->GetBottomY() >= GetTopY() && character->GetBottomY() <= GetBottomY()) ||
+				(character->GetTopY() >= GetTopY() && character->GetTopY() <= GetBottomY()) ||
+				(character->GetBottomY() >= GetBottomY() && character->GetTopY() <= GetTopY())))
 		{
 			return true;
 		}
