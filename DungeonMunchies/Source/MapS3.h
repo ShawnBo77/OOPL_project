@@ -22,9 +22,8 @@ namespace game_framework
 		bool isGetHurtPlace(int x, int y) const;
 		int blockProperty(int x, int y) const;
 		void onShow();
-		void syMoving(int y);
 		void monsterFloorChanging(int x) override;
-		void characterFloorChanging() override;
+		void characterFloorAndCeiling() override;
 		int screenX(int x) override;
 		int screenY(int y) override;
 

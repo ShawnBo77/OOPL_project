@@ -182,6 +182,9 @@
     <ClCompile Include="Source\MapS3.cpp" />
     <ClCompile Include="Source\MonsterMosquito.cpp" />
     <ClCompile Include="Source\MonsterCactusMutation.cpp" />
+    <ClCompile Include="Source\MapS4.cpp" />
+    <ClCompile Include="Source\MapS5.cpp" />
+    <ClCompile Include="Source\MapS6.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -276,6 +279,9 @@
     <ClInclude Include="Source\MapS3.h" />
     <ClInclude Include="Source\MonsterMosquito.h" />
     <ClInclude Include="Source\MonsterCactusMutation.h" />
+    <ClInclude Include="Source\MapS4.h" />
+    <ClInclude Include="Source\MapS5.h" />
+    <ClInclude Include="Source\MapS6.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc">

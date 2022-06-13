@@ -38,7 +38,7 @@ namespace game_framework {
 		void setCharacterX(int x);
 		void setCharacterY(int y);
 		virtual void monsterFloorChanging(int x) {};
-		virtual void characterFloorChanging() {};
+		virtual void characterFloorAndCeiling() {};
 		void setFloor(int y);
 		void setCeiling(int y);
 		void setEndBoundary(int sx);

@@ -138,7 +138,6 @@ namespace game_framework
         setCeiling(0);
         setStartPosition(100);
         previousFloor = 0;
-        targetSY = 0;
         trashCanOpen = false;
         screenUp = screenDown = false;
         messageCode = 0;
@@ -200,6 +199,7 @@ namespace game_framework
     {
         map.SetTopLeft(getSX(), getSY());
         map.ShowBitmap();
+
         if (!getTrashCanOpen()) 
         {
             trashCanClosedBitmap.SetTopLeft(3025 + getSX(), getFloor() - 132);
@@ -210,8 +210,6 @@ namespace game_framework
             trashCanOpenBitmap.SetTopLeft(3025 + getSX(), getFloor() - 180);
             trashCanOpenBitmap.ShowBitmap();
         }
-        
-        syMoving(targetSY);
 
         if (getShowMessageIconFlag())
         {
@@ -236,47 +234,6 @@ namespace game_framework
         }
     }
 
-    void MapS3::syMoving(int y)
-    {
-        if (screenUp)
-        {
-            if (getSY() - 20 > y)
-            {
-                addSY(-20);
-            }
-            else
-            {
-                screenUp = false;
-                addSY(getSY() - y);
-            }
-        }
-
-        if (screenUp)
-        {
-            if (getSY() - 20 > y)
-            {
-                addSY(-20);
-            }
-            else
-            {
-                screenUp = false;
-                addSY(y - getSY());
-            }
-        }
-        else if (screenDown)
-        {
-            if (getSY() + 20 < y)
-            {
-                addSY(20);
-            }
-            else
-            {
-                screenDown = false;
-                addSY(y - getSY());
-            }
-        }
-    }
-
     void MapS3::monsterFloorChanging(int x)
     {
         if (x < 502)
@@ -293,7 +250,7 @@ namespace game_framework
         }
     }
 
-    void MapS3::characterFloorChanging()
+    void MapS3::characterFloorAndCeiling()
     {
         if (characterX < 502)
         {

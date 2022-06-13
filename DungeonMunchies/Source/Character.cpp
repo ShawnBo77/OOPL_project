@@ -132,7 +132,7 @@ namespace game_framework
 		characterY = Y_POS;
 		characterStage = 0;
 		facingLR = 1;
-		STEP_SIZE = 15;
+		STEP_SIZE = 10; //§ï10
 		BORDER = 5;
 		isMovingLeft = isMovingRight = isMovingUp = isRising = isRolling = false;
 		canGoToNextMap = canCraft = false;
@@ -150,7 +150,7 @@ namespace game_framework
 		isSparkleEffectShow = false;
 
 		isInvincible = false;
-		doubleJump = false;
+		doubleJump = true; //§ïfalse
 		DJtemp = doubleJump;
 		healBlood = false;
 		isShrimpAttack = false;
@@ -174,11 +174,11 @@ namespace game_framework
 
 		shouldShowMagnifier(m);
 
-		if (m->getMapName() == "MapS2" || m->getMapName() == "MapS3")
+		if (m->getMapName() == "MapS2" || m->getMapName() == "MapS3" || m->getMapName() == "MapS4" || m->getMapName() == "MapS5")
 		{
 			m->setCharacterX((GetLeftX()+GetRightX())/2);
 			m->setCharacterY(characterY);
-			m->characterFloorChanging();
+			m->characterFloorAndCeiling();
 		}
 
 		if (m->isPortal(GetLeftX() - BORDER, GetTopY()))
@@ -221,7 +221,7 @@ namespace game_framework
 			}
 		}
 
-		if (m->isGetHurtPlace(GetLeftX() - BORDER, GetTopY()))
+		if (m->isGetHurtPlace(GetLeftX() - BORDER, GetBottomY()))
 		{
 			if (!isInvincible)
 			{
@@ -735,7 +735,7 @@ namespace game_framework
 	void Character::SetMovingDown()
 	{
 		if (GetMap()->isBridge(characterX - BORDER, GetBottomY()))
-			characterY += 5;
+			characterY += 10;
 	}
 
 	void Character::SetMovingLeft(bool flag)

@@ -23,7 +23,7 @@ namespace game_framework
 		void onShow();
 		void syMoving(int y);
 		void monsterFloorChanging(int x) override;
-		void characterFloorChanging() override;
+		void characterFloorAndCeiling() override;
 		int screenX(int x) override;
 		int screenY(int y) override;
 	protected:

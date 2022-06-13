@@ -44,9 +44,9 @@
 #include "MapS1.h"
 #include "MapS2.h"
 #include "MapS3.h"
-//#include "MapS4.h"
-//#include "MapS5.h"
-//#include "MapS6.h"
+#include "MapS4.h"
+#include "MapS5.h"
+#include "MapS6.h"
 #include "Util.h"
 #include "PropsBook.h"
 #include "CharacterStatus.h"
@@ -145,9 +145,9 @@ namespace game_framework
 		MapS1 mapS1;
 		MapS2 mapS2;
 		MapS3 mapS3;
-		//MapS4 mapS4;
-		//MapS5 mapS5;
-		//MapS6 mapS6;
+		MapS4 mapS4;
+		MapS5 mapS5;
+		MapS6 mapS6;
 		PropsBook		propsBook;
 		CharacterStatus characterStatus;
 		Stage currentStage;

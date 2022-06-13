@@ -42,7 +42,7 @@ namespace game_framework
 
         for (int i = 11; i < 26; i++)
         {
-            mapGrid_init[i][28] = 6;
+            mapGrid_init[i][34] = 6;
         }
 
         for (int i = 42; i < 77; i++)
@@ -264,7 +264,7 @@ namespace game_framework
         }
     }
 
-    void MapS2::characterFloorChanging()
+    void MapS2::characterFloorAndCeiling()
     {
         if (characterX < 258)
         {

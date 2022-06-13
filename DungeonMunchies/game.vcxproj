@@ -262,6 +262,9 @@
     <ClCompile Include="Source\BloodBar.cpp" />
     <ClCompile Include="Source\CharacterStatus.cpp" />
     <ClCompile Include="Source\MapS3.cpp" />
+    <ClCompile Include="Source\MapS4.cpp" />
+    <ClCompile Include="Source\MapS5.cpp" />
+    <ClCompile Include="Source\MapS6.cpp" />
     <ClCompile Include="Source\MonsterBanana.cpp" />
     <ClCompile Include="Source\MapS2.cpp" />
     <ClCompile Include="Source\MonsterCactusMutation.cpp" />
@@ -334,6 +337,9 @@
     <ClInclude Include="Source\Character.h" />
     <ClInclude Include="Source\CharacterStatus.h" />
     <ClInclude Include="Source\MapS3.h" />
+    <ClInclude Include="Source\MapS4.h" />
+    <ClInclude Include="Source\MapS5.h" />
+    <ClInclude Include="Source\MapS6.h" />
     <ClInclude Include="Source\MonsterBanana.h" />
     <ClInclude Include="Source\MapS2.h" />
     <ClInclude Include="Source\MonsterCactusMutation.h" />

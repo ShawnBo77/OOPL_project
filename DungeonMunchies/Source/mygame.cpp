@@ -606,9 +606,9 @@ namespace game_framework
 		mapS1.Initialize();
 		mapS2.Initialize();
 		mapS3.Initialize();
-		//mapS4.Initialize();
-		//mapS5.Initialize();
-		//mapS6.Initialize();
+		mapS4.Initialize();
+		mapS5.Initialize();
+		mapS6.Initialize();
 		bossMap.Initialize();
 		propsBook.Initialize(&character);
 		characterStatus.Initialize(&character);
@@ -680,27 +680,27 @@ namespace game_framework
 				}
 				character.OnMove(&mapS3, &monsterS3);
 				break;
-				//case stage_4:
-				//	for (unsigned i = 0; i < monsterS4.size(); i++)
-				//	{
-				//		monsterS4[i]->OnMove(&mapS4);
-				//	}
-				//	character.OnMove(&mapS2, &monsterS4);
-				//	break;
-				//case stage_5:
-				//	for (unsigned i = 0; i < monsterS5.size(); i++)
-				//	{
-				//		monsterS5[i]->OnMove(&mapS5);
-				//	}
-				//	character.OnMove(&mapS5, &monsterS5);
-				//	break;
-				//case stage_6:
-				//	for (unsigned i = 0; i < monsterS6.size(); i++)
-				//	{
-				//		monsterS6[i]->OnMove(&mapS6);
-				//	}
-				//	character.OnMove(&mapS6, &monsterS6);
-				//	break;
+			case stage_4:
+				for (unsigned i = 0; i < monsterS4.size(); i++)
+				{
+					monsterS4[i]->OnMove(&mapS4);
+				}
+				character.OnMove(&mapS4, &monsterS4);
+				break;
+			case stage_5:
+				for (unsigned i = 0; i < monsterS5.size(); i++)
+				{
+					monsterS5[i]->OnMove(&mapS5);
+				}
+				character.OnMove(&mapS5, &monsterS5);
+				break;
+			case stage_6:
+				for (unsigned i = 0; i < monsterS6.size(); i++)
+				{
+					monsterS6[i]->OnMove(&mapS6);
+				}
+				character.OnMove(&mapS6, &monsterS6);
+				break;
 			case stage_boss:
 				for (unsigned i = 0; i < monsterS7.size(); i++)
 				{
@@ -752,9 +752,9 @@ namespace game_framework
 		mapS1.LoadBitmap();
 		mapS2.LoadBitmap();
 		mapS3.LoadBitmap();
-		//mapS4.LoadBitmap();
-		//mapS5.LoadBitmap();
-		//mapS6.LoadBitmap();
+		mapS4.LoadBitmap();
+		mapS5.LoadBitmap();
+		mapS6.LoadBitmap();
 		bossMap.LoadBitmap();
 		propsBook.LoadBitmap();
 		characterStatus.LoadBitmap();
@@ -846,6 +846,27 @@ namespace game_framework
 						character.SetCanGoToNextMap(false);
 						break;
 					case stage_3:
+						mapS3.Initialize();
+						character.SetXY(mapS3.getStartPosition(), 100);
+						currentStage = stage_3;
+						isStageChanged = true;
+						character.SetCanGoToNextMap(false);
+						break;
+					case stage_4:
+						mapS3.Initialize();
+						character.SetXY(mapS3.getStartPosition(), 100);
+						currentStage = stage_3;
+						isStageChanged = true;
+						character.SetCanGoToNextMap(false);
+						break;
+					case stage_5:
+						mapS3.Initialize();
+						character.SetXY(mapS3.getStartPosition(), 100);
+						currentStage = stage_3;
+						isStageChanged = true;
+						character.SetCanGoToNextMap(false);
+						break;
+					case stage_6:
 						bossMap.Initialize();
 						character.SetXY(bossMap.getStartPosition(), 100);
 						currentStage = stage_boss;
@@ -961,30 +982,30 @@ namespace game_framework
 				currentStage = stage_3;
 				isStageChanged = true;
 			}
-			//if (nChar == KEY_4){
-			//	monsterInitialize();
-			//	gamePause = false;
-			//	characterStatusCall = false;
-			//	mapS2.Initialize();
-			//	currentStage = stage_2;
-			//	isStageChanged = true;
-			// }
-			//if (nChar == KEY_5){
-			//	monsterInitialize();
-			//	gamePause = false;
-			//	characterStatusCall = false;
-			//	mapS2.Initialize();
-			//	currentStage = stage_2;
-			//	isStageChanged = true;
-			// }
-			//if (nChar == KEY_6){
-			//	monsterInitialize();
-			//	gamePause = false;
-			//	characterStatusCall = false;
-			//	mapS2.Initialize();
-			//	currentStage = stage_2;
-			//	isStageChanged = true;
-			// }
+			if (nChar == KEY_4){
+				monsterInitialize();
+				gamePause = false;
+				characterStatusCall = false;
+				mapS4.Initialize();
+				currentStage = stage_4;
+				isStageChanged = true;
+			 }
+			if (nChar == KEY_5){
+				monsterInitialize();
+				gamePause = false;
+				characterStatusCall = false;
+				mapS5.Initialize();
+				currentStage = stage_5;
+				isStageChanged = true;
+			 }
+			if (nChar == KEY_6){
+				monsterInitialize();
+				gamePause = false;
+				characterStatusCall = false;
+				mapS6.Initialize();
+				currentStage = stage_6;
+				isStageChanged = true;
+			 }
 			if (nChar == KEY_7)
 			{
 				monsterInitialize();
@@ -1014,7 +1035,6 @@ namespace game_framework
 
 	void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 	{
-		//eraser.SetMovingLeft(true);
 		if (currentStage == stage_props)
 		{
 			if (point.x > 1253 && point.y > 57 && point.x < 1327 && point.y < 117)
@@ -1170,33 +1190,33 @@ namespace game_framework
 			}
 			LightBulbOnShow();
 			break;
-			//case stage_4:
-			//	mapS4.onShow();
-			//	character.OnShow(&mapS4);
-			//	for (unsigned i = 0; i < monsterS4.size(); i++)
-			//	{
-			//		monsterS4[i]->OnShow(&mapS4);
-			//	}
-			//	LightBulbOnShow();
-			//	break;
-			//case stage_5:
-			//	mapS5.onShow();
-			//	character.OnShow(&mapS5);
-			//	for (unsigned i = 0; i < monsterS5.size(); i++)
-			//	{
-			//		monsterS5[i]->OnShow(&mapS5);
-			//	}
-			//	LightBulbOnShow();
-			//	break;
-			//case stage_6:
-			//	mapS6.onShow();
-			//	character.OnShow(&mapS6);
-			//	for (unsigned i = 0; i < monsterS6.size(); i++)
-			//	{
-			//		monsterS6[i]->OnShow(&mapS6);
-			//	}
-			//	LightBulbOnShow();
-			//	break;
+		case stage_4:
+			mapS4.onShow();
+			character.OnShow(&mapS4);
+			for (unsigned i = 0; i < monsterS4.size(); i++)
+			{
+				monsterS4[i]->OnShow(&mapS4);
+			}
+			LightBulbOnShow();
+			break;
+		case stage_5:
+			mapS5.onShow();
+			character.OnShow(&mapS5);
+			for (unsigned i = 0; i < monsterS5.size(); i++)
+			{
+				monsterS5[i]->OnShow(&mapS5);
+			}
+			LightBulbOnShow();
+			break;
+		case stage_6:
+			mapS6.onShow();
+			character.OnShow(&mapS6);
+			for (unsigned i = 0; i < monsterS6.size(); i++)
+			{
+				monsterS6[i]->OnShow(&mapS6);
+			}
+			LightBulbOnShow();
+			break;
 		case stage_boss:
 			bossMap.onShow();
 			character.OnShow(&bossMap);
@@ -1344,6 +1364,18 @@ namespace game_framework
 		else if (currentStage == stage_3)
 		{
 			return &mapS3;
+		}
+		else if (currentStage == stage_4)
+		{
+			return &mapS4;
+		}
+		else if (currentStage == stage_5)
+		{
+			return &mapS5;
+		}
+		else if (currentStage == stage_6)
+		{
+			return &mapS6;
 		}
 		else if (currentStage == stage_boss)
 		{
