@@ -297,12 +297,12 @@ namespace game_framework
 
         if (!getTrashCanOpen())
         {
-            trashCanClosedBitmap.SetTopLeft(860 + getSX(), 417 - 132);
+            trashCanClosedBitmap.SetTopLeft(860 + getSX(), 1217 - 132 + getSY());
             trashCanClosedBitmap.ShowBitmap();
         }
         else
         {
-            trashCanOpenBitmap.SetTopLeft(860 + getSX(), 417 - 180);
+            trashCanOpenBitmap.SetTopLeft(860 + getSX(), 1217 - 180 + getSY());
             trashCanOpenBitmap.ShowBitmap();
         }
     }
