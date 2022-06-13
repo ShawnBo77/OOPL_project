@@ -139,7 +139,6 @@ namespace game_framework
 		void bgmPlayer();
 		void stopAllBgm();
 		Map* GetCurrentMap();
-		//CMovingBitmap	monster;
 		Character		character;
 		MapForBoss		bossMap;
 		MapS1 mapS1;

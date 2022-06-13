@@ -165,7 +165,7 @@ namespace game_framework
 	{
 		int monsterBorder;
 		bool isOnMonster = false;
-		//animation.OnMove();													//¨¤¦âÃä®Ø¼e«×
+
 		if (currentMap == NULL || m->getMapName() != currentMap->getMapName())
 		{
 			SetMap(m);

@@ -155,7 +155,7 @@ namespace game_framework
 		CAnimation rightJump[2];
 		CAnimation leftAttacking[2];
 		CAnimation rightAttacking[2];
-		//CAnimation animation;           // for test
+
 		Map* currentMap;
 
 		int characterX, characterY;
