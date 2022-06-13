@@ -126,13 +126,13 @@ namespace game_framework
 	{
 		characterH = 120;
 		characterW = 80;
-		const int X_POS = 80;													//角色起始X軸
+		const int X_POS = 335;													//角色起始X軸
 		const int Y_POS = 80;													//角色起始Y軸
 		characterX = X_POS;
 		characterY = Y_POS;
 		characterStage = 0;
 		facingLR = 1;
-		STEP_SIZE = 10; //改10
+		STEP_SIZE = 10;
 		BORDER = 5;
 		isMovingLeft = isMovingRight = isMovingUp = isRising = isRolling = false;
 		canGoToNextMap = canCraft = false;
@@ -150,7 +150,7 @@ namespace game_framework
 		isSparkleEffectShow = false;
 
 		isInvincible = false;
-		doubleJump = true; //改false
+		doubleJump = false;
 		DJtemp = doubleJump;
 		healBlood = false;
 		isShrimpAttack = false;
@@ -169,12 +169,12 @@ namespace game_framework
 		if (currentMap == NULL || m->getMapName() != currentMap->getMapName())
 		{
 			SetMap(m);
-			ResetPosition(m);
+			velocity = 30;
 		}
 
 		shouldShowMagnifier(m);
 
-		if (m->getMapName() == "MapS2" || m->getMapName() == "MapS3" || m->getMapName() == "MapS4" || m->getMapName() == "MapS5")
+		if (m->getMapName() != "MapS1" && m->getMapName() != "MapForBoss")
 		{
 			m->setCharacterX((GetLeftX()+GetRightX())/2);
 			m->setCharacterY(characterY);
@@ -545,13 +545,6 @@ namespace game_framework
 		}
 
 		showData();
-	}
-
-	void Character::ResetPosition(Map* m)
-	{
-		characterX = m->getStartPosition();
-		characterY = 100;
-		velocity = 30;
 	}
 
 	void Character::shouldShowMagnifier(Map* m)

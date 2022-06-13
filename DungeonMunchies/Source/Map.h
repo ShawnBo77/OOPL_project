@@ -12,6 +12,7 @@ namespace game_framework {
 		string getMapName();
 		
 		int getStartPosition();
+		int getFinalPosition();
 		virtual bool isEmpty(int x, int y) const = 0;
 		virtual bool isPortal(int x, int y) const = 0;
 		virtual bool isBridge(int x, int y) const = 0;
@@ -95,6 +96,7 @@ namespace game_framework {
 		int characterX, characterY;
 		int initialX, initialY; //初始X、Y
 		int startX; //開始位置
+		int finalX; //結束位置
 		int cyRelativeMovement;
 		string mapName;
 		int floor;

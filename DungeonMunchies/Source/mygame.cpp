@@ -835,47 +835,88 @@ namespace game_framework
 						mapS2.Initialize();
 						character.SetXY(mapS2.getStartPosition(), 100);
 						currentStage = stage_2;
-						isStageChanged = true;
-						character.SetCanGoToNextMap(false);
 						break;
 					case stage_2:
-						mapS3.Initialize();
-						character.SetXY(mapS3.getStartPosition(), 100);
-						currentStage = stage_3;
-						isStageChanged = true;
-						character.SetCanGoToNextMap(false);
+						if (character.GetLeftX() < 1500)
+						{
+							mapS1.setXY(-2190, -320);
+							character.SetXY(mapS1.getFinalPosition(), 100);
+							currentStage = stage_1;
+						}
+						else
+						{
+							mapS3.Initialize();
+							character.SetXY(mapS3.getStartPosition(), 100);
+							currentStage = stage_3;
+						}
 						break;
 					case stage_3:
-						mapS3.Initialize();
-						character.SetXY(mapS3.getStartPosition(), 100);
-						currentStage = stage_3;
-						isStageChanged = true;
-						character.SetCanGoToNextMap(false);
+						if (character.GetLeftX() < 500)
+						{
+							mapS2.setXY(-2820, -550);
+							character.SetXY(mapS2.getFinalPosition(), 100);
+							currentStage = stage_2;
+						}
+						else
+						{
+							mapS4.Initialize();
+							character.SetXY(mapS4.getStartPosition(), 100);
+							currentStage = stage_4;
+						}
 						break;
 					case stage_4:
-						mapS3.Initialize();
-						character.SetXY(mapS3.getStartPosition(), 100);
-						currentStage = stage_3;
-						isStageChanged = true;
-						character.SetCanGoToNextMap(false);
+						if (character.GetLeftX() < 500)
+						{
+							mapS3.setXY(-3680, -260);
+							character.SetXY(mapS3.getFinalPosition(), 100);
+							currentStage = stage_3;
+						}
+						else
+						{
+							mapS5.Initialize();
+							character.SetXY(mapS5.getStartPosition(), 100);
+							currentStage = stage_5;
+						}
 						break;
 					case stage_5:
-						mapS3.Initialize();
-						character.SetXY(mapS3.getStartPosition(), 100);
-						currentStage = stage_3;
-						isStageChanged = true;
-						character.SetCanGoToNextMap(false);
+						if (character.GetLeftX() < 700)
+						{
+							mapS4.setXY(-2580, -440);
+							character.SetXY(mapS4.getFinalPosition(), 100);
+							currentStage = stage_4;
+						}
+						else if (character.GetLeftX() < 2250)
+						{
+							bossMap.Initialize();
+							character.SetXY(bossMap.getStartPosition(), 100);
+							currentStage = stage_boss;
+						}
+						else
+						{
+							mapS6.Initialize();
+							character.SetXY(mapS6.getStartPosition(), 100);
+							currentStage = stage_6;
+						}
 						break;
 					case stage_6:
-						bossMap.Initialize();
-						character.SetXY(bossMap.getStartPosition(), 100);
-						currentStage = stage_boss;
-						isStageChanged = true;
-						character.SetCanGoToNextMap(false);
+						if (character.GetLeftX() < 700)
+						{
+							mapS5.setXY(-2515, -800);
+							character.SetXY(mapS5.getFinalPosition(), 100);
+							currentStage = stage_5;
+						}
+						else
+						{
+							bossMap.Initialize();
+							character.SetXY(bossMap.getStartPosition(), 100);
+							currentStage = stage_boss;
+						}
 						break;
 					default:
 						break;
 					}
+					isStageChanged = true;
+					character.SetCanGoToNextMap(false);
 				}
 				else if (currentStage == stage_props)
 				{
@@ -987,6 +1028,7 @@ namespace game_framework
 				gamePause = false;
 				characterStatusCall = false;
 				mapS4.Initialize();
+				character.SetXY(mapS4.getStartPosition(), 100);
 				currentStage = stage_4;
 				isStageChanged = true;
 			 }
@@ -995,6 +1037,7 @@ namespace game_framework
 				gamePause = false;
 				characterStatusCall = false;
 				mapS5.Initialize();
+				character.SetXY(mapS5.getStartPosition(), 100);
 				currentStage = stage_5;
 				isStageChanged = true;
 			 }
@@ -1003,6 +1046,7 @@ namespace game_framework
 				gamePause = false;
 				characterStatusCall = false;
 				mapS6.Initialize();
+				character.SetXY(mapS6.getStartPosition(), 100);
 				currentStage = stage_6;
 				isStageChanged = true;
 			 }

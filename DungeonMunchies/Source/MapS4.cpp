@@ -20,6 +20,8 @@ namespace game_framework
         Y = 20;
         gridW = 20;
         gridH = 20;
+        startX = 200;
+        finalX = 3250;
         setFloor(540);
         setCeiling(0);
         setMonsterFloor(540);
@@ -44,6 +46,13 @@ namespace game_framework
             for (int j = 0; j < 5; j++)
             {
                 mapGrid_init[i][j] = 0;
+            }
+        }
+        for (int i = 0; i < 14; i++)
+        {
+            for (int j = 5; j < 37; j++)
+            {
+                mapGrid_init[i][j] = 2;
             }
         }
         for (int i = 35; i < 400; i++)
@@ -163,7 +172,6 @@ namespace game_framework
         setScreenMoving(true);
         setMapName("MapS4");
         setCeiling(0);
-        setStartPosition(100);
         previousFloor = 0;
         targetSY = 0;
         trashCanOpen = false;
@@ -228,16 +236,17 @@ namespace game_framework
         map.SetTopLeft(getSX(), getSY());
         map.ShowBitmap();
 
+        syMoving(targetSY);
+
         if (getPortalOpen())
         {
-            exitBitmap.SetTopLeft(3240 + getSX(), 420);
+            if (characterX < 500)
+                exitBitmap.SetTopLeft(80 + getSX(), 230);
+            else
+                exitBitmap.SetTopLeft(3240 + getSX(), 250);
+            
+            pressEBitmap.SetTopLeft(600, 610);
             exitBitmap.ShowBitmap();
-        }
-        if (getCraftTableOpen())
-        {
-            craftingBitmap.SetTopLeft(3880 + getSX(), 280);
-            craftingBitmap.ShowBitmap();
-            pressEBitmap.SetTopLeft(3885 + getSX(), 940 + getSY());
             pressEBitmap.ShowBitmap();
         }
     }
@@ -246,39 +255,26 @@ namespace game_framework
     {
         if (screenUp)
         {
-            if (getSY() - 20 > y)
+            if (getSY() - 15 > y)
             {
-                addSY(-20);
+                addSY(-15);
             }
             else
             {
-                screenUp = false;
-                addSY(getSY() - y);
-            }
-        }
-
-        if (screenUp)
-        {
-            if (getSY() - 20 > y)
-            {
-                addSY(-20);
-            }
-            else
-            {
-                screenUp = false;
                 addSY(y - getSY());
+                screenUp = false;
             }
         }
         else if (screenDown)
         {
-            if (getSY() + 20 < y)
+            if (getSY() + 15 < y)
             {
-                addSY(20);
+                addSY(15);
             }
             else
             {
-                screenDown = false;
                 addSY(y - getSY());
+                screenDown = false;
             }
         }
     }
@@ -328,6 +324,11 @@ namespace game_framework
         else if (characterX < 1315)
         {
             setFloor(485);
+            if (getSY() != -270)
+            {
+                screenDown = true;
+                targetSY = -270;
+            }
         }
         else if (characterX < 1447)
         {
@@ -335,6 +336,11 @@ namespace game_framework
         }
         else if (characterX < 1925)
         {
+            if (getSY() != -440)
+            {
+                screenUp = true;
+                targetSY = -440;
+            }
             if (characterX > 1850 && characterY+120 < 674)
                 setFloor(665);
             else
@@ -348,9 +354,7 @@ namespace game_framework
                 setFloor(605);
         }
         else
-        {
             setFloor(725);
-        }
 
         if (characterX < 650)
         {
