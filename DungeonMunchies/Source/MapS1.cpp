@@ -181,14 +181,14 @@ namespace game_framework
 		{
 			exitBitmap.SetTopLeft(2895 + getSX(), 180);
 			exitBitmap.ShowBitmap();
-			pressEBitmap.SetTopLeft(2870 + getSX(), 810 + getSY());
+			pressEBitmap.SetTopLeft(600, 810 + getSY());
 			pressEBitmap.ShowBitmap();
 		}
 
 		if (getShowMaginifierFlag())
 		{
 			showMaginifier(1615, 845);
-			pressEBitmap.SetTopLeft(1602 + getSX(), 1020 + getSY());
+			pressEBitmap.SetTopLeft(600, 1020 + getSY());
 			pressEBitmap.ShowBitmap();
 		}
 

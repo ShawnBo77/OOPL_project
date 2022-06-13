@@ -202,7 +202,7 @@ namespace game_framework
         {
             exitBitmap.SetTopLeft(3470 + getSX(), 300);
             exitBitmap.ShowBitmap();
-            pressEBitmap.SetTopLeft(3477 + getSX(), 1170 + getSY());
+            pressEBitmap.SetTopLeft(600, 1170 + getSY());
             pressEBitmap.ShowBitmap();
         }
     }

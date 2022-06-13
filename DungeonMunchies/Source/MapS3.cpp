@@ -216,7 +216,7 @@ namespace game_framework
         if (getShowMessageIconFlag())
         {
             showMessageIcon(3410, 705);
-            pressEBitmap.SetTopLeft(3380 + getSX(), 940 + getSY());
+            pressEBitmap.SetTopLeft(600, 940 + getSY());
             pressEBitmap.ShowBitmap();
         }
 
@@ -224,14 +224,14 @@ namespace game_framework
         {
             exitBitmap.SetTopLeft(4345 + getSX(), 400);
             exitBitmap.ShowBitmap();
-            pressEBitmap.SetTopLeft(4335 + getSX(), 940 + getSY());
+            pressEBitmap.SetTopLeft(600, 940 + getSY());
             pressEBitmap.ShowBitmap();
         }
         if (getCraftTableOpen())
         {
             craftingBitmap.SetTopLeft(3880 + getSX(), 280);
             craftingBitmap.ShowBitmap();
-            pressEBitmap.SetTopLeft(3885 + getSX(), 940 + getSY());
+            pressEBitmap.SetTopLeft(600, 940 + getSY());
             pressEBitmap.ShowBitmap();
         }
     }
