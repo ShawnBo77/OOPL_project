@@ -145,7 +145,7 @@ namespace game_framework
 					faceRight.OnShow();
 				}
 			}
-			bloodBar.setXY(GetLeftX() + m->getXMovement(), GetTopY() + m->getYMovement() - 16);
+			bloodBar.setXY(GetLeftX() + m->getXMovement(), GetTopY() + m->getYMovement() - 25);
 			bloodBar.showBloodBar(m, hp);
 			if (lossHpShowFlag)
 			{
