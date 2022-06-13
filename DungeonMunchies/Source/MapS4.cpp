@@ -177,7 +177,6 @@ namespace game_framework
         trashCanOpen = false;
         screenUp = screenDown = false;
         messageCode = 0;
-        //isMessageShowing = false;
         showMaginifierFlag = false;
         showMessageIconFlag = false;
         canShowMessage = false;

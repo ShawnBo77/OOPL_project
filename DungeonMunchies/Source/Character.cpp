@@ -165,7 +165,7 @@ namespace game_framework
 	{
 		int monsterBorder;
 		bool isOnMonster = false;
-		//animation.OnMove();													//¨¤¦âÃä®Ø¼e«×
+
 		if (currentMap == NULL || m->getMapName() != currentMap->getMapName())
 		{
 			SetMap(m);
@@ -414,7 +414,7 @@ namespace game_framework
 
 		if (isInvincible)
 		{
-			invincibleTimer.CaculateTimeForFalse(&isInvincible, 1);
+			invincibleTimer.CaculateTimeForFalse(&isInvincible, 0.5);
 		}
 
 		if (isShrimpAttack && !shrimpAttack)
@@ -557,6 +557,11 @@ namespace game_framework
 		else if (m->getMapName() == "MapS3" && characterX > 3280 && characterX < 3500)
 		{
 			m->setShowMessageIconFlag(true);
+			m->setCanShowMessage(true, 0);
+		}
+		else if (m->getMapName() == "MapS5" && characterX > 1450 && characterX < 1620 && GetBottomY() <= 640)
+		{
+			m->setShowMaginifierFlag(true);
 			m->setCanShowMessage(true, 0);
 		}
 		else
