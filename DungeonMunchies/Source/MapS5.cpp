@@ -50,7 +50,7 @@ namespace game_framework
 
         for (int i = 3; i < 28; i++)
         {
-            for (int j = 43; j < 66; j++)
+            for (int j = 43; j < 64; j++)
             {
                 mapGrid_init[i][j] = 2;
             }
@@ -88,7 +88,7 @@ namespace game_framework
             }
         }
 
-        for (int i = 58; i < 74; i++)
+        for (int i = 58; i < 70; i++)
         {
             for (int j = 13; j < 32; j++)
             {
