@@ -1206,6 +1206,10 @@ namespace game_framework
 			{
 				monsterS5[i]->OnShow(&mapS5);
 			}
+			if (messageShowFlag)
+			{
+				mapS5.messageOnShow();
+			}
 			LightBulbOnShow();
 			break;
 		case stage_6:

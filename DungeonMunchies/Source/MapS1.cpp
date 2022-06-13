@@ -110,7 +110,6 @@ namespace game_framework
 		messageCode = 0;
 		canShowMessage = false;
 		showMaginifierFlag = false;
-		//isMessageShowing = false;
 		showMessageIconFlag = false;
 		messageCounter = 1;
 		messageSize = 4;

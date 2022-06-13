@@ -174,7 +174,12 @@ namespace game_framework
         trashCanClosedBitmap.LoadBitmap(IDB_TRASHCANCLOSED, RGB(0, 0, 0));
         trashCanOpenBitmap.LoadBitmap(IDB_TRASHCANOPEN, RGB(0, 0, 0));
         loadMagnifierBitmap();
+        loadMagnifierLBitmap();
         loadMessageIconBitmap();
+        message01.LoadBitmap(".\\res\\message0501.bmp");
+        message02.LoadBitmap(".\\res\\message0502.bmp");
+        message03.LoadBitmap(".\\res\\message0503.bmp");
+        message04.LoadBitmap(".\\res\\message0504.bmp");
     }
 
     void MapS5::Initialize()
@@ -189,8 +194,10 @@ namespace game_framework
         previousFloor = 0;
         targetSY = 0;
         screenUp = screenDown = false;
+        messageCounter = 1;
         messageCode = 0;
-        //isMessageShowing = false;
+        messageSize = 4;
+        messageEndFlag = false;
     }
 
     void MapS5::setPos(int x, int y, int n)
@@ -265,6 +272,13 @@ namespace game_framework
         map.SetTopLeft(getSX(), getSY());
         map.ShowBitmap();
         syMoving(targetSY);
+
+        if (getShowMaginifierFlag())
+        {
+            showMaginifierL(1458, 494);
+            pressEBitmap.SetTopLeft(600, 670 + getSY());
+            pressEBitmap.ShowBitmap();
+        }
 
         if (getPortalOpen())
         {
@@ -449,5 +463,29 @@ namespace game_framework
     int MapS5::screenY(int y)
     {
         return y + getSY();
+    }
+    void MapS5::messageOnShow()
+    {
+        if (messageCounter == 1)
+        {
+            message01.SetTopLeft(173, 535);
+            message01.ShowBitmap();
+        }
+        else if (messageCounter == 2)
+        {
+            message02.SetTopLeft(173, 535);
+            message02.ShowBitmap();
+        }
+        else if (messageCounter == 3)
+        {
+            message03.SetTopLeft(173, 535);
+            message03.ShowBitmap();
+        }
+        else if (messageCounter == 4)
+        {
+            message04.SetTopLeft(173, 535);
+            message04.ShowBitmap();
+            messageEndFlag = true;
+        }
     }
 }

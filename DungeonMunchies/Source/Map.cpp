@@ -148,10 +148,19 @@ namespace game_framework
 	{
 		magnifier.LoadBitmap(".\\res\\magnifier.bmp", RGB(0, 0, 0));
 	}
+	void Map::loadMagnifierLBitmap()
+	{
+		magnifierL.LoadBitmap(".\\res\\magnifierL.bmp", RGB(0, 0, 0));
+	}
 	void Map::showMaginifier(int x, int y)
 	{
 		magnifier.SetTopLeft(x + getSX(), y + getSY());
 		magnifier.ShowBitmap();
+	}
+	void Map::showMaginifierL(int x, int y)
+	{
+		magnifierL.SetTopLeft(x + getSX(), y + getSY());
+		magnifierL.ShowBitmap();
 	}
 	void Map::setShowMaginifierFlag(bool flag)
 	{
@@ -188,14 +197,6 @@ namespace game_framework
 	{
 		return canShowMessage;
 	}
-	//void Map::setIsMessageShowing(bool flag)
-	//{
-	//	isMessageShowing = flag;
-	//}
-	//bool Map::getIsMessageShowing()
-	//{
-	//	return isMessageShowing;
-	//}
 	void Map::setFloor(int y)
 	{
 		floor = y;
