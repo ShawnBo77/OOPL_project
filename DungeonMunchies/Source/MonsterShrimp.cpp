@@ -86,6 +86,8 @@ namespace game_framework
 		hasGottenLightBulb = false;
 		srand((unsigned int)time(NULL));
 		canStandOn = true;
+		isViolent = false;
+		haveSetViolent = false;
 	}
 
 	void MonsterShrimp::OnShow(Map* m)

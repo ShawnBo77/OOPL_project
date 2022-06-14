@@ -142,12 +142,22 @@ namespace game_framework
 		thronCountFlag = false;
 		canStandOn = true;
 		bossDead = false;
+		isViolent = false;
+		haveSetViolent = false;
 	}
 
 	void MonsterBoss::OnMove(Map* m)
 	{
 		if (isAlive())
 		{
+			if (isViolent && !haveSetViolent) {
+				hitDamage = 20;
+				hitDelayCount = 5;
+				attackDamage = 20;
+				thronDamage = 30;
+				thronDelayCount = 3;
+				haveSetViolent = true;
+			}
 			SetCharacterDirection();
 			if (action == walk_a)
 			{

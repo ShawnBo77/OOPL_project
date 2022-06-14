@@ -26,6 +26,7 @@ const char KEY_Y = 89;
 const char KEY_U = 85;
 const char KEY_H = 72;
 const char KEY_G = 71;
+const char KEY_P = 80;
 const char KEY_SPACE = 0x20;
 const char KEY_CTRL = 0x11;
 const char KEY_TAB = 9;

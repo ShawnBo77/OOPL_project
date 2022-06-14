@@ -82,6 +82,10 @@ namespace game_framework
 		void isAttackedEffectCaculation();
 		void isAttackedEffectOnShow(Map* m);
 
+		//狂暴化
+		void SetIsViolent(bool flag);	// 設定是否受到攻擊
+		bool GetIsViolent();    // 回傳是否受到攻擊
+
 		//結束
 		void SetBossDead(bool flag);
 		bool GetBossDead();
@@ -130,6 +134,8 @@ namespace game_framework
 		bool characterDirectionLR;
 		bool characterDirectionTD;
 
+		bool isViolent;
+		bool haveSetViolent;
 		bool bossDead;
 	};
 }

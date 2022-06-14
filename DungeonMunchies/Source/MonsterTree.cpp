@@ -97,6 +97,8 @@ namespace game_framework
 		hasGottenLightBulb = false;
 		hasGottenSource = false;
 		canStandOn = true;
+		isViolent = false;
+		haveSetViolent = false;
 	}
 
 	void MonsterTree::OnShow(Map* m)

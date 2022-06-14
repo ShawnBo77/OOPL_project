@@ -392,6 +392,16 @@ namespace game_framework
 		black.ShowBitmap();
 	}
 
+	void Monster::SetIsViolent(bool flag)
+	{
+		isViolent = flag;
+	}
+
+	bool Monster::GetIsViolent()
+	{
+		return isViolent;
+	}
+
 	void Monster::SetBossDead(bool flag)
 	{
 		bossDead = flag;

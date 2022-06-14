@@ -57,6 +57,8 @@ namespace game_framework
 		lightBulbInside = 10;
 		hasGottenLightBulb = false;
 		canStandOn = true;
+		isViolent = false;
+		haveSetViolent = false;
 	}
 
 	void MonsterCactus::OnShow(Map* m)

@@ -558,12 +558,6 @@ namespace game_framework
 
 		//monsterS3.push_back(new MonsterTree(2000, 400, &character));
 
-		//monsterS7.push_back(new MonsterTree(700, 400, &character));
-		//monsterS7.push_back(new MonsterShrimp(600, 400, &character));
-		//monsterS7.push_back(new MonsterShrimp(850, 400, &character));
-		//monsterS7.push_back(new MonsterCactus(700, 500, &character));
-		//monsterS7.push_back(new MonsterTree(400, 400, &character));
-		//monsterS7.push_back(new MonsterBanana(1000, 400, &character));
 		monsterS7.push_back(new MonsterBoss(900, 280, &character));
 	}
 
@@ -889,6 +883,7 @@ namespace game_framework
 							bossMap.Initialize();
 							character.SetXY(bossMap.getStartPosition(), 100);
 							currentStage = stage_boss;
+							monsterS7[0]->SetIsViolent(true);
 						}
 						else
 						{
@@ -997,6 +992,9 @@ namespace game_framework
 			//}
 			currentStage = stage_game_complete;
 			isStageChanged = true;
+		}
+		if (nChar == KEY_P) {
+			propsBook.loseAllProps();
 		}
 		if (nChar == KEY_G)
 		{

@@ -56,6 +56,8 @@ namespace game_framework
 		hasGottenSource = false;
 		lightBulbInside = 10;
 		hasGottenLightBulb = false;
+		isViolent = false;
+		haveSetViolent = false;
 	}
 
 	void MonsterCactusMutation::OnShow(Map* m)

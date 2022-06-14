@@ -57,6 +57,8 @@ namespace game_framework
 		lightBulbInside = 60;
 		hasGottenLightBulb = false;
 		canStandOn = true;
+		isViolent = false;
+		haveSetViolent = false;
 	}
 
 	void MonsterBanana::OnShow(Map* m)

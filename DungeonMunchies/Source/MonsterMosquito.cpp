@@ -65,6 +65,8 @@ namespace game_framework
 		flyCase = 2;
 		shouldFlyCaseChange = false;
 		canStandOn = false;
+		isViolent = false;
+		haveSetViolent = false;
 	}
 
 	void MonsterMosquito::OnMove(Map* m)
