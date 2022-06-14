@@ -244,6 +244,7 @@ namespace game_framework
 
 		if (GetIsRolling())
 		{
+			rollingTimer.Start();
 			if (isMovingLeft)
 				Rolling(m, 0, monsters);
 			else if (isMovingRight)
@@ -466,14 +467,12 @@ namespace game_framework
 			{
 				if (isRolling)//action == roll_a)
 				{
+					CAudio::Instance()->Play(AUDIO_ROLL, false);
 					leftRolling.SetTopLeft(screenCX - 5, characterY + 10 + m->getYMovement());
 					leftRolling.OnShow();
 					leftRolling.SetDelayCount(1);
 					if (leftRolling.IsFinalBitmap())
-					{
-						//isRolling = false;
 						action = walk_a;
-					}
 				}
 				else if (isAttacking)//action == attack_a) //attack
 				{
@@ -508,14 +507,12 @@ namespace game_framework
 			{
 				if (isRolling)//action == roll_a)
 				{
+					CAudio::Instance()->Play(AUDIO_ROLL, false);
 					rightRolling.SetTopLeft(screenCX - 5, characterY + 10 + m->getYMovement());
 					rightRolling.OnShow();
 					rightRolling.SetDelayCount(1);
 					if (rightRolling.IsFinalBitmap())
-					{
-						//isRolling = false;
 						action = walk_a;
-					}
 				}
 				else if (isAttacking)//action == attack_a)
 				{
@@ -614,14 +611,6 @@ namespace game_framework
 	/*Getter*/
 	int Character::GetLeftX()
 	{
-		//if (characterStage == 1)
-		//{
-		//	if (facingLR)
-		//		return characterX;
-		//	else
-		//		return characterX + 40;//+ªZ¾¹¶ZÂ÷
-		//}
-		//else
 		return characterX;
 	}
 
@@ -632,14 +621,6 @@ namespace game_framework
 
 	int Character::GetRightX()
 	{
-		//if (characterStage == 1)
-		//{
-		//	if (facingLR)
-		//		return characterX + characterW;
-		//	else
-		//		return characterX + 120;//+bitmap¼e«×
-		//}
-		//else
 		return characterX + characterW;
 	}
 
@@ -919,7 +900,8 @@ namespace game_framework
 
 	void Character::SetRolling(bool flag)
 	{
-		if (GetIsOnTheFloor() && rolling_time <= 0)
+		rollingTimer.Finish();
+		if (GetIsOnTheFloor() && rollingTimer.GetTime() > 1000)
 		{
 			rolling_time = 5;
 			isRolling = true;
@@ -940,7 +922,7 @@ namespace game_framework
 		action = roll_a;
 		isInvincible = true;
 		invincibleTimer.Start();
-		const int ROLLING_SIZE = 4;											//¨¤¦âÂ½ºu¶ZÂ÷
+		const int ROLLING_SIZE = 2;											//¨¤¦âÂ½ºu¶ZÂ÷
 		const int BORDER = 5;
 		if (flag)
 		{
