@@ -175,6 +175,7 @@ namespace game_framework
 		bool isMovingRight;			// 是否正在往右移動
 		bool isMovingUp;			// 是否正在往上移動
 		bool isRolling;             // 是否正在翻滾
+		Timer rollingTimer;
 		bool facingLR;              // 面向 左:0, 右:1
 		bool isOnTheFloor;          // 是否位於地面
 		bool isRising;              // 是否正在上升
