@@ -171,7 +171,7 @@ namespace game_framework
 		CFont f, * fp;
 		f.CreatePointFont(200, "Times New Roman");	// 產生 font f; 160表示16 point的字
 		fp = pDC->SelectObject(&f);					// 選用 font f
-		pDC->SetBkColor(RGB(0, 0, 0));
+		pDC->SetBkMode(TRANSPARENT);
 		pDC->SetTextColor(RGB(255, 255, 255));
 		char position[500];								// Demo 數字對字串的轉換
 		sprintf(position, "%s", data);
@@ -186,7 +186,7 @@ namespace game_framework
 		CFont f, * fp;
 		f.CreatePointFont(200, "Times New Roman");	// 產生 font f; 160表示16 point的字
 		fp = pDC->SelectObject(&f);					// 選用 font f
-		pDC->SetBkColor(RGB(0, 0, 0));
+		pDC->SetBkMode(TRANSPARENT);
 		pDC->SetTextColor(RGB(255, 255, 255));
 		char position[500];								// Demo 數字對字串的轉換
 		sprintf(position, "%d / %d", data1, data2);
@@ -239,7 +239,7 @@ namespace game_framework
 		CFont f, * fp;
 		f.CreatePointFont(240, "標楷體");	// 產生 font f; 160表示16 point的字
 		fp = pDC->SelectObject(&f);					// 選用 font f
-		pDC->SetBkColor(RGB(0, 0, 0));
+		pDC->SetBkMode(TRANSPARENT);
 		pDC->SetTextColor(RGB(255, 255, 255));
 		char position[500];								// Demo 數字對字串的轉換
 		sprintf(position, "%s", cstage);
