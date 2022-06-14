@@ -195,8 +195,13 @@ namespace game_framework
         previousFloor = 0;
         targetSY = 0;
         screenUp = screenDown = false;
-        messageCounter = 1;
         messageCode = 0;
+        canShowMessage = false;
+        autoShowMessage = false;
+        havePlayedAutoMessage = false;
+        showMaginifierFlag = false;
+        showMessageIconFlag = false;
+        messageCounter = 1;
         messageSize = 4;
         messageEndFlag = false;
     }

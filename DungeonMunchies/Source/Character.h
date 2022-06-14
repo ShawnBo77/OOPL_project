@@ -31,8 +31,10 @@ namespace game_framework
 		void ScreenCXY(Map* m);
 
 		/*map*/
-		//MapS1
 		void shouldShowMagnifier(Map* m);
+		void shouldShowMessageIconFlag(Map* m);
+		void SetMapCanShowMessage(Map* m);
+		void SetMapAutoShowMessage(Map* m);
 
 		int  GetLeftX();				// 左上角 x 座標
 		int  GetTopY();					// 左上角 y 座標

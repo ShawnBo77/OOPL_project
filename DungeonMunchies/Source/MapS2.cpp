@@ -134,6 +134,15 @@ namespace game_framework
         previousFloor = 0;
         targetSY = 0;
         screenUp = screenDown = false;
+        messageCode = 0;
+        canShowMessage = false;
+        autoShowMessage = false;
+        havePlayedAutoMessage = false;
+        showMaginifierFlag = false;
+        showMessageIconFlag = false;
+        messageCounter = 1;
+        messageSize = 0;
+        messageEndFlag = false;
     }
 
     void MapS2::setPos(int x, int y, int n)

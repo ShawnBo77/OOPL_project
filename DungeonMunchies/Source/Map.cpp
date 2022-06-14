@@ -201,6 +201,23 @@ namespace game_framework
 	{
 		return canShowMessage;
 	}
+	void Map::setAutoShowMessage(bool flag, int code)
+	{
+		autoShowMessage = flag;
+		messageCode = code;
+	}
+	bool Map::getAutoShowMessage()
+	{
+		return autoShowMessage;
+	}
+	void Map::setHavePlayedAutoMessage(bool flag)
+	{
+		havePlayedAutoMessage = flag;
+	}
+	bool Map::getHavePlayedAutoMessage()
+	{
+		return havePlayedAutoMessage;
+	}
 	void Map::setFloor(int y)
 	{
 		floor = y;

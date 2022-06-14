@@ -144,12 +144,12 @@ namespace game_framework
         craftingBitmap.LoadBitmap(IDB_CRAFTING, RGB(0, 0, 0));
         loadMagnifierBitmap();
         loadMessageIconBitmap();
-        message01.LoadBitmap(".\\res\\message0201.bmp", RGB(0, 0, 0));
-        message02.LoadBitmap(".\\res\\message0202.bmp", RGB(0, 0, 0));
-        message03.LoadBitmap(".\\res\\message0203.bmp", RGB(0, 0, 0));
-        message04.LoadBitmap(".\\res\\message0204.bmp", RGB(0, 0, 0));
-        message05.LoadBitmap(".\\res\\message0205.bmp", RGB(0, 0, 0));
-        message06.LoadBitmap(".\\res\\message0206.bmp", RGB(0, 0, 0));
+        message01.LoadBitmap(".\\res\\message0301.bmp", RGB(0, 0, 0));
+        message02.LoadBitmap(".\\res\\message0302.bmp", RGB(0, 0, 0));
+        message03.LoadBitmap(".\\res\\message0303.bmp", RGB(0, 0, 0));
+        message04.LoadBitmap(".\\res\\message0304.bmp", RGB(0, 0, 0));
+        message05.LoadBitmap(".\\res\\message0305.bmp", RGB(0, 0, 0));
+        message06.LoadBitmap(".\\res\\message0306.bmp", RGB(0, 0, 0));
     }
 
     void MapS3::Initialize()
@@ -163,9 +163,11 @@ namespace game_framework
         trashCanOpen = false;
         screenUp = screenDown = false;
         messageCode = 0;
+        canShowMessage = false;
+        autoShowMessage = false;
+        havePlayedAutoMessage = false;
         showMaginifierFlag = false;
         showMessageIconFlag = false;
-        canShowMessage = false;
         messageCounter = 1;
         messageSize = 6;
         messageEndFlag = false;

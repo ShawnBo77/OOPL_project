@@ -138,7 +138,8 @@ namespace game_framework
 		void gameCompleteNoteShow();
 		void bgmPlayer();
 		void stopAllBgm();
-		Map* GetCurrentMap();
+		bool isPlayingStage();
+		Map* GetCurrentMap(); //要是playing stage才能抓地圖
 		Character		character;
 		MapForBoss		bossMap;
 		MapS1 mapS1;
@@ -150,7 +151,7 @@ namespace game_framework
 		PropsBook		propsBook;
 		CharacterStatus characterStatus;
 		Stage currentStage;
-		Stage lastStage;
+		Stage lastStage; //for propsBook
 		bool characterStatusCall;
 		bool haveCalledCharacterStatus;
 		bool gamePause;

@@ -110,6 +110,8 @@ namespace game_framework
 		setMapName("MapS1");
 		messageCode = 0;
 		canShowMessage = false;
+		autoShowMessage = false;
+		havePlayedAutoMessage = false;
 		showMaginifierFlag = false;
 		showMessageIconFlag = false;
 		messageCounter = 1;

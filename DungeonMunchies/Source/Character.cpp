@@ -173,10 +173,13 @@ namespace game_framework
 		}
 
 		shouldShowMagnifier(m);
+		shouldShowMessageIconFlag(m);
+		SetMapCanShowMessage(m);
+		SetMapAutoShowMessage(m);
 
 		if (m->getMapName() != "MapS1" && m->getMapName() != "MapForBoss")
 		{
-			m->setCharacterX((GetLeftX()+GetRightX())/2);
+			m->setCharacterX((GetLeftX() + GetRightX()) / 2);
 			m->setCharacterY(characterY);
 			m->characterFloorAndCeiling();
 		}
@@ -451,7 +454,7 @@ namespace game_framework
 	{
 		BloodShow();
 		ScreenCXY(m);
-		
+
 		if (isAttacked && isSparkleEffectShow)
 		{
 			isAttackedEffectOnShow();
@@ -552,23 +555,58 @@ namespace game_framework
 		if (m->getMapName() == "MapS1" && characterX > 1135 && characterX < 1300)
 		{
 			m->setShowMaginifierFlag(true);
-			m->setCanShowMessage(true, 0);
-		}
-		else if (m->getMapName() == "MapS3" && characterX > 3280 && characterX < 3500)
-		{
-			m->setShowMessageIconFlag(true);
-			m->setCanShowMessage(true, 0);
 		}
 		else if (m->getMapName() == "MapS5" && characterX > 1450 && characterX < 1620 && GetBottomY() <= 640)
 		{
 			m->setShowMaginifierFlag(true);
-			m->setCanShowMessage(true, 0);
 		}
 		else
 		{
 			m->setShowMaginifierFlag(false);
+		}
+	}
+
+	void Character::shouldShowMessageIconFlag(Map* m)
+	{
+		if (m->getMapName() == "MapS3" && characterX > 3280 && characterX < 3500)
+		{
+			m->setShowMessageIconFlag(true);
+		}
+		else
+		{
 			m->setShowMessageIconFlag(false);
+		}
+	}
+
+	void Character::SetMapCanShowMessage(Map* m)
+	{
+		if (m->getMapName() == "MapS1" && characterX > 1135 && characterX < 1300)
+		{
+			m->setCanShowMessage(true, 0);
+		}
+		else if (m->getMapName() == "MapS3" && characterX > 3280 && characterX < 3500)
+		{
+			m->setCanShowMessage(true, 0);
+		}
+		else if (m->getMapName() == "MapS5" && characterX > 1450 && characterX < 1620 && GetBottomY() <= 640)
+		{
+			m->setCanShowMessage(true, 0);
+		}
+		else
+		{
 			m->setCanShowMessage(false, 0);
+		}
+	}
+
+	void Character::SetMapAutoShowMessage(Map* m)
+	{
+		if (m->getMapName() == "MapS6" && !m->getHavePlayedAutoMessage() && characterX > 3500 && characterX < 3600)
+		{
+			m->setAutoShowMessage(true, 0);
+		}
+		else
+		{
+			m->setAutoShowMessage(false, 0);
 		}
 	}
 
@@ -583,7 +621,7 @@ namespace game_framework
 		//		return characterX + 40;//+ªZ¾¹¶ZÂ÷
 		//}
 		//else
-			return characterX;
+		return characterX;
 	}
 
 	int Character::GetTopY()
@@ -601,7 +639,7 @@ namespace game_framework
 		//		return characterX + 120;//+bitmap¼e«×
 		//}
 		//else
-			return characterX + characterW;
+		return characterX + characterW;
 	}
 
 	int Character::GetBottomY()
@@ -1532,7 +1570,7 @@ namespace game_framework
 				}
 				else
 					bmpBorderX = 25;
-			}	
+			}
 			else
 			{
 				if (isAttacking)

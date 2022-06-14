@@ -532,10 +532,10 @@ namespace game_framework
 		: CGameState(g)
 	{
 		//ball = new CBall [NUMBALLS];
-		monsterS1.push_back(new MonsterShrimp(700, 500, &character));
-		monsterS1.push_back(new MonsterTree(1900, 400, &character));
-		monsterS1.push_back(new MonsterCactus(1500, 500, &character));
-		monsterS1.push_back(new MonsterBanana(800, 400, &character));
+		//monsterS1.push_back(new MonsterShrimp(700, 500, &character));
+		//monsterS1.push_back(new MonsterTree(1900, 400, &character));
+		//monsterS1.push_back(new MonsterCactus(1500, 500, &character));
+		//monsterS1.push_back(new MonsterBanana(800, 400, &character));
 
 		monsterS2.push_back(new MonsterBanana(2650, 400, &character));
 
@@ -565,7 +565,6 @@ namespace game_framework
 		//monsterS7.push_back(new MonsterTree(400, 400, &character));
 		//monsterS7.push_back(new MonsterBanana(1000, 400, &character));
 		monsterS7.push_back(new MonsterBoss(900, 280, &character));
-		//monsterS7.push_back(new MonsterCactus(700, 500, &character));
 	}
 
 	CGameStateRun::~CGameStateRun()
@@ -938,7 +937,7 @@ namespace game_framework
 					characterStatusCall = false;
 					gamePause = true;
 				}
-				else if (GetCurrentMap()->getCanShowMessage() && !messageShowFlag)
+				else if (isPlayingStage() && GetCurrentMap()->getCanShowMessage() && !messageShowFlag)
 				{
 					gamePause = true;
 					messageShowFlag = true;
@@ -1023,7 +1022,8 @@ namespace game_framework
 				currentStage = stage_3;
 				isStageChanged = true;
 			}
-			if (nChar == KEY_4){
+			if (nChar == KEY_4)
+			{
 				monsterInitialize();
 				gamePause = false;
 				characterStatusCall = false;
@@ -1031,8 +1031,9 @@ namespace game_framework
 				character.SetXY(mapS4.getStartPosition(), 100);
 				currentStage = stage_4;
 				isStageChanged = true;
-			 }
-			if (nChar == KEY_5){
+			}
+			if (nChar == KEY_5)
+			{
 				monsterInitialize();
 				gamePause = false;
 				characterStatusCall = false;
@@ -1040,8 +1041,9 @@ namespace game_framework
 				character.SetXY(mapS5.getStartPosition(), 100);
 				currentStage = stage_5;
 				isStageChanged = true;
-			 }
-			if (nChar == KEY_6){
+			}
+			if (nChar == KEY_6)
+			{
 				monsterInitialize();
 				gamePause = false;
 				characterStatusCall = false;
@@ -1049,7 +1051,7 @@ namespace game_framework
 				character.SetXY(mapS6.getStartPosition(), 100);
 				currentStage = stage_6;
 				isStageChanged = true;
-			 }
+			}
 			if (nChar == KEY_7)
 			{
 				monsterInitialize();
@@ -1145,15 +1147,20 @@ namespace game_framework
 				}
 			}
 		}
-		if (messageShowFlag && !GetCurrentMap()->getMessageEndFlag())
+		if (isPlayingStage() && messageShowFlag && !GetCurrentMap()->getMessageEndFlag())
 		{
 			GetCurrentMap()->setMessageCounterToNext();
 		}
-		else if (messageShowFlag && GetCurrentMap()->getMessageEndFlag())
+		else if (isPlayingStage() && messageShowFlag && GetCurrentMap()->getMessageEndFlag())
 		{
 			messageShowFlag = false;
 			gamePause = false;
 			GetCurrentMap()->InitializeMessage();
+			if (GetCurrentMap()->getMapName() == "MapS6")
+			{
+				mapS6.setHavePlayedAutoMessage(true);
+				mapS6.setBossAssistantExist(false);
+			}
 		}
 		if (characterStatusCall == true && gameCompleteFlag == false)
 		{
@@ -1197,6 +1204,11 @@ namespace game_framework
 		//        否則當視窗重新繪圖時(OnDraw)，物件就會移動，看起來會很怪。換個術語
 		//        說，Move負責MVC中的Model，Show負責View，而View不應更動Model。
 		//
+		if (isPlayingStage() && GetCurrentMap()->getAutoShowMessage() && !messageShowFlag)
+		{
+			gamePause = true;
+			messageShowFlag = true;
+		}
 		switch (currentStage)
 		{
 		case stage_1:
@@ -1262,6 +1274,10 @@ namespace game_framework
 			for (unsigned i = 0; i < monsterS6.size(); i++)
 			{
 				monsterS6[i]->OnShow(&mapS6);
+			}
+			if (messageShowFlag)
+			{
+				mapS6.messageOnShow();
 			}
 			LightBulbOnShow();
 			break;
@@ -1397,6 +1413,15 @@ namespace game_framework
 		CAudio::Instance()->Stop(AUDIO_MUSIC_06);
 		CAudio::Instance()->Stop(AUDIO_MUSIC_07);
 		CAudio::Instance()->Stop(AUDIO_VICTORY);
+	}
+
+	bool CGameStateRun::isPlayingStage()
+	{
+		if (currentStage != stage_props && currentStage != stage_game_complete)
+		{
+			return true;
+		}
+		return false;
 	}
 
 	Map* CGameStateRun::GetCurrentMap()

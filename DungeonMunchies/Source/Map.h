@@ -80,6 +80,10 @@ namespace game_framework {
 		//°T®§
 		void setCanShowMessage(bool flag, int code);
 		bool getCanShowMessage();
+		void setAutoShowMessage(bool flag, int code);
+		bool getAutoShowMessage();
+		void setHavePlayedAutoMessage(bool flag);
+		bool getHavePlayedAutoMessage();
 		void setMessageCounter(int n);
 		int getMessageCounter();
 		void setMessageCounterToNext();
@@ -116,6 +120,8 @@ namespace game_framework {
 
 		int messageCode;
 		bool canShowMessage;
+		bool autoShowMessage;
+		bool havePlayedAutoMessage;
 		int messageCounter;
 		int messageSize;
 		bool messageEndFlag;
