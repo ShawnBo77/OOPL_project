@@ -942,130 +942,141 @@ namespace game_framework
 					gamePause = true;
 					messageShowFlag = true;
 				}
-			}
-			if (nChar == KEY_TAB)
-			{
-				if (characterStatusCall == true)
+				else if (messageShowFlag)
 				{
-					characterStatusCall = false;
-					haveCalledCharacterStatus = false;
+					messageShowFlag = false;
 					gamePause = false;
-				}
-				else
-				{
-					if (currentStage != stage_props)
+					GetCurrentMap()->InitializeMessage();
+					if (GetCurrentMap()->getMapName() == "MapS6")
 					{
-						characterStatusCall = true;
-						haveCalledCharacterStatus = true;
-						gamePause = true;
+						mapS6.setHavePlayedAutoMessage(true);
+						mapS6.setBossAssistantExist(false);
 					}
 				}
 			}
-			if (nChar == KEY_Q)
+		}
+		if (nChar == KEY_TAB)
+		{
+			if (characterStatusCall == true)
 			{
-				if (character.GetCharacterStage() == 0)
-					character.characterHasSword(true);
-				else if (character.GetCharacterStage() == 1)
-					character.characterHasSword(false);
+				characterStatusCall = false;
+				haveCalledCharacterStatus = false;
+				gamePause = false;
 			}
-			if (nChar == KEY_R)
-				character.restoreCurrentHp(50);
-			if (nChar == KEY_T)
-				character.addAttackDamage(10);
-			if (nChar == KEY_Y)
-				character.SetLightBulbNum(1000);
-			if (nChar == KEY_U)
-				character.SetAllSourceNumToHundred();
-			if (nChar == KEY_H)
+			else
 			{
-				//currentStage = stage_boss;
-				//for (int i = 0; i < (signed)monsterS7.size(); i++)
-				//{
-				//	monsterS7[i]->SetCurrentHp(0);
-				//}
-				currentStage = stage_game_complete;
-				isStageChanged = true;
+				if (currentStage != stage_props)
+				{
+					characterStatusCall = true;
+					haveCalledCharacterStatus = true;
+					gamePause = true;
+				}
 			}
-			if (nChar == KEY_G)
-			{
-				character.SetCurrentHp(0);
-				stopAllBgm();
+		}
+		if (nChar == KEY_Q)
+		{
+			if (character.GetCharacterStage() == 0)
+				character.characterHasSword(true);
+			else if (character.GetCharacterStage() == 1)
+				character.characterHasSword(false);
+		}
+		if (nChar == KEY_R)
+			character.restoreCurrentHp(50);
+		if (nChar == KEY_T)
+			character.addAttackDamage(10);
+		if (nChar == KEY_Y)
+			character.SetLightBulbNum(1000);
+		if (nChar == KEY_U)
+			character.SetAllSourceNumToHundred();
+		if (nChar == KEY_H)
+		{
+			//currentStage = stage_boss;
+			//for (int i = 0; i < (signed)monsterS7.size(); i++)
+			//{
+			//	monsterS7[i]->SetCurrentHp(0);
+			//}
+			currentStage = stage_game_complete;
+			isStageChanged = true;
+		}
+		if (nChar == KEY_G)
+		{
+			character.SetCurrentHp(0);
+			stopAllBgm();
 
-			}
-			if (nChar == KEY_1)
-			{
-				monsterInitialize();
-				gamePause = false;
-				characterStatusCall = false;
-				mapS1.Initialize();
-				character.SetXY(mapS1.getStartPosition(), 100);
-				currentStage = stage_1;
-				isStageChanged = true;
-			}
-			if (nChar == KEY_2)
-			{
-				monsterInitialize();
-				gamePause = false;
-				characterStatusCall = false;
-				mapS2.Initialize();
-				character.SetXY(mapS2.getStartPosition(), 100);
-				currentStage = stage_2;
-				isStageChanged = true;
-			}
-			if (nChar == KEY_3)
-			{
-				monsterInitialize();
-				gamePause = false;
-				characterStatusCall = false;
-				mapS3.Initialize();
-				character.SetXY(mapS3.getStartPosition(), 100);
-				currentStage = stage_3;
-				isStageChanged = true;
-			}
-			if (nChar == KEY_4)
-			{
-				monsterInitialize();
-				gamePause = false;
-				characterStatusCall = false;
-				mapS4.Initialize();
-				character.SetXY(mapS4.getStartPosition(), 100);
-				currentStage = stage_4;
-				isStageChanged = true;
-			}
-			if (nChar == KEY_5)
-			{
-				monsterInitialize();
-				gamePause = false;
-				characterStatusCall = false;
-				mapS5.Initialize();
-				character.SetXY(mapS5.getStartPosition(), 100);
-				currentStage = stage_5;
-				isStageChanged = true;
-			}
-			if (nChar == KEY_6)
-			{
-				monsterInitialize();
-				gamePause = false;
-				characterStatusCall = false;
-				mapS6.Initialize();
-				character.SetXY(mapS6.getStartPosition(), 100);
-				currentStage = stage_6;
-				isStageChanged = true;
-			}
-			if (nChar == KEY_7)
-			{
-				monsterInitialize();
-				gamePause = false;
-				characterStatusCall = false;
-				bossMap.Initialize();
-				character.SetXY(bossMap.getStartPosition(), 100);
-				currentStage = stage_boss;
-				isStageChanged = true;
-			}
-			if (nChar == KEY_ESC)
-			{
-				PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);
-			}
+		}
+		if (nChar == KEY_1)
+		{
+			monsterInitialize();
+			gamePause = false;
+			characterStatusCall = false;
+			mapS1.Initialize();
+			character.SetXY(mapS1.getStartPosition(), 100);
+			currentStage = stage_1;
+			isStageChanged = true;
+		}
+		if (nChar == KEY_2)
+		{
+			monsterInitialize();
+			gamePause = false;
+			characterStatusCall = false;
+			mapS2.Initialize();
+			character.SetXY(mapS2.getStartPosition(), 100);
+			currentStage = stage_2;
+			isStageChanged = true;
+		}
+		if (nChar == KEY_3)
+		{
+			monsterInitialize();
+			gamePause = false;
+			characterStatusCall = false;
+			mapS3.Initialize();
+			character.SetXY(mapS3.getStartPosition(), 100);
+			currentStage = stage_3;
+			isStageChanged = true;
+		}
+		if (nChar == KEY_4)
+		{
+			monsterInitialize();
+			gamePause = false;
+			characterStatusCall = false;
+			mapS4.Initialize();
+			character.SetXY(mapS4.getStartPosition(), 100);
+			currentStage = stage_4;
+			isStageChanged = true;
+		}
+		if (nChar == KEY_5)
+		{
+			monsterInitialize();
+			gamePause = false;
+			characterStatusCall = false;
+			mapS5.Initialize();
+			character.SetXY(mapS5.getStartPosition(), 100);
+			currentStage = stage_5;
+			isStageChanged = true;
+		}
+		if (nChar == KEY_6)
+		{
+			monsterInitialize();
+			gamePause = false;
+			characterStatusCall = false;
+			mapS6.Initialize();
+			character.SetXY(mapS6.getStartPosition(), 100);
+			currentStage = stage_6;
+			isStageChanged = true;
+		}
+		if (nChar == KEY_7)
+		{
+			monsterInitialize();
+			gamePause = false;
+			characterStatusCall = false;
+			bossMap.Initialize();
+			character.SetXY(bossMap.getStartPosition(), 100);
+			currentStage = stage_boss;
+			isStageChanged = true;
+		}
+		if (nChar == KEY_ESC)
+		{
+			PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);
 		}
 	}
 
