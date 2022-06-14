@@ -616,6 +616,8 @@ namespace game_framework
 		monsterInitialize();
 
 		isStageChanged = true;
+
+		isCheatPropsOn = false;
 	}
 
 	void CGameStateRun::OnMove()							// 移動遊戲元素
@@ -699,18 +701,6 @@ namespace game_framework
 				{
 					monsterS7[i]->OnMove(&bossMap);
 				}
-				//for (unsigned i = 0; i < monsterCactus.size(); i++)
-				//{
-				//	monsterCactus[i]->OnMove();
-				//}
-				//for (unsigned i = 0; i < monsterShrimp.size(); i++)
-				//{
-				//	monsterShrimp[i]->OnMove();
-				//}
-				//for (unsigned i = 0; i < monsterTree.size(); i++)
-				//{
-				//	monsterTree[i]->OnMove();
-				//}
 				character.OnMove(&bossMap, &monsterS7);
 				break;
 			default:
@@ -993,14 +983,23 @@ namespace game_framework
 			currentStage = stage_game_complete;
 			isStageChanged = true;
 		}
-		if (nChar == KEY_P) {
-			propsBook.loseAllProps();
+		if (nChar == KEY_P)
+		{
+			if (!isCheatPropsOn)
+			{
+				propsBook.getAllProps();
+				isCheatPropsOn = true;
+			}
+			else
+			{
+				propsBook.loseAllProps();
+				isCheatPropsOn = false;
+			}
 		}
 		if (nChar == KEY_G)
 		{
 			character.SetCurrentHp(0);
 			stopAllBgm();
-
 		}
 		if (nChar == KEY_1)
 		{

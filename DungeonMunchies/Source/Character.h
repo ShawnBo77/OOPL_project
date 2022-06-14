@@ -71,6 +71,7 @@ namespace game_framework
 
 		void restoreCurrentHp(int n);           // 恢復目前血量
 		void lossCurrentHp(int n);              // 損血
+		void hpLimit();
 
 		bool isIntersect(int lX, int rX, int tY, int bY); //看物體是否和角色重疊
 

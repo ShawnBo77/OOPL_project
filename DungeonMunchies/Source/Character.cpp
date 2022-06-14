@@ -452,6 +452,7 @@ namespace game_framework
 
 	void Character::OnShow(Map* m)
 	{
+		hpLimit();
 		BloodShow();
 		ScreenCXY(m);
 
@@ -1207,15 +1208,15 @@ namespace game_framework
 
 	void Character::EatGrassFast(bool flag)
 	{
-		isGrassFast = flag;
-		if (flag)
+		if (flag && !isGrassFast)
 		{
 			ChangeSpeed(1.4);
 		}
-		else
+		else if(!flag && isGrassFast)
 		{
 			ChangeSpeed(0.72);
 		}
+		isGrassFast = flag;
 	}
 
 	void Character::ChangeSpeed(double m)
@@ -1225,15 +1226,15 @@ namespace game_framework
 
 	void Character::EatShrimpBlood(bool flag)
 	{
-		isShrimpBlood = flag;
-		if (flag)
+		if (flag && !isShrimpBlood)
 		{
 			maxHp += 20;
 		}
-		else
+		else if(!flag && isShrimpBlood)
 		{
 			maxHp -= 20;
 		}
+		isShrimpBlood = flag;
 	}
 
 	void Character::addMaxHp(int blood)
@@ -1256,7 +1257,7 @@ namespace game_framework
 		else
 		{
 			healBloodTimer.Finish();
-			if (healBloodTimer.GetTime() / CLOCKS_PER_SEC > 10)
+			if (healBloodTimer.GetTime() >= 10 * CLOCKS_PER_SEC)
 			{
 				restoreCurrentHp(3);
 				healBloodTimer.Start();
@@ -1266,25 +1267,25 @@ namespace game_framework
 
 	void Character::EatBananaAttack(bool flag)
 	{
-		isBananaAttack = flag;
-		if (flag)
+		if (flag && !isBananaAttack)
 		{
 			attackDamage += 3;
 		}
-		else
+		else if(!flag && isBananaAttack)
 		{
 			attackDamage -= 3;
 		}
+		isBananaAttack = flag;
 	}
 
 	void Character::EatShrimpAttack(bool flag)
 	{
-		if (flag)
+		if (flag && !isShrimpAttack)
 		{
 			isShrimpAttack = true;
 			ShrimpAttackTimer.Start();
 		}
-		else
+		else if (!flag && isShrimpAttack)
 		{
 			isShrimpAttack = false;
 		}
@@ -1395,6 +1396,13 @@ namespace game_framework
 		isSparkleEffectShow = true;
 		sparkleEffectTimer.Start();
 		isSparkleEffectTimerStart = true;
+	}
+
+	void Character::hpLimit()
+	{
+		if (currentHp > maxHp) {
+			currentHp = maxHp;
+		}
 	}
 
 	bool Character::isIntersect(int lX, int rX, int tY, int bY)

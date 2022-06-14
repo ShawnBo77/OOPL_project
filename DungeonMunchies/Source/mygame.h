@@ -165,12 +165,13 @@ namespace game_framework
 
 		bool messageShowFlag;
 
-
 		CPoint mousePosition;
 		CMovingBitmap lightBulb;
 		CMovingBitmap gameComplete;
 		bool gameCompleteFlag;
 		bool isStageChanged; //for bmgPlayer
+
+		bool isCheatPropsOn;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

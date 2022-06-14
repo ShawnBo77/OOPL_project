@@ -308,7 +308,6 @@ namespace game_framework
 
 	void PropsBook::loseAllProps()
 	{
-		getAllProps();
 		propStorage->getProp(mosquito_jump_p)->setPropFlag(false);
 		propStorage->getProp(mosquito_jump_p)->effect(_character, false);
 
