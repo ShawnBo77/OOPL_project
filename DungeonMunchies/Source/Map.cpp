@@ -27,6 +27,10 @@ namespace game_framework
 	{
 		return startX;
 	}
+	int Map::getFinalPosition()
+	{
+		return finalX;
+	}
 	void Map::setSX(int x)
 	{
 		sx = x;

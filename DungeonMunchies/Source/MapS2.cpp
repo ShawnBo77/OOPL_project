@@ -20,6 +20,8 @@ namespace game_framework
         Y = 20;
         gridW = 20;
         gridH = 20;
+        startX = 100;
+        finalX = 3390;
         setFloor(540);
         setCeiling(0);
         setMonsterFloor(540);
@@ -39,7 +41,13 @@ namespace game_framework
                 mapGrid_init[i][j] = 0;
             }
         }
-
+        for (int i = 0; i < 10; i++)
+        {
+            for (int j = 0; j < 27; j++)
+            {
+                mapGrid_init[i][j] = 2;
+            }
+        }
         for (int i = 11; i < 26; i++)
         {
             mapGrid_init[i][34] = 6;
@@ -123,7 +131,6 @@ namespace game_framework
         setScreenMoving(true);
         setMapName("MapS2");
         setCeiling(0);
-        setStartPosition(100);
         previousFloor = 0;
         targetSY = 0;
         screenUp = screenDown = false;
@@ -198,9 +205,13 @@ namespace game_framework
 
         if (getPortalOpen())
         {
-            exitBitmap.SetTopLeft(3470 + getSX(), 300);
+            if (characterX < 1000)
+                exitBitmap.SetTopLeft(150 + getSX(), 245);
+            else
+                exitBitmap.SetTopLeft(3470 + getSX(), 300);
+
+            pressEBitmap.SetTopLeft(600, 615);
             exitBitmap.ShowBitmap();
-            pressEBitmap.SetTopLeft(600, 1170 + getSY());
             pressEBitmap.ShowBitmap();
         }
     }

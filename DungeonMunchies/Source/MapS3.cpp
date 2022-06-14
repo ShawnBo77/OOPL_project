@@ -20,6 +20,8 @@ namespace game_framework
         Y = 20;
         gridW = 20;
         gridH = 20;
+        startX = 200;
+        finalX = 4350;
         setFloor(610);
         setCeiling(0);
         setMonsterFloor(610);
@@ -46,6 +48,13 @@ namespace game_framework
                 mapGrid_init[i][j] = 0;
             }
         }
+        for (int i = 0; i < 91; i++)
+        {
+            for (int j = 31; j < 70; j++)
+            {
+                mapGrid_init[i][j] = 0;
+            }
+        }
         for (int i = 0; i < 2; i++)
         {
             for (int j = 0; j < 70; j++)
@@ -53,9 +62,16 @@ namespace game_framework
                 mapGrid_init[i][j] = 0;
             }
         }
+        for (int i = 2; i < 12; i++)
+        {
+            for (int j = 18; j < 31; j++)
+            {
+                mapGrid_init[i][j] = 2;
+            }
+        }
         for (int i = 27; i < 91; i++)
         {
-            for (int j = 25; j < 70; j++)
+            for (int j = 25; j < 31; j++)
             {
                 mapGrid_init[i][j] = 0;
             }
@@ -63,6 +79,13 @@ namespace game_framework
         for (int i = 63; i < 400; i++)
         {
             for (int j = 0; j < 11; j++)
+            {
+                mapGrid_init[i][j] = 0;
+            }
+        }
+        for (int i = 91; i < 400; i++)
+        {
+            for (int j = 33; j < 70; j++)
             {
                 mapGrid_init[i][j] = 0;
             }
@@ -136,7 +159,6 @@ namespace game_framework
         setScreenMoving(true);
         setMapName("MapS3");
         setCeiling(0);
-        setStartPosition(100);
         previousFloor = 0;
         trashCanOpen = false;
         screenUp = screenDown = false;
@@ -219,11 +241,16 @@ namespace game_framework
 
         if (getPortalOpen())
         {
-            exitBitmap.SetTopLeft(4345 + getSX(), 400);
-            exitBitmap.ShowBitmap();
+            if (characterX < 500)
+                exitBitmap.SetTopLeft(100 + getSX(), 370);
+            else
+                exitBitmap.SetTopLeft(4345 + getSX(), 400);
+
             pressEBitmap.SetTopLeft(600, 940 + getSY());
+            exitBitmap.ShowBitmap();
             pressEBitmap.ShowBitmap();
         }
+
         if (getCraftTableOpen())
         {
             craftingBitmap.SetTopLeft(3880 + getSX(), 280);

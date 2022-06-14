@@ -20,6 +20,8 @@ namespace game_framework
 		Y = 40;
 		gridW = 40;
 		gridH = 40;
+		startX = 335;
+		finalX = 2450;
 		setFloor(680);
 		setMonsterFloor(680);
 		int mapGrid_init[100][18];
@@ -106,7 +108,6 @@ namespace game_framework
 		setInitialXY(-410, -320);
 		setScreenMoving(true);
 		setMapName("MapS1");
-		setStartPosition(335);
 		messageCode = 0;
 		canShowMessage = false;
 		showMaginifierFlag = false;

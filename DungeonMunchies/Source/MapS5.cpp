@@ -20,6 +20,8 @@ namespace game_framework
         Y = 20;
         gridW = 20;
         gridH = 20;
+        startX = 300;
+        finalX = 3250;
         setFloor(517);
         setCeiling(0);
         setMonsterFloor(517);
@@ -189,7 +191,6 @@ namespace game_framework
         setScreenMoving(true);
         setMapName("MapS5");
         setCeiling(0);
-        setStartPosition(100);
         trashCanOpen = false;
         previousFloor = 0;
         targetSY = 0;
@@ -332,19 +333,6 @@ namespace game_framework
             else
             {
                 screenUp = false;
-                addSY(getSY() - y);
-            }
-        }
-
-        if (screenUp)
-        {
-            if (getSY() - 20 > y)
-            {
-                addSY(-20);
-            }
-            else
-            {
-                screenUp = false;
                 addSY(y - getSY());
             }
         }
@@ -364,18 +352,14 @@ namespace game_framework
 
     void MapS5::monsterFloorChanging(int x)
     {
-        if (x < 1750)
-        {
-            setMonsterFloor(640);
-        }
-        else if (x < 2500)
-        {
-            setMonsterFloor(560);
-        }
+        if (characterX < 920)
+            setFloor(1317);
+        else if (characterX < 1875)
+            setFloor(1217);
+        else if (characterX < 2625)
+            setFloor(1287);
         else
-        {
-            setMonsterFloor(880);
-        }
+            setFloor(1217);
     }
 
     void MapS5::characterFloorAndCeiling()
