@@ -281,50 +281,76 @@ namespace game_framework
 
 	void PropsBook::getAllProps()
 	{
-		propStorage->getProp(mosquito_jump_p)->setPropFlag(true);
-		propStorage->getProp(mosquito_jump_p)->effect(_character, true);
-		propList.push_back(mosquito_jump_p);
-
-		propStorage->getProp(shrimp_blood_p)->setPropFlag(true);
-		propStorage->getProp(shrimp_blood_p)->effect(_character, true);
-		propList.push_back(shrimp_blood_p);
-
-		propStorage->getProp(grass_fast_p)->setPropFlag(true);
-		propStorage->getProp(grass_fast_p)->effect(_character, true);
-		propList.push_back(grass_fast_p);
-
-		propStorage->getProp(banana_attack_p)->setPropFlag(true);
-		propStorage->getProp(banana_attack_p)->effect(_character, true);
-		propList.push_back(banana_attack_p);
-
-		propStorage->getProp(shrimp_attack_p)->setPropFlag(true);
-		propStorage->getProp(shrimp_attack_p)->effect(_character, true);
-		propList.push_back(shrimp_attack_p);
-
-		propStorage->getProp(guava_juice_blood_p)->setPropFlag(true);
-		propStorage->getProp(guava_juice_blood_p)->effect(_character, true);
-		propList.push_back(guava_juice_blood_p);
+		if (!propStorage->getProp(mosquito_jump_p)->getPropFlag())
+		{
+			propStorage->getProp(mosquito_jump_p)->setPropFlag(true);
+			propStorage->getProp(mosquito_jump_p)->effect(_character, true);
+			propList.push_back(mosquito_jump_p);
+		}
+		if (!propStorage->getProp(shrimp_blood_p)->getPropFlag())
+		{
+			propStorage->getProp(shrimp_blood_p)->setPropFlag(true);
+			propStorage->getProp(shrimp_blood_p)->effect(_character, true);
+			propList.push_back(shrimp_blood_p);
+		}
+		if (!propStorage->getProp(grass_fast_p)->getPropFlag())
+		{
+			propStorage->getProp(grass_fast_p)->setPropFlag(true);
+			propStorage->getProp(grass_fast_p)->effect(_character, true);
+			propList.push_back(grass_fast_p);
+		}
+		if (!propStorage->getProp(banana_attack_p)->getPropFlag())
+		{
+			propStorage->getProp(banana_attack_p)->setPropFlag(true);
+			propStorage->getProp(banana_attack_p)->effect(_character, true);
+			propList.push_back(banana_attack_p);
+		}
+		if (!propStorage->getProp(shrimp_attack_p)->getPropFlag())
+		{
+			propStorage->getProp(shrimp_attack_p)->setPropFlag(true);
+			propStorage->getProp(shrimp_attack_p)->effect(_character, true);
+			propList.push_back(shrimp_attack_p);
+		}
+		if (!propStorage->getProp(guava_juice_blood_p)->getPropFlag())
+		{
+			propStorage->getProp(guava_juice_blood_p)->setPropFlag(true);
+			propStorage->getProp(guava_juice_blood_p)->effect(_character, true);
+			propList.push_back(guava_juice_blood_p);
+		}
 	}
 
 	void PropsBook::loseAllProps()
 	{
-		propStorage->getProp(mosquito_jump_p)->setPropFlag(false);
-		propStorage->getProp(mosquito_jump_p)->effect(_character, false);
-
-		propStorage->getProp(shrimp_blood_p)->setPropFlag(false);
-		propStorage->getProp(shrimp_blood_p)->effect(_character, false);
-
-		propStorage->getProp(grass_fast_p)->setPropFlag(false);
-		propStorage->getProp(grass_fast_p)->effect(_character, false);
-
-		propStorage->getProp(banana_attack_p)->setPropFlag(false);
-		propStorage->getProp(banana_attack_p)->effect(_character, false);
-
-		propStorage->getProp(shrimp_attack_p)->setPropFlag(false);
-		propStorage->getProp(shrimp_attack_p)->effect(_character, false);
-
-		propStorage->getProp(guava_juice_blood_p)->setPropFlag(false);
-		propStorage->getProp(guava_juice_blood_p)->effect(_character, false);
+		if (propStorage->getProp(mosquito_jump_p)->getPropFlag())
+		{
+			propStorage->getProp(mosquito_jump_p)->setPropFlag(false);
+			propStorage->getProp(mosquito_jump_p)->effect(_character, false);
+		}
+		if (propStorage->getProp(shrimp_blood_p)->getPropFlag())
+		{
+			propStorage->getProp(shrimp_blood_p)->setPropFlag(false);
+			propStorage->getProp(shrimp_blood_p)->effect(_character, false);
+		}
+		if (propStorage->getProp(grass_fast_p)->getPropFlag())
+		{
+			propStorage->getProp(grass_fast_p)->setPropFlag(false);
+			propStorage->getProp(grass_fast_p)->effect(_character, false);
+		}
+		if (propStorage->getProp(banana_attack_p)->getPropFlag())
+		{
+			propStorage->getProp(banana_attack_p)->setPropFlag(false);
+			propStorage->getProp(banana_attack_p)->effect(_character, false);
+		}
+		if (propStorage->getProp(shrimp_attack_p)->getPropFlag())
+		{
+			propStorage->getProp(shrimp_attack_p)->setPropFlag(false);
+			propStorage->getProp(shrimp_attack_p)->effect(_character, false);
+		}
+		if (propStorage->getProp(guava_juice_blood_p)->getPropFlag())
+		{
+			propStorage->getProp(guava_juice_blood_p)->setPropFlag(false);
+			propStorage->getProp(guava_juice_blood_p)->effect(_character, false);
+		}
 
 		propList.erase(propList.begin(), propList.end());
 	}
