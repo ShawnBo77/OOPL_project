@@ -418,7 +418,7 @@ namespace game_framework
 
 		if (isInvincible)
 		{
-			invincibleTimer.CaculateTimeForFalse(&isInvincible, 0.5);
+			invincibleTimer.CaculateTimeForFalse(&isInvincible, 0.3);
 		}
 
 		if (isShrimpAttack && !shrimpAttack)
@@ -901,7 +901,7 @@ namespace game_framework
 	void Character::SetRolling(bool flag)
 	{
 		rollingTimer.Finish();
-		if (GetIsOnTheFloor() && rollingTimer.GetTime() > 1000)
+		if (GetIsOnTheFloor() && rollingTimer.GetTime() > 100)
 		{
 			rolling_time = 5;
 			isRolling = true;
@@ -923,6 +923,7 @@ namespace game_framework
 		isInvincible = true;
 		invincibleTimer.Start();
 		const int ROLLING_SIZE = 2;											//¨¤¦âÂ½ºu¶ZÂ÷
+		const int ROLLING_LENGTH = 11;											//¨¤¦âÂ½ºu¶ZÂ÷
 		const int BORDER = 5;
 		if (flag)
 		{
@@ -930,7 +931,7 @@ namespace game_framework
 			{
 				if (characterX <= 670)
 				{
-					for (int i = 0; i < 10; i++)
+					for (int i = 0; i < ROLLING_LENGTH; i++)
 					{
 						if (m->isEmpty(GetRightX() + ROLLING_SIZE, GetTopY()) && m->isEmpty(GetRightX() + ROLLING_SIZE, GetBottomY() - BORDER))
 						{
@@ -957,7 +958,7 @@ namespace game_framework
 				}
 				else
 				{
-					for (int i = 0; i < 10; i++)
+					for (int i = 0; i < ROLLING_LENGTH; i++)
 					{
 						if (m->isEmpty(GetRightX() + ROLLING_SIZE, GetTopY()) && m->isEmpty(GetRightX() + ROLLING_SIZE, GetBottomY() - BORDER))
 						{
@@ -985,7 +986,7 @@ namespace game_framework
 			{
 				if (characterX <= 670 || GetMap()->mapScreenMoving() == false)
 				{
-					for (int i = 0; i < 10; i++)
+					for (int i = 0; i < ROLLING_LENGTH; i++)
 					{
 						if (m->isEmpty(GetLeftX() - ROLLING_SIZE, GetTopY()) && m->isEmpty(GetLeftX() - ROLLING_SIZE, GetBottomY() - BORDER))
 							characterX -= ROLLING_SIZE;
@@ -995,7 +996,7 @@ namespace game_framework
 				}
 				else
 				{
-					for (int i = 0; i < 10; i++)
+					for (int i = 0; i < ROLLING_LENGTH; i++)
 					{
 						if (m->isEmpty(GetLeftX() - ROLLING_SIZE, GetTopY()) && m->isEmpty(GetLeftX() - ROLLING_SIZE, GetBottomY() - BORDER))
 						{
