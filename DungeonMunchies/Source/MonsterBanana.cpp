@@ -50,7 +50,7 @@ namespace game_framework
 		_x = init_x;
 		_y = init_y;
 		currentFloor = 0;
-		hp = 50;
+		hp = 1;
 		attackDamage = 5;
 		bloodBar.setFullHP(hp);
 		hasGottenSource = false;

@@ -531,15 +531,10 @@ namespace game_framework
 	CGameStateRun::CGameStateRun(CGame* g)
 		: CGameState(g)
 	{
-		//ball = new CBall [NUMBALLS];
-		//monsterS1.push_back(new MonsterShrimp(700, 500, &character));
-		//monsterS1.push_back(new MonsterTree(1900, 400, &character));
-		//monsterS1.push_back(new MonsterCactus(1500, 500, &character));
-		//monsterS1.push_back(new MonsterBanana(800, 400, &character));
-
+		monsterS2.push_back(new MonsterCactus(1070, 325, &character));
+		monsterS2.push_back(new MonsterCactus(1330, 325, &character));
 		monsterS2.push_back(new MonsterBanana(2650, 400, &character));
 
-		//monsterS3.push_back(new MonsterBanana(300, 400, &character));
 		monsterS3.push_back(new MonsterMosquito(550, 170, &character));
 		monsterS3.push_back(new MonsterMosquito(610, 210, &character));
 		monsterS3.push_back(new MonsterMosquito(660, 150, &character));
@@ -549,14 +544,33 @@ namespace game_framework
 		monsterS3.push_back(new MonsterMosquito(980, 230, &character));
 		monsterS3.push_back(new MonsterMosquito(1020, 190, &character));
 
-		//monsterS3.push_back(new MonsterCactus(1275, 400, &character));
-		//monsterS3.push_back(new MonsterCactus(1355, 400, &character));
-		//monsterS3.push_back(new MonsterCactusMutation(1435, 400, &character));
-		//monsterS3.push_back(new MonsterCactus(1515, 400, &character));
-		//monsterS3.push_back(new MonsterCactus(1595, 400, &character));
-		//monsterS3.push_back(new MonsterCactus(1000, 400, &character));
+		monsterS4.push_back(new MonsterTree(600, 400, &character));
+		monsterS4.push_back(new MonsterTree(1100, 350, &character));
+		monsterS4.push_back(new MonsterCactus(2530, 400, &character));
+		monsterS4.push_back(new MonsterCactus(2610, 400, &character));
+		monsterS4.push_back(new MonsterCactusMutation(2690, 400, &character));
+		monsterS4.push_back(new MonsterCactus(2770, 400, &character));
+		monsterS4.push_back(new MonsterCactus(2850, 400, &character));
+		monsterS4.push_back(new MonsterCactus(2930, 400, &character));
 
-		//monsterS3.push_back(new MonsterTree(2000, 400, &character));
+		monsterS5.push_back(new MonsterTree(1270, 300, &character));
+		monsterS5.push_back(new MonsterTree(1400, 300, &character));
+		monsterS5.push_back(new MonsterTree(1520, 300, &character));
+		monsterS5.push_back(new MonsterShrimp(1930, 400, &character));
+		monsterS5.push_back(new MonsterShrimp(1980, 400, &character));
+		monsterS5.push_back(new MonsterShrimp(2360, 400, &character));
+		monsterS5.push_back(new MonsterShrimp(2450, 400, &character));
+
+		monsterS6.push_back(new MonsterMosquito(900, 400, &character));
+		monsterS6.push_back(new MonsterMosquito(1200, 350, &character));
+		monsterS6.push_back(new MonsterMosquito(1500, 460, &character));
+		monsterS6.push_back(new MonsterShrimp(1000, 400, &character));
+		monsterS6.push_back(new MonsterShrimp(1400, 400, &character));
+		monsterS6.push_back(new MonsterShrimp(1550, 400, &character));
+		monsterS6.push_back(new MonsterShrimp(1860, 400, &character));
+		monsterS6.push_back(new MonsterTree(2300, 400, &character));
+		monsterS6.push_back(new MonsterTree(2450, 400, &character));
+		monsterS6.push_back(new MonsterTree(2600, 400, &character));
 
 		monsterS7.push_back(new MonsterBoss(900, 280, &character));
 	}

@@ -24,7 +24,7 @@ namespace game_framework
         finalX = 3250;
         setFloor(517);
         setCeiling(0);
-        setMonsterFloor(517);
+        setMonsterFloor(0);
         int mapGrid_init[400][70];
         for (int i = 2; i < 400; i++)
         {
@@ -357,14 +357,14 @@ namespace game_framework
 
     void MapS5::monsterFloorChanging(int x)
     {
-        if (characterX < 920)
-            setFloor(1317);
-        else if (characterX < 1875)
-            setFloor(1217);
-        else if (characterX < 2625)
-            setFloor(1287);
+        if (x < 920)
+            setMonsterFloor(1317);
+        else if (x < 1875)
+            setMonsterFloor(1217);
+        else if (x < 2625)
+            setMonsterFloor(1290);
         else
-            setFloor(1217);
+            setMonsterFloor(1217);
     }
 
     void MapS5::characterFloorAndCeiling()

@@ -270,7 +270,7 @@ namespace game_framework
     {
         if (x < 1750)
         {
-            setMonsterFloor(640);
+            setMonsterFloor(435);
         }
         else if (x < 2500)
         {
