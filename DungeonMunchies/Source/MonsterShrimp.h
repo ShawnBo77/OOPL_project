@@ -34,8 +34,7 @@ namespace game_framework
 		CMovingBitmap deadRight;
 		CMovingBitmap sourceShrimpAttack;
 		CMovingBitmap sourceShrimpBlood;
-		int randN;
-		
+		int randN;		
 	};
 }
 #endif 

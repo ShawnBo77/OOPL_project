@@ -109,6 +109,7 @@ namespace game_framework
 
 		Action action;
 		int STEP_SIZE;              // 移動速度
+		int walkLength;
 		//int RelativeMovement;              // 移動速度
 		int BORDER;	
 		bool isMovingLeft;			// 是否正在往左移動
@@ -120,6 +121,7 @@ namespace game_framework
 		bool isAttacking;           // 是否正在攻擊
 		Timer attackCDTime;
 		bool attackCD;
+		int attackDelayCount;
 
 		Timer isAttackedTimer;
 		bool isAttacked;			// 是否受到攻擊

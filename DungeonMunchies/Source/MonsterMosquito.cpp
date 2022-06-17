@@ -59,7 +59,7 @@ namespace game_framework
 		bloodBar.setFullHP(hp);
 		STEP_SIZE = 5;
 		velocity = 0;
-		lightBulbInside = 20;
+		lightBulbInside = 2;
 		hasGottenLightBulb = false;
 		hasGottenSource = false;
 		flyCase = 2;
@@ -71,6 +71,12 @@ namespace game_framework
 
 	void MonsterMosquito::OnMove(Map* m)
 	{
+		if (isViolent && !haveSetViolent)
+		{
+			hp = 200;
+			attackDamage = 5;
+			haveSetViolent = true;
+		}
 		if (!m == NULL)
 		{
 			m->monsterFloorChanging((GetLeftX() + GetRightX()) / 2);

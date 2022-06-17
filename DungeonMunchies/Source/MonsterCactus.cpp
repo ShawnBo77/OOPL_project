@@ -134,6 +134,12 @@ namespace game_framework
 
 	void MonsterCactus::OnMove(Map* m)
 	{
+		if (isViolent && !haveSetViolent)
+		{
+			hp = 1000;
+			attackDamage = 1;
+			haveSetViolent = true;
+		}
 		if (!m == NULL)
 		{
 			m->monsterFloorChanging(GetLeftX());

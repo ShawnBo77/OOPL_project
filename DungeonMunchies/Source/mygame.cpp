@@ -545,7 +545,7 @@ namespace game_framework
 		monsterS3.push_back(new MonsterMosquito(1020, 190, &character));
 
 		monsterS4.push_back(new MonsterTree(600, 400, &character));
-		monsterS4.push_back(new MonsterTree(1100, 350, &character));
+		monsterS4.push_back(new MonsterTree(350, 350, &character));
 		monsterS4.push_back(new MonsterCactus(2530, 400, &character));
 		monsterS4.push_back(new MonsterCactus(2610, 400, &character));
 		monsterS4.push_back(new MonsterCactusMutation(2690, 400, &character));
@@ -833,6 +833,10 @@ namespace game_framework
 						mapS2.Initialize();
 						character.SetXY(mapS2.getStartPosition(), 100);
 						currentStage = stage_2;
+						for (int i = 0; i < (signed)monsterS2.size(); i++)
+						{
+							monsterS2[i]->SetIsViolent(true);
+						}
 						break;
 					case stage_2:
 						if (character.GetLeftX() < 1500)
@@ -854,6 +858,10 @@ namespace game_framework
 							mapS2.setXY(-2820, -550);
 							character.SetXY(mapS2.getFinalPosition(), 100);
 							currentStage = stage_2;
+							for (int i = 0; i < (signed)monsterS2.size(); i++)
+							{
+								monsterS2[i]->SetIsViolent(true);
+							}
 						}
 						else
 						{
@@ -874,6 +882,9 @@ namespace game_framework
 							mapS5.Initialize();
 							character.SetXY(mapS5.getStartPosition(), 100);
 							currentStage = stage_5;
+							monsterS5[0]->SetIsViolent(true);
+							monsterS5[1]->SetIsViolent(true);
+							monsterS5[2]->SetIsViolent(true);
 						}
 						break;
 					case stage_5:
@@ -895,6 +906,10 @@ namespace game_framework
 							mapS6.Initialize();
 							character.SetXY(mapS6.getStartPosition(), 100);
 							currentStage = stage_6;
+							for (int i = 0; i < (signed)monsterS6.size(); i++)
+							{
+								monsterS6[i]->SetIsViolent(true);
+							}
 						}
 						break;
 					case stage_6:
@@ -903,6 +918,9 @@ namespace game_framework
 							mapS5.setXY(-2515, -800);
 							character.SetXY(mapS5.getFinalPosition(), 100);
 							currentStage = stage_5;
+							monsterS5[0]->SetIsViolent(true);
+							monsterS5[1]->SetIsViolent(true);
+							monsterS5[2]->SetIsViolent(true);
 						}
 						else
 						{
@@ -1035,6 +1053,10 @@ namespace game_framework
 			character.SetXY(mapS2.getStartPosition(), 100);
 			currentStage = stage_2;
 			isStageChanged = true;
+			for (int i = 0; i < (signed)monsterS2.size(); i++)
+			{
+				monsterS2[i]->SetIsViolent(true);
+			}
 		}
 		if (nChar == KEY_3)
 		{
@@ -1065,6 +1087,9 @@ namespace game_framework
 			character.SetXY(mapS5.getStartPosition(), 100);
 			currentStage = stage_5;
 			isStageChanged = true;
+			monsterS5[0]->SetIsViolent(true);
+			monsterS5[1]->SetIsViolent(true);
+			monsterS5[2]->SetIsViolent(true);
 		}
 		if (nChar == KEY_6)
 		{
@@ -1075,6 +1100,10 @@ namespace game_framework
 			character.SetXY(mapS6.getStartPosition(), 100);
 			currentStage = stage_6;
 			isStageChanged = true;
+			for (int i = 0; i < (signed)monsterS6.size(); i++)
+			{
+				monsterS6[i]->SetIsViolent(true);
+			}
 		}
 		if (nChar == KEY_7)
 		{

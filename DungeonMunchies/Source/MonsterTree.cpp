@@ -87,13 +87,15 @@ namespace game_framework
 		currentFloor = 0;
 		BORDER = 5;
 		hp = 50;
-		attackDamage = 5;
+		attackDamage = 8;
+		attackDelayCount = 4;
 		facingLR = 0;
 		action = sleep_a;
 		bloodBar.setFullHP(hp);
-		STEP_SIZE = 5;
+		STEP_SIZE = 2;
+		walkLength = 2;
 		velocity = 0;
-		lightBulbInside = 25;
+		lightBulbInside = 15;
 		hasGottenLightBulb = false;
 		hasGottenSource = false;
 		canStandOn = true;
@@ -127,7 +129,7 @@ namespace game_framework
 					else
 					{
 						attackLeft.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
-						attackLeft.SetDelayCount(3);
+						attackLeft.SetDelayCount(attackDelayCount);
 						attackLeft.OnShow();
 						if (attackLeft.GetCurrentBitmapNumber() == 4)
 						{
@@ -155,7 +157,7 @@ namespace game_framework
 					else
 					{
 						attackRight.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
-						attackRight.SetDelayCount(3);
+						attackRight.SetDelayCount(attackDelayCount);
 						attackRight.OnShow();
 						if (attackRight.GetCurrentBitmapNumber() == 4)
 						{
@@ -200,6 +202,14 @@ namespace game_framework
 
 	void MonsterTree::OnMove(Map* m)
 	{
+		if (isViolent && !haveSetViolent)
+		{
+			hp = 220;
+			attackDamage = 15;
+			attackDelayCount = 3;
+			walkLength = 4;
+			haveSetViolent = true;
+		}
 		if (!m == NULL)
 		{
 			m->monsterFloorChanging(GetLeftX());
@@ -240,13 +250,15 @@ namespace game_framework
 			}
 			else if (distanceToCharacter() < 280 && action == walk_a)
 			{
-				if (characterDirectionLR == 0 && (GetLeftX() - STEP_SIZE + BORDER) >= character->GetRightX() && m->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetBottomY()))
-				{
-					_x -= STEP_SIZE;
-				}
-				else if (characterDirectionLR == 1 && (GetRightX() + STEP_SIZE - BORDER - 5) <= character->GetLeftX() && m->isEmpty(GetRightX() + STEP_SIZE + BORDER, GetBottomY()))
-				{
-					_x += STEP_SIZE;
+				for (int i = 0; i < walkLength; i++) {
+					if (characterDirectionLR == 0 && (GetLeftX() - STEP_SIZE + BORDER) >= character->GetRightX() && m->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetBottomY()))
+					{
+						_x -= STEP_SIZE;
+					}
+					else if (characterDirectionLR == 1 && (GetRightX() + STEP_SIZE - BORDER - 5) <= character->GetLeftX() && m->isEmpty(GetRightX() + STEP_SIZE + BORDER, GetBottomY()))
+					{
+						_x += STEP_SIZE;
+					}
 				}
 			}
 			attackCDTime.CaculateTimeForFalse(&attackCD, 3);
