@@ -78,8 +78,8 @@ namespace game_framework
 				character->GetLeftX() <= GetLeftX() && character->GetRightX() >= GetRightX() || //角色比怪物寬
 				character->GetRightX() <= GetRightX() && character->GetLeftX() >= GetLeftX()) && //怪物比角色寬
 				((character->GetBottomY() >= GetTopY() && character->GetBottomY() <= GetBottomY()) || //角色下方碰到怪物
-				(character->GetTopY() >= GetTopY() && character->GetTopY() <= GetBottomY())))
-			{ 
+					(character->GetTopY() >= GetTopY() && character->GetTopY() <= GetBottomY())))
+			{
 				isIntersect = true;
 				if (!character->GetIsInvincible())
 				{
@@ -156,16 +156,6 @@ namespace game_framework
 		_x = x;
 		_y = y;
 	}
-
-	//void Monster::SetRelativeMovement(int x)
-	//{
-	//	RelativeMovement += x;
-	//}
-
-	//int Monster::GetRelativeMovementY(Map* m)
-	//{
-	//	return init_sy - m->getSY();
-	//}
 
 	int Monster::GetBorder()
 	{
@@ -386,7 +376,7 @@ namespace game_framework
 		}
 	}
 
-	void Monster::isAttackedEffectOnShow(Map *m)
+	void Monster::isAttackedEffectOnShow(Map* m)
 	{
 		black.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
 		black.ShowBitmap();
@@ -451,10 +441,12 @@ namespace game_framework
 		if (character->isIntersect((GetLeftX() + GetRightX()) / 2, (GetLeftX() + GetRightX()) / 2 + 64, currentFloor - 64, currentFloor))
 		{
 			hasGottenSource = true;
-			if (sourceCase == green_sword_s) {
+			if (sourceCase == green_sword_s)
+			{
 				character->characterHasSword(true);
 			}
-			else {
+			else
+			{
 				character->GetSourceStorage()->add(sourceCase);
 			}
 		}

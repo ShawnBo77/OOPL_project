@@ -11,7 +11,6 @@
 #include "BloodBar.h"
 #include "Monster.h"
 #include "MonsterBoss.h"
-#include "Util.h"
 
 namespace game_framework
 {
@@ -150,7 +149,8 @@ namespace game_framework
 	{
 		if (isAlive())
 		{
-			if (isViolent && !haveSetViolent) {
+			if (isViolent && !haveSetViolent)
+			{
 				hitDamage = 20;
 				hitDelayCount = 5;
 				attackDamage = 20;
@@ -250,23 +250,6 @@ namespace game_framework
 				deadOnShow(m);
 			}
 		}
-		//showData();
-	}
-
-	void MonsterBoss::showData()
-	{
-		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
-		CFont f, * fp;
-		f.CreatePointFont(120, "Times New Roman");	// 產生 font f; 160表示16 point的字
-		fp = pDC->SelectObject(&f);					// 選用 font f
-		pDC->SetBkColor(RGB(230, 220, 200));
-		pDC->SetTextColor(RGB(0, 0, 0));
-		char position[500];								// Demo 數字對字串的轉換
-		sprintf(position, "BossLeftX:%d BossRightX:%d BossTopY:%d BossBottomY:%d hitTimer:(%d, %d) distanceToCharacter:%d hpProportion:%f",
-			GetLeftX(), GetRightX(), GetTopY(), GetBottomY(), hitCDTimer.GetStartTime(), hitCDTimer.GetFinishTime(), distanceToCharacter(), hpProportion());
-		pDC->TextOut(200, 100, position);
-		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
-		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
 
 	int MonsterBoss::GetLeftX()

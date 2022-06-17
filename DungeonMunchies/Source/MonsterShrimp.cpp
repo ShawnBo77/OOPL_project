@@ -11,8 +11,6 @@
 #include "BloodBar.h"
 #include "Monster.h"
 #include "MonsterShrimp.h"
-#include "Util.h"
-#include <time.h>
 
 namespace game_framework
 {
@@ -184,7 +182,6 @@ namespace game_framework
 				}
 			}
 		}
-		//showData();
 	}
 
 	void MonsterShrimp::OnMove(Map* m)
@@ -230,7 +227,8 @@ namespace game_framework
 			}
 			else if (distanceToCharacter() < 280 && action == walk_a)
 			{
-				for (int i = 0; i < walkLength; i++) {
+				for (int i = 0; i < walkLength; i++)
+				{
 					if (characterDirectionLR == 0 && (GetLeftX() - STEP_SIZE + BORDER) >= character->GetRightX() && m->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetBottomY() - BORDER))
 					{
 						_x -= STEP_SIZE;
@@ -306,27 +304,6 @@ namespace game_framework
 	int MonsterShrimp::GetBottomY()
 	{
 		return _y + walkLeft.Height();
-	}
-
-	void MonsterShrimp::showData()
-	{
-		int CharacterLeftX = character->GetLeftX();
-		int CharacterRightX = character->GetRightX();
-		int CharacterTopY = character->GetTopY();
-		int CharacterBottomY = character->GetBottomY();
-		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
-		CFont f, * fp;
-		f.CreatePointFont(120, "Times New Roman");	// 產生 font f; 160表示16 point的字
-		fp = pDC->SelectObject(&f);					// 選用 font f
-		pDC->SetBkColor(RGB(230, 220, 200));
-		pDC->SetTextColor(RGB(0, 0, 0));
-		char position[500];								// Demo 數字對字串的轉換
-		sprintf(position, "ShrimpLeftX:%d ShrimpRightX:%d ShrimpTopY:%d ShrimpBottomY:%d ShrimpHp:%d"
-			, GetLeftX(), GetRightX(), GetTopY(), GetBottomY(), GetCurrentHp());
-		//sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
-		pDC->TextOut(200, 80, position);
-		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
-		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
 
 	void MonsterShrimp::attackOnMove()
