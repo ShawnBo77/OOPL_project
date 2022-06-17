@@ -1,9 +1,7 @@
 #ifndef __MONSTER__
 #define __MONSTER__
-
 #include "BloodBar.h"
 #include "Timer.h"
-
 namespace game_framework
 {
 	/////////////////////////////////////////////////////////////////////////////
@@ -13,7 +11,6 @@ namespace game_framework
 	class Map;
 	class BloodBar;
 	class SourceStorage;
-
 	class Monster
 	{
 	public:
@@ -37,10 +34,8 @@ namespace game_framework
 		// 設定Monster的座標的函式們												   //
 		/////////////////////////////////////////////////////////////////////////////
 		void SetXY(int x, int y);					// x, y座標
-		//void SetRelativeMovement(int x);					// x, y座標
-		//int GetRelativeMovementY(Map* m);					// x, y座標
 		int	GetBorder();
-		bool	GetCanStandOn();
+		bool GetCanStandOn();
 		void SetMovingDown(bool b);					//下
 		bool GetIsMovingDown();           // 回傳是否正在往上移動
 		void SetMovingUp(bool b);					//上
@@ -51,7 +46,7 @@ namespace game_framework
 		bool GetIsMovingRight();        // 回傳是否正在往右移動
 		void SetFacingLR(bool b);				//右
 		bool GetFacingLR();        // 回傳是否正在往右移動
-		
+
 		int distanceToCharacter();
 		void SetCharacterDirection();	// 設定角色相對怪物的位置(0:角色在怪物左邊或下面)
 		bool GetCharacterDirectionLR();	// 回傳角色相對怪物的位置
@@ -110,8 +105,7 @@ namespace game_framework
 		Action action;
 		int STEP_SIZE;              // 移動速度
 		int walkLength;
-		//int RelativeMovement;              // 移動速度
-		int BORDER;	
+		int BORDER;
 		bool isMovingLeft;			// 是否正在往左移動
 		bool isMovingRight;			// 是否正在往右移動
 		bool isMovingDown;

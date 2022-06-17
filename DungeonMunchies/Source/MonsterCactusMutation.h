@@ -4,10 +4,8 @@
 namespace game_framework
 {
 	/////////////////////////////////////////////////////////////////////////////
-	//這個class是怪物Cactus的物件											   //
+	//這個class是怪物CactusMutation的物件											   //
 	/////////////////////////////////////////////////////////////////////////////
-	//class Monster;
-
 	class MonsterCactusMutation :public Monster
 	{
 	public:
@@ -17,7 +15,6 @@ namespace game_framework
 		void LoadBitmap();
 		void Initialize() override;
 		void OnShow(Map* m) override;
-		void showData();
 		int  GetLeftX();				// 左上角 x 座標
 		int  GetTopY();					// 左上角 y 座標
 		int  GetRightX();				// 右下角 x 座標

@@ -6,7 +6,6 @@ namespace game_framework
 	/////////////////////////////////////////////////////////////////////////////
 	//這個class是怪物Boss的物件											   //
 	/////////////////////////////////////////////////////////////////////////////
-	//class Monster;
 	class MonsterBoss :public Monster
 	{
 	public:
@@ -17,12 +16,11 @@ namespace game_framework
 		void Initialize() override;
 		void OnMove(Map* m) override;
 		void OnShow(Map* m) override;
-		void showData();
 		int  GetLeftX();				// 左上角 x 座標
 		int  GetTopY();					// 左上角 y 座標
 		int  GetRightX();				// 右下角 x 座標
 		int  GetBottomY();				// 右下角 y 座標
-		
+
 	private:
 		/*行為*/
 		/*走路*/
@@ -56,7 +54,7 @@ namespace game_framework
 		//dead
 		void deadOnMove();
 		void deadOnShow(Map* m);
-		
+
 		CAnimation walkingRight;        // 向右行走動畫
 		CAnimation walkingLeft;         // 向左行走動畫
 		CAnimation collideRight;        // 向右衝撞動畫

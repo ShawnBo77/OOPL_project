@@ -1,13 +1,11 @@
 #ifndef __MONSTERTREE__
 #define __MONSTERTREE__
 
-#include "Timer.h"
 namespace game_framework
 {
 	/////////////////////////////////////////////////////////////////////////////
-	//這個class是怪物Shrimp的物件											   //
+	//這個class是怪物Tree的物件											   //
 	/////////////////////////////////////////////////////////////////////////////
-	//class Monster;
 	class MonsterTree :public Monster
 	{
 	public:
@@ -23,7 +21,6 @@ namespace game_framework
 		int  GetRightX();				// 右下角 x 座標
 		int  GetBottomY();				// 右下角 y 座標
 		Action actionController();
-		void showData();
 	private:
 		void walkOnMove();
 		void attackOnMove();

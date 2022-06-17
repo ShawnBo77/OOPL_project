@@ -11,7 +11,6 @@
 #include "BloodBar.h"
 #include "Monster.h"
 #include "MonsterMosquito.h"
-#include "Util.h"
 
 namespace game_framework
 {
@@ -169,24 +168,6 @@ namespace game_framework
 				sourceMosquitoJump.ShowBitmap();
 			}
 		}
-		//showData();
-	}
-
-	void MonsterMosquito::showData()
-	{
-		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
-		CFont f, * fp;
-		f.CreatePointFont(120, "Times New Roman");	// 產生 font f; 160表示16 point的字
-		fp = pDC->SelectObject(&f);					// 選用 font f
-		pDC->SetBkColor(RGB(230, 220, 200));
-		pDC->SetTextColor(RGB(0, 0, 0));
-		char position[600];								// Demo 數字對字串的轉換
-		sprintf(position, "MosquitoLeftX:%d MosquitoRightX:%d MosquitoTopY:%d MosquitoBottomY:%d MosquitoHp: %d flyTimer(%f, %f, %f)"
-			, GetLeftX(), GetRightX(), GetTopY(), GetBottomY(), GetCurrentHp(), (double)flyTimer.GetStartTime(), (double)flyTimer.GetFinishTime(), (double)flyTimer.GetTime());
-		//sprintf(str, "CharacterLeftX : %d", CharacterLeftX);
-		pDC->TextOut(200, 50, position);
-		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
-		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
 
 	int MonsterMosquito::GetLeftX()
