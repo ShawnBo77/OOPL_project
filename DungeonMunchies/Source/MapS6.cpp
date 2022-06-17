@@ -20,7 +20,7 @@ namespace game_framework
 		Y = 20;
 		gridW = 20;
 		gridH = 20;
-		setStartPosition(300);
+		startX = 300;
 		setFloor(600);
 		setCeiling(0);
 		setMonsterFloor(600);
