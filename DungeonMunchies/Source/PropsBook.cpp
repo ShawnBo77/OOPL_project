@@ -23,7 +23,7 @@
 namespace game_framework
 {
 	/////////////////////////////////////////////////////////////////////////////
-	// 這個class為道具書模式
+	// 這個class為鍛造台模式
 	/////////////////////////////////////////////////////////////////////////////
 
 	PropsBook::PropsBook()
@@ -194,10 +194,10 @@ namespace game_framework
 			}
 			break;
 		case shrimp_blood_p:
-			if (!(propStorage->getProp(shrimp_blood_p)->getPropFlag()) && sourceStorage->getSource(shrimp_blood_s)->getNum() >= 1 && _character->GetLightBulbNum() >= 50)
+			if (!(propStorage->getProp(shrimp_blood_p)->getPropFlag()) && sourceStorage->getSource(shrimp_blood_s)->getNum() >= 2 && _character->GetLightBulbNum() >= 50)
 			{
 				CAudio::Instance()->Play(AUDIO_COOK, false);
-				sourceStorage->getSource(shrimp_blood_s)->consume(1);
+				sourceStorage->getSource(shrimp_blood_s)->consume(2);
 				propStorage->getProp(shrimp_blood_p)->setPropFlag(true);
 				propStorage->getProp(shrimp_blood_p)->effect(_character, true);
 				_character->ConsumeLightBulb(50);
@@ -205,10 +205,10 @@ namespace game_framework
 			}
 			break;
 		case grass_fast_p:
-			if (!(propStorage->getProp(grass_fast_p)->getPropFlag()) && sourceStorage->getSource(grass_fast_s)->getNum() >= 5 && _character->GetLightBulbNum() >= 40)
+			if (!(propStorage->getProp(grass_fast_p)->getPropFlag()) && sourceStorage->getSource(grass_fast_s)->getNum() >= 4 && _character->GetLightBulbNum() >= 40)
 			{
 				CAudio::Instance()->Play(AUDIO_COOK, false);
-				sourceStorage->getSource(grass_fast_s)->consume(5);
+				sourceStorage->getSource(grass_fast_s)->consume(4);
 				propStorage->getProp(grass_fast_p)->setPropFlag(true);
 				propStorage->getProp(grass_fast_p)->effect(_character, true);
 				_character->ConsumeLightBulb(40);
@@ -227,10 +227,10 @@ namespace game_framework
 			}
 			break;
 		case shrimp_attack_p:
-			if (!(propStorage->getProp(shrimp_attack_p)->getPropFlag()) && sourceStorage->getSource(guava_juice_blood_s)->getNum() >= 1 && _character->GetLightBulbNum() >= 60)
+			if (!(propStorage->getProp(shrimp_attack_p)->getPropFlag()) && sourceStorage->getSource(shrimp_attack_s)->getNum() >= 2 && _character->GetLightBulbNum() >= 60)
 			{
 				CAudio::Instance()->Play(AUDIO_COOK, false);
-				sourceStorage->getSource(shrimp_attack_s)->consume(1);
+				sourceStorage->getSource(shrimp_attack_s)->consume(2);
 				propStorage->getProp(shrimp_attack_p)->setPropFlag(true);
 				propStorage->getProp(shrimp_attack_p)->effect(_character, true);
 				_character->ConsumeLightBulb(60);
@@ -238,10 +238,10 @@ namespace game_framework
 			}
 			break;
 		case guava_juice_blood_p:
-			if (!(propStorage->getProp(guava_juice_blood_p)->getPropFlag()) && sourceStorage->getSource(guava_juice_blood_s)->getNum() >= 1 && _character->GetLightBulbNum() >= 50)
+			if (!(propStorage->getProp(guava_juice_blood_p)->getPropFlag()) && sourceStorage->getSource(guava_juice_blood_s)->getNum() >= 4 && _character->GetLightBulbNum() >= 50)
 			{
 				CAudio::Instance()->Play(AUDIO_COOK, false);
-				sourceStorage->getSource(guava_juice_blood_s)->consume(1);
+				sourceStorage->getSource(guava_juice_blood_s)->consume(4);
 				propStorage->getProp(guava_juice_blood_p)->setPropFlag(true);
 				propStorage->getProp(guava_juice_blood_p)->effect(_character, true);
 				_character->ConsumeLightBulb(50);

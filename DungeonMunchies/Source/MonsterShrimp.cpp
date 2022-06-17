@@ -74,15 +74,17 @@ namespace game_framework
 		_y = init_y;
 		currentFloor = 0;
 		BORDER = 5;
-		hp = 50;
+		hp = 150;
 		bloodBar.setFullHP(hp);
-		attackDamage = 5;
+		attackDamage = 10;
+		attackDelayCount = 4;
 		facingLR = 0;
 		action = walk_a;
-		STEP_SIZE = 5;
+		STEP_SIZE = 2;
+		walkLength = 2;
 		velocity = 0;
 		hasGottenSource = false;
-		lightBulbInside = 30;
+		lightBulbInside = 15;
 		hasGottenLightBulb = false;
 		srand((unsigned int)time(NULL));
 		canStandOn = true;
@@ -111,7 +113,7 @@ namespace game_framework
 					else
 					{
 						attackLeft.SetTopLeft(_x + m->getXMovement() - 110, _y + m->getYMovement());
-						attackLeft.SetDelayCount(3);
+						attackLeft.SetDelayCount(attackDelayCount);
 						attackLeft.OnShow();
 						if (attackLeft.GetCurrentBitmapNumber() == 2)
 						{
@@ -134,7 +136,7 @@ namespace game_framework
 					else
 					{
 						attackRight.SetTopLeft(_x + m->getXMovement(), _y + m->getYMovement());
-						attackRight.SetDelayCount(3);
+						attackRight.SetDelayCount(attackDelayCount);
 						attackRight.OnShow();
 						if (attackRight.GetCurrentBitmapNumber() == 2)
 						{
@@ -187,6 +189,14 @@ namespace game_framework
 
 	void MonsterShrimp::OnMove(Map* m)
 	{
+		if (isViolent && !haveSetViolent)
+		{
+			hp = 350;
+			attackDamage = 15;
+			attackDelayCount = 3;
+			walkLength = 4;
+			haveSetViolent = true;
+		}
 		if (!m == NULL)
 		{
 			m->monsterFloorChanging(GetLeftX());
@@ -220,13 +230,15 @@ namespace game_framework
 			}
 			else if (distanceToCharacter() < 280 && action == walk_a)
 			{
-				if (characterDirectionLR == 0 && (GetLeftX() - STEP_SIZE + BORDER) >= character->GetRightX() && m->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetBottomY() - BORDER))
-				{
-					_x -= STEP_SIZE;
-				}
-				else if (characterDirectionLR == 1 && (GetRightX() + STEP_SIZE - BORDER) <= character->GetLeftX() && m->isEmpty(GetRightX() + STEP_SIZE + BORDER, GetBottomY() - BORDER))
-				{
-					_x += STEP_SIZE;
+				for (int i = 0; i < walkLength; i++) {
+					if (characterDirectionLR == 0 && (GetLeftX() - STEP_SIZE + BORDER) >= character->GetRightX() && m->isEmpty(GetLeftX() - STEP_SIZE - BORDER, GetBottomY() - BORDER))
+					{
+						_x -= STEP_SIZE;
+					}
+					else if (characterDirectionLR == 1 && (GetRightX() + STEP_SIZE - BORDER) <= character->GetLeftX() && m->isEmpty(GetRightX() + STEP_SIZE + BORDER, GetBottomY() - BORDER))
+					{
+						_x += STEP_SIZE;
+					}
 				}
 				randN = rand() % 2;
 			}
