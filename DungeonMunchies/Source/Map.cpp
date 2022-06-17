@@ -9,7 +9,7 @@
 
 namespace game_framework
 {
-	/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
 // 這個class提供地圖構成
 /////////////////////////////////////////////////////////////////////////////
 
@@ -59,17 +59,6 @@ namespace game_framework
 	{
 		return ceiling;
 	}
-	int Map::getEndBoundary()
-	{
-		if (screenMoving == false)
-		{
-			return 10000000;
-		}
-		else
-		{
-			return endBoundary;
-		}
-	}
 	bool Map::getCraftTableOpen()
 	{
 		return craftTableOpen;
@@ -85,10 +74,6 @@ namespace game_framework
 	void Map::setMapName(string name)
 	{
 		mapName = name;
-	}
-	void Map::setStartPosition(int x)
-	{
-		startX = x;
 	}
 	int Map::getMonsterFloor()
 	{
@@ -226,10 +211,6 @@ namespace game_framework
 	{
 		ceiling = y;
 	}
-	void Map::setEndBoundary(int sx)
-	{
-		endBoundary = sx;
-	}
 	void Map::setScreenMoving(bool flag)
 	{
 		screenMoving = flag;
@@ -246,18 +227,14 @@ namespace game_framework
 	{
 		trashCanOpen = flag;
 	}
-
-
 	void Map::setMessageCounter(int n)
 	{
 		messageCounter = n;
 	}
-
 	int Map::getMessageCounter()
 	{
 		return messageCounter;
 	}
-
 	void Map::setMessageCounterToNext()
 	{
 		if (messageCounter != messageSize)
@@ -269,12 +246,10 @@ namespace game_framework
 			messageCounter = 1;
 		}
 	}
-
 	void Map::setMessageEndFlag(bool flag)
 	{
 		messageEndFlag = flag;
 	}
-
 	bool Map::getMessageEndFlag()
 	{
 		return messageEndFlag;
@@ -284,9 +259,7 @@ namespace game_framework
 		messageCounter = 1;
 		messageEndFlag = false;
 	}
-
 	void Map::messageOnShow()
 	{
 	}
-
 }

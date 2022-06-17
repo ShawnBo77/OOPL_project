@@ -10,50 +10,21 @@ namespace game_framework {
 	public:
 		Map(int x, int y);
 		string getMapName();
-		
+		void setMapName(string name);
 		int getStartPosition();
 		int getFinalPosition();
-		virtual bool isEmpty(int x, int y) const = 0;
-		virtual bool isPortal(int x, int y) const = 0;
-		virtual bool isBridge(int x, int y) const = 0;
-		virtual bool isCraftTable(int x, int y) const = 0;
-		virtual bool isTrashCan(int x, int y) const = 0;
-		virtual bool isGetHurtPlace(int x, int y) const = 0;
 		void setSX(int x);
 		void setSY(int y);
 		int getSX();
 		int getSY();
 		bool mapScreenMoving();
-		int getFloor();
-		int getMonsterFloor();
-		int getCeiling();
-		int getEndBoundary();
-		void setMapName(string name);
-		void setStartPosition(int x);									//角色起始位置
-		void setMonsterFloor(int y);
-
 		virtual void addSX(int n);
 		virtual void addSY(int n);
 		virtual int screenX(int x) { return 0; };
 		virtual int screenY(int y) { return 0; };
 		void setCharacterX(int x);
 		void setCharacterY(int y);
-		virtual void monsterFloorChanging(int x) {};
-		virtual void characterFloorAndCeiling() {};
-		void setFloor(int y);
-		void setCeiling(int y);
-		void setEndBoundary(int sx);
 		void setScreenMoving(bool flag);
-
-
-		bool getCraftTableOpen();
-		void setCraftTableOpen(bool flag);
-		bool getPortalOpen();
-		void setPortalOpen(bool flag);
-		bool getTrashCanOpen();
-		void setTrashCanOpen(bool flag);
-		
-
 		virtual void setPos(int x, int y, int n) = 0;
 		void setXY(int x, int y);
 		void setInitialX(int x);
@@ -63,7 +34,29 @@ namespace game_framework {
 		void setInitialXY(int x, int y);
 		int getXMovement();
 		int getYMovement();
-
+		//地圖方塊設定
+		virtual bool isEmpty(int x, int y) const = 0;
+		virtual bool isPortal(int x, int y) const = 0;
+		virtual bool isBridge(int x, int y) const = 0;
+		virtual bool isCraftTable(int x, int y) const = 0;
+		virtual bool isTrashCan(int x, int y) const = 0;
+		virtual bool isGetHurtPlace(int x, int y) const = 0;
+		//角色及怪物地板、天花板
+		virtual void monsterFloorChanging(int x) {};
+		int getMonsterFloor();								//怪物地板
+		void setMonsterFloor(int y);
+		virtual void characterFloorAndCeiling() {};
+		int getFloor();										//角色地板
+		void setFloor(int y);
+		int getCeiling();									//角色天花板
+		void setCeiling(int y);
+		//鍛造台、傳送門、垃圾桶
+		bool getCraftTableOpen();
+		void setCraftTableOpen(bool flag);
+		bool getPortalOpen();
+		void setPortalOpen(bool flag);
+		bool getTrashCanOpen();
+		void setTrashCanOpen(bool flag);
 		/*訊息相關函式*/
 		//放大鏡
 		void loadMagnifierBitmap();
@@ -101,12 +94,10 @@ namespace game_framework {
 		int initialX, initialY; //初始X、Y
 		int startX; //開始位置
 		int finalX; //結束位置
-		int cyRelativeMovement;
 		string mapName;
 		int floor;
 		int monsterFloor;
 		int ceiling;
-		int endBoundary;
 		bool screenMoving;
 		bool portalOpen;
 		bool craftTableOpen;

@@ -61,7 +61,7 @@ namespace game_framework {
         setInitialXY(0, 0);
         setScreenMoving(false);
         setMapName("MapForBoss");
-        setStartPosition(80);
+        startX = 100;
         messageCode = 0;
         canShowMessage = false;
         autoShowMessage = false;
