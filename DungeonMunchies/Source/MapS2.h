@@ -1,6 +1,5 @@
 #ifndef __MAPS2__
 #define __MAPS2__
-
 namespace game_framework
 {
 	/////////////////////////////////////////////////////////////////////////////
@@ -31,8 +30,7 @@ namespace game_framework
 		int X, Y;
 		int mapGrid[400][70];
 		CMovingBitmap white, blue;
-		int gridW, gridH;
-		
+		int gridW, gridH;		
 		int previousFloor;
 		int targetSY;
 		bool screenUp;

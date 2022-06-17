@@ -1,6 +1,5 @@
 #ifndef __MapS6__
 #define __MapS6__
-
 namespace game_framework
 {
 	/////////////////////////////////////////////////////////////////////////////
@@ -27,7 +26,6 @@ namespace game_framework
 		void characterFloorAndCeiling() override;
 		int screenX(int x) override;
 		int screenY(int y) override;
-
 		void messageOnShow() override;
 		void setBossAssistantExist(bool flag);
 		bool getBossAssistantExist();

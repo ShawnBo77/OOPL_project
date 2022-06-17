@@ -7,14 +7,12 @@
 #include "Map.h"
 #include "MapS3.h"
 #include <vector>
-
 namespace game_framework
 {
     /////////////////////////////////////////////////////////////////////////////
-// 這個class提供地圖構成
-/////////////////////////////////////////////////////////////////////////////
-
-    MapS3::MapS3() : Map(0, 0) //地圖設置：0為不能走、1為可以走、2為傳送門(transGate)
+    // 這個class提供地圖構成
+    /////////////////////////////////////////////////////////////////////////////
+    MapS3::MapS3() : Map(0, 0) //地圖設置：0為不能走、1為可以走、2為傳送門、3為橋、4為鍛造台、5為垃圾桶、6為受傷區域
     {
         X = 20;
         Y = 20;
@@ -118,7 +116,6 @@ namespace game_framework
                 mapGrid_init[i][j] = 0;
             }
         }
-
         for (int i = 0; i < 400; i++)
         {
             for (int j = 0; j < 70; j++)
@@ -127,15 +124,11 @@ namespace game_framework
             }
         }
     }
-
     MapS3::~MapS3()
     {
     }
-
     void MapS3::LoadBitmap()
     {
-        //white.LoadBitmap(IDB_WHITE);
-        //blue.LoadBitmap(IDB_BLUE);
         map.LoadBitmap(".\\res\\map03.bmp");
         exitBitmap.LoadBitmap(IDB_EXIT, RGB(0, 0, 0));
         pressEBitmap.LoadBitmap(IDB_PRESSE, RGB(0, 0, 0));
@@ -151,7 +144,6 @@ namespace game_framework
         message05.LoadBitmap(".\\res\\message0305.bmp", RGB(0, 0, 0));
         message06.LoadBitmap(".\\res\\message0306.bmp", RGB(0, 0, 0));
     }
-
     void MapS3::Initialize()
     {
         setXY(0, -260);
@@ -172,57 +164,47 @@ namespace game_framework
         messageSize = 6;
         messageEndFlag = false;
     }
-
     void MapS3::setPos(int x, int y, int n)
     {
         int gridX = x / 20;
         int gridY = y / 20;
         mapGrid[gridX][gridY] = n;
     }
-
     bool MapS3::isEmpty(int x, int y) const
     {
         
         return (blockProperty(x, y) != 0);
     }
-
     bool MapS3::isPortal(int x, int y) const
     {
         return (blockProperty(x, y) == 2);
     }
-
     bool MapS3::isBridge(int x, int y) const
     {
          return (blockProperty(x, y) == 3);
     }
-
     bool MapS3::isCraftTable(int x, int y) const
     {
         return (blockProperty(x, y) == 4);
     }
-
     bool MapS3::isTrashCan(int x, int y) const
     {
         return (blockProperty(x, y) == 5);
     }
-
     bool MapS3::isGetHurtPlace(int x, int y) const
     {
         return false;
     }
-
     int MapS3::blockProperty(int x, int y) const
     {
         int gridX = x / 20;
         int gridY = y / 20;
         return mapGrid[gridX][gridY];
     }
-
     void MapS3::onShow()
     {
         map.SetTopLeft(getSX(), getSY());
         map.ShowBitmap();
-
         if (!getTrashCanOpen()) 
         {
             trashCanClosedBitmap.SetTopLeft(3025 + getSX(), getFloor() - 132);
@@ -233,14 +215,12 @@ namespace game_framework
             trashCanOpenBitmap.SetTopLeft(3025 + getSX(), getFloor() - 180);
             trashCanOpenBitmap.ShowBitmap();
         }
-
         if (getShowMessageIconFlag())
         {
             showMessageIcon(3410, 705);
             pressEBitmap.SetTopLeft(600, 940 + getSY());
             pressEBitmap.ShowBitmap();
         }
-
         if (getPortalOpen())
         {
             if (characterX < 500)
@@ -252,7 +232,6 @@ namespace game_framework
             exitBitmap.ShowBitmap();
             pressEBitmap.ShowBitmap();
         }
-
         if (getCraftTableOpen())
         {
             craftingBitmap.SetTopLeft(3880 + getSX(), 280);
@@ -265,52 +244,30 @@ namespace game_framework
     void MapS3::monsterFloorChanging(int x)
     {
         if (x < 502)
-        {
             setMonsterFloor(610);
-        }
         else if (x < 1840)
-        {
             setMonsterFloor(485);
-        }
         else
-        {
             setMonsterFloor(655);
-        }
     }
 
     void MapS3::characterFloorAndCeiling()
     {
         if (characterX < 502)
-        {
             setFloor(610);
-        }
         else if (characterX < 1838)
-        {
             setFloor(485);
-        }
         else
-        {
             setFloor(655);
-        }
-
         if (characterX < 370)
-        {
             setCeiling(360);
-        }
         else if (characterX < 1220)
-        {
             setCeiling(60);
-        }
         else if (characterX < 1930)
-        {
             setCeiling(230);
-        }
         else
-        {
             setCeiling(255);
-        }
     }
-
     int MapS3::screenX(int x)
     {
         return x + getSX();

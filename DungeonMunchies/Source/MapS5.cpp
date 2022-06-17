@@ -7,14 +7,12 @@
 #include "Map.h"
 #include "MapS5.h"
 #include <vector>
-
 namespace game_framework
 {
     /////////////////////////////////////////////////////////////////////////////
-// 這個class提供地圖構成
-/////////////////////////////////////////////////////////////////////////////
-
-    MapS5::MapS5() : Map(0, 0) //地圖設置：0為不能走、1為可以走、2為傳送門(transGate)
+    // 這個class提供地圖構成
+    /////////////////////////////////////////////////////////////////////////////
+    MapS5::MapS5() : Map(0, 0) //地圖設置：0為不能走、1為可以走、2為傳送門、3為橋、4為鍛造台、5為垃圾桶、6為受傷區域
     {
         X = 20;
         Y = 20;
@@ -41,7 +39,6 @@ namespace game_framework
                 mapGrid_init[i][j] = 0;
             }
         }
-
         for (int i = 0; i < 400; i++)
         {
             for (int j = 0; j < 43; j++)
@@ -49,7 +46,6 @@ namespace game_framework
                 mapGrid_init[i][j] = 0;
             }
         }
-
         for (int i = 3; i < 28; i++)
         {
             for (int j = 43; j < 64; j++)
@@ -57,7 +53,6 @@ namespace game_framework
                 mapGrid_init[i][j] = 2;
             }
         }
-
         for (int i = 47; i < 92; i++)
         {
             for (int j = 61; j < 70; j++)
@@ -65,7 +60,6 @@ namespace game_framework
                 mapGrid_init[i][j] = 0;
             }
         }
-
         for (int i = 48; i < 59; i++)
         {
             for (int j = 43; j < 61; j++)
@@ -73,7 +67,6 @@ namespace game_framework
                 mapGrid_init[i][j] = 5;
             }
         }
-
         for (int i = 66; i < 89; i++)
         {
             for (int j = 43; j < 52; j++)
@@ -81,7 +74,6 @@ namespace game_framework
                 mapGrid_init[i][j] = 0;
             }
         }
-
         for (int i = 58; i < 90; i++)
         {
             for (int j = 13; j < 32; j++)
@@ -89,7 +81,6 @@ namespace game_framework
                 mapGrid_init[i][j] = 1;
             }
         }
-
         for (int i = 58; i < 70; i++)
         {
             for (int j = 13; j < 32; j++)
@@ -97,7 +88,6 @@ namespace game_framework
                 mapGrid_init[i][j] = 2;
             }
         }
-
         for (int i = 90; i < 99; i++)
         {
             for (int j = 13; j < 43; j++)
@@ -105,13 +95,11 @@ namespace game_framework
                 mapGrid_init[i][j] = 1;
             }
         }
-
         for (int i = 90; i < 97; i++)
         {
             mapGrid_init[i][40] = 3;
             mapGrid_init[i][47] = 3;
         }
-
         for (int i = 99; i < 400; i++)
         {
             for (int j = 43; j < 48; j++)
@@ -119,7 +107,6 @@ namespace game_framework
                 mapGrid_init[i][j] = 0;
             }
         }
-
         for (int i = 132; i < 400; i++)
         {
             for (int j = 61; j < 70; j++)
@@ -127,7 +114,6 @@ namespace game_framework
                 mapGrid_init[i][j] = 0;
             }
         }
-
         for (int i = 137; i < 148; i++)
         {
             for (int j = 49; j < 61; j++)
@@ -135,7 +121,6 @@ namespace game_framework
                 mapGrid_init[i][j] = 4;
             }
         }
-
         for (int i = 157; i < 179; i++)
         {
             for (int j = 49; j < 61; j++)
@@ -143,7 +128,6 @@ namespace game_framework
                 mapGrid_init[i][j] = 2;
             }
         }
-
         for (int i = 179; i < 400; i++)
         {
             for (int j = 0; j < 70; j++)
@@ -151,7 +135,6 @@ namespace game_framework
                 mapGrid_init[i][j] = 0;
             }
         }
-
         for (int i = 0; i < 400; i++)
         {
             for (int j = 0; j < 70; j++)
@@ -160,15 +143,11 @@ namespace game_framework
             }
         }
     }
-
     MapS5::~MapS5()
     {
     }
-
     void MapS5::LoadBitmap()
     {
-        //white.LoadBitmap(IDB_WHITE);
-        //blue.LoadBitmap(IDB_BLUE);
         map.LoadBitmap(".\\res\\map05.bmp");
         exitBitmap.LoadBitmap(IDB_EXIT, RGB(0, 0, 0));
         pressEBitmap.LoadBitmap(IDB_PRESSE, RGB(0, 0, 0));
@@ -183,7 +162,6 @@ namespace game_framework
         message03.LoadBitmap(".\\res\\message0503.bmp");
         message04.LoadBitmap(".\\res\\message0504.bmp");
     }
-
     void MapS5::Initialize()
     {
         setXY(65, -800);
@@ -205,14 +183,12 @@ namespace game_framework
         messageSize = 4;
         messageEndFlag = false;
     }
-
     void MapS5::setPos(int x, int y, int n)
     {
         int gridX = x / 20;
         int gridY = y / 20;
         mapGrid[gridX][gridY] = n;
     }
-
     bool MapS5::isEmpty(int x, int y) const
     {
         int gridX = x / 20;
@@ -223,7 +199,6 @@ namespace game_framework
         }
         return false;
     }
-
     bool MapS5::isPortal(int x, int y) const
     {
         int gridX = x / 20;
@@ -234,7 +209,6 @@ namespace game_framework
         }
         return false;
     }
-
     bool MapS5::isBridge(int x, int y) const
     {
         int gridX = x / 20;
@@ -245,7 +219,6 @@ namespace game_framework
         }
         return false;
     }
-
     bool MapS5::isCraftTable(int x, int y) const
     {
         int gridX = x / 20;
@@ -256,7 +229,6 @@ namespace game_framework
         }
         return false;
     }
-
     bool MapS5::isTrashCan(int x, int y) const
     {
         int gridX = x / 20;
@@ -267,25 +239,21 @@ namespace game_framework
         }
         return false;
     }
-
     bool MapS5::isGetHurtPlace(int x, int y) const
     {
         return false;
     }
-
     void MapS5::onShow()
     {
         map.SetTopLeft(getSX(), getSY());
         map.ShowBitmap();
         syMoving(targetSY);
-
         if (getShowMaginifierFlag())
         {
             showMaginifierL(1458, 494);
             pressEBitmap.SetTopLeft(600, 670 + getSY());
             pressEBitmap.ShowBitmap();
         }
-
         if (getPortalOpen())
         {
             if (characterX > 1580) 
@@ -306,7 +274,6 @@ namespace game_framework
             pressEBitmap.SetTopLeft(600, 585);
             pressEBitmap.ShowBitmap();
         }
-
         if (getCraftTableOpen())
         {
             craftingBitmap.SetTopLeft(2760 + getSX(), 175);
@@ -314,7 +281,6 @@ namespace game_framework
             pressEBitmap.SetTopLeft(600, 585);
             pressEBitmap.ShowBitmap();
         }
-
         if (!getTrashCanOpen())
         {
             trashCanClosedBitmap.SetTopLeft(860 + getSX(), 1217 - 132 + getSY());
@@ -326,7 +292,6 @@ namespace game_framework
             trashCanOpenBitmap.ShowBitmap();
         }
     }
-
     void MapS5::syMoving(int y)
     {
         if (screenUp)
@@ -354,7 +319,6 @@ namespace game_framework
             }
         }
     }
-
     void MapS5::monsterFloorChanging(int x)
     {
         if (x < 920)
@@ -366,10 +330,8 @@ namespace game_framework
         else
             setMonsterFloor(1217);
     }
-
     void MapS5::characterFloorAndCeiling()
     {
-        //floor
         if (characterX > 1000 && characterX < 1840 && characterY + 120 < 649)
             setFloor(640);
         else if (characterX < 920)
@@ -433,8 +395,6 @@ namespace game_framework
         }
         else
             setFloor(1217);
-
-        //ceiling
         if (characterX < 1290 && characterY > 700)
             setCeiling(875);
         else if (characterX < 1820 && characterY > 700)
@@ -444,7 +404,6 @@ namespace game_framework
         else
             setCeiling(975);
     }
-
     int MapS5::screenX(int x)
     {
         return x + getSX();

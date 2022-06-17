@@ -7,14 +7,12 @@
 #include "Map.h"
 #include "MapS4.h"
 #include <vector>
-
 namespace game_framework
 {
     /////////////////////////////////////////////////////////////////////////////
-// 這個class提供地圖構成
-/////////////////////////////////////////////////////////////////////////////
-
-    MapS4::MapS4() : Map(0, 0) //地圖設置：0為不能走、1為可以走、2為傳送門(transGate)
+    // 這個class提供地圖構成
+    /////////////////////////////////////////////////////////////////////////////
+    MapS4::MapS4() : Map(0, 0) //地圖設置：0為不能走、1為可以走、2為傳送門、3為橋、4為鍛造台、5為垃圾桶、6為受傷區域
     {
         X = 20;
         Y = 20;
@@ -76,13 +74,11 @@ namespace game_framework
                 mapGrid_init[i][j] = 0;
             }
         }
-
         for (int i = 37; i < 54; i++)
         {
             mapGrid_init[i][30] = 6;
             mapGrid_init[i][31] = 6;
         }
-
         for (int i = 56; i < 65; i++)
         {
             for (int j = 26; j < 32; j++)
@@ -138,7 +134,6 @@ namespace game_framework
                 mapGrid_init[i][j] = 0;
             }
         }
-
         for (int i = 0; i < 400; i++)
         {
             for (int j = 0; j < 70; j++)
@@ -147,15 +142,11 @@ namespace game_framework
             }
         }
     }
-
     MapS4::~MapS4()
     {
     }
-
     void MapS4::LoadBitmap()
     {
-        //white.LoadBitmap(IDB_WHITE);
-        //blue.LoadBitmap(IDB_BLUE);
         map.LoadBitmap(".\\res\\map04.bmp");
         exitBitmap.LoadBitmap(IDB_EXIT, RGB(0, 0, 0));
         pressEBitmap.LoadBitmap(IDB_PRESSE, RGB(0, 0, 0));
@@ -164,7 +155,6 @@ namespace game_framework
         craftingBitmap.LoadBitmap(IDB_CRAFTING, RGB(0, 0, 0));
         loadMagnifierBitmap();
     }
-
     void MapS4::Initialize()
     {
         setXY(0, -270);
@@ -186,52 +176,42 @@ namespace game_framework
         messageSize = 6;
         messageEndFlag = false;
     }
-
     void MapS4::setPos(int x, int y, int n)
     {
         int gridX = x / 20;
         int gridY = y / 20;
         mapGrid[gridX][gridY] = n;
     }
-
     bool MapS4::isEmpty(int x, int y) const
     {
-
         return (blockProperty(x, y) != 0);
     }
-
     bool MapS4::isPortal(int x, int y) const
     {
         return (blockProperty(x, y) == 2);
     }
-
     bool MapS4::isBridge(int x, int y) const
     {
         return (blockProperty(x, y) == 3);
     }
-
     bool MapS4::isCraftTable(int x, int y) const
     {
         return (blockProperty(x, y) == 4);
     }
-
     bool MapS4::isTrashCan(int x, int y) const
     {
         return (blockProperty(x, y) == 5);
     }
-
     bool MapS4::isGetHurtPlace(int x, int y) const
     {
         return (blockProperty(x, y) == 6);
     }
-
     int MapS4::blockProperty(int x, int y) const
     {
         int gridX = x / 20;
         int gridY = y / 20;
         return mapGrid[gridX][gridY];
     }
-
     void MapS4::onShow()
     {
         map.SetTopLeft(getSX(), getSY());
@@ -251,7 +231,6 @@ namespace game_framework
             pressEBitmap.ShowBitmap();
         }
     }
-
     void MapS4::syMoving(int y)
     {
         if (screenUp)
@@ -279,49 +258,29 @@ namespace game_framework
             }
         }
     }
-
     void MapS4::monsterFloorChanging(int x)
     {
         if (x < 750)
-        {
             setMonsterFloor(540);
-        }
         else if (x < 1120)
-        {
             setMonsterFloor(630);
-        }
         else if (x < 1315)
-        {
             setMonsterFloor(485);
-        }
         else if (x < 1447)
-        {
             setMonsterFloor(630);
-        }
         else if (x < 1925)
-        {
             setMonsterFloor(725);
-        }
         else if (x < 2265)
-        {
             setMonsterFloor(605);
-        }
         else
-        {
             setMonsterFloor(725);
-        }
     }
-
     void MapS4::characterFloorAndCeiling()
     {
         if (characterX < 750)
-        {
             setFloor(540);
-        }
         else if (characterX < 1090)
-        {
             setFloor(630);
-        }
         else if (characterX < 1315)
         {
             setFloor(485);
@@ -332,9 +291,7 @@ namespace game_framework
             }
         }
         else if (characterX < 1447)
-        {
             setFloor(630);
-        }
         else if (characterX < 1925)
         {
             if (getSY() != -440)
@@ -356,29 +313,17 @@ namespace game_framework
         }
         else
             setFloor(725);
-
         if (characterX < 650)
-        {
             setCeiling(100);
-        }
         else if (characterX < 1535)
-        {
             setCeiling(290);
-        }
         else if (characterX < 1780)
-        {
             setCeiling(570);
-        }
         else if (characterX < 2335)
-        {
             setCeiling(340);
-        }
         else
-        {
             setCeiling(405);
-        }
     }
-
     int MapS4::screenX(int x)
     {
         return x + getSX();

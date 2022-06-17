@@ -7,14 +7,12 @@
 #include "Map.h"
 #include "MapS6.h"
 #include <vector>
-
 namespace game_framework
 {
 	/////////////////////////////////////////////////////////////////////////////
-// 這個class提供地圖構成
-/////////////////////////////////////////////////////////////////////////////
-
-	MapS6::MapS6() : Map(0, 0) //地圖設置：0為不能走、1為可以走、2為傳送門(transGate)
+	// 這個class提供地圖構成
+	/////////////////////////////////////////////////////////////////////////////
+	MapS6::MapS6() : Map(0, 0) //地圖設置：0為不能走、1為可以走、2為傳送門、3為橋、4為鍛造台、5為垃圾桶、6為受傷區域
 	{
 		X = 20;
 		Y = 20;
@@ -33,8 +31,6 @@ namespace game_framework
 			}
 		}
 		//給予地圖左上角座標及每張小圖寬度
-
-
 		for (int i = 0; i < 6; i++)
 		{
 			for (int j = 0; j < 70; j++)
@@ -120,15 +116,11 @@ namespace game_framework
 			}
 		}
 	}
-
 	MapS6::~MapS6()
 	{
 	}
-
 	void MapS6::LoadBitmap()
 	{
-		//white.LoadBitmap(IDB_WHITE);
-		//blue.LoadBitmap(IDB_BLUE);
 		map.LoadBitmap(".\\res\\map06.bmp");
 		exitBitmap.LoadBitmap(IDB_EXIT, RGB(0, 0, 0));
 		pressEBitmap.LoadBitmap(IDB_PRESSE, RGB(0, 0, 0));
@@ -141,7 +133,6 @@ namespace game_framework
 		message03.LoadBitmap(".\\res\\message0603.bmp", RGB(0, 0, 0));
 		message04.LoadBitmap(".\\res\\message0604.bmp", RGB(0, 0, 0));
 	}
-
 	void MapS6::Initialize()
 	{
 		setXY(100, -260);
@@ -163,52 +154,42 @@ namespace game_framework
 		messageSize = 4;
 		messageEndFlag = false;
 	}
-
 	void MapS6::setPos(int x, int y, int n)
 	{
 		int gridX = x / 20;
 		int gridY = y / 20;
 		mapGrid[gridX][gridY] = n;
 	}
-
 	bool MapS6::isEmpty(int x, int y) const
 	{
-
 		return (blockProperty(x, y) != 0);
 	}
-
 	bool MapS6::isPortal(int x, int y) const
 	{
 		return (blockProperty(x, y) == 2);
 	}
-
 	bool MapS6::isBridge(int x, int y) const
 	{
 		return (blockProperty(x, y) == 3);
 	}
-
 	bool MapS6::isCraftTable(int x, int y) const
 	{
 		return (blockProperty(x, y) == 4);
 	}
-
 	bool MapS6::isTrashCan(int x, int y) const
 	{
 		return (blockProperty(x, y) == 5);
 	}
-
 	bool MapS6::isGetHurtPlace(int x, int y) const
 	{
 		return false;
 	}
-
 	int MapS6::blockProperty(int x, int y) const
 	{
 		int gridX = x / 20;
 		int gridY = y / 20;
 		return mapGrid[gridX][gridY];
 	}
-
 	void MapS6::onShow()
 	{
 		map.SetTopLeft(getSX(), getSY());
@@ -218,9 +199,7 @@ namespace game_framework
 			bossAssistant.SetTopLeft(3616 + getSX(), 458 + getSY());
 			bossAssistant.ShowBitmap();
 		}
-
 		syMoving(targetSY);
-
 		if (getPortalOpen())
 		{
 			if (characterX < 500)
@@ -233,11 +212,9 @@ namespace game_framework
 				exitBitmap.SetTopLeft(3614 + getSX(), 255);
 				pressEBitmap.SetTopLeft(600, 625);
 			}
-
 			exitBitmap.ShowBitmap();
 			pressEBitmap.ShowBitmap();
 		}
-
 		if (getCraftTableOpen())
 		{
 			craftingBitmap.SetTopLeft(3165 + getSX(), 280);
@@ -245,7 +222,6 @@ namespace game_framework
 			pressEBitmap.SetTopLeft(600, 625);
 			pressEBitmap.ShowBitmap();
 		}
-
 		if (!getTrashCanOpen())
 		{
 			trashCanClosedBitmap.SetTopLeft(2770 + getSX(), 664 - 132 + getSY());
@@ -257,7 +233,6 @@ namespace game_framework
 			trashCanOpenBitmap.ShowBitmap();
 		}
 	}
-
 	void MapS6::syMoving(int y)
 	{
 		if (screenUp)
@@ -285,7 +260,6 @@ namespace game_framework
 			}
 		}
 	}
-
 	void MapS6::monsterFloorChanging(int x)
 	{
 		if (x < 895)
@@ -295,7 +269,6 @@ namespace game_framework
 		else
 			setMonsterFloor(566);
 	}
-
 	void MapS6::characterFloorAndCeiling()
 	{
 		if (characterX < 895)
@@ -318,7 +291,6 @@ namespace game_framework
 				targetSY = -100;
 			}
 		}
-
 		if (characterX < 460)
 			setCeiling(420);
 		else if (characterX < 1660)
@@ -326,7 +298,6 @@ namespace game_framework
 		else
 			setCeiling(100);
 	}
-
 	int MapS6::screenX(int x)
 	{
 		return x + getSX();
@@ -335,7 +306,6 @@ namespace game_framework
 	{
 		return y + getSY();
 	}
-
 	void MapS6::messageOnShow()
 	{
 		if (messageCounter == 1)

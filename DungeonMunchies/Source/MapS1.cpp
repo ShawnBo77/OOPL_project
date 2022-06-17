@@ -7,14 +7,12 @@
 #include "Map.h"
 #include "MapS1.h"
 #include <vector>
-
 namespace game_framework
 {
 	/////////////////////////////////////////////////////////////////////////////
-// 這個class提供地圖構成
-/////////////////////////////////////////////////////////////////////////////
-
-	MapS1::MapS1() : Map(0, 0) //地圖設置：0為不能走、1為可以走、2為傳送門(transGate)
+	// 這個class提供地圖構成
+	/////////////////////////////////////////////////////////////////////////////
+	MapS1::MapS1() : Map(0, 0) //地圖設置：0為不能走、1為可以走、2為傳送門、3為橋、4為鍛造台、5為垃圾桶、6為受傷區域
 	{
 		X = 40;
 		Y = 40;
@@ -40,7 +38,6 @@ namespace game_framework
 				mapGrid_init[i][j] = 1;
 			}
 		}
-
 		for (int i = 45; i < 60; i++)
 		{
 			for (int j = 1; j < 16; j++)
@@ -48,7 +45,6 @@ namespace game_framework
 				mapGrid_init[i][j] = 1;
 			}
 		}
-
 		for (int i = 60; i < 71; i++)
 		{
 			for (int j = 1; j < 12; j++)
@@ -56,12 +52,10 @@ namespace game_framework
 				mapGrid_init[i][j] = 1;
 			}
 		}
-
 		for (int j = 1; j < 10; j++)
 		{
 			mapGrid_init[52][j] = 0;
 		}
-
 		for (int i = 60; i < 65; i++)
 		{
 			for (int j = 5; j < 12; j++)
@@ -69,7 +63,6 @@ namespace game_framework
 				mapGrid_init[i][j] = 2;
 			}
 		}
-
 		for (int i = 0; i < 100; i++)
 		{
 			for (int j = 0; j < 19; j++)
@@ -78,15 +71,11 @@ namespace game_framework
 			}
 		}
 	}
-
 	MapS1::~MapS1()
 	{
 	}
-
 	void MapS1::LoadBitmap()
 	{
-		//white.LoadBitmap(IDB_WHITE);
-		//blue.LoadBitmap(IDB_BLUE);
 		map.LoadBitmap(".\\res\\map01.bmp");
 		exitBitmap.LoadBitmap(IDB_EXIT, RGB(0, 0, 0));
 		pressEBitmap.LoadBitmap(IDB_PRESSE, RGB(0, 0, 0));
@@ -94,14 +83,9 @@ namespace game_framework
 		message02.LoadBitmap(".\\res\\message0102.bmp");
 		message03.LoadBitmap(".\\res\\message0103.bmp");
 		message04.LoadBitmap(".\\res\\message0104.bmp");
-		//messages.push_back(message01);
-		//messages.push_back(message02);
-		//messages.push_back(message03);
-		//messages.push_back(message04);
 		loadMagnifierBitmap();
 		loadMessageIconBitmap();
 	}
-
 	void MapS1::Initialize()
 	{
 		setXY(-410, -320);
@@ -118,14 +102,12 @@ namespace game_framework
 		messageSize = 4;
 		messageEndFlag = false;
 	}
-
 	void MapS1::setPos(int x, int y, int n)
 	{
 		int gridX = x / 40;
 		int gridY = y / 40;
 		mapGrid[gridX][gridY] = n;
 	}
-
 	bool MapS1::isEmpty(int x, int y) const
 	{
 		int gridX = x / 40;
@@ -136,7 +118,6 @@ namespace game_framework
 		}
 		return false;
 	}
-
 	bool MapS1::isPortal(int x, int y) const
 	{
 		int gridX = x / 40;
@@ -147,7 +128,6 @@ namespace game_framework
 		}
 		return false;
 	}
-
 	bool MapS1::isBridge(int x, int y) const
 	{
 		int gridX = x / 40;
@@ -158,27 +138,22 @@ namespace game_framework
 		}
 		return false;
 	}
-
 	bool MapS1::isCraftTable(int x, int y) const
 	{
 		return false;
 	}
-
 	bool MapS1::isTrashCan(int x, int y) const
 	{
 		return false;
 	}
-
 	bool MapS1::isGetHurtPlace(int x, int y) const
 	{
 		return false;
 	}
-
 	void MapS1::onShow()
 	{
 		map.SetTopLeft(getSX(), getSY());
 		map.ShowBitmap();
-
 		if (getPortalOpen())
 		{
 			exitBitmap.SetTopLeft(2895 + getSX(), 180);
@@ -186,14 +161,12 @@ namespace game_framework
 			pressEBitmap.SetTopLeft(600, 810 + getSY());
 			pressEBitmap.ShowBitmap();
 		}
-
 		if (getShowMaginifierFlag())
 		{
 			showMaginifier(1615, 845);
 			pressEBitmap.SetTopLeft(600, 1020 + getSY());
 			pressEBitmap.ShowBitmap();
 		}
-
 		if (getSX() > -1502)
 		{
 			setFloor(680);
@@ -206,7 +179,6 @@ namespace game_framework
 		{
 			setFloor(460);
 		}
-
 		if (getSX() > -425)
 		{
 			setCeiling(0);
@@ -218,34 +190,8 @@ namespace game_framework
 		else
 		{
 			setCeiling(0);
-		}
-
-		for (int i = 0; i < 18; i++)
-		{ //往右顯示六張圖
-			for (int j = 0; j < 100; j++)
-			{ //往下顯示四張圖
-				switch (mapGrid[j][i])
-				{
-				case 0:
-					//blue.SetTopLeft(X + (gridW * j), Y + (gridH * i)); //設定每張圖的座標
-					//blue.ShowBitmap(); // 顯示設定完的座標
-					break;
-				case 1:
-					//white.SetTopLeft(X + (gridW * j), Y + (gridH * i)); //設定每張圖的座標
-					//white.ShowBitmap(); //顯示設定完的座標
-					break;
-				case 2:
-					//blue.SetTopLeft(X + (gridW * i), Y + (gridH * j)); //設定每張圖的座標
-					//blue.ShowBitmap(); // 顯示設定完的座標
-					break;
-				default:
-					ASSERT(0); //mapGrid陣列不該出現0,1,2之外的值
-				}
-			}
-		}
+		}		
 	}
-
-	
 	void MapS1::monsterFloorChanging(int x)
 	{
 		if (x < 1750)
@@ -269,7 +215,6 @@ namespace game_framework
 	{
 		return y + getSY();
 	}
-
 	void MapS1::messageOnShow()
 	{
 		if (messageCounter == 1)

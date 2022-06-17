@@ -7,14 +7,12 @@
 #include "Map.h"
 #include "MapS2.h"
 #include <vector>
-
 namespace game_framework
 {
     /////////////////////////////////////////////////////////////////////////////
-// 這個class提供地圖構成
-/////////////////////////////////////////////////////////////////////////////
-
-    MapS2::MapS2() : Map(0, 0) //地圖設置：0為不能走、1為可以走、2為傳送門(transGate)
+    // 這個class提供地圖構成
+    /////////////////////////////////////////////////////////////////////////////
+    MapS2::MapS2() : Map(0, 0) //地圖設置：0為不能走、1為可以走、2為傳送門、3為橋、4為鍛造台、5為垃圾桶、6為受傷區域
     {
         X = 20;
         Y = 20;
@@ -52,7 +50,6 @@ namespace game_framework
         {
             mapGrid_init[i][34] = 6;
         }
-
         for (int i = 42; i < 77; i++)
         {
             for (int j = 0; j < 13; j++)
@@ -61,7 +58,6 @@ namespace game_framework
             }
         }
         mapGrid_init[42][14] = 0;
-
         for (int i = 27; i < 77; i++)
         {
             for (int j = 22; j < 70; j++)
@@ -69,7 +65,6 @@ namespace game_framework
                 mapGrid_init[i][j] = 0;
             }
         }
-
         for (int i = 95; i < 114; i++)
         {
             for (int j = 12; j < 37; j++)
@@ -77,13 +72,11 @@ namespace game_framework
                 mapGrid_init[i][j] = 0;
             }
         }
-
         for (int i = 77; i < 94; i++)
         {  
             mapGrid_init[i][29] = 3;
             mapGrid_init[i][36] = 3;
         }
-
         for (int i = 186; i < 190; i++)
         {
             for (int j = 0; j < 70; j++)
@@ -91,7 +84,6 @@ namespace game_framework
                 mapGrid_init[i][j] = 0;
             }
         }
-
         for (int i = 166; i < 186; i++)
         {
             for (int j = 0; j < 70; j++)
@@ -99,7 +91,6 @@ namespace game_framework
                 mapGrid_init[i][j] = 2;
             }
         }
-
         for (int i = 0; i < 400; i++)
         {
             for (int j = 0; j < 70; j++)
@@ -108,22 +99,17 @@ namespace game_framework
             }
         }
     }
-
     MapS2::~MapS2()
     {
     }
-
     void MapS2::LoadBitmap()
     {
-        //white.LoadBitmap(IDB_WHITE);
-        //blue.LoadBitmap(IDB_BLUE);
         map.LoadBitmap(".\\res\\map02.bmp");
         exitBitmap.LoadBitmap(IDB_EXIT, RGB(0, 0, 0));
         pressEBitmap.LoadBitmap(IDB_PRESSE, RGB(0, 0, 0));
         loadMagnifierBitmap();
         loadMessageIconBitmap();
     }
-
     void MapS2::Initialize()
     {
         setXY(-100, -260);
@@ -144,14 +130,12 @@ namespace game_framework
         messageSize = 0;
         messageEndFlag = false;
     }
-
     void MapS2::setPos(int x, int y, int n)
     {
         int gridX = x / 20;
         int gridY = y / 20;
         mapGrid[gridX][gridY] = n;
     }
-
     bool MapS2::isEmpty(int x, int y) const
     {
         int gridX = x / 20;
@@ -162,7 +146,6 @@ namespace game_framework
         }
         return false;
     }
-
     bool MapS2::isPortal(int x, int y) const
     {
         int gridX = x / 20;
@@ -173,7 +156,6 @@ namespace game_framework
         }
         return false;
     }
-
     bool MapS2::isBridge(int x, int y) const
     {
         int gridX = x / 20;
@@ -184,17 +166,14 @@ namespace game_framework
         }
         return false;
     }
-
     bool MapS2::isCraftTable(int x, int y) const
     {
         return false;
     }
-
     bool MapS2::isTrashCan(int x, int y) const
     {
         return false;
     }
-
     bool MapS2::isGetHurtPlace(int x, int y) const
     {
         int gridX = x / 20;
@@ -205,26 +184,22 @@ namespace game_framework
         }
         return false;
     }
-
     void MapS2::onShow()
     {
         map.SetTopLeft(getSX(), getSY());
         map.ShowBitmap();
         syMoving(targetSY);
-
         if (getPortalOpen())
         {
             if (characterX < 1000)
                 exitBitmap.SetTopLeft(150 + getSX(), 245);
             else
                 exitBitmap.SetTopLeft(3470 + getSX(), 300);
-
             pressEBitmap.SetTopLeft(600, 615);
             exitBitmap.ShowBitmap();
             pressEBitmap.ShowBitmap();
         }
     }
-
     void MapS2::syMoving(int y)
     {
         if (screenUp)
@@ -239,7 +214,6 @@ namespace game_framework
                 addSY(getSY()-y);
             }
         }
-
         if (screenUp)
         {
             if (getSY()-20 > y)
@@ -265,33 +239,22 @@ namespace game_framework
             }
         }
     }
-
     void MapS2::monsterFloorChanging(int x)
     {
         if (x < 1750)
-        {
             setMonsterFloor(435);
-        }
         else if (x < 2500)
-        {
             setMonsterFloor(560);
-        }
         else
-        {
             setMonsterFloor(880);
-        }
     }
 
     void MapS2::characterFloorAndCeiling()
     {
         if (characterX < 258)
-        {
             setFloor(540);
-        }
         else if (characterX < 440)
-        {
             setFloor(680);
-        }
         else if (characterX < 520)
         {
             if (characterY > 382)
@@ -346,7 +309,6 @@ namespace game_framework
             }
         }
     }
-
     int MapS2::screenX(int x)
     {
         return x + getSX();

@@ -1,6 +1,5 @@
 #ifndef __MapS5__
 #define __MapS5__
-
 namespace game_framework
 {
 	/////////////////////////////////////////////////////////////////////////////
@@ -33,12 +32,10 @@ namespace game_framework
 		int mapGrid[400][70];
 		CMovingBitmap white, blue;
 		int gridW, gridH;
-
 		int previousFloor;
 		int targetSY;
 		bool screenUp;
 		bool screenDown;
-
 		CMovingBitmap message01;
 		CMovingBitmap message02;
 		CMovingBitmap message03;
