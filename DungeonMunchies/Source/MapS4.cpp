@@ -284,31 +284,31 @@ namespace game_framework
     {
         if (x < 750)
         {
-            setFloor(540);
+            setMonsterFloor(540);
         }
-        else if (x < 1090)
+        else if (x < 1120)
         {
-            setFloor(630);
+            setMonsterFloor(630);
         }
         else if (x < 1315)
         {
-            setFloor(485);
+            setMonsterFloor(485);
         }
         else if (x < 1447)
         {
-            setFloor(630);
+            setMonsterFloor(630);
         }
         else if (x < 1925)
         {
-            setFloor(725);
+            setMonsterFloor(725);
         }
         else if (x < 2265)
         {
-            setFloor(605);
+            setMonsterFloor(605);
         }
         else
         {
-            setFloor(725);
+            setMonsterFloor(725);
         }
     }
 

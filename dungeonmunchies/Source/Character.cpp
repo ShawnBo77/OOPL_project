@@ -418,7 +418,7 @@ namespace game_framework
 
 		if (isInvincible)
 		{
-			invincibleTimer.CaculateTimeForFalse(&isInvincible, 0.3);
+			invincibleTimer.CaculateTimeForFalse(&isInvincible, 1);
 		}
 
 		if (isShrimpAttack && !shrimpAttack)
