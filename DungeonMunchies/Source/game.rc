@@ -414,6 +414,108 @@ IDB_TRASHCANOPEN        BITMAP                  "..\\res\\trashCanOpen.bmp"
 
 IDB_CRAFTING            BITMAP                  "..\\res\\crafting.bmp"
 
+IDB_BOSSASSISTANT       BITMAP                  "..\\res\\boss_assistant.bmp"
+
+IDB_CACTUSALIVE         BITMAP                  "..\\res\\cactus_alive.bmp"
+
+IDB_CACTUSDEAD          BITMAP                  "..\\res\\cactus_dead.bmp"
+
+IDB_CACTUSGALIVE        BITMAP                  "..\\res\\cactus_g_alive.bmp"
+
+IDB_CACTUSGDEAD         BITMAP                  "..\\res\\cactus_g_dead.bmp"
+
+IDB_MONSTERBANANA       BITMAP                  "..\\res\\monster_banana.bmp"
+
+IDB_MONSTERBANANADEAD   BITMAP                  "..\\res\\monster_banana_dead.bmp"
+
+IDB_MONSTERMOSQUITOL01  BITMAP                  "..\\res\\monster_mosquito01_left.bmp"
+
+IDB_MONSTERMOSQUITOL02  BITMAP                  "..\\res\\monster_mosquito02_left.bmp"
+
+IDB_MONSTERMOSQUITOR01  BITMAP                  "..\\res\\monster_mosquito01_right.bmp"
+
+IDB_MONSTERMOSQUITOR02  BITMAP                  "..\\res\\monster_mosquito02_right.bmp"
+
+IDB_MONSTERSHRIMPATTACKL01 BITMAP                  "..\\res\\monster_shrimp_attack01_left.bmp"
+
+IDB_MONSTERSHRIMPATTACKL02 BITMAP                  "..\\res\\monster_shrimp_attack02_left.bmp"
+
+IDB_MONSTERSHRIMPATTACKL03 BITMAP                  "..\\res\\monster_shrimp_attack03_left.bmp"
+
+IDB_MONSTERSHRIMPATTACKR01 BITMAP                  "..\\res\\monster_shrimp_attack01_right.bmp"
+
+IDB_MONSTERSHRIMPATTACKR02 BITMAP                  "..\\res\\monster_shrimp_attack02_right.bmp"
+
+IDB_MONSTERSHRIMPATTACKR03 BITMAP                  "..\\res\\monster_shrimp_attack03_right.bmp"
+
+IDB_MONSTERSHRIMPWALKL01 BITMAP                  "..\\res\\monster_shrimp_walk01_left.bmp"
+
+IDB_MONSTERSHRIMPWALKL02 BITMAP                  "..\\res\\monster_shrimp_walk02_left.bmp"
+
+IDB_MONSTERSHRIMPWALKR01 BITMAP                  "..\\res\\monster_shrimp_walk01_right.bmp"
+
+IDB_MONSTERSHRIMPWALKR02 BITMAP                  "..\\res\\monster_shrimp_walk02_right.bmp"
+
+IDB_MONSTERSHRIMPDEADL  BITMAP                  "..\\res\\monster_shrimp_dead_left.bmp"
+
+IDB_MONSTERSHRIMPDEADR  BITMAP                  "..\\res\\monster_shrimp_dead_right.bmp"
+
+IDB_MONSTERTREEATTACKL01 BITMAP                  "..\\res\\monster_tree_attack01_left.bmp"
+
+IDB_MONSTERTREEATTACKL02 BITMAP                  "..\\res\\monster_tree_attack02_left.bmp"
+
+IDB_MONSTERTREEATTACKL03 BITMAP                  "..\\res\\monster_tree_attack03_left.bmp"
+
+IDB_MONSTERTREEATTACKL04 BITMAP                  "..\\res\\monster_tree_attack04_left.bmp"
+
+IDB_MONSTERTREEATTACKL05 BITMAP                  "..\\res\\monster_tree_attack05_left.bmp"
+
+IDB_MONSTERTREEATTACKL06 BITMAP                  "..\\res\\monster_tree_attack06_left.bmp"
+
+IDB_MONSTERTREEATTACKL07 BITMAP                  "..\\res\\monster_tree_attack07_left.bmp"
+
+IDB_MONSTERTREEATTACKR01 BITMAP                  "..\\res\\monster_tree_attack01_right.bmp"
+
+IDB_MONSTERTREEATTACKR02 BITMAP                  "..\\res\\monster_tree_attack02_right.bmp"
+
+IDB_MONSTERTREEATTACKR03 BITMAP                  "..\\res\\monster_tree_attack03_right.bmp"
+
+IDB_MONSTERTREEATTACKR04 BITMAP                  "..\\res\\monster_tree_attack04_right.bmp"
+
+IDB_MONSTERTREEATTACKR05 BITMAP                  "..\\res\\monster_tree_attack05_right.bmp"
+
+IDB_MONSTERTREEATTACKR06 BITMAP                  "..\\res\\monster_tree_attack06_right.bmp"
+
+IDB_MONSTERTREEATTACKR07 BITMAP                  "..\\res\\monster_tree_attack07_right.bmp"
+
+IDB_MONSTERTREEDEADL    BITMAP                  "..\\res\\monster_tree_dead_left.bmp"
+
+IDB_MONSTERTREEDEADR    BITMAP                  "..\\res\\monster_tree_dead_right.bmp"
+
+IDB_MONSTERTREESLEEPL   BITMAP                  "..\\res\\monster_tree_sleep_left.bmp"
+
+IDB_MONSTERTREESLEEPR   BITMAP                  "..\\res\\monster_tree_sleep_right.bmp"
+
+IDB_MONSTERTREEWALKL01  BITMAP                  "..\\res\\monster_tree_walk01_left.bmp"
+
+IDB_MONSTERTREEWALKL02  BITMAP                  "..\\res\\monster_tree_walk02_left.bmp"
+
+IDB_MONSTERTREEWALKL03  BITMAP                  "..\\res\\monster_tree_walk03_left.bmp"
+
+IDB_MONSTERTREEWALKL04  BITMAP                  "..\\res\\monster_tree_walk04_left.bmp"
+
+IDB_MONSTERTREEWALKR01  BITMAP                  "..\\res\\monster_tree_walk01_right.bmp"
+
+IDB_MONSTERTREEWALKR02  BITMAP                  "..\\res\\monster_tree_walk02_right.bmp"
+
+IDB_MONSTERTREEWALKR03  BITMAP                  "..\\res\\monster_tree_walk03_right.bmp"
+
+IDB_MONSTERTREEWALKR04  BITMAP                  "..\\res\\monster_tree_walk04_right.bmp"
+
+IDB_BLACK               BITMAP                  "..\\res\\black.bmp"
+
+IDB_SOURCEGREENSWORD    BITMAP                  "..\\res\\source_green_sword.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

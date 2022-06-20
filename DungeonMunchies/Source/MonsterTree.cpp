@@ -46,37 +46,37 @@ namespace game_framework
 	void MonsterTree::LoadBitmap()
 	{
 		bloodBar.LoadBitmap();
-		sleepLeft.LoadBitmap(".\\res\\monster_tree_sleep_left.bmp", RGB(0, 0, 0));
-		sleepRight.LoadBitmap(".\\res\\monster_tree_sleep_right.bmp", RGB(0, 0, 0));
+		sleepLeft.LoadBitmap(IDB_MONSTERTREESLEEPL, RGB(0, 0, 0));
+		sleepRight.LoadBitmap(IDB_MONSTERTREESLEEPR, RGB(0, 0, 0));
 
-		walkLeft.AddBitmap(".\\res\\monster_tree_walk01_left.bmp", RGB(0, 0, 0));
-		walkLeft.AddBitmap(".\\res\\monster_tree_walk02_left.bmp", RGB(0, 0, 0));
-		walkLeft.AddBitmap(".\\res\\monster_tree_walk03_left.bmp", RGB(0, 0, 0));
-		walkLeft.AddBitmap(".\\res\\monster_tree_walk04_left.bmp", RGB(0, 0, 0));
-		walkRight.AddBitmap(".\\res\\monster_tree_walk01_right.bmp", RGB(0, 0, 0));
-		walkRight.AddBitmap(".\\res\\monster_tree_walk02_right.bmp", RGB(0, 0, 0));
-		walkRight.AddBitmap(".\\res\\monster_tree_walk03_right.bmp", RGB(0, 0, 0));
-		walkRight.AddBitmap(".\\res\\monster_tree_walk04_right.bmp", RGB(0, 0, 0));
+		walkLeft.AddBitmap(IDB_MONSTERTREEWALKL01, RGB(0, 0, 0));
+		walkLeft.AddBitmap(IDB_MONSTERTREEWALKL02, RGB(0, 0, 0));
+		walkLeft.AddBitmap(IDB_MONSTERTREEWALKL03, RGB(0, 0, 0));
+		walkLeft.AddBitmap(IDB_MONSTERTREEWALKL04, RGB(0, 0, 0));
+		walkRight.AddBitmap(IDB_MONSTERTREEWALKR01, RGB(0, 0, 0));
+		walkRight.AddBitmap(IDB_MONSTERTREEWALKR02, RGB(0, 0, 0));
+		walkRight.AddBitmap(IDB_MONSTERTREEWALKR03, RGB(0, 0, 0));
+		walkRight.AddBitmap(IDB_MONSTERTREEWALKR04, RGB(0, 0, 0));
 
-		attackLeft.AddBitmap(".\\res\\monster_tree_attack01_left.bmp", RGB(0, 0, 0));
-		attackLeft.AddBitmap(".\\res\\monster_tree_attack02_left.bmp", RGB(0, 0, 0));
-		attackLeft.AddBitmap(".\\res\\monster_tree_attack03_left.bmp", RGB(0, 0, 0));
-		attackLeft.AddBitmap(".\\res\\monster_tree_attack04_left.bmp", RGB(0, 0, 0));
-		attackLeft.AddBitmap(".\\res\\monster_tree_attack05_left.bmp", RGB(0, 0, 0));
-		attackLeft.AddBitmap(".\\res\\monster_tree_attack06_left.bmp", RGB(0, 0, 0));
-		attackLeft.AddBitmap(".\\res\\monster_tree_attack07_left.bmp", RGB(0, 0, 0));
-		attackRight.AddBitmap(".\\res\\monster_tree_attack01_right.bmp", RGB(0, 0, 0));
-		attackRight.AddBitmap(".\\res\\monster_tree_attack02_right.bmp", RGB(0, 0, 0));
-		attackRight.AddBitmap(".\\res\\monster_tree_attack03_right.bmp", RGB(0, 0, 0));
-		attackRight.AddBitmap(".\\res\\monster_tree_attack04_right.bmp", RGB(0, 0, 0));
-		attackRight.AddBitmap(".\\res\\monster_tree_attack05_right.bmp", RGB(0, 0, 0));
-		attackRight.AddBitmap(".\\res\\monster_tree_attack06_right.bmp", RGB(0, 0, 0));
-		attackRight.AddBitmap(".\\res\\monster_tree_attack07_right.bmp", RGB(0, 0, 0));
+		attackLeft.AddBitmap(IDB_MONSTERTREEATTACKL01, RGB(0, 0, 0));
+		attackLeft.AddBitmap(IDB_MONSTERTREEATTACKL02, RGB(0, 0, 0));
+		attackLeft.AddBitmap(IDB_MONSTERTREEATTACKL03, RGB(0, 0, 0));
+		attackLeft.AddBitmap(IDB_MONSTERTREEATTACKL04, RGB(0, 0, 0));
+		attackLeft.AddBitmap(IDB_MONSTERTREEATTACKL05, RGB(0, 0, 0));
+		attackLeft.AddBitmap(IDB_MONSTERTREEATTACKL06, RGB(0, 0, 0));
+		attackLeft.AddBitmap(IDB_MONSTERTREEATTACKL07, RGB(0, 0, 0));
+		attackRight.AddBitmap(IDB_MONSTERTREEATTACKR01, RGB(0, 0, 0));
+		attackRight.AddBitmap(IDB_MONSTERTREEATTACKR02, RGB(0, 0, 0));
+		attackRight.AddBitmap(IDB_MONSTERTREEATTACKR03, RGB(0, 0, 0));
+		attackRight.AddBitmap(IDB_MONSTERTREEATTACKR04, RGB(0, 0, 0));
+		attackRight.AddBitmap(IDB_MONSTERTREEATTACKR05, RGB(0, 0, 0));
+		attackRight.AddBitmap(IDB_MONSTERTREEATTACKR06, RGB(0, 0, 0));
+		attackRight.AddBitmap(IDB_MONSTERTREEATTACKR07, RGB(0, 0, 0));
 
-		deadLeft.LoadBitmap(".\\res\\monster_tree_dead_left.bmp", RGB(0, 0, 0));
-		deadRight.LoadBitmap(".\\res\\monster_tree_dead_right.bmp", RGB(0, 0, 0));
-		sourceGuavaJuiceBlood.LoadBitmap(".\\res\\source_guava_juice_blood.bmp", RGB(0, 0, 0));
-		black.LoadBitmap(".\\res\\black.bmp", RGB(0, 0, 0));
+		deadLeft.LoadBitmap(IDB_MONSTERTREEDEADL, RGB(0, 0, 0));
+		deadRight.LoadBitmap(IDB_MONSTERTREEDEADR, RGB(0, 0, 0));
+		sourceGuavaJuiceBlood.LoadBitmap(IDB_SOURCEGUAVAJUICEBLOOD, RGB(0, 0, 0));
+		black.LoadBitmap(IDB_BLACK, RGB(0, 0, 0));
 	}
 
 	void MonsterTree::Initialize()

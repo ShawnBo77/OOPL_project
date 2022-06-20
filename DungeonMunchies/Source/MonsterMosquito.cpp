@@ -38,12 +38,12 @@ namespace game_framework
 	void MonsterMosquito::LoadBitmap()
 	{
 		bloodBar.LoadBitmap();
-		faceLeft.AddBitmap(".\\res\\monster_mosquito01_left.bmp", RGB(0, 0, 0));
-		faceLeft.AddBitmap(".\\res\\monster_mosquito02_left.bmp", RGB(0, 0, 0));
-		faceRight.AddBitmap(".\\res\\monster_mosquito01_right.bmp", RGB(0, 0, 0));
-		faceRight.AddBitmap(".\\res\\monster_mosquito02_right.bmp", RGB(0, 0, 0));
-		sourceMosquitoJump.LoadBitmap(".\\res\\source_mosquito_jump.bmp", RGB(0, 0, 0));
-		black.LoadBitmap(".\\res\\black.bmp", RGB(0, 0, 0));
+		faceLeft.AddBitmap(IDB_MONSTERMOSQUITOL01, RGB(0, 0, 0));
+		faceLeft.AddBitmap(IDB_MONSTERMOSQUITOL02, RGB(0, 0, 0));
+		faceRight.AddBitmap(IDB_MONSTERMOSQUITOR01, RGB(0, 0, 0));
+		faceRight.AddBitmap(IDB_MONSTERMOSQUITOR02, RGB(0, 0, 0));
+		sourceMosquitoJump.LoadBitmap(IDB_SOURCEMOSQUITOJUMP, RGB(0, 0, 0));
+		black.LoadBitmap(IDB_BLACK, RGB(0, 0, 0));
 	}
 
 	void MonsterMosquito::Initialize()

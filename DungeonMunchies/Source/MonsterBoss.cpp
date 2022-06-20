@@ -40,78 +40,78 @@ namespace game_framework
 		bloodBar.LoadBitmap();
 
 		//向右走動畫
-		walkingRight.AddBitmap(".\\res\\boss_right_walk01.bmp", RGB(0, 0, 0));
-		walkingRight.AddBitmap(".\\res\\boss_right_walk02.bmp", RGB(0, 0, 0));
-		walkingRight.AddBitmap(".\\res\\boss_right_walk03.bmp", RGB(0, 0, 0));
-		walkingRight.AddBitmap(".\\res\\boss_right_walk04.bmp", RGB(0, 0, 0));
+		walkingRight.AddBitmap(IDB_BOSSRIGHTWALK1, RGB(0, 0, 0));
+		walkingRight.AddBitmap(IDB_BOSSRIGHTWALK2, RGB(0, 0, 0));
+		walkingRight.AddBitmap(IDB_BOSSRIGHTWALK3, RGB(0, 0, 0));
+		walkingRight.AddBitmap(IDB_BOSSRIGHTWALK4, RGB(0, 0, 0));
 		//向左走動畫
-		walkingLeft.AddBitmap(".\\res\\boss_left_walk01.bmp", RGB(0, 0, 0));
-		walkingLeft.AddBitmap(".\\res\\boss_left_walk02.bmp", RGB(0, 0, 0));
-		walkingLeft.AddBitmap(".\\res\\boss_left_walk03.bmp", RGB(0, 0, 0));
-		walkingLeft.AddBitmap(".\\res\\boss_left_walk04.bmp", RGB(0, 0, 0));
+		walkingLeft.AddBitmap(IDB_BOSSLEFTWALK1, RGB(0, 0, 0));
+		walkingLeft.AddBitmap(IDB_BOSSLEFTWALK2, RGB(0, 0, 0));
+		walkingLeft.AddBitmap(IDB_BOSSLEFTWALK3, RGB(0, 0, 0));
+		walkingLeft.AddBitmap(IDB_BOSSLEFTWALK4, RGB(0, 0, 0));
 
 		//向右衝撞動畫
-		collideRight.AddBitmap(".\\res\\boss_right_collide01.bmp", RGB(0, 0, 0));
-		collideRight.AddBitmap(".\\res\\boss_right_collide02.bmp", RGB(0, 0, 0));
-		collideRight.AddBitmap(".\\res\\boss_right_collide03.bmp", RGB(0, 0, 0));
-		collideRight.AddBitmap(".\\res\\boss_right_collide03.bmp", RGB(0, 0, 0));
-		collideRight.AddBitmap(".\\res\\boss_right_collide04.bmp", RGB(0, 0, 0));
+		collideRight.AddBitmap(IDB_BOSSRIGHTCOLLIDE1, RGB(0, 0, 0));
+		collideRight.AddBitmap(IDB_BOSSRIGHTCOLLIDE2, RGB(0, 0, 0));
+		collideRight.AddBitmap(IDB_BOSSRIGHTCOLLIDE3, RGB(0, 0, 0));
+		collideRight.AddBitmap(IDB_BOSSRIGHTCOLLIDE3, RGB(0, 0, 0));
+		collideRight.AddBitmap(IDB_BOSSRIGHTCOLLIDE4, RGB(0, 0, 0));
 		//向左衝撞動畫
-		collideLeft.AddBitmap(".\\res\\boss_left_collide01.bmp", RGB(0, 0, 0));
-		collideLeft.AddBitmap(".\\res\\boss_left_collide02.bmp", RGB(0, 0, 0));
-		collideLeft.AddBitmap(".\\res\\boss_left_collide03.bmp", RGB(0, 0, 0));
-		collideLeft.AddBitmap(".\\res\\boss_left_collide03.bmp", RGB(0, 0, 0));
-		collideLeft.AddBitmap(".\\res\\boss_left_collide04.bmp", RGB(0, 0, 0));
+		collideLeft.AddBitmap(IDB_BOSSLEFTCOLLIDE1, RGB(0, 0, 0));
+		collideLeft.AddBitmap(IDB_BOSSLEFTCOLLIDE2, RGB(0, 0, 0));
+		collideLeft.AddBitmap(IDB_BOSSLEFTCOLLIDE3, RGB(0, 0, 0));
+		collideLeft.AddBitmap(IDB_BOSSLEFTCOLLIDE3, RGB(0, 0, 0));
+		collideLeft.AddBitmap(IDB_BOSSLEFTCOLLIDE4, RGB(0, 0, 0));
 
 		//向右捶
-		hitRight.AddBitmap(".\\res\\boss_right_hit01.bmp", RGB(0, 0, 0));
-		hitRight.AddBitmap(".\\res\\boss_right_hit02.bmp", RGB(0, 0, 0));
-		hitRight.AddBitmap(".\\res\\boss_right_hit03.bmp", RGB(0, 0, 0));
-		hitRight.AddBitmap(".\\res\\boss_right_hit04.bmp", RGB(0, 0, 0));
-		hitRight.AddBitmap(".\\res\\boss_right_hit05.bmp", RGB(0, 0, 0));
-		hitRight.AddBitmap(".\\res\\boss_right_hit06.bmp", RGB(0, 0, 0));
+		hitRight.AddBitmap(IDB_BOSSRIGHTHIT1, RGB(0, 0, 0));
+		hitRight.AddBitmap(IDB_BOSSRIGHTHIT2, RGB(0, 0, 0));
+		hitRight.AddBitmap(IDB_BOSSRIGHTHIT3, RGB(0, 0, 0));
+		hitRight.AddBitmap(IDB_BOSSRIGHTHIT4, RGB(0, 0, 0));
+		hitRight.AddBitmap(IDB_BOSSRIGHTHIT5, RGB(0, 0, 0));
+		hitRight.AddBitmap(IDB_BOSSRIGHTHIT6, RGB(0, 0, 0));
 		//向右捶效果
-		hitRightEffect.AddBitmap(".\\res\\boss_right_hit_effect05.bmp", RGB(0, 0, 0));
-		hitRightEffect.AddBitmap(".\\res\\boss_right_hit_effect04.bmp", RGB(0, 0, 0));
+		hitRightEffect.AddBitmap(IDB_BOSSRIGHTHITEFFECT5, RGB(0, 0, 0));
+		hitRightEffect.AddBitmap(IDB_BOSSRIGHTHITEFFECT4, RGB(0, 0, 0));
 		//向左捶
-		hitLeft.AddBitmap(".\\res\\boss_left_hit01.bmp", RGB(0, 0, 0));
-		hitLeft.AddBitmap(".\\res\\boss_left_hit02.bmp", RGB(0, 0, 0));
-		hitLeft.AddBitmap(".\\res\\boss_left_hit03.bmp", RGB(0, 0, 0));
-		hitLeft.AddBitmap(".\\res\\boss_left_hit04.bmp", RGB(0, 0, 0));
-		hitLeft.AddBitmap(".\\res\\boss_left_hit05.bmp", RGB(0, 0, 0));
-		hitLeft.AddBitmap(".\\res\\boss_left_hit06.bmp", RGB(0, 0, 0));
+		hitLeft.AddBitmap(IDB_BOSSLEFTHIT1, RGB(0, 0, 0));
+		hitLeft.AddBitmap(IDB_BOSSLEFTHIT2, RGB(0, 0, 0));
+		hitLeft.AddBitmap(IDB_BOSSLEFTHIT3, RGB(0, 0, 0));
+		hitLeft.AddBitmap(IDB_BOSSLEFTHIT4, RGB(0, 0, 0));
+		hitLeft.AddBitmap(IDB_BOSSLEFTHIT5, RGB(0, 0, 0));
+		hitLeft.AddBitmap(IDB_BOSSLEFTHIT6, RGB(0, 0, 0));
 		//向左捶效果
-		hitLeftEffect.AddBitmap(".\\res\\boss_left_hit_effect05.bmp", RGB(0, 0, 0));
-		hitLeftEffect.AddBitmap(".\\res\\boss_left_hit_effect04.bmp", RGB(0, 0, 0));
+		hitLeftEffect.AddBitmap(IDB_BOSSLEFTHITEFFECT5, RGB(0, 0, 0));
+		hitLeftEffect.AddBitmap(IDB_BOSSLEFTHITEFFECT4, RGB(0, 0, 0));
 
 		//向右刺
-		thronRight.AddBitmap(".\\res\\boss_right_thorn01.bmp", RGB(0, 0, 0));
-		thronRight.AddBitmap(".\\res\\boss_right_thorn02.bmp", RGB(0, 0, 0));
-		thronRight.AddBitmap(".\\res\\boss_right_thorn03.bmp", RGB(0, 0, 0));
+		thronRight.AddBitmap(IDB_BOSSRIGHTTHORN1, RGB(0, 0, 0));
+		thronRight.AddBitmap(IDB_BOSSRIGHTTHORN2, RGB(0, 0, 0));
+		thronRight.AddBitmap(IDB_BOSSRIGHTTHORN3, RGB(0, 0, 0));
 		//向左刺
-		thronLeft.AddBitmap(".\\res\\boss_left_thorn01.bmp", RGB(0, 0, 0));
-		thronLeft.AddBitmap(".\\res\\boss_left_thorn02.bmp", RGB(0, 0, 0));
-		thronLeft.AddBitmap(".\\res\\boss_left_thorn03.bmp", RGB(0, 0, 0));
+		thronLeft.AddBitmap(IDB_BOSSLEFTTHORN1, RGB(0, 0, 0));
+		thronLeft.AddBitmap(IDB_BOSSLEFTTHORN2, RGB(0, 0, 0));
+		thronLeft.AddBitmap(IDB_BOSSLEFTTHORN3, RGB(0, 0, 0));
 		//刺
-		thron.AddBitmap(".\\res\\thron_grow01.bmp", RGB(0, 0, 0));
-		thron.AddBitmap(".\\res\\thron_grow02.bmp", RGB(0, 0, 0));
-		thron.AddBitmap(".\\res\\thron_red.bmp", RGB(0, 0, 0));
+		thron.AddBitmap(IDB_THRONGROW1, RGB(0, 0, 0));
+		thron.AddBitmap(IDB_THRONGROW2, RGB(0, 0, 0));
+		thron.AddBitmap(IDB_THRONRED, RGB(0, 0, 0));
 
 		//死亡動畫
-		deadRight.AddBitmap(".\\res\\boss_right_dead01.bmp", RGB(0, 0, 0));
-		deadRight.AddBitmap(".\\res\\boss_right_dead02.bmp", RGB(0, 0, 0));
-		deadRight.AddBitmap(".\\res\\boss_right_dead03.bmp", RGB(0, 0, 0));
-		deadRight.AddBitmap(".\\res\\boss_right_dead04.bmp", RGB(0, 0, 0));
-		deadRight.AddBitmap(".\\res\\boss_right_dead05.bmp", RGB(0, 0, 0));
-		deadRight.AddBitmap(".\\res\\boss_right_dead06.bmp", RGB(0, 0, 0));
-		deadLeft.AddBitmap(".\\res\\boss_left_dead01.bmp", RGB(0, 0, 0));
-		deadLeft.AddBitmap(".\\res\\boss_left_dead02.bmp", RGB(0, 0, 0));
-		deadLeft.AddBitmap(".\\res\\boss_left_dead03.bmp", RGB(0, 0, 0));
-		deadLeft.AddBitmap(".\\res\\boss_left_dead04.bmp", RGB(0, 0, 0));
-		deadLeft.AddBitmap(".\\res\\boss_left_dead05.bmp", RGB(0, 0, 0));
-		deadLeft.AddBitmap(".\\res\\boss_left_dead06.bmp", RGB(0, 0, 0));
+		deadRight.AddBitmap(IDB_BOSSRIGHTDEAD1, RGB(0, 0, 0));
+		deadRight.AddBitmap(IDB_BOSSRIGHTDEAD2, RGB(0, 0, 0));
+		deadRight.AddBitmap(IDB_BOSSRIGHTDEAD3, RGB(0, 0, 0));
+		deadRight.AddBitmap(IDB_BOSSRIGHTDEAD4, RGB(0, 0, 0));
+		deadRight.AddBitmap(IDB_BOSSRIGHTDEAD5, RGB(0, 0, 0));
+		deadRight.AddBitmap(IDB_BOSSRIGHTDEAD6, RGB(0, 0, 0));
+		deadLeft.AddBitmap(IDB_BOSSLEFTDEAD1, RGB(0, 0, 0));
+		deadLeft.AddBitmap(IDB_BOSSLEFTDEAD2, RGB(0, 0, 0));
+		deadLeft.AddBitmap(IDB_BOSSLEFTDEAD3, RGB(0, 0, 0));
+		deadLeft.AddBitmap(IDB_BOSSLEFTDEAD4, RGB(0, 0, 0));
+		deadLeft.AddBitmap(IDB_BOSSLEFTDEAD5, RGB(0, 0, 0));
+		deadLeft.AddBitmap(IDB_BOSSLEFTDEAD6, RGB(0, 0, 0));
 
-		black.LoadBitmap(".\\res\\black.bmp", RGB(0, 0, 0));
+		black.LoadBitmap(IDB_BLACK, RGB(0, 0, 0));
 	}
 
 	void MonsterBoss::Initialize()
