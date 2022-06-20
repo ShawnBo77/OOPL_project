@@ -19,7 +19,6 @@ namespace game_framework
 {
 	Character::Character()
 	{
-		//characterX = characterY = 50;
 		sourceStorage = new SourceStorage();
 		propStorage = new PropStorage();
 	}
@@ -58,7 +57,6 @@ namespace game_framework
 		for (int i = 0; i < 3; i++)	// 載入動畫
 			walkingRight[0].AddBitmap(walkingRightAnimation_S[i], RGB(0, 0, 0));
 
-
 		leftJump[0].AddBitmap(IDB_HEROLEFTJUMP_S, RGB(0, 0, 0));
 		for (int i = 0; i < 3; i++)
 			leftJump[0].AddBitmap(IDB_HEROLEFTSTAND_S, RGB(0, 0, 0));
@@ -84,7 +82,6 @@ namespace game_framework
 			rightAttacking[0].AddBitmap(attackingRightAnimation_S[i], RGB(0, 0, 0));
 
 		//has sword
-
 		standLeft[1].LoadBitmap(IDB_HEROLEFTSTAND_G, RGB(0, 0, 0));		//向左站
 		standRight[1].LoadBitmap(IDB_HERORIGHTSTAND_G, RGB(0, 0, 0));		//向右站
 
@@ -97,7 +94,6 @@ namespace game_framework
 		vector<int> walkingRightAnimation_G = { IDB_HERORIGHTWALK1_G, IDB_HERORIGHTWALK2_G, IDB_HERORIGHTWALK3_G };
 		for (int i = 0; i < 3; i++)	// 載入動畫
 			walkingRight[1].AddBitmap(walkingRightAnimation_G[i], RGB(0, 0, 0));
-
 
 		leftJump[1].AddBitmap(IDB_HEROLEFTJUMP_G, RGB(0, 0, 0));
 		for (int i = 0; i < 3; i++)
@@ -148,7 +144,6 @@ namespace game_framework
 		isAttacked = false;
 		isSparkleEffectTimerStart = false;
 		isSparkleEffectShow = false;
-
 		isInvincible = false;
 		doubleJump = false;
 		DJtemp = doubleJump;
@@ -444,7 +439,6 @@ namespace game_framework
 		leftRolling.OnMove();
 		rightRolling.OnMove();
 
-
 		if (isAttacking)
 		{
 			attackOnMove();
@@ -544,8 +538,6 @@ namespace game_framework
 				}
 			}
 		}
-
-		showData();
 	}
 
 	void Character::shouldShowMagnifier(Map* m)
@@ -814,8 +806,7 @@ namespace game_framework
 		isInvincible = flag;
 	}
 
-	/*翻滾*/
-
+	/*判斷角色是否能向左移動*/
 	bool Character::CanMovingLeft(Map* m, vector<Monster*>* monsters)
 	{
 		int monsterBorder;
@@ -852,6 +843,7 @@ namespace game_framework
 		return false;
 	}
 
+	/*判斷角色是否能向右移動*/
 	bool Character::CanMovingRight(Map* m, vector<Monster*>* monsters)
 	{
 		int monsterBorder;
@@ -1437,34 +1429,6 @@ namespace game_framework
 		canCraft = flag;
 	}
 
-	void Character::showData()
-	{
-		//CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
-		//CFont f, * fp;
-		//f.CreatePointFont(120, "Times New Roman");	// 產生 font f; 160表示16 point的字
-		//fp = pDC->SelectObject(&f);					// 選用 font f
-		//pDC->SetBkColor(RGB(230, 220, 200));
-		//pDC->SetTextColor(RGB(0, 0, 0));
-		//char str[100];								// Demo 數字對字串的轉換
-		//sprintf(str, "CharacterBlood:%d invincibleTimer(start:%d, finish:%d)", currentHp, (int)invincibleTimer.GetStartTime(), (int)invincibleTimer.GetFinishTime());
-		//pDC->TextOut(200, 120, str);
-		//pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
-		//CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
-
-		CDC* pDC2 = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
-		CFont f2, * f2p;
-		f2.CreatePointFont(120, "Times New Roman");	// 產生 font f; 160表示16 point的字
-		f2p = pDC2->SelectObject(&f2);					// 選用 font f
-		pDC2->SetBkColor(RGB(230, 220, 200));
-		pDC2->SetTextColor(RGB(0, 0, 0));
-		char position[500];								// Demo 數字對字串的轉換
-		sprintf(position, "CharacterLeftX:%d CharacterRightX:%d CharacterTopY:%d CharacterBottomY:%d CharacterAttack:%d ScreenX: %d ScreenY: %d"
-			, GetLeftX(), GetRightX(), GetTopY(), GetBottomY(), attackDamage, (currentMap == NULL) ? 0 : currentMap->getSX(), (currentMap == NULL) ? 0 : currentMap->getSY());
-		pDC2->TextOut(200, 120, position);
-		pDC2->SelectObject(f2p);						// 放掉 font f (千萬不要漏了放掉)
-		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
-	}
-
 	void Character::BloodShow()
 	{
 		int frameNum;
@@ -1487,11 +1451,7 @@ namespace game_framework
 			characterBlood[0].ShowBitmap();
 		}
 
-		if (GetCurrentHp() <= 0)
-		{
-			//show Game Over
-		}
-		else if (chagingHeart == 0)
+		if (chagingHeart == 0)
 		{
 		}
 		else if (chagingHeart <= 2)
@@ -1545,6 +1505,7 @@ namespace game_framework
 			characterBlood[0].ShowBitmap();
 		}
 	}
+
 	void Character::ScreenCXY(Map* m)
 	{
 		int bmpBorderX = 0;
