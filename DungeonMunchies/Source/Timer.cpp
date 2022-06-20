@@ -53,6 +53,7 @@ namespace game_framework
 	{
 		return finishTime - startTime;
 	}
+
 	void Timer::CaculateTimeForFalse(bool* b, double time)
 	{
 		Finish();
@@ -61,6 +62,7 @@ namespace game_framework
 			*b = false;
 		}
 	}
+
 	void Timer::CaculateTimeForTrue(bool* b, double time)
 	{
 		Finish();

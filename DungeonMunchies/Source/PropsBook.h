@@ -39,7 +39,6 @@ namespace game_framework {
 		CMovingBitmap* propBitmap(PropCase pc); //回傳該bitmap是何prop
 		void onShow();
 		void LightBulbOnShow();
-
 		//cheat
 		void getAllProps();
 		void loseAllProps();

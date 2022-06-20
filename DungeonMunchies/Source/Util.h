@@ -115,5 +115,4 @@ enum SourceCase
 	guava_juice_blood_s,
 	green_sword_s
 };
-
 #endif

@@ -25,8 +25,6 @@ namespace game_framework
 		void LoadBitmap();				// 載入圖形
 		void OnMove(Map* m, vector<Monster*>* monsters);		    // 移動
 		void OnShow(Map* m);			        // 將圖形貼到畫面
-		void ResetPosition(Map* m);			// 地圖切換時，重置位置
-		void showData();
 		void BloodShow();
 		void ScreenCXY(Map* m);
 
@@ -42,7 +40,6 @@ namespace game_framework
 		int  GetBottomY();				// 右下角 y 座標
 		int  GetCharacterStage();				
 
-		void GetMovingDown();	        // 回傳是否正在往下移動
 		bool GetIsMovingLeft();	        // 回傳是否正在往左移動
 		bool GetIsMovingRight();        // 回傳是否正在往右移動
 		bool GetIsMovingUp();           // 回傳是否正在往上移動
@@ -65,7 +62,6 @@ namespace game_framework
 		void SetCanGoToNextMap(bool flag);		// 設定是否能前往下一關
 		void SetCanCraft(bool flag);			// 設定是否能合成
 
-
 		void SetCurrentHp(int x);               // 設定目前血量
 		void SetIsInvincible(bool flag);         //設定是否為無敵狀態
 
@@ -76,12 +72,10 @@ namespace game_framework
 		bool isIntersect(int lX, int rX, int tY, int bY); //看物體是否和角色重疊
 
 		void characterHasSword(bool flag);
-
 		/*行為*/
 		//判定是否可以左右移動
 		bool CanMovingLeft(Map* m, vector<Monster*>* monsters);
 		bool CanMovingRight(Map* m, vector<Monster*>* monsters);
-
 		//速度
 		void SetSpeed(int x);
 		int GetSpeed();
@@ -109,7 +103,6 @@ namespace game_framework
 		void isAttackedEffectCaculation();
 		void isAttackedEffectOnShow();
 
-
 		/*餐點能力*/
 		SourceStorage* GetSourceStorage();	        // 回傳素材儲存空間
 		PropStorage* GetPropStorage();	            // 回傳道具儲存空間
@@ -124,7 +117,6 @@ namespace game_framework
 		void healBloodEveryTenSeconds();        // 每十秒回三滴血
 		void EatBananaAttack(bool flag);
 		void EatShrimpAttack(bool flag);
-
 		void SetIsMosquitoJump(bool flag);
 		bool GetIsMosquitoJump();
 		void SetIsGrassFast(bool flag);
@@ -142,7 +134,6 @@ namespace game_framework
 		void AddLightBulb(int num);
 		void ConsumeLightBulb(int num);
 		void SetAllSourceNumToHundred();
-
 	protected:
 		bool isAttackSuccessfullyL(int range, Monster* monster);
 		bool isAttackSuccessfullyR(int range, Monster* monster);
@@ -225,5 +216,4 @@ namespace game_framework
 		PropStorage* propStorage;
 	};
 }
-
 #endif

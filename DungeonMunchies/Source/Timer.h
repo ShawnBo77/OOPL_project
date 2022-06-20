@@ -25,6 +25,5 @@ namespace game_framework
 		clock_t finishTime;
 	};
 }
-
 #endif
 
