@@ -148,7 +148,7 @@ namespace game_framework
     }
     void MapS5::LoadBitmap()
     {
-        map.LoadBitmap(".\\res\\map05.bmp");
+        map.LoadBitmap(IDB_MAPS5);
         exitBitmap.LoadBitmap(IDB_EXIT, RGB(0, 0, 0));
         pressEBitmap.LoadBitmap(IDB_PRESSE, RGB(0, 0, 0));
         craftingBitmap.LoadBitmap(IDB_CRAFTING, RGB(0, 0, 0));

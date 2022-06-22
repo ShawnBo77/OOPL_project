@@ -135,11 +135,11 @@ namespace game_framework
 	}
 	void Map::loadMagnifierBitmap()
 	{
-		magnifier.LoadBitmap(".\\res\\magnifier.bmp", RGB(0, 0, 0));
+		magnifier.LoadBitmap(IDB_MAGNIFIERR, RGB(0, 0, 0));
 	}
 	void Map::loadMagnifierLBitmap()
 	{
-		magnifierL.LoadBitmap(".\\res\\magnifierL.bmp", RGB(0, 0, 0));
+		magnifierL.LoadBitmap(IDB_MAGNIFIERL, RGB(0, 0, 0));
 	}
 	void Map::showMaginifier(int x, int y)
 	{
@@ -161,7 +161,7 @@ namespace game_framework
 	}
 	void Map::loadMessageIconBitmap()
 	{
-		messageIcon.LoadBitmap(".\\res\\message_icon.bmp", RGB(0, 0, 0));
+		messageIcon.LoadBitmap(IDB_MESSAGEICON, RGB(0, 0, 0));
 	}
 	void Map::showMessageIcon(int x, int y)
 	{

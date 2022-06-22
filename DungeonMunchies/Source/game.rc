@@ -108,7 +108,7 @@ IDB_BOSSMAP             BITMAP                  "..\\res\\boss_map.bmp"
 
 IDB_STARTMENU           BITMAP                  "..\\res\\start_menu.bmp"
 
-IDB_MAP2                BITMAP                  "..\\res\\boss_map.bmp"
+IDB_MAPFORBOSS          BITMAP                  "..\\res\\boss_map.bmp"
 
 IDB_BLUE                BITMAP                  "..\\res\\bitmap3.bmp"
 
@@ -515,6 +515,108 @@ IDB_MONSTERTREEWALKR04  BITMAP                  "..\\res\\monster_tree_walk04_ri
 IDB_BLACK               BITMAP                  "..\\res\\black.bmp"
 
 IDB_SOURCEGREENSWORD    BITMAP                  "..\\res\\source_green_sword.bmp"
+
+IDB_HEROLEFTATTACK1_G   BITMAP                  "..\\res\\g_attack01_left.bmp"
+
+IDB_HERORIGHTATTACK1_G  BITMAP                  "..\\res\\g_attack01_right.bmp"
+
+IDB_HEROLEFTATTACK2_G   BITMAP                  "..\\res\\g_attack02_left.bmp"
+
+IDB_HERORIGHTATTACK2_G  BITMAP                  "..\\res\\g_attack02_right.bmp"
+
+IDB_HEROLEFTATTACK3_G   BITMAP                  "..\\res\\g_attack03_left.bmp"
+
+IDB_HERORIGHTATTACK3_G  BITMAP                  "..\\res\\g_attack03_right.bmp"
+
+IDB_HEROLEFTATTACK4_G   BITMAP                  "..\\res\\g_attack04_left.bmp"
+
+IDB_HERORIGHTATTACK4_G  BITMAP                  "..\\res\\g_attack04_right.bmp"
+
+IDB_HEROLEFTATTACK5_G   BITMAP                  "..\\res\\g_attack05_left.bmp"
+
+IDB_HERORIGHTATTACK5_G  BITMAP                  "..\\res\\g_attack05_right.bmp"
+
+IDB_HEROLEFTATTACK6_G   BITMAP                  "..\\res\\g_attack06_left.bmp"
+
+IDB_HERORIGHTATTACK6_G  BITMAP                  "..\\res\\g_attack06_right.bmp"
+
+IDB_HEROSTATUS          BITMAP                  "..\\res\\character_status.bmp"
+
+IDB_MAPS1               BITMAP                  "..\\res\\map01.bmp"
+
+IDB_MAPS2               BITMAP                  "..\\res\\map02.bmp"
+
+IDB_MAPS3               BITMAP                  "..\\res\\map03.bmp"
+
+IDB_MAPS4               BITMAP                  "..\\res\\map04.bmp"
+
+IDB_MAPS5               BITMAP                  "..\\res\\map05.bmp"
+
+IDB_MAPS6               BITMAP                  "..\\res\\map06.bmp"
+
+IDB_MAGNIFIERR          BITMAP                  "..\\res\\magnifier.bmp"
+
+IDB_MAGNIFIERL          BITMAP                  "..\\res\\magnifierL.bmp"
+
+IDB_MESSAGEICON         BITMAP                  "..\\res\\message_icon.bmp"
+
+IDB_MESSAGE0101         BITMAP                  "..\\res\\message0101.bmp"
+
+IDB_MESSAGE0102         BITMAP                  "..\\res\\message0102.bmp"
+
+IDB_MESSAGE0103         BITMAP                  "..\\res\\message0103.bmp"
+
+IDB_MESSAGE0104         BITMAP                  "..\\res\\message0104.bmp"
+
+IDB_MESSAGE0301         BITMAP                  "..\\res\\message0301.bmp"
+
+IDB_MESSAGE0302         BITMAP                  "..\\res\\message0302.bmp"
+
+IDB_MESSAGE0303         BITMAP                  "..\\res\\message0303.bmp"
+
+IDB_MESSAGE0304         BITMAP                  "..\\res\\message0304.bmp"
+
+IDB_MESSAGE0305         BITMAP                  "..\\res\\message0305.bmp"
+
+IDB_MESSAGE0306         BITMAP                  "..\\res\\message0306.bmp"
+
+IDB_MESSAGE0501         BITMAP                  "..\\res\\message0501.bmp"
+
+IDB_MESSAGE0502         BITMAP                  "..\\res\\message0502.bmp"
+
+IDB_MESSAGE0503         BITMAP                  "..\\res\\message0503.bmp"
+
+IDB_MESSAGE0504         BITMAP                  "..\\res\\message0504.bmp"
+
+IDB_MESSAGE0601         BITMAP                  "..\\res\\message0601.bmp"
+
+IDB_MESSAGE0602         BITMAP                  "..\\res\\message0602.bmp"
+
+IDB_MESSAGE0603         BITMAP                  "..\\res\\message0603.bmp"
+
+IDB_MESSAGE0604         BITMAP                  "..\\res\\message0604.bmp"
+
+IDB_ARROW_LEFT          BITMAP                  "..\\res\\arrow_left.bmp"
+
+IDB_ARROW_LEFT_DARK     BITMAP                  "..\\res\\arrow_left_dark.bmp"
+
+IDB_ARROW_RIGHT         BITMAP                  "..\\res\\arrow_right.bmp"
+
+IDB_ARROW_RIGHT_DARK    BITMAP                  "..\\res\\arrow_right_dark.bmp"
+
+IDB_INSTRUCTIONSC1      BITMAP                  "..\\res\\instructions_c01.bmp"
+
+IDB_INSTRUCTIONS1       BITMAP                  "..\\res\\instructions01.bmp"
+
+IDB_INSTRUCTIONS2       BITMAP                  "..\\res\\instructions02.bmp"
+
+IDB_INSTRUCTIONS3       BITMAP                  "..\\res\\instructions03.bmp"
+
+IDB_STAFF               BITMAP                  "..\\res\\staff.bmp"
+
+IDB_START_MENU_CHOICE   BITMAP                  "..\\res\\start_menu_choice.bmp"
+
+IDB_WHITE_X             BITMAP                  "..\\res\\white_x.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

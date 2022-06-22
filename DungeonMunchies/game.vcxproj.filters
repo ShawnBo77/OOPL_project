@@ -961,5 +961,158 @@
     <Image Include="res\source_green_sword.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\g_attack01_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\g_attack01_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\g_attack02_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\g_attack02_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\g_attack03_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\g_attack03_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\g_attack04_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\g_attack04_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\g_attack05_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\g_attack05_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\g_attack06_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\g_attack06_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\character_status.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\map01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\map02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\map03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\map04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\map05.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\map06.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\magnifier.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\magnifierL.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\message_icon.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\message0101.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\message0102.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\message0103.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\message0104.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\message0301.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\message0302.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\message0303.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\message0304.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\message0305.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\message0306.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\message0501.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\message0502.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\message0503.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\message0504.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\message0601.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\message0602.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\message0603.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\message0604.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\arrow_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\arrow_left_dark.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\arrow_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\arrow_right_dark.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\instructions_c01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\instructions01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\instructions02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\instructions03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\staff.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\start_menu_choice.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\white_x.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

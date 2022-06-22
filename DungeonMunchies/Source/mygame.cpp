@@ -85,15 +85,15 @@ namespace game_framework
 		// 開始載入資料
 		//
 		startMenu.LoadBitmap(IDB_STARTMENU);
-		startMenuChoice.LoadBitmap(".\\res\\start_menu_choice.bmp", RGB(0, 0, 0));
-		staff.LoadBitmap(".\\res\\staff.bmp");
-		instructionsPage01.LoadBitmap(".\\res\\instructions01.bmp");
-		instructionsPage02.LoadBitmap(".\\res\\instructions02.bmp");
-		instructionsPage03.LoadBitmap(".\\res\\instructions03.bmp");
-		instructionsPageC.LoadBitmap(".\\res\\instructions_c01.bmp");
-		whiteX.LoadBitmap(".\\res\\white_x.bmp", RGB(0, 0, 0));
-		arrowL.LoadBitmap(".\\res\\arrow_left.bmp", RGB(0, 0, 0));
-		arrowR.LoadBitmap(".\\res\\arrow_right.bmp", RGB(0, 0, 0));
+		startMenuChoice.LoadBitmap(IDB_START_MENU_CHOICE, RGB(0, 0, 0));
+		staff.LoadBitmap(IDB_STAFF);
+		instructionsPage01.LoadBitmap(IDB_INSTRUCTIONS1);
+		instructionsPage02.LoadBitmap(IDB_INSTRUCTIONS2);
+		instructionsPage03.LoadBitmap(IDB_INSTRUCTIONS3);
+		instructionsPageC.LoadBitmap(IDB_INSTRUCTIONSC1);
+		whiteX.LoadBitmap(IDB_WHITE_X, RGB(0, 0, 0));
+		arrowL.LoadBitmap(IDB_ARROW_LEFT, RGB(0, 0, 0));
+		arrowR.LoadBitmap(IDB_ARROW_RIGHT, RGB(0, 0, 0));
 		CAudio::Instance()->Load(AUDIO_STARTMENU, "sounds\\start_menu_audio.mp3");
 		CAudio::Instance()->Load(AUDIO_CHOOSE, "sounds\\choose.mp3");
 		CAudio::Instance()->Play(AUDIO_STARTMENU, true);

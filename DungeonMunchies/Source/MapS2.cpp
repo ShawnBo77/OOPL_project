@@ -104,7 +104,7 @@ namespace game_framework
     }
     void MapS2::LoadBitmap()
     {
-        map.LoadBitmap(".\\res\\map02.bmp");
+        map.LoadBitmap(IDB_MAPS2);
         exitBitmap.LoadBitmap(IDB_EXIT, RGB(0, 0, 0));
         pressEBitmap.LoadBitmap(IDB_PRESSE, RGB(0, 0, 0));
         loadMagnifierBitmap();

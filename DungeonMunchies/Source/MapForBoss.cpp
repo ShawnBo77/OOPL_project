@@ -46,7 +46,7 @@ namespace game_framework {
 	}
 	void MapForBoss::LoadBitmap()
 	{
-		map.LoadBitmap(".\\res\\boss_map.bmp");
+		map.LoadBitmap(IDB_MAPFORBOSS);
 	}
 	void MapForBoss::Initialize()
 	{

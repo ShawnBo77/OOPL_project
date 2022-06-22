@@ -24,7 +24,7 @@ namespace game_framework
 
 	void CharacterStatus::LoadBitmap()
 	{
-		characterStatus.LoadBitmap(".\\res\\character_status.bmp");
+		characterStatus.LoadBitmap(IDB_HEROSTATUS);
 	}
 
 	void CharacterStatus::Initialize(Character* character)

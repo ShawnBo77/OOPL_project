@@ -76,13 +76,13 @@ namespace game_framework
 	}
 	void MapS1::LoadBitmap()
 	{
-		map.LoadBitmap(".\\res\\map01.bmp");
+		map.LoadBitmap(IDB_MAPS1);
 		exitBitmap.LoadBitmap(IDB_EXIT, RGB(0, 0, 0));
 		pressEBitmap.LoadBitmap(IDB_PRESSE, RGB(0, 0, 0));
-		message01.LoadBitmap(".\\res\\message0101.bmp");
-		message02.LoadBitmap(".\\res\\message0102.bmp");
-		message03.LoadBitmap(".\\res\\message0103.bmp");
-		message04.LoadBitmap(".\\res\\message0104.bmp");
+		message01.LoadBitmap(IDB_MESSAGE0101);
+		message02.LoadBitmap(IDB_MESSAGE0102);
+		message03.LoadBitmap(IDB_MESSAGE0103);
+		message04.LoadBitmap(IDB_MESSAGE0104);
 		loadMagnifierBitmap();
 		loadMessageIconBitmap();
 	}

@@ -129,7 +129,7 @@ namespace game_framework
     }
     void MapS3::LoadBitmap()
     {
-        map.LoadBitmap(".\\res\\map03.bmp");
+        map.LoadBitmap(IDB_MAPS3);
         exitBitmap.LoadBitmap(IDB_EXIT, RGB(0, 0, 0));
         pressEBitmap.LoadBitmap(IDB_PRESSE, RGB(0, 0, 0));
         trashCanClosedBitmap.LoadBitmap(IDB_TRASHCANCLOSED, RGB(0, 0, 0));

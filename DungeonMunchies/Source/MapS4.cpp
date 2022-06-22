@@ -147,7 +147,7 @@ namespace game_framework
     }
     void MapS4::LoadBitmap()
     {
-        map.LoadBitmap(".\\res\\map04.bmp");
+        map.LoadBitmap(IDB_MAPS4);
         exitBitmap.LoadBitmap(IDB_EXIT, RGB(0, 0, 0));
         pressEBitmap.LoadBitmap(IDB_PRESSE, RGB(0, 0, 0));
         trashCanClosedBitmap.LoadBitmap(IDB_TRASHCANCLOSED, RGB(0, 0, 0));

@@ -31,7 +31,7 @@ namespace game_framework
 
 	void Character::LoadBitmap()
 	{
-		black.LoadBitmap(".\\res\\black.bmp", RGB(0, 0, 0));
+		black.LoadBitmap(IDB_BLACK, RGB(0, 0, 0));
 		bloodFrame.LoadBitmap(IDB_CHARACTERBLOODFRAME, RGB(0, 0, 0));
 		characterBlood[0].LoadBitmap(IDB_CHARACTERBLOOD01, RGB(255, 255, 255));
 		characterBlood[1].LoadBitmap(IDB_CHARACTERBLOOD02, RGB(255, 255, 255));
@@ -103,19 +103,19 @@ namespace game_framework
 		for (int i = 0; i < 3; i++)
 			rightJump[1].AddBitmap(IDB_HERORIGHTSTAND_G, RGB(0, 0, 0));
 
-		leftAttacking[1].AddBitmap(".\\res\\g_attack01_left.bmp", RGB(0, 0, 0));
-		leftAttacking[1].AddBitmap(".\\res\\g_attack02_left.bmp", RGB(0, 0, 0));
-		leftAttacking[1].AddBitmap(".\\res\\g_attack03_left.bmp", RGB(0, 0, 0));
-		leftAttacking[1].AddBitmap(".\\res\\g_attack04_left.bmp", RGB(0, 0, 0));
-		leftAttacking[1].AddBitmap(".\\res\\g_attack05_left.bmp", RGB(0, 0, 0));
-		leftAttacking[1].AddBitmap(".\\res\\g_attack06_left.bmp", RGB(0, 0, 0));
+		leftAttacking[1].AddBitmap(IDB_HEROLEFTATTACK1_G, RGB(0, 0, 0));
+		leftAttacking[1].AddBitmap(IDB_HEROLEFTATTACK2_G, RGB(0, 0, 0));
+		leftAttacking[1].AddBitmap(IDB_HEROLEFTATTACK3_G, RGB(0, 0, 0));
+		leftAttacking[1].AddBitmap(IDB_HEROLEFTATTACK4_G, RGB(0, 0, 0));
+		leftAttacking[1].AddBitmap(IDB_HEROLEFTATTACK5_G, RGB(0, 0, 0));
+		leftAttacking[1].AddBitmap(IDB_HEROLEFTATTACK6_G, RGB(0, 0, 0));
 
-		rightAttacking[1].AddBitmap(".\\res\\g_attack01_right.bmp", RGB(0, 0, 0));
-		rightAttacking[1].AddBitmap(".\\res\\g_attack02_right.bmp", RGB(0, 0, 0));
-		rightAttacking[1].AddBitmap(".\\res\\g_attack03_right.bmp", RGB(0, 0, 0));
-		rightAttacking[1].AddBitmap(".\\res\\g_attack04_right.bmp", RGB(0, 0, 0));
-		rightAttacking[1].AddBitmap(".\\res\\g_attack05_right.bmp", RGB(0, 0, 0));
-		rightAttacking[1].AddBitmap(".\\res\\g_attack06_right.bmp", RGB(0, 0, 0));
+		rightAttacking[1].AddBitmap(IDB_HERORIGHTATTACK1_G, RGB(0, 0, 0));
+		rightAttacking[1].AddBitmap(IDB_HERORIGHTATTACK2_G, RGB(0, 0, 0));
+		rightAttacking[1].AddBitmap(IDB_HERORIGHTATTACK3_G, RGB(0, 0, 0));
+		rightAttacking[1].AddBitmap(IDB_HERORIGHTATTACK4_G, RGB(0, 0, 0));
+		rightAttacking[1].AddBitmap(IDB_HERORIGHTATTACK5_G, RGB(0, 0, 0));
+		rightAttacking[1].AddBitmap(IDB_HERORIGHTATTACK6_G, RGB(0, 0, 0));
 	}
 
 	void Character::Initialize()
@@ -413,7 +413,7 @@ namespace game_framework
 
 		if (isInvincible)
 		{
-			invincibleTimer.CaculateTimeForFalse(&isInvincible, 1);
+			invincibleTimer.CaculateTimeForFalse(&isInvincible, 0.7);
 		}
 
 		if (isShrimpAttack && !shrimpAttack)
