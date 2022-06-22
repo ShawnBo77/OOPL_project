@@ -4,7 +4,7 @@
 
 ##### 安裝方式
 
-下載 [DungeonMunchies.msi](https://github.com/NTUTShawn/OOPL_project/blob/main/DungeonMunchies.msi)然後安裝
+下載 [DungeonMunchies.msi](https://github.com/NTUTShawn/OOPL_project/blob/main/DungeonMunchies.msi) 然後安裝
 
 ##### 遊戲說明
 
