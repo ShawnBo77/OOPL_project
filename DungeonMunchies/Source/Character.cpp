@@ -83,7 +83,7 @@ namespace game_framework
 
 		//has sword
 		standLeft[1].LoadBitmap(IDB_HEROLEFTSTAND_G, RGB(0, 0, 0));		//向左站
-		standRight[1].LoadBitmap(IDB_HERORIGHTSTAND_G, RGB(0, 0, 0));		//向右站
+		standRight[1].LoadBitmap(IDB_HERORIGHTSTAND_G, RGB(0, 0, 0));	//向右站
 
 		//向左走動畫
 		vector<int> walkingLeftAnimation_G = { IDB_HEROLEFTWALK1_G, IDB_HEROLEFTWALK2_G, IDB_HEROLEFTWALK3_G };
