@@ -915,7 +915,7 @@ namespace game_framework
 		isInvincible = true;
 		invincibleTimer.Start();
 		const int ROLLING_SIZE = 2;											//¨¤¦âÂ½ºu¶ZÂ÷
-		const int ROLLING_LENGTH = 12;											//¨¤¦âÂ½ºu¶ZÂ÷
+		const int ROLLING_LENGTH = 11;											//¨¤¦âÂ½ºu¶ZÂ÷
 		const int BORDER = 5;
 		if (flag)
 		{

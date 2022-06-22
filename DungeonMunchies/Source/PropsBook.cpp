@@ -378,54 +378,56 @@ namespace game_framework
 	void PropsBook::propCancellation()
 	{
 		int cancellationCase = (mx - 219) / 46;
-		vector <PropCase>::iterator it;
-		it = propList.begin();
-		advance(it, cancellationCase);
-		switch (propList.at(cancellationCase))
+		if (cancellationCase < (signed)propList.size())
 		{
-		case mosquito_jump_p:
-			propStorage->getProp(mosquito_jump_p)->setPropFlag(false);
-			sourceStorage->getSource(mosquito_jump_s)->add(5);
-			propStorage->getProp(mosquito_jump_p)->effect(_character, false);
-			propList.erase(it);
-			break;
-		case shrimp_blood_p:
-			propStorage->getProp(shrimp_blood_p)->setPropFlag(false);
-			sourceStorage->getSource(shrimp_blood_s)->add(1);
-			_character->AddLightBulb(50);
-			propStorage->getProp(shrimp_blood_p)->effect(_character, false);
-			propList.erase(it);
-			break;
-		case grass_fast_p:
-			propStorage->getProp(grass_fast_p)->setPropFlag(false);
-			sourceStorage->getSource(grass_fast_p)->add(5);
-			_character->AddLightBulb(40);
-			propStorage->getProp(grass_fast_p)->effect(_character, false);
-			propList.erase(it);
-			break;
-		case banana_attack_p:
-			propStorage->getProp(banana_attack_p)->setPropFlag(false);
-			sourceStorage->getSource(banana_attack_p)->add(1);
-			_character->AddLightBulb(60);
-			propStorage->getProp(banana_attack_p)->effect(_character, false);
-			propList.erase(it);
-			break;
-		case shrimp_attack_p:
-			propStorage->getProp(shrimp_attack_p)->setPropFlag(false);
-			sourceStorage->getSource(shrimp_attack_p)->add(1);
-			_character->AddLightBulb(60);
-			propStorage->getProp(shrimp_attack_p)->effect(_character, false);
-			propList.erase(it);
-			break;
-		case guava_juice_blood_p:
-			propStorage->getProp(guava_juice_blood_p)->setPropFlag(false);
-			sourceStorage->getSource(guava_juice_blood_p)->add(1);
-			_character->AddLightBulb(50);
-			propStorage->getProp(guava_juice_blood_p)->effect(_character, false);
-			propList.erase(it);
-			break;
+			vector <PropCase>::iterator it;
+			it = propList.begin();
+			advance(it, cancellationCase);
+			switch (propList.at(cancellationCase))
+			{
+			case mosquito_jump_p:
+				propStorage->getProp(mosquito_jump_p)->setPropFlag(false);
+				sourceStorage->getSource(mosquito_jump_s)->add(5);
+				propStorage->getProp(mosquito_jump_p)->effect(_character, false);
+				propList.erase(it);
+				break;
+			case shrimp_blood_p:
+				propStorage->getProp(shrimp_blood_p)->setPropFlag(false);
+				sourceStorage->getSource(shrimp_blood_s)->add(2);
+				_character->AddLightBulb(50);
+				propStorage->getProp(shrimp_blood_p)->effect(_character, false);
+				propList.erase(it);
+				break;
+			case grass_fast_p:
+				propStorage->getProp(grass_fast_p)->setPropFlag(false);
+				sourceStorage->getSource(grass_fast_p)->add(4);
+				_character->AddLightBulb(40);
+				propStorage->getProp(grass_fast_p)->effect(_character, false);
+				propList.erase(it);
+				break;
+			case banana_attack_p:
+				propStorage->getProp(banana_attack_p)->setPropFlag(false);
+				sourceStorage->getSource(banana_attack_p)->add(1);
+				_character->AddLightBulb(60);
+				propStorage->getProp(banana_attack_p)->effect(_character, false);
+				propList.erase(it);
+				break;
+			case shrimp_attack_p:
+				propStorage->getProp(shrimp_attack_p)->setPropFlag(false);
+				sourceStorage->getSource(shrimp_attack_p)->add(2);
+				_character->AddLightBulb(60);
+				propStorage->getProp(shrimp_attack_p)->effect(_character, false);
+				propList.erase(it);
+				break;
+			case guava_juice_blood_p:
+				propStorage->getProp(guava_juice_blood_p)->setPropFlag(false);
+				sourceStorage->getSource(guava_juice_blood_p)->add(4);
+				_character->AddLightBulb(50);
+				propStorage->getProp(guava_juice_blood_p)->effect(_character, false);
+				propList.erase(it);
+				break;
+			}
 		}
-
 	}
 
 	void PropsBook::sourceNumShow(int sourceCase)

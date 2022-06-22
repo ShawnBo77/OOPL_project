@@ -38,10 +38,10 @@ namespace game_framework
 	void MonsterBanana::LoadBitmap()
 	{
 		bloodBar.LoadBitmap();
-		bananaAlive.LoadBitmap(".\\res\\monster_banana.bmp", RGB(0, 0, 0));
-		bananaDead.LoadBitmap(".\\res\\monster_banana_dead.bmp", RGB(0, 0, 0));
-		sourceBananaAttack.LoadBitmap(".\\res\\source_banana_attack.bmp", RGB(0, 0, 0));
-		black.LoadBitmap(".\\res\\black.bmp", RGB(0, 0, 0));
+		bananaAlive.LoadBitmap(IDB_MONSTERBANANA, RGB(0, 0, 0));
+		bananaDead.LoadBitmap(IDB_MONSTERBANANADEAD, RGB(0, 0, 0));
+		sourceBananaAttack.LoadBitmap(IDB_SOURCEBANANAATTACK, RGB(0, 0, 0));
+		black.LoadBitmap(IDB_BLACK, RGB(0, 0, 0));
 	}
 
 	void MonsterBanana::Initialize()

@@ -811,5 +811,155 @@
     <Image Include="RES\crafting.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\boss_assistant.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\cactus_g_alive.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\cactus_g_dead.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_banana.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_banana_dead.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_mosquito01_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_mosquito02_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_mosquito02_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_shrimp_attack01_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_shrimp_attack02_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_shrimp_attack03_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_shrimp_attack01_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_shrimp_attack02_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_shrimp_attack03_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_shrimp_walk01_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_shrimp_walk02_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_shrimp_walk01_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_shrimp_walk02_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_shrimp_dead_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_shrimp_dead_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monsterm.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_mosquito01_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_tree_attack01_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_tree_attack02_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_tree_attack03_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_tree_attack04_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_tree_attack05_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_tree_attack06_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_tree_attack07_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_tree_attack01_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_tree_attack02_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_tree_attack03_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_tree_attack04_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_tree_attack05_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_tree_attack06_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_tree_attack07_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_tree_dead_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_tree_dead_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_tree_sleep_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_tree_sleep_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_tree_walk01_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_tree_walk02_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_tree_walk03_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_tree_walk04_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_tree_walk01_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_tree_walk02_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_tree_walk03_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\monster_tree_walk04_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\black.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\source_green_sword.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

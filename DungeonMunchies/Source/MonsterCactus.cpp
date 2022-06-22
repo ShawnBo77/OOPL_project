@@ -40,8 +40,8 @@ namespace game_framework
 		bloodBar.LoadBitmap();
 		cactusAlive.LoadBitmap(IDB_MONSTERCACTUSALIVE, RGB(0, 0, 0));
 		cactusDead.LoadBitmap(IDB_MONSTERCACTUSDEAD, RGB(0, 0, 0));
-		sourceGrassFast.LoadBitmap(".\\res\\source_grass_fast.bmp", RGB(0, 0, 0));
-		black.LoadBitmap(".\\res\\black.bmp", RGB(0, 0, 0));
+		sourceGrassFast.LoadBitmap(IDB_SOURCEGRASSFAST, RGB(0, 0, 0));
+		black.LoadBitmap(IDB_BLACK, RGB(0, 0, 0));
 	}
 
 	void MonsterCactus::Initialize()

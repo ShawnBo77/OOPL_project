@@ -47,23 +47,23 @@ namespace game_framework
 	{
 		bloodBar.LoadBitmap();
 
-		walkLeft.AddBitmap(".\\res\\monster_shrimp_walk01_left.bmp", RGB(0, 0, 0));
-		walkLeft.AddBitmap(".\\res\\monster_shrimp_walk02_left.bmp", RGB(0, 0, 0));
-		walkRight.AddBitmap(".\\res\\monster_shrimp_walk01_right.bmp", RGB(0, 0, 0));
-		walkRight.AddBitmap(".\\res\\monster_shrimp_walk02_right.bmp", RGB(0, 0, 0));
+		walkLeft.AddBitmap(IDB_MONSTERSHRIMPWALKL01, RGB(0, 0, 0));
+		walkLeft.AddBitmap(IDB_MONSTERSHRIMPWALKL02, RGB(0, 0, 0));
+		walkRight.AddBitmap(IDB_MONSTERSHRIMPWALKR01, RGB(0, 0, 0));
+		walkRight.AddBitmap(IDB_MONSTERSHRIMPWALKR02, RGB(0, 0, 0));
 
-		attackLeft.AddBitmap(".\\res\\monster_shrimp_attack01_left.bmp", RGB(0, 0, 0));
-		attackLeft.AddBitmap(".\\res\\monster_shrimp_attack02_left.bmp", RGB(0, 0, 0));
-		attackLeft.AddBitmap(".\\res\\monster_shrimp_attack03_left.bmp", RGB(0, 0, 0));
-		attackRight.AddBitmap(".\\res\\monster_shrimp_attack01_right.bmp", RGB(0, 0, 0));
-		attackRight.AddBitmap(".\\res\\monster_shrimp_attack02_right.bmp", RGB(0, 0, 0));
-		attackRight.AddBitmap(".\\res\\monster_shrimp_attack03_right.bmp", RGB(0, 0, 0));
+		attackLeft.AddBitmap(IDB_MONSTERSHRIMPATTACKL01, RGB(0, 0, 0));
+		attackLeft.AddBitmap(IDB_MONSTERSHRIMPATTACKL02, RGB(0, 0, 0));
+		attackLeft.AddBitmap(IDB_MONSTERSHRIMPATTACKL03, RGB(0, 0, 0));
+		attackRight.AddBitmap(IDB_MONSTERSHRIMPATTACKR01, RGB(0, 0, 0));
+		attackRight.AddBitmap(IDB_MONSTERSHRIMPATTACKR02, RGB(0, 0, 0));
+		attackRight.AddBitmap(IDB_MONSTERSHRIMPATTACKR03, RGB(0, 0, 0));
 
-		deadLeft.LoadBitmap(".\\res\\monster_shrimp_dead_left.bmp", RGB(0, 0, 0));
-		deadRight.LoadBitmap(".\\res\\monster_shrimp_dead_right.bmp", RGB(0, 0, 0));
-		sourceShrimpAttack.LoadBitmap(".\\res\\source_shrimp_attack.bmp", RGB(0, 0, 0));
-		sourceShrimpBlood.LoadBitmap(".\\res\\source_shrimp_blood.bmp", RGB(0, 0, 0));
-		black.LoadBitmap(".\\res\\black.bmp", RGB(0, 0, 0));
+		deadLeft.LoadBitmap(IDB_MONSTERSHRIMPDEADL, RGB(0, 0, 0));
+		deadRight.LoadBitmap(IDB_MONSTERSHRIMPDEADR, RGB(0, 0, 0));
+		sourceShrimpAttack.LoadBitmap(IDB_SOURCESHRIMPATTACK, RGB(0, 0, 0));
+		sourceShrimpBlood.LoadBitmap(IDB_SOURCESHRIMPBLOOD, RGB(0, 0, 0));
+		black.LoadBitmap(IDB_BLACK, RGB(0, 0, 0));
 	}
 
 	void MonsterShrimp::Initialize()

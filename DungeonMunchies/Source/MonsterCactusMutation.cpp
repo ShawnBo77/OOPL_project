@@ -38,10 +38,10 @@ namespace game_framework
 	void MonsterCactusMutation::LoadBitmap()
 	{
 		bloodBar.LoadBitmap();
-		cactusAlive.LoadBitmap(".\\res\\cactus_g_alive.bmp", RGB(0, 0, 0));
-		cactusDead.LoadBitmap(".\\res\\cactus_g_dead.bmp", RGB(0, 0, 0));
-		sourceGreenSword.LoadBitmap(".\\res\\source_green_sword.bmp", RGB(0, 0, 0));
-		black.LoadBitmap(".\\res\\black.bmp", RGB(0, 0, 0));
+		cactusAlive.LoadBitmap(IDB_CACTUSGALIVE, RGB(0, 0, 0));
+		cactusDead.LoadBitmap(IDB_CACTUSGDEAD, RGB(0, 0, 0));
+		sourceGreenSword.LoadBitmap(IDB_SOURCEGREENSWORD, RGB(0, 0, 0));
+		black.LoadBitmap(IDB_BLACK, RGB(0, 0, 0));
 	}
 
 	void MonsterCactusMutation::Initialize()
