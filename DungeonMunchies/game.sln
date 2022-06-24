@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.32126.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "game", "game.vcxproj", "{DDD280D7-4B85-4B03-BBC4-C46CA9BECCCB}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DungeonMunchies", "DungeonMunchies\DungeonMunchies.vdproj", "{F36E7F65-92EC-4A30-9264-6FE9ACE9D8DF}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DungeonMunchies", "DungeonMunchies\DungeonMunchies.vdproj", "{A97621E0-0560-4D7E-9798-18C302B6F615}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,8 +17,8 @@ Global
 		{DDD280D7-4B85-4B03-BBC4-C46CA9BECCCB}.Debug|Win32.Build.0 = Debug|Win32
 		{DDD280D7-4B85-4B03-BBC4-C46CA9BECCCB}.Release|Win32.ActiveCfg = Release|Win32
 		{DDD280D7-4B85-4B03-BBC4-C46CA9BECCCB}.Release|Win32.Build.0 = Release|Win32
-		{F36E7F65-92EC-4A30-9264-6FE9ACE9D8DF}.Debug|Win32.ActiveCfg = Debug
-		{F36E7F65-92EC-4A30-9264-6FE9ACE9D8DF}.Release|Win32.ActiveCfg = Release
+		{A97621E0-0560-4D7E-9798-18C302B6F615}.Debug|Win32.ActiveCfg = Debug
+		{A97621E0-0560-4D7E-9798-18C302B6F615}.Release|Win32.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
