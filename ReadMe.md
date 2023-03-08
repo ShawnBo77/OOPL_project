@@ -1,5 +1,5 @@
 ### DungeonMunchies
-此程式是基於 C++ 的 MFC 框架及此課程提供的 Game Framework，建置環境為Visual Studio 2019 Community
+此程式利用 MFC 函式庫，以C++撰寫，建置環境為Visual Studio 2019 Community
 這款遊戲是模仿steam商城中，一個由台灣團隊製作且評價非常高的2D橫向卷軸遊戲「Dungeon Munchies 餐癮地城」，藉由模仿遊戲來練習較為大型專案的開發。
 
 ##### 安裝方式
